@@ -9,16 +9,11 @@
 import logging
 import os
 import pickle
-import ssl
-from tkinter.messagebox import NO
 
-import numpy as np
 import pandas as pd
 import yaml
-from matplotlib import pyplot as plt
 from qcloudsms_py import SmsSingleSender
 from qcloudsms_py.httpclient import HTTPError
-from SyntheticControlMethods import DiffSynth, Synth
 
 # BASIC testing settings.
 LOG_FORMAT = logging.Formatter(
@@ -31,7 +26,7 @@ def send_finish_message(name):
     # 短信应用SDK AppID
     appid = 1400630042  # SDK AppID是1400开头
     # 短信应用SDK AppKey
-    appkey = "ad30ec46aa617263813ca8996e1a0113"
+    app_key = "ad30ec46aa617263813ca8996e1a0113"
     # 需要发送短信的手机号码
     phone_numbers = ["18500685922"]
     # 短信模板ID，需要在短信应用中申请
@@ -39,12 +34,10 @@ def send_finish_message(name):
     # 签名
     sms_sign = "隅地公众号"
 
-    ssl._create_default_https_context = ssl._create_unverified_context
-
-    ssender = SmsSingleSender(appid, appkey)
+    s_sender = SmsSingleSender(appid, app_key)
     params = [name]  # 当模板没有参数时，`params = []`
     try:
-        result = ssender.send_with_param(
+        result = s_sender.send_with_param(
             86,
             phone_numbers[0],
             template_id,
@@ -54,11 +47,11 @@ def send_finish_message(name):
             ext="",
         )  # 签名参数不允许为空串
         print(result)
+        return result
     except HTTPError as e:
         print(e)
     except Exception as e:
         print(e)
-    return result
 
 
 class Experiment:

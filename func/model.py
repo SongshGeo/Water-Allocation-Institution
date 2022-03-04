@@ -1,3 +1,11 @@
+#!/usr/bin/env python 3.83
+# -*-coding:utf-8 -*-
+# Created date: 2022-02-10
+# @Author  : Shuang Song
+# @Contact   : SongshGeo@gmail.com
+# GitHub   : https://github.com/SongshGeo
+# Research Gate: https://www.researchgate.net/profile/Song_Shuang9
+
 import os
 import pickle
 
@@ -9,6 +17,11 @@ from tqdm import tqdm
 
 
 def do_synth_model(p):
+    """
+    Do a synth control modelling.
+    :param p:
+    :return:
+    """
     # 加载数据，排除所有的省份
     data = pd.read_csv(p["data_input"], index_col=0)
     if "province_exclude" in p:

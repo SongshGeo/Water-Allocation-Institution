@@ -129,3 +129,17 @@ dmypy.json
 .pyre/
 .idea/
 data
+
+
+# LaTeX
+*.synctex(busy)
+*.aux
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.out
+*.spl
+*.bcf
+*.run.xml
