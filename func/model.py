@@ -19,8 +19,8 @@ from tqdm import tqdm
 def do_synth_model(p):
     """
     Do a synth control modelling.
-    :param p:
-    :return:
+    :param p: parameters import from html
+    :return: results of experiment, dict of results
     """
     # 加载数据，排除所有的省份
     data = pd.read_csv(p["data_input"], index_col=0)
@@ -62,6 +62,11 @@ def do_synth_model(p):
 
 
 def transfer_exp_pickle_to_data(yaml_path):
+    """
+    Transform a pickle experiment result to comparable csv data.
+    :param yaml_path: YAML parameters data as a file path.
+    :return: transformed dataset.
+    """
     # open parameters
     with open(yaml_path, "r", encoding="utf-8") as file:
         params = yaml.load(file.read(), Loader=yaml.FullLoader)

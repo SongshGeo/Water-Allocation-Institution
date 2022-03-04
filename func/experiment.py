@@ -12,6 +12,7 @@ import pickle
 
 import pandas as pd
 import yaml
+from attrs import define, field
 from qcloudsms_py import SmsSingleSender
 from qcloudsms_py.httpclient import HTTPError
 
@@ -22,7 +23,12 @@ LOG_FORMAT = logging.Formatter(
 DATE_FORMAT = "%Y-%m-%d  %H:%M:%S %a "
 
 
-def send_finish_message(name):
+def send_finish_message(num):
+    """
+    Send message to myself as notification.
+    :param num: experiment num
+    :return: dict, sending result from the network.
+    """
     # 短信应用SDK AppID
     appid = 1400630042  # SDK AppID是1400开头
     # 短信应用SDK AppKey
@@ -35,7 +41,7 @@ def send_finish_message(name):
     sms_sign = "隅地公众号"
 
     s_sender = SmsSingleSender(appid, app_key)
-    params = [name]  # 当模板没有参数时，`params = []`
+    params = [num]  # 当模板没有参数时，`params = []`
     try:
         result = s_sender.send_with_param(
             86,
@@ -54,15 +60,27 @@ def send_finish_message(name):
         print(e)
 
 
+@define
 class Experiment:
+    model = field(repr=False)
+    yaml_path: str = field(repr=False)
+    name: str = field(default=None, repr=True)
+    other_path: str = field(default=None, repr=False)
+    result: dict = field(default=None, repr=False)
+    state: str = field(default="Initialized", repr=True)
+
     def __init__(
         self,
         model,
         yaml_path,
         other_path=False,
-        output=None,
-        notification=False,
     ) -> None:
+        """
+        Initiate an experiment.
+        :param model: how to calculate the result.
+        :param yaml_path: parameters input.
+        :param other_path: save to another output path? default False.
+        """
         # 实验存储的路径
         if not other_path:
             experiment_path = os.path.dirname(yaml_path)  # 父级目录
@@ -78,25 +96,33 @@ class Experiment:
         self.p = p
         self.path = experiment_path
         self.log = None
-        self.name = p["name"]
+        if "name" in p:
+            self.name = p["name"]
+        else:
+            self.name = None
         self.model = model
-        self.output = output
         self.state = "Initialized"
         self.result = None
 
     def set_log_file(
         self, file_level=logging.DEBUG, cmd_level=logging.WARNING
     ):
+        """
+        set up log file
+        :param file_level: file logging level, default DEBUG (all).
+        :param cmd_level: cmd logging level, default WARNING.
+        :return:
+        """
         # 配置日志
         log_path = os.path.join(self.path, f"{self.p['name']}.log")
         if os.path.exists(log_path):
             os.remove(log_path)
         logger = logging.getLogger(f"{self.name}")
         logger.setLevel(file_level)
-        # 建立一个filehandler来把日志记录在文件里，级别为debug以上
+        # 建立一个 FileHandler 来把日志记录在文件里，级别为debug以上
         fh = logging.FileHandler(log_path)
         fh.setLevel(file_level)
-        # 建立一个streamhandler来把日志打在CMD窗口上，级别为error以上
+        # 建立一个 StreamHandler 来把日志打在CMD窗口上，级别为error以上
         ch = logging.StreamHandler()
         ch.setLevel(cmd_level)
         ch.setFormatter(LOG_FORMAT)
@@ -105,17 +131,21 @@ class Experiment:
         logger.addHandler(ch)
         logger.addHandler(fh)
         self.log = logger
-        logger.info(
-            f"Log file setted, level {file_level}, cmd level {cmd_level}"
-        )
+        logger.info(f"Log file set, level {file_level}, cmd level {cmd_level}")
         return logger
 
     def do_experiment(self, notification=False):
+        """
+        Main func, do experiment.
+        :param notification:
+        :return:
+        """
         logger = self.log
         logger.info("Start experiment.")
         result = self.model(self.p)
         self.state = "EXP finished!"
         logger.info("End experiment.")
+        # Send a message to my phone for notification.
         if notification:
             sent = send_finish_message(self.name)
             logger.info(f"Message {sent} sent.")
@@ -123,11 +153,15 @@ class Experiment:
         return result
 
     def drop_exp_to_pickle(self):
+        """
+        Drop the experiment to pickle data for further uses.
+        """
         file = f"{self.name}.pkl"
         with open(os.path.join(self.path, file), "wb") as pkl:
             pickle.dump(self, pkl)
 
     def original_plots(self, province, save=True):
+        # TODO put this functions into handle class.
         if save:
             # 储存图像路径
             figs_folder = os.path.join(self.path, "figs")
@@ -167,6 +201,7 @@ class Experiment:
                 comparison_df = self.result[p].original_data.comparison_df
                 # 把获取的结果储存到同一个表中
                 for col in comparison_df:
+                    # WMAPE is a indicator to stimulation of Synth Control.
                     if col == "WMAPE":
                         comparison[col + "_" + p] = comparison_df[col]
                     else:
@@ -184,8 +219,6 @@ class Experiment:
         )
 
     def drop_compared_datasets(self):
-        for province in self.result.keys():
-            self.result
-
-    def test(self):
-        print("test")
+        # for province in self.result.keys():
+        # self.result
+        pass
