@@ -69,7 +69,6 @@ def set_logger(
 
     logger.addHandler(file_handler)
     logger.addHandler(cmd_handler)
-    logger.info(f"{name} starts logging.")
     return logger
 
 

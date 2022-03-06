@@ -6,219 +6,217 @@
 # GitHub   : https://github.com/SongshGeo
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
 
-import logging
+import datetime
 import os
 import pickle
+import pprint
+import sys
 
-import pandas as pd
 import yaml
 from attrs import define, field
-from qcloudsms_py import SmsSingleSender
-from qcloudsms_py.httpclient import HTTPError
 
-# BASIC testing settings.
-LOG_FORMAT = logging.Formatter(
-    "%(asctime)s %(name)s %(levelname)s %(pathname)s %(message)s "
-)
-DATE_FORMAT = "%Y-%m-%d  %H:%M:%S %a "
+from config import ROOT
+from config import log as logger
+from config import set_logger
+from func.model import do_synth_model
+from func.tools import send_finish_message
 
-
-def send_finish_message(num):
-    """
-    Send message to myself as notification.
-    :param num: experiment num
-    :return: dict, sending result from the network.
-    """
-    # 短信应用SDK AppID
-    appid = 1400630042  # SDK AppID是1400开头
-    # 短信应用SDK AppKey
-    app_key = "ad30ec46aa617263813ca8996e1a0113"
-    # 需要发送短信的手机号码
-    phone_numbers = ["18500685922"]
-    # 短信模板ID，需要在短信应用中申请
-    template_id = 1299444
-    # 签名
-    sms_sign = "隅地公众号"
-
-    s_sender = SmsSingleSender(appid, app_key)
-    params = [num]  # 当模板没有参数时，`params = []`
-    try:
-        result = s_sender.send_with_param(
-            86,
-            phone_numbers[0],
-            template_id,
-            params,
-            sign=sms_sign,
-            extend="",
-            ext="",
-        )  # 签名参数不允许为空串
-        print(result)
-        return result
-    except HTTPError as e:
-        print(e)
-    except Exception as e:
-        print(e)
+# base_path = os.getcwd()
+# sys.path.append(base_path)
 
 
 @define
-class Experiment:
+class Experiment(object):
     model = field(repr=False)
-    yaml_path: str = field(repr=False)
     name: str = field(default=None, repr=True)
-    other_path: str = field(default=None, repr=False)
+    paths = field(factory=dict, repr=False)
     result: dict = field(default=None, repr=False)
     state: str = field(default="Initialized", repr=True)
+    datasets: dict = field(factory=dict, repr=False)
+    parameters: dict = field(factory=dict, repr=False)
+    analysis: dict = field(factory=dict, repr=False)
+    log = field(default=None, repr=False)
+    _updated_time = field(default=None, repr=True)
+    _strftime = field(default="%Y-%m-%d, %H:%M:%S", repr=False)
+    _run_time = field(default="", repr=False)
 
     def __init__(
         self,
         model,
-        yaml_path,
-        other_path=False,
-    ) -> None:
-        """
-        Initiate an experiment.
-        :param model: how to calculate the result.
-        :param yaml_path: parameters input.
-        :param other_path: save to another output path? default False.
-        """
-        # 实验存储的路径
-        if not other_path:
-            experiment_path = os.path.dirname(yaml_path)  # 父级目录
-        else:
-            experiment_path = other_path
-
-        # 从YAML文件中读取参数
-        with open(yaml_path, "r", encoding="utf-8") as file:
-            p = yaml.load(file.read(), Loader=yaml.FullLoader)
-            file.close()
-
-        # 实验类变量
-        self.p = p
-        self.path = experiment_path
-        self.log = None
-        if "name" in p:
-            self.name = p["name"]
-        else:
-            self.name = None
-        self.model = model
-        self.state = "Initialized"
-        self.result = None
-
-    def set_log_file(
-        self, file_level=logging.DEBUG, cmd_level=logging.WARNING
+        yaml_file,
+        name="exp",
+        experiment_path=None,
+        results_path=None,
     ):
         """
-        set up log file
-        :param file_level: file logging level, default DEBUG (all).
-        :param cmd_level: cmd logging level, default WARNING.
-        :return:
+        Initiate an experiment, as the following structure.
+
+        ```
+        root
+        ├── example
+        │   └── config.yaml
+        └── experiment
+            ├── name.log
+            └── results
+                ├── name.pkl
+                └── name_results.pkl
+        ```
+        Read experiment config from config.yaml, run model and then export results.
+
+        :param model: how to calculate the result.
+        :param yaml_file: experimental parameters as a `.YAML` file input,
+            Mandatory parameters:
+                1. name: experiments' name, if none, setup when init.
+                2. root: root path of the project.
+                3. experiment_path: folder path of experiment.
+                4. results_path: folder path of experimental results.
+                5. datasets: all model needed datasets.
+                6. parameters: other necessary parameters of the model.
+                7. analysis: auto analysis pipelines.
+            Metadata:
+                1. Author...
+                2. Description...
         """
-        # 配置日志
-        log_path = os.path.join(self.path, f"{self.p['name']}.log")
-        if os.path.exists(log_path):
-            os.remove(log_path)
-        logger = logging.getLogger(f"{self.name}")
-        logger.setLevel(file_level)
-        # 建立一个 FileHandler 来把日志记录在文件里，级别为debug以上
-        fh = logging.FileHandler(log_path)
-        fh.setLevel(file_level)
-        # 建立一个 StreamHandler 来把日志打在CMD窗口上，级别为error以上
-        ch = logging.StreamHandler()
-        ch.setLevel(cmd_level)
-        ch.setFormatter(LOG_FORMAT)
-        fh.setFormatter(LOG_FORMAT)
-        # 将相应的handler添加在logger对象中
-        logger.addHandler(ch)
-        logger.addHandler(fh)
+        # Read parameters from yaml.
+        with open(yaml_file, "r", encoding="utf-8") as file:
+            parameters = yaml.load(file.read(), Loader=yaml.FullLoader)
+            self.parameters = parameters.get("parameters")
+            self.analysis = parameters.get("analysis")
+            self.datasets = parameters.get("datasets")
+
+            # root path: from yaml > default project root
+            root = parameters.get("root")
+            if not root:
+                root = ROOT
+            os.chdir(root)
+            if not results_path:
+                results_path = os.path.join(
+                    root, parameters.get("results_path")
+                )
+            if not experiment_path:
+                experiment_path = os.path.join(
+                    root, parameters.get("experiment_path")
+                )
+            file.close()
+
+        # basic attributions
+        self.name = name
         self.log = logger
-        logger.info(f"Log file set, level {file_level}, cmd level {cmd_level}")
-        return logger
+        self.model = model
+        self.state = "Initialized"
+        self.paths = {}
+        self._run_time = "Not done"
+        self.result = None
+        self._strftime = "%Y-%m-%d, %H:%M:%S"
+        self._updated_time = datetime.datetime.now().strftime(self._strftime)
+
+        # setup paths
+        self.paths["root"] = root
+        self.paths["yaml"] = os.path.abspath(yaml_file)
+        self.paths["experiment"] = os.path.abspath(
+            os.path.join(root, experiment_path)
+        )
+        self.paths["results"] = os.path.abspath(
+            os.path.join(root, results_path)
+        )
+        self.paths["log"] = os.path.join(root, f"{logger.name}.log")
+
+        for dataset in self.datasets.keys():
+            self.paths[dataset] = os.path.join(
+                root, self.datasets.get(dataset)
+            )
+        for key, path in self.paths.items():
+            if not os.path.exists(path):
+                os.mkdir(path)
+                logger.warning(
+                    f"{key} folder made in {os.path.dirname(path)}."
+                )
+
+    def get_path(self, key="experiment", absolute=True):
+        path = self.paths.get(key)
+        root = self.paths.get("root")
+        if absolute:
+            return path
+        else:
+            return os.path.relpath(path, root)
+
+    def set_experiment_log(self, **kwargs):
+        """
+        Set up log file to this experiment and switch the default logger.
+        :return: The new exp logger.
+        """
+        # Default project logger
+        exp_path = self.get_path("experiment")
+        exp_rel_path = self.get_path("experiment", absolute=False)
+        logger.warning(
+            f"Experiment {self.name} log file will be set under {exp_rel_path}."
+        )
+        # Change logger
+        exp_log = set_logger(self.name, path=exp_rel_path, **kwargs)
+        self.log = exp_log
+        exp_log.info(f"Experiment {self.name} log file set.")
+        self._updated_time = datetime.datetime.now().strftime(self._strftime)
+        self.paths["log"] = os.path.join(exp_path, f"{self.name}.log")
+        return exp_log
 
     def do_experiment(self, notification=False):
         """
         Main func, do experiment.
-        :param notification:
-        :return:
+        :param notification: send message to user.
+        :return: state of the experiment.
         """
-        logger = self.log
-        logger.info("Start experiment.")
-        result = self.model(self.p)
-        self.state = "EXP finished!"
-        logger.info("End experiment.")
+        log = self.log
+        # Do experiment
+        log.info(f"Start experiment, model: {self.model.__name__}.")
+        start_time = datetime.datetime.now()
+        result = self.model(self.datasets, self.parameters)
+        self.state = "finished"
+        log.info("End experiment.")
+
         # Send a message to my phone for notification.
         if notification:
             sent = send_finish_message(self.name)
-            logger.info(f"Message {sent} sent.")
+            log.info(f"Notification sending msg: {sent['errmsg']}.")
+
+        # Save results.
         self.result = result
-        return result
+        self.drop_result_to_pickle()
+        after_time = datetime.datetime.now()
+        self._updated_time = after_time.strftime(self._strftime)
+        self._run_time = str(after_time - start_time)
+        return self.state
+
+    def drop_result_to_pickle(self):
+        """Drop the experimental results to pickle data."""
+        result_pickle_path = os.path.join(
+            self.get_path("results"), f"{self.name}_results.pkl"
+        )
+        with open(result_pickle_path, "wb") as pkl:
+            pickle.dump(self.result, pkl)
+            self.log.info(
+                f"Saved results as pickle file {self.get_path('results', absolute=False)}"
+            )
+        self.paths["result_pickle"] = result_pickle_path
 
     def drop_exp_to_pickle(self):
-        """
-        Drop the experiment to pickle data for further uses.
-        """
-        file = f"{self.name}.pkl"
-        with open(os.path.join(self.path, file), "wb") as pkl:
+        """Drop the experiment to pickle data."""
+        file = f"{self.name}_experiment.pkl"
+        result_pickle_path = self.get_path("results")
+        file_path = os.path.join(result_pickle_path, file)
+        with open(file_path, "wb") as pkl:
             pickle.dump(self, pkl)
+            self.log.info(f"Saved as pickle file {file_path}")
+        self.paths["experiment_pickle"] = file_path
 
-    def original_plots(self, province, save=True):
-        # TODO put this functions into handle class.
-        if save:
-            # 储存图像路径
-            figs_folder = os.path.join(self.path, "figs")
-            if not os.path.exists(figs_folder):
-                os.mkdir(figs_folder)
-
-            # 图像展示
-            self.result[province].plot(
-                ["original", "pointwise", "cumulative"],
-                treated_label=province,
-                synth_label=f"Synthetic {province}",
-                treatment_label=f"Treatment in {self.p['treat_year']}",
-                save_path=os.path.join(figs_folder, f"{province}.jpg"),
-            )
-        else:
-            # 图像展示
-            self.result[province].plot(
-                ["original", "pointwise", "cumulative"],
-                treated_label=province,
-                synth_label=f"Synthetic {province}",
-                treatment_label=f"Treatment in {self.p['treat_year']}",
-            )
-
-    def weight_df(self, province="all"):
-        if province == "all":
-            weights = {}
-            for p in self.result.keys():
-                weights[p] = self.result[p].original_data.weight_df
-        else:
-            weights = self.result[province].original_data.weight_df
-        return weights
-
-    def original_comparison(self, province="all"):
-        if province == "all":
-            comparison = pd.DataFrame()
-            for p in self.result.keys():
-                comparison_df = self.result[p].original_data.comparison_df
-                # 把获取的结果储存到同一个表中
-                for col in comparison_df:
-                    # WMAPE is a indicator to stimulation of Synth Control.
-                    if col == "WMAPE":
-                        comparison[col + "_" + p] = comparison_df[col]
-                    else:
-                        comparison[col] = comparison_df[col]
-        else:
-            comparison = self.result[province].original_data.comparison_df
-        return comparison
-
-    def do_in_time_placebo(self, placebo_time, province, n_optim=100):
-        self.result[province].in_time_placebo(placebo_time, n_optim=n_optim)
-        self.result[province].plot(
-            ["in-time placebo"],
-            treated_label=province,
-            synth_label=f"Synthetic {province}",
-        )
-
-    def drop_compared_datasets(self):
-        # for province in self.result.keys():
-        # self.result
+    def do_analysis(self):
         pass
+
+
+if __name__ == "__main__":
+    YAML_PATH = sys.argv[1]
+    exp = Experiment(do_synth_model, YAML_PATH)
+
+    # sc_result = exp.do_experiment(notification=True)
+    exp.drop_exp_to_pickle()
+    logger.info(exp.state)
+    pprint.pprint(exp.paths)
