@@ -21,9 +21,6 @@ from config import set_logger
 from func.model import do_synth_model
 from func.tools import send_finish_message
 
-# base_path = os.getcwd()
-# sys.path.append(base_path)
-
 
 @define
 class Experiment(object):
@@ -36,6 +33,8 @@ class Experiment(object):
     parameters: dict = field(factory=dict, repr=False)
     analysis: dict = field(factory=dict, repr=False)
     log = field(default=None, repr=False)
+    authors = field(factory=list, repr=False)
+    description: str = field(default=None, repr=True)
     _updated_time = field(default=None, repr=True)
     _strftime = field(default="%Y-%m-%d, %H:%M:%S", repr=False)
     _run_time = field(default="", repr=False)
@@ -83,6 +82,8 @@ class Experiment(object):
             self.parameters = parameters.get("parameters")
             self.analysis = parameters.get("analysis")
             self.datasets = parameters.get("datasets")
+            self.description = parameters.get("description")
+            self.authors = parameters.get("author")
 
             # root path: from yaml > default project root
             root = parameters.get("root")
@@ -216,7 +217,7 @@ if __name__ == "__main__":
     YAML_PATH = sys.argv[1]
     exp = Experiment(do_synth_model, YAML_PATH)
 
-    # sc_result = exp.do_experiment(notification=True)
+    sc_result = exp.do_experiment(notification=True)
     exp.drop_exp_to_pickle()
     logger.info(exp.state)
     pprint.pprint(exp.paths)
