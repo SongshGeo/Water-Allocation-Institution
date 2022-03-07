@@ -21,6 +21,10 @@ from config import set_logger
 from func.model import do_synth_model
 from func.tools import send_finish_message
 
+# # If needed in cmd:
+# base = os.getcwd()
+# sys.path.append(base)
+
 
 @define
 class Experiment(object):
@@ -123,9 +127,10 @@ class Experiment(object):
         self.paths["log"] = os.path.join(root, f"{logger.name}.log")
 
         for dataset in self.datasets.keys():
-            self.paths[dataset] = os.path.join(
-                root, self.datasets.get(dataset)
-            )
+            full_dataset_path = os.path.join(root, self.datasets.get(dataset))
+            self.paths[dataset] = full_dataset_path
+            self.datasets[dataset] = full_dataset_path
+
         for key, path in self.paths.items():
             if not os.path.exists(path):
                 os.mkdir(path)

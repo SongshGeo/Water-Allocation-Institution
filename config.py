@@ -12,6 +12,19 @@ import os
 PROJECT_NAME = "WAInstitution_YRB_2021"
 ROOT = "/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021"
 
+SCHEME_87 = {
+    "Qinghai": 1.41,
+    # 'Sichuan': 0.04,
+    "Gansu": 3.04,
+    "Ningxia": 4.00,
+    "Neimeng": 5.86,
+    "Shanxi": 3.80,
+    "Shaanxi": 4.31,
+    "Henan": 5.54,
+    "Shandong": 7,
+    # 'Jinji': 2
+}
+
 # BASIC logging settings.
 LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(message)s "
 DATE_FORMAT = "%Y-%m-%d  %H:%M:%S %a "
