@@ -25,6 +25,22 @@ SCHEME_87 = {
     # 'Jinji': 2
 }
 
+PROVINCES_CHN2ENG = {
+    "青海": "Qinghai",
+    "四川": "Sichuan",
+    "甘肃": "Gansu",
+    "宁夏": "Ningxia",
+    "内蒙古": "Neimeng",
+    "陕西": "Shanxi",
+    "山西": "Shaanxi",
+    "河南": "Henan",
+    "山东": "Shandong",
+    "河北": "Hebei",
+    "天津": "Tianjin",
+    "河北和天津": "Jinji",
+    "津冀": "Jinji",
+}
+
 # BASIC logging settings.
 LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(message)s "
 DATE_FORMAT = "%Y-%m-%d  %H:%M:%S %a "

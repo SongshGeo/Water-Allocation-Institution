@@ -6,9 +6,9 @@
 # GitHub   : https://github.com/SongshGeo
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
 
+import inspect
 
 from attrs import define, field
-from matplotlib import pyplot as plt
 
 from func.tools import get_optimal_fit_linear
 
@@ -46,7 +46,7 @@ class BeautyPlot(object):
         else:
             func_ = getattr(ax, how)
             element = func_(*data, **beauty_dict)
-            new_elements = label, how, element
+            new_elements = (label, how)
             self.elements[label] = element
         return new_elements
 

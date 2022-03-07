@@ -1,0 +1,69 @@
+# Mandatory data:
+name: 1987
+root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
+authors: ["SongshGeo"]
+description: "By excluding provinces (Jinji, Beijing, Sichuan), Do Synth Control experiment. Time period ranges from 1978 to 2008, and year 1998 as the institutional shift treatment. Now, WCI included as a X variable."
+# Paths relative to root:
+experiment_path: reports/wci_1987
+results_path: reports/wci_1987/results
+
+# paths
+datasets:
+    merged_data: data/processed/merged_data.csv  # merged data of provinces
+
+# models' parameters
+parameters:
+  X_inputs: [
+         'Province',
+         'Year',
+         # 'IRR',
+         # 'Irrigated area: Total',
+         'Irrigated area: Rice',
+         'Irrigated area: Wheat',
+         'Irrigated area: Maize',
+         'Irrigated area: Vegetables and fruits',
+         'Irrigated area: Others',
+         # 'IND',
+         # 'Industrial gross value added (GVA): Total',
+         'Industrial gross value added (GVA): Textile',
+         'Industrial gross value added (GVA): Papermaking',
+         'Industrial gross value added (GVA): Petrochemicals',
+         'Industrial gross value added (GVA): Metallurgy',
+         'Industrial gross value added (GVA): Mining',
+         'Industrial gross value added (GVA): Food',
+         'Industrial gross value added (GVA): Cements',
+         'Industrial gross value added (GVA): Machinery',
+         'Industrial gross value added (GVA): Electronics',
+         'Industrial gross value added (GVA): Thermal electrivity',
+         'Industrial gross value added (GVA): Others', 'URB',
+         'Urban population',
+         'Service GVA',
+         # 'RUR',
+         'Rural population',
+         'Livestock population',
+         'Total water use',
+         # 'area',
+         # 'PIRR',
+         # 'AIRR',
+         'WCI',
+         'Ratio of industrial water recycling',
+         'Ratio of industrial water evaporated'
+         ]
+  Y_inputs: 'Total water use'
+  province_include: ['Qinghai', 'Gansu', 'Ningxia', 'Neimeng', 'Shanxi', 'Shaanxi', 'Henan', 'Shandong']
+  province_exclude: ['Jinji', 'Beijing', 'Sichuan']
+
+  # adjusted parameters
+  start: 1978
+  end: 1998
+  treat_year: 1987
+  n_optim: 100
+  pen: 0
+  random_seed: 0
+
+# 结果分析部分
+analysis:
+    comparison_df: False
+    weights_df: False
+    placebo: False
+    plots: False
