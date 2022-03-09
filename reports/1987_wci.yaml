@@ -10,6 +10,11 @@ results_path: reports/wci_1987/results
 # paths
 datasets:
     merged_data: data/processed/merged_data.csv  # merged data of provinces
+    wu_yr: data/processed/wu_yr.csv  # Water Use from YR
+    wu_all: data/processed/wu_all.csv  # Provinces' Total Water Use
+    ratio: data/processed/ratio.csv
+    plan: data/processed/plan.csv
+    quota: data/processed/quota.csv
 
 # models' parameters
 parameters:

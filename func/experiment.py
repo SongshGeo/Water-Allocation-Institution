@@ -21,10 +21,6 @@ from config import set_logger
 from func.model import do_synth_model
 from func.tools import send_finish_message
 
-# # If needed in cmd:
-# base = os.getcwd()
-# sys.path.append(base)
-
 
 @define
 class Experiment(object):
@@ -45,9 +41,9 @@ class Experiment(object):
 
     def __init__(
         self,
-        model,
         yaml_file,
         name="exp",
+        model=None,
         experiment_path=None,
         results_path=None,
     ):
@@ -91,8 +87,6 @@ class Experiment(object):
 
             # root path: from yaml > default project root
             root = parameters.get("root")
-            if not root:
-                root = ROOT
             os.chdir(root)
             if not results_path:
                 results_path = os.path.join(
@@ -165,13 +159,16 @@ class Experiment(object):
         self.paths["log"] = os.path.join(exp_path, f"{self.name}.log")
         return exp_log
 
-    def do_experiment(self, notification=False):
+    def do_experiment(self, model=None, notification=False):
         """
         Main func, do experiment.
+        :param model: how to do the experiment.
         :param notification: send message to user.
         :return: state of the experiment.
         """
         log = self.log
+        if model:
+            self.model = model
         # Do experiment
         log.info(f"Start experiment, model: {self.model.__name__}.")
         start_time = datetime.datetime.now()
@@ -214,13 +211,81 @@ class Experiment(object):
             self.log.info(f"Saved as pickle file {file_path}")
         self.paths["experiment_pickle"] = file_path
 
+    def load_from_pickle(self):
+        with open(self.paths.get("yaml"), "r", encoding="utf-8") as file:
+            params = yaml.load(file.read(), Loader=yaml.FullLoader)
+            root = params.get("root")
+            result_path = params.get("results_path")
+            file.close()
+        path = os.path.join(root, result_path, "exp_experiment.pkl")
+        with open(path, "rb") as pkl:
+            obj = pickle.load(pkl)
+        return obj
+
+    def list_datasets(self):
+        names = self.datasets.keys()
+        categories = []
+        for name in names:
+            if "processed" in self.datasets.get(name):
+                category = "processed"
+            elif "result" in self.datasets.get(name):
+                category = "result"
+            else:
+                category = "Unknown"
+            categories.append(category)
+        return [(n, c) for n, c in zip(names, categories)]
+
+    def update(self, attr=None, val=None, msg="Nothing."):
+        """Update something."""
+        flag = False
+        if not attr and not val:
+            self._updated_time = datetime.datetime.now().strftime(
+                self._strftime
+            )
+            self.log.info(f"Updated: {msg}")
+            return flag
+        old_val = getattr(self, attr)
+        if val != old_val:
+            flag = True
+            setattr(self, attr, val)
+            self._updated_time = datetime.datetime.now().strftime(
+                self._strftime
+            )
+            self.log.info(f"{attr} changed to {val} at {self._updated_time}.")
+        return flag
+
+    def add_item(self, attr=None, label=None, val=None):
+        """Add items"""
+        flag = False
+        if hasattr(self, attr):
+            self.__getattribute__(attr)[label] = val
+            self.update(msg=f"Add {label} in {attr}.")
+            flag = True
+        return flag
+
+    def reload_from_yaml(self, yaml_file):
+        with open(yaml_file, "r", encoding="utf-8") as file:
+            parameters = yaml.load(file.read(), Loader=yaml.FullLoader)
+            file.close()
+        new = []
+        for attr in ("parameters", "analysis", "datasets"):
+            params_dict = parameters.get(attr)
+            for label, val in params_dict.items():
+                if label not in self.__getattribute__(attr):
+                    new.append(label)
+                self.add_item(attr, label, val)
+        self.authors = parameters.get("author")
+        self.description = parameters.get("description")
+        return new
+
     def do_analysis(self):
         pass
 
 
 if __name__ == "__main__":
+    os.chdir(ROOT)
     YAML_PATH = sys.argv[1]
-    exp = Experiment(do_synth_model, YAML_PATH)
+    exp = Experiment(YAML_PATH, model=do_synth_model)
 
     sc_result = exp.do_experiment(notification=True)
     exp.drop_exp_to_pickle()

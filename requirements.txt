@@ -55,3 +55,5 @@ pyyaml~=6.0
 
 attrs~=21.4.0
 scipy~=1.4.1
+
+pingouin~=0.5.1

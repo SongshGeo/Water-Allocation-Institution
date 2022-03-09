@@ -71,3 +71,8 @@ def get_optimal_fit_linear(x_arr, y_arr):
     k, b = optimize.curve_fit(linear, x_arr, y_arr)[0]  # optimize
     y_sim = linear(x_arr, k, b)  # simulated y
     return y_sim
+
+
+def extract_mean_std(data, start, end):
+    data = data.loc[start:end, :]
+    return data.mean(), data.std()

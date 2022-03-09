@@ -11,8 +11,6 @@ from attrs import define, field
 from SyntheticControlMethods import Synth
 from tqdm import tqdm
 
-from config import log
-
 
 @define
 class ProvinceSynth(Synth):
@@ -107,7 +105,7 @@ def do_synth_once(province, data, outside_data, used_variables, parameters):
     ]
     used_data = used_period[used_variables]
 
-    sc = ProvinceSynth(
+    sc = Synth(
         used_data,
         parameters["Y_inputs"],
         "Province",

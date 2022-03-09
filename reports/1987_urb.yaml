@@ -1,11 +1,11 @@
 # Mandatory data:
-name: 1998
+name: 1987
 root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
 authors: ["SongshGeo"]
-description: "By excluding provinces (Jinji, Beijing, Sichuan), Do Synth Control experiment. Time period ranges from 1978 to 2008, and year 1998 as the institutional shift treatment. Now, WCI included as a X variable."
+description: "By excluding provinces (Jinji, Beijing, Sichuan), Do Synth Control experiment. Time period ranges from 1978 to 2008, and year 1998 as the institutional shift treatment. URB correctly excluded now"
 # Paths relative to root:
-experiment_path: reports/wci_1998
-results_path: reports/wci_1998/results
+experiment_path: reports/exp_1987
+results_path: reports/exp_1987/results
 
 # paths
 datasets:
@@ -40,7 +40,8 @@ parameters:
          'Industrial gross value added (GVA): Machinery',
          'Industrial gross value added (GVA): Electronics',
          'Industrial gross value added (GVA): Thermal electrivity',
-         'Industrial gross value added (GVA): Others', 'URB',
+         'Industrial gross value added (GVA): Others',
+#         'URB',
          'Urban population',
          'Service GVA',
          # 'RUR',
@@ -50,7 +51,7 @@ parameters:
          # 'area',
          # 'PIRR',
          # 'AIRR',
-         'WCI',
+         # 'WCI',
          'Ratio of industrial water recycling',
          'Ratio of industrial water evaporated'
          ]
@@ -59,9 +60,9 @@ parameters:
   province_exclude: ['Jinji', 'Beijing', 'Sichuan']
 
   # adjusted parameters
-  start: 1987
-  end: 2008
-  treat_year: 1998
+  start: 1978
+  end: 1998
+  treat_year: 1987
   n_optim: 100
   pen: 0
   random_seed: 0
