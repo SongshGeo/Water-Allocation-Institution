@@ -119,12 +119,11 @@ def do_synth_once(province, data, outside_data, used_variables, parameters):
     return sc
 
 
-def do_synth_model(datasets, parameters, analysis):
+def do_synth_model(datasets, parameters):
     """
     Do a synth control modelling.
     :param datasets: {name: path} dictionary of necessary input datasets.
     :param parameters: necessary parameters import from html.
-    :param analysis:
     :return: results of experiment, dict of results.
     """
     # 加载数据，排除所有的省份
@@ -150,13 +149,17 @@ def do_synth_model(datasets, parameters, analysis):
             used_variables=used_variables,
             parameters=parameters,
         )
-        if analysis["placebo"]:
-            sc.in_time_placebo(
-                parameters["placebo_time"], n_optim=parameters["placebo_optim"]
-            )
-            sc.in_space_placebo(parameters["placebo_optim"])
         sc_results[province] = sc
     return sc_results
+
+
+def do_synth_analysis(exp, parameters, analysis):
+    if analysis["placebo"]:
+        exp.do_in_place_placebo()
+        exp.do_in_time_placebo()
+    if analysis["iter_placebo"]:
+        span = parameters.get("placebo_iter_span")
+        exp.iter_time_placebo(span=span)
 
 
 if __name__ == "__main__":

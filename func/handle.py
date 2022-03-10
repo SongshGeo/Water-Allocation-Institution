@@ -5,7 +5,7 @@
 # @Contact   : SongshGeo@gmail.com
 # GitHub   : https://github.com/SongshGeo
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
-
+import copy
 import inspect
 import os
 
@@ -14,10 +14,11 @@ import pandas as pd
 import pingouin as pg
 import seaborn as sns
 from attrs import define, field
-from experiment import Experiment
 from matplotlib import pyplot as plt
-from plots import basic_plot
-from tools import extract_mean_std
+
+from func.experiment import Experiment
+from func.plots import basic_plot
+from func.tools import extract_mean_std
 
 
 @define
@@ -28,11 +29,16 @@ class ExpResultsHandler(Experiment):
 
     dfs: dict = field(factory=dict, repr=False)
     provinces: list = field(factory=list, repr=False)
+    time_placebo_results: dict = field(factory=dict, repr=False)
 
-    def __init__(self, yaml_file):
-        super().__init__(yaml_file)
+    def __init__(self, experiment=None, yaml_file=None):
+        if experiment:
+            yaml_file = experiment.paths.get("yaml")
+        if yaml_file:
+            super().__init__(yaml_file)
         self.dfs = {}
         self.provinces = []
+        self.time_placebo_results = {}
 
     def load_processed_datasets(self):
         """Load processed datasets from disk."""
@@ -88,7 +94,9 @@ class ExpResultsHandler(Experiment):
     def get_statistic_df(self, save=False):
         provinces = self.result.keys()
         data = self.transfer_exp_pickle_to_data()
-        start, end = self.parameters.get("start"), self.parameters.get("end")
+        start, end = self.parameters.get("treat_year"), self.parameters.get(
+            "end"
+        )
         statistic = pd.DataFrame(index=provinces)
         for province in provinces:
             diff = data[f"{province}_actual"] - data[f"{province}_synth"]
@@ -164,6 +172,9 @@ class ExpResultsHandler(Experiment):
         for province, ax in zip(self.provinces, axs):
             sc = self.result.get(province)
             basic_plot(how=how, ax=ax, sc=sc)
+        if save_path:
+            self.log.info(f"Panel plots saved in {save_path}.")
+            fig.save(save_path, dpi=300)
         pass
 
     def outcome_panel_data(self, outcome_var, save=False, plot=False):
@@ -292,15 +303,29 @@ class ExpResultsHandler(Experiment):
             self.result[province].in_time_placebo(
                 placebo_time, n_optim=n_optim
             )
+        return self.result
 
     def do_in_place_placebo(self, n_optim=None):
         if not n_optim:
             n_optim = self.parameters.get("placebo_optim")
         for province in self.provinces:
             self.result[province].in_space_placebo(n_optim=n_optim)
+        return self.result
+
+    def iter_time_placebo(self, span=1):
+        original_time = self.parameters.get("treat_year")
+        for year in range(original_time - span, original_time):
+            exp_copy = copy.deepcopy(self)
+            result = exp_copy.do_in_time_placebo(placebo_time=year)
+            self.time_placebo_results[year] = result
+            self.log.info(f"In time placebo done in {year}.")
         pass
 
     def drop_compared_datasets(self):
         pass
 
+    pass
+
+
+if __name__ == "__main__":
     pass

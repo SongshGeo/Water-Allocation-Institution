@@ -1,8 +1,8 @@
 # Mandatory data:
-name: 1998
+name: 98exp
 root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
 authors: ["SongshGeo"]
-description: "By excluding provinces (Jinji, Beijing, Sichuan), Do Synth Control experiment. Time period ranges from 1978 to 2008, and year 1998 as the institutional shift treatment."
+description: "By excluding provinces (Jinji, Beijing, Sichuan), Time period ranges from 1987 to 2008, treated in 1998, no 'URB', no 'WCI', do placebo."
 # Paths relative to root:
 experiment_path: reports/1998_exp
 results_path: reports/1998_exp/results
@@ -40,7 +40,8 @@ parameters:
          'Industrial gross value added (GVA): Machinery',
          'Industrial gross value added (GVA): Electronics',
          'Industrial gross value added (GVA): Thermal electrivity',
-         'Industrial gross value added (GVA): Others', 'URB',
+         'Industrial gross value added (GVA): Others',
+#         'URB',
          'Urban population',
          'Service GVA',
          # 'RUR',
@@ -66,9 +67,13 @@ parameters:
   pen: 0
   random_seed: 0
 
+  # placebo
+  placebo_time: 1995
+  placebo_optim: 10
+
 # 结果分析部分
 analysis:
     comparison_df: False
     weights_df: False
-    placebo: False
+    placebo: True
     plots: False

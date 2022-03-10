@@ -4,8 +4,8 @@ root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
 authors: ["SongshGeo"]
 description: "By excluding provinces (Jinji, Beijing, Sichuan), Time period ranges from 1978 to 1998, treated in 1987, no 'URB', no 'WCI', do placebo."
 # Paths relative to root:
-experiment_path: reports/1987_exp
-results_path: reports/1987_exp/results
+experiment_path: reports/exp_1987
+results_path: reports/exp_1987/results
 
 # paths
 datasets:

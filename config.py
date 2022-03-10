@@ -8,6 +8,11 @@
 
 import logging
 import os
+import sys
+
+from func.experiment import Experiment
+from func.handle import ExpResultsHandler
+from func.model import do_synth_analysis, do_synth_model
 
 PROJECT_NAME = "WAInstitution_YRB_2021"
 ROOT = "/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021"
@@ -127,7 +132,22 @@ def set_logger(
 log = set_logger(PROJECT_NAME, file_level=FILE_LEVEL, cmd_level=CMD_LEVEL)
 
 if __name__ == "__main__":
-    log = set_logger(
-        PROJECT_NAME, reset=True, file_level="info", cmd_level="warn"
-    )
-    log.info("LOG reset.")
+    # Do experiment model and analysis from CMD.
+    YAML_PATH = sys.argv[1]
+    exp = ExpResultsHandler(yaml_file=YAML_PATH)
+
+    # Change to a special logger.
+    exp_rel_path = exp.get_path("experiment", absolute=False)
+    exp_log = set_logger(exp.name, path=exp_rel_path)
+    exp.change_experiment_logger(exp_log)
+
+    # modelling
+    sc_result = exp.do_experiment(model=do_synth_model, notification=True)
+    exp.drop_exp_to_pickle()
+
+    # analysis
+    exp.do_analysis(model=do_synth_analysis)
+    exp.drop_exp_to_pickle()
+
+    exp.log.info(exp.state)
+    pass

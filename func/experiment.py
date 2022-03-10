@@ -7,18 +7,13 @@
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
 
 import datetime
+import logging
 import os
 import pickle
-import pprint
-import sys
 
 import yaml
 from attrs import define, field
 
-from config import ROOT
-from config import log as logger
-from config import set_logger
-from func.model import do_synth_model
 from func.tools import send_finish_message
 
 
@@ -46,6 +41,7 @@ class Experiment(object):
         model=None,
         experiment_path=None,
         results_path=None,
+        log=None,
     ):
         """
         Initiate an experiment, as the following structure.
@@ -100,7 +96,9 @@ class Experiment(object):
 
         # basic attributions
         self.name = name
-        self.log = logger
+        if not log:
+            log = logging.getLogger(__file__)
+        self.log = log
         self.model = model
         self.state = "Initialized"
         self.paths = {}
@@ -118,7 +116,7 @@ class Experiment(object):
         self.paths["results"] = os.path.abspath(
             os.path.join(root, results_path)
         )
-        self.paths["log"] = os.path.join(root, f"{logger.name}.log")
+        self.paths["log"] = os.path.join(root, f"{self.log.name}.log")
 
         for dataset in self.datasets.keys():
             full_dataset_path = os.path.join(root, self.datasets.get(dataset))
@@ -126,9 +124,11 @@ class Experiment(object):
             self.datasets[dataset] = full_dataset_path
 
         for key, path in self.paths.items():
+            if key == "log":
+                continue
             if not os.path.exists(path):
                 os.mkdir(path)
-                logger.warning(
+                self.log.warning(
                     f"{key} folder made in {os.path.dirname(path)}."
                 )
 
@@ -140,7 +140,7 @@ class Experiment(object):
         else:
             return os.path.relpath(path, root)
 
-    def set_experiment_log(self, **kwargs):
+    def change_experiment_logger(self, exp_log):
         """
         Set up log file to this experiment and switch the default logger.
         :return: The new exp logger.
@@ -148,11 +148,10 @@ class Experiment(object):
         # Default project logger
         exp_path = self.get_path("experiment")
         exp_rel_path = self.get_path("experiment", absolute=False)
-        logger.warning(
+        self.log.warning(
             f"Experiment {self.name} log file will be set under {exp_rel_path}."
         )
         # Change logger
-        exp_log = set_logger(self.name, path=exp_rel_path, **kwargs)
         self.log = exp_log
         exp_log.info(f"Experiment {self.name} log file set.")
         self._updated_time = datetime.datetime.now().strftime(self._strftime)
@@ -172,7 +171,7 @@ class Experiment(object):
         # Do experiment
         log.info(f"Start experiment, model: {self.model.__name__}.")
         start_time = datetime.datetime.now()
-        result = self.model(self.datasets, self.parameters, self.analysis)
+        result = self.model(self.datasets, self.parameters)
         self.state = "finished"
         log.info("End experiment.")
 
@@ -278,16 +277,16 @@ class Experiment(object):
         self.description = parameters.get("description")
         return new
 
-    def do_analysis(self):
+    def do_analysis(self, model, notification=False):
+        self.update(msg=f"Start analysis {model.__name__}")
+        model(self, self.parameters, self.analysis)
+        self.update(msg=f"End analysis {model.__name__}.")
+        self.update("state", "analyzed")
+        if notification:
+            sent = send_finish_message(self.name)
+            self.update(msg=f"Notification sending msg: {sent['errmsg']}.")
         pass
 
 
 if __name__ == "__main__":
-    os.chdir(ROOT)
-    YAML_PATH = sys.argv[1]
-    exp = Experiment(YAML_PATH, model=do_synth_model)
-
-    sc_result = exp.do_experiment(notification=True)
-    exp.drop_exp_to_pickle()
-    logger.info(exp.state)
-    pprint.pprint(exp.paths)
+    pass

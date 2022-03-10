@@ -1,11 +1,11 @@
 # Mandatory data:
-name: 87exp
+name: 98yw
 root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
 authors: ["SongshGeo"]
-description: "By excluding provinces (Jinji, Beijing, Sichuan), Time period ranges from 1978 to 1998, treated in 1987, no 'URB', no 'WCI', do placebo."
+description: "Only use Provinces in the Yangtze River Basin as the control group. Time period ranges from 1987 to 2008, treated in 1998, no 'URB', use 'WCI', do placebo and iter placebo."
 # Paths relative to root:
-experiment_path: reports/1987_exp
-results_path: reports/1987_exp/results
+experiment_path: reports/1998_yw
+results_path: reports/1998_yw/results
 
 # paths
 datasets:
@@ -57,23 +57,25 @@ parameters:
          ]
   Y_inputs: 'Total water use'
   province_include: ['Qinghai', 'Gansu', 'Ningxia', 'Neimeng', 'Shanxi', 'Shaanxi', 'Henan', 'Shandong']
-  province_exclude: ['Jinji', 'Beijing', 'Sichuan']
+  province_exclude: ['Beijing', 'Fujian', 'Guangdong', 'Guangxi', 'Hainan', 'Heilongjiang', 'Jilin', 'Liaoning', 'Tibet', 'Xinjiang', 'Jinji']
 
   # adjusted parameters
-  start: 1978
-  end: 1998
-  treat_year: 1987
+  start: 1987
+  end: 2008
+  treat_year: 1998
   n_optim: 100
   pen: 0
   random_seed: 0
 
   # placebo
-  placebo_time: 1984
+  placebo_time: 1995
   placebo_optim: 10
+  placebo_iter_span: 5
 
 # 结果分析部分
 analysis:
     comparison_df: False
     weights_df: False
     placebo: True
+    iter_placebo: True
     plots: False

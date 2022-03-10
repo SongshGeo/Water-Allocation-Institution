@@ -1,11 +1,11 @@
 # Mandatory data:
-name: 1987
+name: 87wci
 root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
 authors: ["SongshGeo"]
-description: "By excluding provinces (Jinji, Beijing, Sichuan), Do Synth Control experiment. Time period ranges from 1978 to 2008, and year 1998 as the institutional shift treatment. Now, WCI included as a X variable."
+description: "By excluding provinces (Jinji, Beijing, Sichuan), Time period ranges from 1978 to 1998, treated in 1987, no 'URB' but has 'WCI', do placebo."
 # Paths relative to root:
-experiment_path: reports/wci_1987
-results_path: reports/wci_1987/results
+experiment_path: reports/1987_wci
+results_path: reports/1987_wci/results
 
 # paths
 datasets:
@@ -66,9 +66,13 @@ parameters:
   pen: 0
   random_seed: 0
 
+  # placebo
+  placebo_time: 1984
+  placebo_optim: 10
+
 # 结果分析部分
 analysis:
     comparison_df: False
     weights_df: False
-    placebo: False
+    placebo: True
     plots: False
