@@ -172,7 +172,7 @@ class Experiment(object):
         # Do experiment
         log.info(f"Start experiment, model: {self.model.__name__}.")
         start_time = datetime.datetime.now()
-        result = self.model(self.datasets, self.parameters)
+        result = self.model(self.datasets, self.parameters, self.analysis)
         self.state = "finished"
         log.info("End experiment.")
 

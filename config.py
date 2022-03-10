@@ -45,7 +45,7 @@ PROVINCES_CHN2ENG = {
     "黑龙江": "Heilongjiang",
     "上海": "Shanghai",
     "江苏": "Jiangsu",
-    "云南": "Yunnan",
+    "云南": "Yunan",
     "安徽": "Anhui",
     "广东": "Guangdong",
     "广西": "Guangxi",
@@ -59,6 +59,9 @@ PROVINCES_CHN2ENG = {
     "西藏": "Tibet",
     "贵州": "Guizhou",
     "重庆": "Chongqing",
+    "中国": "China",
+    "内蒙": "Neimeng",
+    "黑龙": "Heilongjiang",
 }
 
 # BASIC logging settings.

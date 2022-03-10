@@ -12,9 +12,11 @@ import os
 import numpy as np
 import pandas as pd
 import pingouin as pg
+import seaborn as sns
 from attrs import define, field
 from experiment import Experiment
 from matplotlib import pyplot as plt
+from plots import basic_plot
 from tools import extract_mean_std
 
 
@@ -62,21 +64,15 @@ class ExpResultsHandler(Experiment):
         Transform a pickle experiment result to comparable csv data.
         """
         params = self.parameters
-
-        # save datasets
-        dataset = pd.DataFrame(
-            index=np.arange(params["start"], params["end"] + 1)
-        )  # time
+        years = np.arange(params["start"], params["end"] + 1)
+        dataset = pd.DataFrame(index=years)
         for province, synth_result in self.result.items():
-            synth_data = (
-                synth_result.original_data.synth_outcome.T
-            )  # Synth label
-            actual_data = (
-                synth_result.original_data.treated_outcome_all
-            )  # original data
+            data = synth_result.original_data
+            synth_data = data.synth_outcome.T.ravel()  # Synth label
+            actual_data = data.treated_outcome_all.ravel()  # original data
+
             dataset[f"{province}_synth"] = synth_data
             dataset[f"{province}_actual"] = actual_data
-
         if save:
             path = os.path.join(
                 self.paths.get("results"),
@@ -156,6 +152,83 @@ class ExpResultsHandler(Experiment):
         ax.set_ylabel(f"Partial Corr to {y}")
         return r_results, p_val
 
+    def plot(self, panels, province):
+        sc = self.result.get(province)
+        sc.plot(panels)
+
+    def panel_plots(self, how="original", save_path=None):
+        fig, (axs1, axs2) = plt.subplots(2, 4, figsize=(16, 8))
+        axs = []
+        axs.extend(axs1)
+        axs.extend(axs2)
+        for province, ax in zip(self.provinces, axs):
+            sc = self.result.get(province)
+            basic_plot(how=how, ax=ax, sc=sc)
+        pass
+
+    def outcome_panel_data(self, outcome_var, save=False, plot=False):
+        params = self.parameters
+        datasets = []
+        for province in self.provinces:
+            sc = self.result.get(province)
+            data = sc.original_data
+            years = np.arange(params["start"], params["end"] + 1)
+            synth_data = data.synth_outcome.T.ravel()  # Synth label
+            actual_data = data.treated_outcome_all.ravel()  # original data
+            df = pd.DataFrame(
+                {
+                    "Year": years,
+                    "Prediction": synth_data,
+                    "Observation": actual_data,
+                    "Province": province,
+                }
+            )
+            datasets.append(df)
+        dataset = pd.concat(datasets)
+        if save:
+            name = f"panel_{outcome_var}"
+            path = os.path.join(
+                self.get_path("results", absolute=True), f"{name}.csv"
+            )
+            dataset.to_csv(path)
+            self.add_item("paths", name, path)
+            self.add_item("datasets", name, path)
+            self.log.info(f"{name} dataframe saved.")
+        if plot:
+            self.plot_grid(dataset)
+        return dataset
+
+    def plot_grid(self, panel_df, save_path=None):
+        grid = sns.FacetGrid(
+            panel_df,
+            col="Province",
+            col_wrap=3,
+            height=3,
+        )
+
+        grid.map(
+            plt.axvline, x=self.parameters.get("treat_year"), ls=":", c=".5"
+        )
+        grid.map(
+            plt.plot,
+            "Year",
+            "Observation",
+            marker=".",
+            label="Observation",
+            color="black",
+        )
+        grid.map(
+            plt.plot,
+            "Year",
+            "Prediction",
+            marker=".",
+            label="Prediction",
+            color="gray",
+        )
+        grid.add_legend()
+        if save_path:
+            plt.savefig(save_path, dpi=300)
+
     def original_plots(self, province, save=True):
         # TODO put this functions into handle class.
         if save:
@@ -183,9 +256,13 @@ class ExpResultsHandler(Experiment):
 
     def weight_df(self, province="all"):
         if province == "all":
-            weights = {}
-            for p in self.result.keys():
-                weights[p] = self.result[p].original_data.weight_df
+            possible_provinces = self.dfs.get("merged_data").Province.unique()
+            weights = pd.DataFrame(
+                data=0.0, index=possible_provinces, columns=self.provinces
+            )
+            for p in self.provinces:
+                weight_ser = self.result[p].original_data.weight_df["Weight"]
+                weights.loc[weight_ser.index, p] = weight_ser
         else:
             weights = self.result[province].original_data.weight_df
         return weights
@@ -206,13 +283,22 @@ class ExpResultsHandler(Experiment):
             comparison = self.result[province].original_data.comparison_df
         return comparison
 
-    def do_in_time_placebo(self, placebo_time, province, n_optim=100):
-        self.result[province].in_time_placebo(placebo_time, n_optim=n_optim)
-        self.result[province].plot(
-            ["in-time placebo"],
-            treated_label=province,
-            synth_label=f"Synthetic {province}",
-        )
+    def do_in_time_placebo(self, placebo_time=None, n_optim=None):
+        if not n_optim:
+            n_optim = self.parameters.get("placebo_optim")
+        if not placebo_time:
+            placebo_time = self.parameters.get("placebo_time")
+        for province in self.provinces:
+            self.result[province].in_time_placebo(
+                placebo_time, n_optim=n_optim
+            )
+
+    def do_in_place_placebo(self, n_optim=None):
+        if not n_optim:
+            n_optim = self.parameters.get("placebo_optim")
+        for province in self.provinces:
+            self.result[province].in_space_placebo(n_optim=n_optim)
+        pass
 
     def drop_compared_datasets(self):
         pass

@@ -119,11 +119,12 @@ def do_synth_once(province, data, outside_data, used_variables, parameters):
     return sc
 
 
-def do_synth_model(datasets, parameters):
+def do_synth_model(datasets, parameters, analysis):
     """
     Do a synth control modelling.
     :param datasets: {name: path} dictionary of necessary input datasets.
     :param parameters: necessary parameters import from html.
+    :param analysis:
     :return: results of experiment, dict of results.
     """
     # 加载数据，排除所有的省份
@@ -142,13 +143,19 @@ def do_synth_model(datasets, parameters):
     sc_results = {}
     for province in tqdm(parameters["province_include"]):
         print(f"solving {province}!...")
-        sc_results[province] = do_synth_once(
+        sc = do_synth_once(
             province=province,
             data=data,
             outside_data=outside_data,
             used_variables=used_variables,
             parameters=parameters,
         )
+        if analysis["placebo"]:
+            sc.in_time_placebo(
+                parameters["placebo_time"], n_optim=parameters["placebo_optim"]
+            )
+            sc.in_space_placebo(parameters["placebo_optim"])
+        sc_results[province] = sc
     return sc_results
 
 
