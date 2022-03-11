@@ -140,10 +140,11 @@ if __name__ == "__main__":
     exp_rel_path = exp.get_path("experiment", absolute=False)
     exp_log = set_logger(exp.name, path=exp_rel_path)
     exp.change_experiment_logger(exp_log)
+    exp.load_from_pickle()
 
     # modelling
-    sc_result = exp.do_experiment(model=do_synth_model, notification=True)
-    exp.drop_exp_to_pickle()
+    # sc_result = exp.do_experiment(model=do_synth_model, notification=True)
+    # exp.drop_exp_to_pickle()
 
     # analysis
     exp.do_analysis(model=do_synth_analysis)

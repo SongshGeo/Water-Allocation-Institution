@@ -73,7 +73,8 @@ parameters:
 
 # 结果分析部分
 analysis:
-    comparison_df: False
-    weights_df: False
-    placebo: True
-    plots: False
+  comparison_df: False
+  weights_df: False
+  placebo: True
+  iter_placebo: True
+  plots: False

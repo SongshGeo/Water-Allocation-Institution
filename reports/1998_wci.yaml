@@ -75,4 +75,5 @@ analysis:
     comparison_df: False
     weights_df: False
     placebo: True
+    iter_placebo: True
     plots: False

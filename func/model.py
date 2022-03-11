@@ -8,7 +8,7 @@
 
 import pandas as pd
 from attrs import define, field
-from SyntheticControlMethods import Synth
+from SyntheticControlMethods import DiffSynth, Synth
 from tqdm import tqdm
 
 
@@ -105,7 +105,12 @@ def do_synth_once(province, data, outside_data, used_variables, parameters):
     ]
     used_data = used_period[used_variables]
 
-    sc = Synth(
+    if parameters.get("synth") == "DSC":
+        # DSC = Diff Synth Control
+        synth = DiffSynth
+    else:
+        synth = Synth
+    sc = synth(
         used_data,
         parameters["Y_inputs"],
         "Province",
