@@ -165,6 +165,7 @@ def do_synth_analysis(exp, parameters, analysis):
     if analysis["iter_placebo"]:
         span = parameters.get("placebo_iter_span")
         exp.iter_time_placebo(span=span)
+    return exp.result
 
 
 if __name__ == "__main__":

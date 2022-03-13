@@ -80,6 +80,7 @@ class Experiment(object):
             self.datasets = parameters.get("datasets")
             self.description = parameters.get("description")
             self.authors = parameters.get("author")
+            name = parameters.get("name")
 
             # root path: from yaml > default project root
             root = parameters.get("root")
@@ -216,7 +217,7 @@ class Experiment(object):
             root = params.get("root")
             result_path = params.get("results_path")
             file.close()
-        path = os.path.join(root, result_path, "exp_experiment.pkl")
+        path = os.path.join(root, result_path, f"{self.name}_experiment.pkl")
         with open(path, "rb") as pkl:
             obj = pickle.load(pkl)
         return obj
@@ -279,13 +280,14 @@ class Experiment(object):
 
     def do_analysis(self, model, notification=False):
         self.update(msg=f"Start analysis {model.__name__}")
-        model(self, self.parameters, self.analysis)
+        result = model(self, self.parameters, self.analysis)
         self.update(msg=f"End analysis {model.__name__}.")
+        self.result = result
         self.update("state", "analyzed")
         if notification:
             sent = send_finish_message(self.name)
             self.update(msg=f"Notification sending msg: {sent['errmsg']}.")
-        pass
+        return self.state
 
 
 if __name__ == "__main__":
