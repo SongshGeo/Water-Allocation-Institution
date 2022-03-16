@@ -17,8 +17,8 @@ from attrs import define, field
 from matplotlib import pyplot as plt
 
 from func.experiment import Experiment
-from func.plots import basic_plot
-from func.tools import extract_mean_std
+from func.plots import NATURE_PALETTE, basic_plot
+from func.tools import extract_mean_std, get_optimal_fit_linear
 
 
 @define
@@ -138,19 +138,23 @@ class ExpResultsHandler(Experiment):
             self.log.info("Statistic dataframe saved.")
         return statistic
 
-    def correlation_analysis(self, xs, y, ax=None, method="pearson", **kwargs):
+    def correlation_analysis(
+        self, xs, y, ax=None, covar=True, method="pearson", **kwargs
+    ):
         data = self.dfs.get("statistic")
         if not ax:
             fig, ax = plt.subplots()
         p_val = []
         r_results = []
         for x in xs:
-            covar = xs.copy()
-            covar.remove(x)
-            result = pg.partial_corr(
-                data=data, x=x, y=y, covar=covar, method=method, **kwargs
-            )
-            # result = pg.corr(x=data[x], y=data[y], **kwargs)
+            if covar:
+                covar = xs.copy()
+                covar.remove(x)
+                result = pg.partial_corr(
+                    data=data, x=x, y=y, covar=covar, method=method, **kwargs
+                )
+            else:
+                result = pg.corr(data[x], data[y], method=method)
             r_results.append(result.loc[method, "r"])
             p_val.append(result.loc[method, "p-val"])
         ax.bar(x=np.arange(len(r_results)), height=r_results)
@@ -321,10 +325,256 @@ class ExpResultsHandler(Experiment):
             self.log.info(f"In time placebo done in {year}.")
         pass
 
-    def drop_compared_datasets(self):
+    def summarize_analysis(self):
+        df_synth = pd.DataFrame()
+        df_actual = pd.DataFrame()
+        diff_data = self.transfer_exp_pickle_to_data(save=True)
+        for col in diff_data:
+            if "synth" in col:
+                df_synth[col] = diff_data[col]
+            if "actual" in col:
+                df_actual[col] = diff_data[col]
+        yr_synth = df_synth.sum(axis=1)
+        yr_actual = df_actual.sum(axis=1)
+        return yr_synth, yr_actual
+
+    def rmspe_analysis(self, two_bars=False, plot=True, ax=None):
+        rmspe_others = []
+        rmspe_provinces = []
+        for province in self.provinces:
+            rmspe_df = self.result.get(province).original_data.rmspe_df
+            others = rmspe_df[rmspe_df["unit"] != province]
+            mean = others["post/pre"].mean()
+            rmspe = rmspe_df.set_index("unit").loc[province, "post/pre"]
+            rmspe_provinces.append(rmspe)
+            rmspe_others.append(mean)
+        if two_bars:
+            rmspe = pd.Series(np.mean(rmspe_provinces), index=["provinces"])
+        else:
+            rmspe = pd.Series(rmspe_provinces, index=self.provinces)
+        rmspe["others"] = np.mean(rmspe_others)
+        if plot:
+            if not ax:
+                _, ax = plt.subplots()
+            rmspe.plot.bar(ax=ax)
+        return rmspe
+
+    def weight_gdp_analysis(self):
+        # TODO finish this
         pass
 
-    pass
+    def plot_pre_post(self, actual, synth, ylabel, ax=None, figsize=(4, 3)):
+        treat = self.parameters.get("treat_year")
+        if not ax:
+            _, ax = plt.subplots(figsize=figsize)
+
+        # prepare data
+        obs_pre = actual.loc[:treat]
+        obs_post = actual.loc[treat:]
+        syn_pre = synth.loc[:treat]
+        syn_post = synth.loc[treat:]
+
+        # plots
+        ax.plot(
+            obs_pre.index,
+            obs_pre,
+            color=NATURE_PALETTE["NCC"],
+            marker="o",
+            lw=2,
+            zorder=2,
+            label="Observation",
+        )
+        ax.plot(
+            syn_pre.index,
+            syn_pre,
+            color="lightgray",
+            marker="o",
+            lw=2,
+            zorder=1,
+            label="Prediction",
+        )
+        ax.scatter(
+            syn_post.index,
+            syn_post,
+            color="gray",
+            edgecolor=NATURE_PALETTE["Nature"],
+            alpha=0.4,
+            s=50,
+        )
+        ax.scatter(
+            obs_post.index,
+            obs_post,
+            color=NATURE_PALETTE["NCC"],
+            edgecolor=NATURE_PALETTE["NCC"],
+            s=50,
+            alpha=0.4,
+        )
+        ax.plot(
+            obs_post.index,
+            get_optimal_fit_linear(obs_post.index, obs_post.values),
+            color=NATURE_PALETTE["NCC"],
+            lw=2,
+            ls="--",
+        )
+        ax.plot(
+            syn_post.index,
+            get_optimal_fit_linear(syn_post.index, syn_post.values),
+            color="gray",
+            lw=2,
+            ls="--",
+        )
+
+        # ticks
+        x_min, x_max = ax.get_xlim()
+        # ax.axvspan(x_min, treat, color=NATURE_PALETTE['NG'], alpha=0.4)
+        ax.set_xticks([(treat + x_min) / 2, (x_max + treat) / 2])
+        ax.set_xticklabels(["Before", "After"])
+        ax.axvline(
+            treat,
+            ls=":",
+            lw=4,
+            color=NATURE_PALETTE["NG"],
+            label="Policy: {}".format(treat),
+        )
+        ax.set_xlabel("")
+
+        # spines visibility
+        ax.legend()
+        ax.spines["top"].set_visible(False)
+        ax.spines["left"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.spines["bottom"].set_visible(True)
+        ax.set_ylabel(ylabel=ylabel)
+        ax.set_xlabel("")
+        return ax
+
+    def plot_upset(
+        self, items, threshold=0.05, figszie=(8, 4), height_ratio=(3, 1.5)
+    ):
+        fig = plt.figure(figsize=figszie, constrained_layout=False)
+        plt.subplots_adjust(
+            left=None,
+            bottom=None,
+            right=None,
+            top=None,
+            wspace=None,
+            hspace=None,
+        )
+        gs = fig.add_gridspec(
+            ncols=4,
+            nrows=2,
+            wspace=0.65,
+            hspace=0.2,
+            height_ratios=height_ratio,
+        )
+        ax2 = fig.add_subplot(gs[1, 1:])
+        ax1 = fig.add_subplot(gs[0, 1:])
+        ax3 = fig.add_subplot(gs[1, :1])
+
+        for ax in [ax1, ax2, ax3]:
+            ax.spines["top"].set_visible(False)
+            ax.spines["left"].set_visible(False)
+            ax.spines["right"].set_visible(False)
+            ax.spines["bottom"].set_visible(False)
+            ax.tick_params(bottom=False, top=False, left=False, right=False)
+        ax1.spines["left"].set_visible(True)
+        ax1.tick_params(bottom=True, top=False, left=True, right=False)
+        ax3.spines["bottom"].set_visible(True)
+        ax3.tick_params(bottom=True, top=False, left=False, right=False)
+        ax3.set_yticklabels("")
+        ax1.set_ylabel("Increased ratio of WU")
+        ax2.set_yticks(range(3))
+        ax2.set_ylim(-0.5, 2.5)
+        ax3.set_ylim(-0.5, 2.5)
+        ax1.grid(True, axis="y", ls=":", color=NATURE_PALETTE["Nature"])
+        ax3.set_xlim(0, 1)
+
+        for i in range(3):
+            ax2.axhspan(
+                i - 0.3, i + 0.3, color=NATURE_PALETTE["Nature"], alpha=0.05
+            )
+
+        ax2.set_xlabel("")
+        ax2.set_xticklabels("")
+        ax3.set_title("Correlation", size=10)
+        ax2.set_xlabel("Provinces in the YRB")
+
+        ratio = self.dfs["statistic"]["diff_ratio"].sort_values(
+            ascending=False
+        )
+
+        ax1.bar(
+            range(len(ratio)),
+            height=ratio,
+            width=0.8,
+            align="center",
+            color=NATURE_PALETTE["NCC"],
+            edgecolor=NATURE_PALETTE["Nature"],
+        )
+        ax1.set_xticks(range(len(ratio)))
+        ax1.set_xticklabels(ratio.index, size=9)
+        ax1.set_xlim(-0.5, len(ratio) - 0.5)
+        ax1.set_ylim(ratio.min(), ratio.max())
+
+        point_color = NATURE_PALETTE["NS"]
+        labels = []
+        for index, (label, bools, note, corr, p_val) in enumerate(items):
+            true = []
+            colors = [point_color if i else "gray" for i in bools]
+            ax2.scatter(
+                range(len(bools)),
+                index * np.ones(shape=(len(bools),)),
+                edgecolors="white",
+                color=colors,
+                s=160,
+            )
+            ax3.barh(
+                y=index,
+                width=corr,
+                height=0.6,
+                left=1 - corr,
+                align="center",
+                color=NATURE_PALETTE["Nature"],
+            )
+            if p_val < threshold:
+                ax3.text(
+                    s="*",
+                    x=1 - corr - 0.1,
+                    y=index - 0.15,
+                    weight="bold",
+                    color=NATURE_PALETTE["NS"],
+                    size=10,
+                )
+            labels.append(label)
+            for i, b in enumerate(bools):
+                if b:
+                    ax2.arrow(x=i, y=index, dx=0, dy=-0.3, color=point_color)
+                    true.append(i)
+            ax2.arrow(
+                x=min(true),
+                y=index - 0.3,
+                dx=max(true) - min(true),
+                dy=0,
+                color=point_color,
+            )
+            ax2.text(
+                s=note,
+                x=(max(true) + min(true)) / 2,
+                y=index - 0.5,
+                fontstyle="italic",
+                horizontalalignment="center",
+                verticalalignment="center",
+            )
+
+        ax2.set_xlim(ax1.get_xlim())
+        ax2.set_yticks(range(len(items)))
+        ax2.set_ylim(-0.5, len(items) - 0.5)
+        ax3.set_ylim(-0.5, len(items) - 0.5)
+        ax2.set_yticklabels(labels)
+        ax3.set_xticks(
+            ticks=np.arange(0, 1.1, 0.5), labels=["1.0", "0.5", "0.0"]
+        )
+        pass
 
 
 if __name__ == "__main__":

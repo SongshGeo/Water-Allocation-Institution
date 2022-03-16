@@ -145,7 +145,7 @@ def basic_plot(
     ]
     solo_panels = ["rmspe ratio"]  # plots with different axes
     if not any([how in valid_panels, how in solo_panels]):
-        raise ValueError("Wrong plot type.")
+        raise ValueError(f"Wrong plot type, valid input: {valid_panels}.")
 
     if "original" in how:
         # Determine appropriate limits for y-axis
@@ -269,9 +269,13 @@ def basic_plot(
 
         # Create horizontal barplot, one bar per unit
         y_pos = np.arange(data.n_controls + 1)  # Number of units
-        ax.barh(
-            y_pos, sorted_rmspe_df["post/pre"], color="#3F5D7D", ec="black"
-        )
+        colors = []
+        for p in sorted_rmspe_df["unit"]:
+            if p == data.treated_unit:
+                colors.append("black")
+            else:
+                colors.append("gray")
+        ax.barh(y_pos, sorted_rmspe_df["post/pre"], color=colors, ec="black")
 
         # Label bars with unit names
         ax.set_yticks(y_pos)

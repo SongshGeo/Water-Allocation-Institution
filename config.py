@@ -69,6 +69,16 @@ PROVINCES_CHN2ENG = {
     "黑龙": "Heilongjiang",
 }
 
+NATURAL = {
+    "prec": "Precipitation rate",
+    "temp": "Near surface air temperature",
+    "lrad": "Surface downward longwave radiation",
+    "srad": "Surface downward shortwave radiation",
+    "wind": "Near surface wind speed",
+    "pres": "Near surface air pressure",
+    "shum": "Near surface air specific humidity",
+}
+
 # BASIC logging settings.
 LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(message)s "
 DATE_FORMAT = "%Y-%m-%d  %H:%M:%S %a "
@@ -140,13 +150,15 @@ if __name__ == "__main__":
     exp_rel_path = exp.get_path("experiment", absolute=False)
     exp_log = set_logger(exp.name, path=exp_rel_path)
     exp.change_experiment_logger(exp_log)
-    # exp.load_from_pickle()
 
     # modelling
     sc_result = exp.do_experiment(model=do_synth_model, notification=True)
     exp.drop_exp_to_pickle()
 
     # analysis
-    sc_analysis = exp.do_analysis(model=do_synth_analysis, notification=True)
-    exp.drop_exp_to_pickle()
+    exp2 = ExpResultsHandler(yaml_file=YAML_PATH)
+    exp2.change_experiment_logger(exp_log)
+    exp2.load_from_pickle()
+    sc_analysis = exp2.do_analysis(model=do_synth_analysis, notification=True)
+    exp2.drop_exp_to_pickle()
     pass
