@@ -1,0 +1,78 @@
+# metadata
+title: Institutional shifts and water sustainability of the Yellow River Basin
+abstract: Increasing competition for water is challenging management institutions of large river basins around the world. Institutions that successfully support sustainable water resource use are structurally well-aligned with water provisioning and social-ecological demands. However, what constitutes a well-aligned institution in this context is poorly understood. We analyzed institutional shifts in water resource allocation, exploiting two quasi-natural experiments of the Yellow River Basin, China. Using a synthetic control identification strategy, we analyzed an institution that was intended to prevent water overuse but instead resulted in a social-ecological structural mismatch, leading to a 164\% increase beyond the expected total water use. We applied a novel economic model that suggested that this “sprint effect” (i.e., rapid competing in resource use) and the resulting ecological crisis were driven by incentive distortions in water allocation bargaining, which in turn, led to each province trying to pre-emptively increase their water quotas for long-term gain. Our analysis highlights the need to carefully evaluate institutional fit in the management of water in large river basins, particularly to avoid the possibility of incentive distortion.
+
+target journal: National Science Review
+current version: 1.0.0
+
+keywords: [
+    water use,
+    water management,
+    social-ecological system,
+    common pool resources,
+    institutional analysis,
+    collaborative governance,
+]
+
+authors:
+  Shuang Song:
+    rank: 1
+    affli: [klb, bnu]
+    email: songshgeo@mail.bnu.edu.cn
+
+  Huiyu Wen:
+    rank: 2
+    affli: [rmu]
+    email: wenhy@ruc.edu.cn
+
+affli:
+  klb:
+    name: State Key Laboratory of Earth Surface Processes and Resource Ecology
+    apartment: Faculty of Geographical Science
+    institute: Beijing Normal University
+    city: Beijing
+    zcode: 100875
+    country: P.R. China
+  bnu:
+    name: Institute of Land Surface System and Sustainability
+    apartment: Faculty of Geographical Science
+    institute: Beijing Normal University
+    city: Beijing
+    zcode: 100875
+    country: P.R. China
+  rmu:
+    name: School of Finance
+    apartment: None
+    institute: Renmin University of China
+    city: Beijing
+    zcode: 100875
+    country: P.R. China
+  arc:
+    name: ARC Centre of Excellence for Coral Reef Studies
+    apartment: None
+    institute: James Cook University
+    city: Townsville
+    zcode: 4811
+    country: QLD, Australia
+
+Correspondence: Shuai Wang
+
+
+Funding:
+  name: "National Natural Science Foundation of China (CN)"
+  num: "NSFC 42041007"
+  funded_author: Bojie Fu
+
+
+Competing Interests: None
+
+Author contributions:
+  design research: [Shuai Wang, Bojie Fu]
+  perform the research: [Shuang Song, Huiyu Wen]
+  data analysis: [Shuang Song, Huiyu Wen, Xutong Wu]
+  wrote paper: [Shuang Song, Huiyu Wen, Graeme S. Cumming]
+  revised and advices: [Graeme S. Cumming]
+  funding: [Bojie Fu]
+
+Code availability: "All codes and datasets used in this research are accessible at https://github.com/SongshGeo/sochyd-transboundary-HESS. They will be made open source after this project is completed."
+

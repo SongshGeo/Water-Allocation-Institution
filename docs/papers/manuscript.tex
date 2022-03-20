@@ -54,7 +54,7 @@
 
 \bibliographystyle{nsr}
 
-\title{\input{../title.tex}}
+\title{\input{title.tex}}  %! Notice Input
 
 
 \author{Shuang Song$^{1,2}$}
@@ -92,18 +92,20 @@
 \authornote{\textbf{Corresponding authors.} Email: shuaiwang@bnu.edu.cn}
 \authornote{Shuang Song and Huiyu Wen equally contributed to this work.}
 
-\abstract[ABSTRACT]{\input{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/docs/papers/abstract.tex}}
+\abstract[ABSTRACT]{
+    \input{abstract}
+}  %! Notice input
 
-\keywords{\input{../keywords.tex}}
+\keywords{\input{keywords}}  %! Notice input
 \maketitle
 
 \section{INTRODUCTION}\label{intro}
-\input{main/01_introduction.tex}
+\input{01_manuscript/01_introduction.tex}
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=16pc]{../../../figs/diagrams/framework.jpg}
+	\includegraphics[width=16pc]{../../figs/diagrams/framework.jpg}
 	\caption{
 		Framework for understanding linkages between SES structures and outcomes.
 		\textbf{a.} The general framework for analyzing social-ecological systems (SESs) (adapted from Ostrom \cite{ostromGeneralFrameworkAnalyzing2009}). Institutions embedded in SESs may reshape structures by changing the interactions between core subsystems, resulting in different outcomes.
@@ -113,11 +115,11 @@
 \end{figure}
 
 \section{Context of institutional shifts}\label{institution}
-\input{main/02_institution.tex}
+\input{01_manuscript/02_institution.tex}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=16pc]{../../../figs/diagrams/structure.jpg}
+    \includegraphics[width=16pc]{../../figs/diagrams/structure.jpg}
 	\caption{
 		% 黄河流域的制度变迁与经济社会结构差异。
 		Institutional shifts and related SES structures in the Yellow River Basin (YRB). See \textit{Supplementary Material S1} for detailed introduction for the institutions.
@@ -138,11 +140,11 @@
 
 \section{RESULTS}\label{results}
 \subsection{SPRINT EFFECT}\label{phenomenon}
-\input{main/03_results.tex}
+\input{01_manuscript/03_results.tex}
 
 \begin{figure}
     \centering
-    \includegraphics[width=16pc]{../../../figs/outputs/main_results.jpg}
+    \includegraphics[width=16pc]{../../figs/outputs/main_results.jpg}
     \caption{
         Effects of two institutional shifts on water resources use and allocation in the Yellow River Basin (YRB). (\textbf{A} to \textbf{C}: Entering the mismatched SES structure in 1987; \textbf{D} to \textbf{E}: exiting the mismatch in 1998. \textbf{A} and \textbf{D}: Impact of the first institutional shift on water use trends in the YRB. Blue points are actual water use, and gray points are predicted use under a scenario without any institutional shift (see \textit{Methods}). \textbf{B} and \textbf{E}: Impact of the institutional shift on total water use. Dark bars indicate the difference between the actual and predicted water use in specific study periods. Gray bars are the expected water use, simulated by setting up placebo experiments (null models, see \textit{Methods}). \textbf{C} and \textbf{F}: Impact of institutional shift on water allocation equity (see \textit{Methods}). Red lines indicate the index calculated from actual water use data; gray lines indicate predicted water use under a scenario with unconstrained water use.
     }
@@ -151,12 +153,12 @@
 
 
 \subsection{CAUSES}\label{causes}
-\input{main/model}
-\input{main/table.tex}
+\input{01_manuscript/model}
+\input{01_manuscript/table.tex}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=16pc]{../../../figs/outputs/economic_model.jpg}
+    \includegraphics[width=16pc]{../../figs/outputs/economic_model.jpg}
 	\caption{
 		% \textbf{Assumption 1:} \textit{(Production)} Assuming that water is the only input of the homogenous production function F(x) of each province. Under diminishing marginal returns assumption, and $F(x)$ is continuous, $F'(0)=\infty$, $ F'(\infty)=0$. The production output is under perfect competition, with constant unit price of P.
 		% \textbf{Assumption 2:} \textit{(Cost function)} Assuming that the ecology is a unity for the whole basin, the cost of water use is equally assigned to each province under any water use. The unit cost of water is a constant C.
@@ -168,7 +170,7 @@
 \end{figure}
 
 \section{DISCUSSION}\label{discussion}
-\input{main/04_discussion.tex}
+\input{01_manuscript/04_discussion.tex}
 
 
 \section{Methods}
@@ -301,11 +303,11 @@ Extensions of the model are shown in \textit{Supplementary Material S3}.
 
 
 \section{CONCLUSION}\label{conclusion}
-\input{main/05_conclusion.tex}
+\input{01_manuscript/05_conclusion.tex}
 
 \appendix
 \label{appendix}
-%%%%%%%% -----  appendix -------- %%%%%%%%%%
+%%%%%%%% -----  02_appendix -------- %%%%%%%%%%
 
 %% Put the bibliography here, most people will use BiBTeX in
 %% which case the environment below should be replaced with
