@@ -1,0 +1,50 @@
+%! Author = songshgeo
+%! Date = 2022/3/19
+
+
+% 基于构建的一般经济学模型，我们对利益相关者面对用水配额政策的响应做了进一步探讨
+Using the general economic model (see the \textit{Methods in the main text}), we also explored the response of stakeholders to water quota policies.
+We considered two additional scenarios for stakeholders, one that considered technology growth and one that considered different valuations through time (via the discount rate) of economic benefits and ecological costs.
+In the following scenarios, the cost is assumed to be Nontransferable, which could be fully allocated to the one incurring the water use.
+Explaining plausible scenarios for these stakeholders will help us better understand the causes of the sprint effect and potential solutions.
+We argue that the sprint effect of water use remains robust even if a complete and equitable system.
+
+\subsection*{Growth in technology}
+
+Assume that there is an exogenous technology growth rate of $g$ in the scenario of $N$ provinces bargaining for water use under total quota $Q$, with unit price of output $P$, unit cost $C$ and discount factor $\beta$.
+For simplicity, consider the following finite-period water use optimization:
+
+$ \max \quad P \cdot (1+g)^t \ln(1+x_{i,0})-\frac{C}{N}+\beta^t \begin{matrix} \sum_{t=1}^T [P \cdot (1+g)^t \ln(x_{i,t}+1)-C \cdot x_{i,t}] \end{matrix}$
+
+$s.t. \quad x_{i,t} \leq Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}} \quad for \quad \forall t$
+
+We depict the relation between multi-period benefits and water use $x_{i0}$ in Figure~\ref{fig:tech_growth}to illustrate the optimal water use pattern under technology growth.
+The higher marginal benefits of water might create enough incentive to offset the nontransferable costs of water overuse at $t=0$, because a higher allocated quota provides growth option value.
+Because provincial decisions are under a longer time horizon, there is a greater sprint effect due to the higher accumulated yield.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/outputs/tech_growth}
+	\caption{Multi-period benefits and optimal water use under technology growth and a quota system. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with technology growth under $T$ periods. Assume $F(x)=\ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta=0.7$, $g=0.2$, and $Q=8$. The horizontal axis coordinates of $*$ denotes optimal water use at $t=0$ under each time horizon in decision-making.}
+	\label{fig:tech_growth}
+\end{figure}
+
+\subsection*{Economic benefits and ecological costs with different discount rate}
+
+Assume that there is high discount rate for economic benefits and a low discount rate for ecological costs, in the scenario of $N$ provinces bargaining for water use under total quota $Q$, with unit price of output $P$, unit cost $C$, discount factor $\beta^{ecology}$ and $\beta^{ecology}$.
+It means that present economic profits are significantly concerned but future ecological costs are widely ignored. (In fact, if GDP are the core standard to judge officers’ performance, this is an assumption cloth to the reality.) For simplicity, consider the following finite-period water use optimization, notes the water use of province $i$ at period $t$:
+
+\[ \max \quad P \cdot \ln(1+x_{i,0})-\frac{C}{N}+\beta_{economy}^t \begin{matrix} \sum_{t=1}^T [P \cdot \ln(x_{i,t}+1)]  \end{matrix} - \beta_{ecology}^t \begin{matrix} \sum_{t=1}^T [C \cdot x_{i,t}] \end{matrix}\]
+
+\[s.t. \quad x_{i,t} \leq Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}} \quad for \quad \forall t\]
+
+We depict the relation between multi-period benefits and water use xi0 in different time horizons in Figure~\ref{fig:remote_cost}, Using a higher discount rate for ecological costs might create enough incentive to set off the nontransferable unit cost of $C$.
+Because the provincial decision is often under a longer horizon than that in baseline results in Figure 4 of the main text, there is a greater sprint effect as a result of higher accumulated yields.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/outputs/remote_ecological_cost}
+	\caption{Multi-period benefits and optimal water use when economic benefits have a high discount rate, ecological costs have a low discount rate, and a quota is implemented. The figure depicts the relation between multi-period benefits of province $i$ and water use under Case 3 under $T$ periods. Assume $F(x)=\ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta_{economy}=0.7$, $\beta_{ecology}=0.3$, and $Q=8$. The horizontal axis coordinates of $*$ denotes optimal water use at $t=0$ under each time horizon in decision-making.
+	}
+	\label{fig:remote_cost}
+\end{figure}
