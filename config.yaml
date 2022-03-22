@@ -20,6 +20,11 @@ contributors:
   Shuai Wang: True
   Bojie Fu: True
 
+papers:
+  target journal: National Science Review
+  current version: v1
+
+
 # dir structure
 structure:
   data:
@@ -28,7 +33,7 @@ structure:
     results: support
 
   docs:
-    papers: main
+    papers: 01_manuscript
     docs: support
     drafts: support
 
@@ -38,12 +43,12 @@ structure:
     resources: support
 
   tests: support
-  notebooks: main
+  notebooks: 01_manuscript
   reports: support
 
   main:
-    modules: main
-    tools: main
+    modules: 01_manuscript
+    tools: 01_manuscript
 
 python:
   version: "<3.8"
@@ -63,7 +68,7 @@ log:
 
 # Set folder levels to each structure
 folder_level:
-  # main modules
+  # 01_manuscript modules
   mian:
     ignore: False
     doc: True
