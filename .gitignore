@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 .idea/
 data
-
+.vscode
 
 # LaTeX
 *.synctex(busy)
