@@ -363,7 +363,18 @@ class ExpResultsHandler(Experiment):
         # TODO finish this
         pass
 
-    def plot_pre_post(self, actual, synth, ylabel, ax=None, figsize=(4, 3)):
+    def plot_pre_post(
+        self,
+        ylabel=None,
+        actual=None,
+        synth=None,
+        ax=None,
+        figsize=(4, 3),
+        axvline=True,
+    ):
+        if not actual and not synth:
+            synth, actual = self.summarize_analysis()
+            ylabel = self.parameters.get("Y_inputs")
         treat = self.parameters.get("treat_year")
         if not ax:
             _, ax = plt.subplots(figsize=figsize)
@@ -429,13 +440,14 @@ class ExpResultsHandler(Experiment):
         # ax.axvspan(x_min, treat, color=NATURE_PALETTE['NG'], alpha=0.4)
         ax.set_xticks([(treat + x_min) / 2, (x_max + treat) / 2])
         ax.set_xticklabels(["Before", "After"])
-        ax.axvline(
-            treat,
-            ls=":",
-            lw=4,
-            color=NATURE_PALETTE["NG"],
-            label="Policy: {}".format(treat),
-        )
+        if axvline:
+            ax.axvline(
+                treat,
+                ls=":",
+                lw=4,
+                color=NATURE_PALETTE["NG"],
+                label="Policy: {}".format(treat),
+            )
         ax.set_xlabel("")
 
         # spines visibility
@@ -558,6 +570,7 @@ class ExpResultsHandler(Experiment):
                 color=point_color,
             )
             ax2.text(
+                # TODO 查看一下为什么
                 s=note,
                 x=(max(true) + min(true)) / 2,
                 y=index - 0.5,

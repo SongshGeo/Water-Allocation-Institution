@@ -5,16 +5,16 @@
 %% The original source files were:
 %%
 %% classes.dtx  (with options: `nsr')
-%% 
+%%
 %% This is a generated file.
-%% 
+%%
 %% Copyright 2021 Aptara India
 %% The LaTeX3 Project and any individual authors listed elsewhere
 %% in this file.
-%% 
+%%
 %% This file was generated from file(s) of the LaTeX base system.
 %% --------------------------------------------------------------
-%% 
+%%
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -22,17 +22,17 @@
 %%    http://www.latex-project.org/lppl.txt
 %% and version 1.3 or later is part of all distributions of LaTeX
 %% version 2003/12/01 or later.
-%% 
+%%
 %% This file has the LPPL maintenance status "maintained".
-%% 
+%%
 %% This file may only be distributed together with a copy of the LaTeX
 %% base system. You may however distribute the LaTeX base system without
 %% such generated files.
-%% 
+%%
 %% The list of all files belonging to the LaTeX base distribution is
 %% given in the file `manifest.txt'. See also `legal.txt' for additional
 %% information.
-%% 
+%%
 %% The list of derived (unpacked) files belonging to the distribution
 %% and covered by LPPL is defined by the unpacking scripts (with
 %% extension .ins) which are part of the distribution.
@@ -51,7 +51,7 @@
 %%   Right bracket \]     Circumflex    \^     Underscore    \_
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
-\NeedsTeXFormat{LaTeX2e}[2021/12/17]
+\NeedsTeXFormat{LaTeX2e}[2020/02/02]
 \ProvidesClass{nsr}
               [2021/12/17 v1.0f
  Standard LaTeX document class]
@@ -142,7 +142,7 @@
    \def\@evenhead{\hspace*{-30mm}\hbox to \typewidth{\hfill\rhhfont{{\itshape Natl Sci Rev},\ \@jyear,\ Vol.\ \@jvol, \jobname }\hfill}}%
    \let\@oddhead\@evenhead%
    \def\@oddfoot{\hspace*{-30mm}\hbox to \typewidth{\hfill\oddfolio\hfill}}%
-   \def\@evenfoot{\hspace*{-30mm}\hbox to \typewidth{\hfill\evenfolio\hfill}}%  
+   \def\@evenfoot{\hspace*{-30mm}\hbox to \typewidth{\hfill\evenfolio\hfill}}%
    \let\@mkboth\@gobbletwo}
 %%
 \def\ps@myheadings{%
@@ -181,7 +181,7 @@
   \let \footnote \thanks
   \hbox{\hspace*{-7.25pc}\vbox to 0pt{\hsize6pc\vbox to 618pt{\hsize6pc\vfill\vbox{\hsize6pc{\special{color push gray .15}{\affilfont\@affil\par}\vskip1pt\rule{6pc}{.5pt}\par\vskip1pt{\corfont\@authornote\par}\rule{6pc}{.5pt}\par{{\corfont%
     \ifx\@received\@empty\else{\bfseries Received:}\ \@received\fi%
-    \ifx\@revised\@empty\else;\ {\bfseries Revised:}\ \@revised\fi% 
+    \ifx\@revised\@empty\else;\ {\bfseries Revised:}\ \@revised\fi%
      \ifx\@accepted\@empty\else;\ {\bfseries Accepted:}\ \@accepted\fi\par}}\rule{6pc}{.5pt}\special{color pop}}}}}}%
   \colorbox{dsubhdcolor}{\revsptitlefont \@subhead\par}\vskip9pt%
   {\titlefont \@title \par}%
@@ -822,7 +822,7 @@
 \oddsidemargin55.7756pt%3.6pc
 \evensidemargin55.5pt
 
-\setlength\headheight{0\p@}% 
+\setlength\headheight{0\p@}%
 \setlength\headsep   {32pt}% \typeheight - \textheight - \headheight
 \setlength\topskip   {0\p@}
 \setlength\splittopskip   {\topskip}
@@ -976,7 +976,7 @@
 %%
 \def\tnotemark#1{\textsuperscript{#1}}%%
 %%
-\newenvironment{tablenotes}{\list{}{\setlength{\labelsep}{0pt}% 
+\newenvironment{tablenotes}{\list{}{\setlength{\labelsep}{0pt}%
 \setlength{\labelwidth}{0pt}%
 \setlength{\leftmargin}{0pt}%
 \setlength{\rightmargin}{0pt}%
@@ -1071,7 +1071,7 @@
         \ifnum\tempacount=\tw@%
            \unskip\space and\space%
         \else%
-           \ifnum\tempacount=\@ne\else\unskip,\space\fi% 
+           \ifnum\tempacount=\@ne\else\unskip,\space\fi%
         \fi%
       \fi%
     \advance\tempacount\m@ne%
