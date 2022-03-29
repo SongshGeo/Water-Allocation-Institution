@@ -23,6 +23,7 @@ class SciPaper(dict):
 
 if __name__ == "__main__":
     print(os.getcwd())
+    root = os.getcwd()
     os.chdir(os.getcwd())
     title = params.get("title")
     abstract = params.get("abstract")
@@ -31,10 +32,12 @@ if __name__ == "__main__":
     keywords = ", ".join(keywords)
     print(title, abstract, authors, keywords)
 
-    for name, element in zip(
-        ["title", "abstract", "keywords"], [title, abstract, keywords]
-    ):
-        os.system(f"echo '{element}' > {name}.tex")
+    for folder in ["00_cover_letter", "01_manuscript", "02_appendix"]:
+        os.chdir(os.path.join(root, folder))
+        for name, element in zip(
+            ["title", "abstract", "keywords"], [title, abstract, keywords]
+        ):
+            os.system(f"echo '{element}' > {name}.tex")
     # os.system(f'zsh make.sh')
     # for name in ['title', 'abstract', 'keywords']:
     #     os.system(f"rm '{name}.tex'")
