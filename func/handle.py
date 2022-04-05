@@ -420,16 +420,22 @@ class ExpResultsHandler(Experiment):
             s=50,
             alpha=0.4,
         )
+        y_sim_obs, k_obs = get_optimal_fit_linear(
+            obs_post.index, obs_post.values
+        )
         ax.plot(
             obs_post.index,
-            get_optimal_fit_linear(obs_post.index, obs_post.values),
+            y_sim_obs,
             color=NATURE_PALETTE["NCC"],
             lw=2,
             ls="--",
         )
+        y_sim_syn, k_syn = get_optimal_fit_linear(
+            syn_post.index, syn_post.values
+        )
         ax.plot(
             syn_post.index,
-            get_optimal_fit_linear(syn_post.index, syn_post.values),
+            y_sim_syn,
             color="gray",
             lw=2,
             ls="--",
@@ -458,7 +464,7 @@ class ExpResultsHandler(Experiment):
         ax.spines["bottom"].set_visible(True)
         ax.set_ylabel(ylabel=ylabel)
         ax.set_xlabel("")
-        return ax
+        return {"k_obs": k_obs, "k_syn": k_syn}
 
     def plot_upset(
         self, items, threshold=0.05, figszie=(8, 4), height_ratio=(3, 1.5)
