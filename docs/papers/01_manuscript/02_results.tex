@@ -2,30 +2,24 @@
 %! Date = 2022/3/10
 % \MakeUppercase{\subsection{Cascading effects of the institutional shifts}}
 \subsection{Institutional shifts effect on water use}
-\label{effects}
-% 从国家官员到流域管理官员，从省、市到区，长江流域自上而下的制度结构开始演变至今
-Including the national authorities, the basin management authorities, provinces, cities, and even districts, top-down institutional structures of the YRB started to evolve up to now (\textit{S1 in Supplementary Material}).
-% 从70年代黄河断流开始摸索87-WAS的初步治理方案，到98-UBR成功解决断流后于2008年强化该制度，黄河一直是中国水治理制度转变的先行者。
-As a pioneer in water governance shifting in China, the YRB started to explore the initial water allocating scheme in the 1970s, then found a successful solution of dring-up in 1998, and promoted entirely since 2008.
-% 1987年(87-WAS)和1998年(98-UBR)的制度变迁是YRB中两个被广泛认可的制度演变里程碑(图~\ref{structure} \textit{S1 in  Supplementary  Methods})。
-Throughout, the institutional shifts in 1987 (87-WAS) and 1998 (98-UBR) were two widely recognized milestones of water governance (Figure~\ref{structure} and \textit{S1 in Supplementary Material}).
-Our analysis period, therefore, spans from 1975 to 2008, with the human-water system shifted between three different institutional structures (Figure~\ref{structure}).
+\label{result-1}
+% 结果一：
+% 1. 展示制度转变带来的用水量变化
+% 2. 解释结果的意义、合理性、
+% 3. 建立结果与结构之间的联系
 
-Here, we use Differenced Synthetic Control method, which considers economic growth and natural background, to estimate theoretical water uses scenarios without these policy interferences (\textbf{Methods}; \textit{S2 in Supplementary Material}).
-% 我们的结果表明，1987年(87-WAS)的制度转变实际上刺激了各省比没有干扰时使用更多的水，观测到比预期增加了10(图~\ref{main_results}A和B)。
+\label{result-1-p2}
+Here, we use Differenced Synthetic Control (DSC) method, which considers economic growth and natural background, to estimate theoretical water use scenarios without basinal policy interferences (\textbf{Methods}; \textit{S2 in Supplementary Material}).
 Our results suggest that the institutional shift in 1987 (87-WAS) stimulated the provinces to withdraw more water than would have been used without the interference (Figure~\ref{main_results}A).
-% 在1998年制度再次改变后，用水量增加的趋势似乎被有效地抑制了，观察到的总用水量比预期减少了10(图~\ref{main_results} C和D)。
-However, after the institution shifted again in 1998 (98-UBR), the trend of increasing water use appeared to be effectively suppressed, with total observed water consumption decreasing by $260\%$ relative to the estimation (Figure~\ref{main_results} B).
-% 87-WAS后用水量的增加与1987 - 1998年地表径流严重干涸的事实相吻合，这是河流退化和环境危机的一个明显的试金石
+From 1988 to 1998, while the estimation of water use only suggests $956.38 km^3$, the observed water use of the YRB provinces reached $1038.36 km^3$ in sum, $8.57\%$ increased.
+However, after the institution shifted again in 1998 (98-UBR), the trend of increasing water use appeared to be effectively suppressed. From 1998 to 2008, the total observed water use decreased by $0.49 km^3$ per year, while the estimation of water use still suggests $1.03 km^3$ increases (Figure~\ref{main_results} B).
 The increased water uses after 87-WAS aligns with the fact that badly drying-up of the surface streamflow from 1987 to 1998, which was an obvious touchstone of river degradation and environmental crisis (Figure~\ref{main_results}C).
-% 尽管在1998年制度转变后的十年内，干旱程度有增无减，但断流的环境危机却得到了有效解决。
-On the other hand, although the density of droughts increased in the decade after the 98-UBR, the environmental crisis of river drying up was effectively resolved (Figure~\ref{main_results}C).
-% 正如许多研究指出的，这主要是大规模制度变迁的成功
-As literature has suggested, this institution shift contributed a lot to the successful water governance.
+On the other hand, the environmental crisis of river drying up was effectively resolved after the 98-UBR, though the density of droughts still increased for decades (from $0.47$ after 87-WAS to $0.62$ after 98-UBR on average) (Figure~\ref{main_results}C).
+In line with previous literature had reported; therefore, the institution shift of 98-UBR contributed a lot to the successful water governance. %! citation
 
 \begin{figure*}[!h]
     \centering
-    \includegraphics[width=32pc]{outputs/main_results2.jpg}
+    \includegraphics[width=32pc]{outputs/main_results2.pdf}
     \caption{
         Effects of two institutional shifts on water resources use and allocation in the Yellow River Basin (YRB).
         \textbf{A.} water uses of the YRB before and after the institutional shift in 1987 (87-WAS);
@@ -35,16 +29,19 @@ As literature has suggested, this institution shift contributed a lot to the suc
     \label{main_results}
 \end{figure*}
 
-% 然而，87-WAS 也非大多分析报告所认为的“没有起到效果”，因为制度变化完全没有产生影响时，流域的用水量将更接近我们的模型预测。
-Furthermore, 87-WAS did not ``have no effect'' as previous analyses suggested because water use will be closer to what our models predicted when the shift was a blank policy.
-% 除了环境背景外，我们的预测还考虑了经济因素，假设经济总量与用水量之间的生产函数保持不变。
-Besides environmental background, our forecast takes economic factors into account under the assumptions that the production function between economic volume and water uses remained unchanged (\textit{S2 in Supplementary Material}).
-% 由于单位水资源的生产效率在这一时期实际上保持了相似的趋势，这意味着流域用水量的加速增长不是经济增长的必然结果。
-However, the production efficiency of unit water resources kept similar trends between provinces of the YRB and others (Figure \textit{S3 in Supplementary Material}), which means that the accelerated growth of basinal water uses was not the inevitable result of economic growth.
-% 但实际上，我们的结果表明相对于正常的经济发展进程来说，黄河流域的水资源利用反而更像是受到了刺激。
-However, our results suggest that water use (especially for irrigation) in the YRB was more likely to be partly stimulated by the shift in 1987 besides economic growth.
-% 这种用水量的加速增长与制度设计时遏制用水、保护黄河流域有限的水资源的初衷相悖。
-This accelerated growth in water use was contrary to the original intention of the 87-WAS in conserving the limited water.
+% P2: 主要介绍结果的意义、合理性
+\label{result-1-p2}
+Besides environmental background, our forecast by DSC takes economic factors into account under the assumptions that the production function between economic volume and water uses remained unchanged (\textit{S2 in Supplementary Material}).
+It means the forecast of water use includes the part caused by the increased economic volume, while the outcomes of the economy (GDP in different sectors) of the YRB maintained a parallel trend with other regions during the period (\textit{S3 in Supplementary Material} Figure~\ref{S3-1}).
+Therefore, 87-WAS did not ``have little effect'' as previous analyses suggested (cites) but led to increased water use because the difference between prediction and observation will be trivial when the shift was just a blank policy by applying the DSC method. %! Citation
+Water use efficiency is another crucial factor in interpreting the differences besides the economic factors (e.g., irrigated areas and industrial outcomes) considered and controlled by the method.
+In addition to the expansion of irrigation area after the 87-WAS, water uses per unit of irrigation area also rapidly widened the gap with the average level of the rest provinces. However, the industry water use intensity hardly changed (\textit{S3 in Supplementary Material} Figure~\ref{S3-2}).
+As a previous report sigh: although the key to alleviating the drought is saving water in the irrigated areas, the tragedy of scrambling for water appeared in provinces and irrigated areas %! \cite{mao2000}.
+In terms of the average ratio of water-saving irrigation area (refer to drip or sprinkler irrigation systems and canal lining), although there was a significant increase in the whole country after 1987, the YRB did not rapidly open a noticeable gap until about 1994 (Figure~\ref{S3-3}).
+As a result, despite the irrigation area expanding, scrambling for water resources without any incentive to optimize water efficiency accelerated holistic water use.
+This accelerated growth in water use was contrary to the original intention of the 87-WAS in conserving the limited water, and this failure of the institution was a major barrier to the sustainability of the Yellow River %! \cite{huangang2002}.
+
+% 过去的研究总结出87-WAS收效甚微的几个因素，然而我们发现的机制
 
 % 两次制度转变带来的级联效应存在巨大差异
 The cascading effects of the two institutional shifts were very different, while their reframed SES structures have direct differences.

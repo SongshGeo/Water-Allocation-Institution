@@ -1,16 +1,15 @@
 # metadata
-title: Institutional shifts and water sustainability of the Yellow River Basin
+title: Social-ecological fits in water use following institutional shifts of the Yellow River Basin
 abstract: Increasing competition for water is challenging management institutions of large river basins worldwide. Institutions that successfully support sustainable water resource use are structurally well-aligned with water provisioning and social-ecological demands. However, what constitutes a well-aligned institution in this context is poorly understood. We analyzed institutional shifts in water governance, exploiting two quasi-natural experiments of the Yellow River Basin. First, using a Differenced Synthetic Control method to control economic and environmental contexts, we found the Water Allocation Scheme (87-WAS), which intended to limit water use, unexpectedly resulting in a structural mismatch of the social-ecological system (SES) with increased water use. We then applied a mathematical model to suggest that incentive distortions contributed to the rapid water use under the typical mismatched SES structure. Our analysis highlights the need to evaluate institutional fit in coupled human and natural systems carefully.
 
 target journal: National Science Review
-current version: 1.0.0
+current version: 1.1.1
 
 keywords: [
     water use,
     water management,
     social-ecological system,
-    common pool resources,
-    institutional analysis,
+    institutional fit,
     collaborative governance,
 ]
 
