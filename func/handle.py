@@ -103,7 +103,7 @@ class ExpResultsHandler(Experiment):
             diff_sum = diff.loc[start:end].sum()
             statistic.loc[province, "diff_sum"] = diff_sum
             synth_sum = data[f"{province}_synth"].loc[start:end].sum()
-            statistic.loc[province, "diff_ratio"] = diff_sum / synth_sum
+            statistic.loc[province, "diff_ratio"] = diff_sum / abs(synth_sum)
 
         wu_total = self.dfs.get("wu_all")
         wu_yr = self.dfs.get("wu_yr")
@@ -122,8 +122,8 @@ class ExpResultsHandler(Experiment):
         statistic["unsatisfied"] = 1 - statistic["satisfied"]
         statistic["stress"] = statistic["unsatisfied"] * statistic["YR_WU"]
 
-        statistic["diff_ratio"] = (
-            statistic["diff_sum"] / statistic["diff_sum"].sum()
+        statistic["diff_ratio"] = statistic["diff_sum"] / abs(
+            statistic["diff_sum"].sum()
         )
         statistic["punished"] = statistic["scheme83"] - statistic["scheme87"]
 
@@ -537,6 +537,7 @@ class ExpResultsHandler(Experiment):
         point_color = NATURE_PALETTE["NS"]
         labels = []
         for index, (label, bools, note, corr, p_val) in enumerate(items):
+            bools = bools[ratio.index]
             true = []
             colors = [point_color if i else "gray" for i in bools]
             ax2.scatter(
@@ -576,7 +577,6 @@ class ExpResultsHandler(Experiment):
                 color=point_color,
             )
             ax2.text(
-                # TODO 查看一下为什么
                 s=note,
                 x=(max(true) + min(true)) / 2,
                 y=index - 0.5,
