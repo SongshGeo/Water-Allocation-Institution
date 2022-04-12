@@ -1,16 +1,16 @@
 # metadata
 title: Institutional effects on water use and sustainability in the Yellow River Basin
-abstract: Increasing competition for water is challenging management institutions of large river basins worldwide. Institutions that successfully support sustainable water resource use are structurally well-aligned with water provisioning and social-ecological demands. However, what constitutes a well-aligned institution in this context is poorly understood. We analyzed institutional shifts in water governance, exploiting two quasi-natural experiments of the Yellow River Basin. First, using a Differenced Synthetic Control method to control economic and environmental contexts, we found the Water Allocation Scheme (87-WAS), which intended to limit water use, unexpectedly resulting in a structural mismatch of the social-ecological system (SES) with increased water use. We then applied a mathematical model to suggest that incentive distortions contributed to the rapid water use under the typical mismatched SES structure. Our analysis highlights the need to evaluate institutional fit in coupled human and natural systems carefully.
+abstract: Increasing competition for water is leading depletion of freshwater globally and calls for an urgent transformation of the governance system. Intense water use in one of the most anthropogenic interfered large river basins, the Yellow River Basin (YRB), once led to overburdened drying up but finally had a successful restoration by sequential water governance institutions. Focusing on two water-demand institutions, the Water Allocation Scheme since 1987 (87-WAS) and the Unified Basinal Regulation since 1998 (98-UBR), we quantitatively analyzed how the institutional shifts played a role in the YRB. Our results suggest that the observed water use of the YRB provinces had an $8.57\%$ increase than expectation in the decade after the 87-WAS but significantly decreased by $0.49 km^3$ per year after the 98-UBR. Furthermore, the 87-WAS stimulated water use in provinces with more water uses (e.g., Neimeng, Henan, and Shandong) but the 98-UBR regulated nearly all provinces. Linking our results to a mathematical marginal benefits model for a coherent interpretation, we deepen insights between the structures and outcomes in such social-ecological systems by the quasi-natural experiments of the YRB, thus providing a valuable guideline for SESs worldwide facing water depletion.
 
 target journal: National Science Review
-current version: 1.1.2
+current version: 1.2.0
 
 keywords: [
+    Yellow River,
     water use,
-    water management,
+    water governance,
     social-ecological system,
     institutional fit,
-    collaborative governance,
 ]
 
 authors:

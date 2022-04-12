@@ -16,18 +16,6 @@ Two particular weaknesses in existing knowledge include understanding (1) the ca
 % Our results show that this initiative actually accelerated water withdrawals, resulting in an unintended “sprint effect”, where institutional mismatches created an even stronger incentive for each resource user to withdraw resources until the next major institutional shift in 1998.
 % Our analysis contributes to a deeper understanding of the mechanisms underlying the relationships among institutions, SES structures, and outcomes. By highlighting potential concerns for ecosystem collapse under structural mismatches, our findings are consistent with the urgent calls for a more dynamic design for water use allocation to achieve sustainability.
 
-\section{Institutions and SES structures}
-% 因此，我们通过黄河流域的准自然实验，探讨了社会经济结构与可持续发展(结果)之间的因果关系，为两个主要原因提供了一个有益的案例研究。
-We thus explored the causal linkages between the SES structures and sustainability (outcomes) in quasi-natural experiments of the YRB, which provides an informative case study for two main reasons.
-% 首先，长江流域管理的急剧结构变化使我们能够定量估计高层制度设计变化对用水的净影响。决定水分配的制度包括自下而上的协议或社会规范，以及自上而下的配额或法规，它们对社会经济结构有不同的影响;自上而下的监管可能会立即引发制度转变和SES的剧烈结构性变化。通过与由自下而上的制度转变引起的更渐进的变化相比，探索自上而下变化的影响，在对社会经济地位的定量分析中，极大地减少了来自不可观测因素的潜在干扰，提高了社会经济地位结构和结果之间因果关系的清晰度。
-First, the sharp structural shifts in YRB management enabled us to quantitatively estimate the net effects of changes in high-level institutional design on water use. Institutions that determine water allocation include bottom-up agreements or social norms as well as top-down quotas or regulations, with different effects on SES structure \cite{wangAlignmentsocialecological2019,speedBasinwaterallocation2013}; top-down regulations can trigger immediate institutional shifts, and sharp SES structural changes \cite{speedBasinwaterallocation2013,rolandUnderstandinginstitutionalchange2004}.
-In comparison with investigations of more gradual changes induced by bottom-up institutional shifts, exploring the impacts of a top-down change substantially diminishes potential problems of omitted variables in the quantitative analysis of SES and improves the clarity of the causal link between SES structure and outcome.
-% 其次，通过比较长江流域两次制度变迁所分裂的三种不同制度结构的净效应，我们也可以更深入地理解“盆地固定效应”下结构格局的影响。尽管流域内的社会经济单位从世界各地的大型河流流域和许多地区的水资源中受益，但很少有流域多次经历过如此激进的社会经济结构变化。
-Second, by comparing the net effects of three different institutional structures split by two institutional shifts in the YRB, we can also better understand of the influence of structural alignments under a fixed basin. Although socioeconomic units within a basin benefit from water resources in large river basins all over the world and many locations have shown increased levels of regulation, few basins have experienced such radical SES structural changes several times (see \textit{Supplementary Material} S1). Thus, the YRB provides a valuable setting for understanding the direct impacts of changes in SES institutional structure.
-% 因此，黄河流域的“流域固定效应”为SES结构的自我比较提供了宝贵的机会。
-% Thus, the YRB provides valuable settings for understanding the direct impacts of changes in SES institutional structure.
-
-
 \section{results}
 % % 然后，我们反复比较了两个SES结构(分别自1987年和1998年)，以量化是否有显著不同的影响，YRB用水或分配。
 % Then we repeatedly compared between two SES structures (since 1987 and 1998, respectively) to quantify if there were significantly different impacts on water uses or allocation (\textbf{methods}).
@@ -90,5 +78,17 @@ With increasingly fierce competition for water, worldwide basins are developing 
 % 为了防止公共池资源被过度利用，总配额在强制禁止水资源过度利用的环境规制中发挥着重要作用，从而形成一个长期匹配的水资源分配机制。
 Adopting an overall quota plays a vital role in preventing the overuse of Common-pool Resources, like exclusive and competitive water resources.
 However, various outcomes following institutional shifts of YRB demonstrate that stakeholders may react to quota with distortion when pursuing returns isolated under mismatched SES structures.
-% 与生态尺度相匹配的代理人在成功治理的SES中作为 motif 反复出现，无论是在渔业、森林、还是在地下水治理中，表明减少与割裂生态fragment直接相连的独立利益相关者是结构产生良好效果的重要普遍性机制。
-Agents matching the ecological scale appear widespread as motifs in SES of successful governance, whether in fisheries, forests, or groundwater management, suggesting that reducing independent stakeholders linked to fragmentation is an essential primary mechanism for a structure to produce good results.
+
+
+## methods
+\subsection{Placebo Test}
+% 作为一种稳健性检验，安慰剂测试的必要性体现在两个原因上。
+For robustness, we conducted a placebo test because the synthetic control method neglects the influences of overall changes in factors in the same year by simply dividing time periods according to institutional shifts. Three steps were required to apply the placebo test:
+% (1) 对目标组中的每个省份$i$，计算所有潜在控制组与它之间特征向量的欧氏距离
+(1) For each province in the target group, we calculated the Euclidean distance of vectors between all provinces in the potential control group.
+% (2) 将距离由小到大排序后，选取特征向量最相似的三个省份，所有特征的均值作为 $i$ 的替代
+(2) After ranking the distances, the three provinces with the most similar economic context were used to generate an average paired treatment target unit.
+% (3) 对这个配对目标同样实施控制合成法（潜在控制组排除构成它的三个省）
+(3) We performed the same synthetic control analysis for this paired target (i.e., the potential control group excluding the three provinces in step 2).
+% 经过上述步骤，我们在理论上构建了一个相似的“区域”并实施了同样的控制合成实验。
+In this way, we theoretically constructed a pseudo-treated unit and performed the same synthetic control treatments. Because these placebo tests were directed at units unaffected by the institutional shifts, the results can be regarded as a reasonable baseline expectation or null model from which to assess the changes caused by other factors.
