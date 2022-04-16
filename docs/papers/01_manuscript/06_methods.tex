@@ -1,0 +1,111 @@
+%! Author = songshgeo
+%! Date = 2022/3/10
+
+% 为了量化制度变迁为黄河流域用水带来的影响，我们按附图1所示的技术路线执行了分析过程
+We estimated and analyzed the net effects of two SES structural changes of water use. The actual water use of the Yellow River Basin was peroxided by the sum of the water use of the target group provinces. To quantify water use, we used synthetic control methods to estimate possible trends of water use in the absence of institutional shifts. Finally, we created an economic model based on marginal revenue to provide a theoretical explanation for the observed “sprint effect” phenomenon. A brief technical overview is given in \textit{Supplementary Material S2}.
+
+\subsection{Dataset and variables}
+% 我们使用中国1978年至2012年各省的年度用水量数据集，这个公开的数据集由全国水资源利用调查得到，详细可查看。
+We used China’s provincial annual water consumption dataset from 1978 to 2012. This publicly available dataset was obtained from the National Water Resources Utilization Survey; details are accessible from Zhou (2020)
+\cite{zhou2020}.
+A total of 10 provinces or regions have been directly affected by the water allocation institutional shifts in the YRB, accounting for $8.6\%$ of the total population of China (in 1990). Eight provinces have been particularly affected because of their greater dependence on the water resources from the Yellow River (see \textit{Supplementary Material S2}). Therefore, we divided the dataset into a “target group” and a “control group”, treating provinces that were greatly affected as the target group $(n=8)$ and provinces that were not affected by the institutional shifts as the potential control group $(n=20)$.
+
+We focused on total water use in the YRB. The actual water uses are given by the dataset, but when the synthetic control method is used to predict the water use of the control group, other independent influences need to be considered. Thus, we used economic features that are highly related to water use to extrapolate demand (e.g., agriculture, industry, service industry, and domestics, see \textit{Supplementary Material S2, Table 1}
+
+\subsection{Difference Synthetic Control}
+Synthetic control is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit \cite{abadie2010, abadie2015, hill2021}.
+In this study, we used a comparative event approach and compared actual post-institutional shift induced water use changes with an appropriate counterfactual of what the water use change would have been.
+The counterfactual was built as the optimally weighted average of provinces not exposed to the institutional shifts.
+The synthetic control method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity \cite{billmeier2013, smith2015}.
+In practice, each of the units (i.e., provinces) in the treated group were affected by institutional shifts in 1987 and 1998, each of which was taken as the “shifted” point $t_0$ and the two steady institutions as $t$ for analyzing in each shift. The synthetic control method generates the control unit by assigning a weight matrix $W$ to units of the potential control group, so that the treated unit and its control unit are similar in each variable before $t_0$, i.e.,
+
+$$\min(V_{i}^{t<t_0} - W_i * F_{control}^{t<t_0})$$
+
+where $V_i$ is a vector that indicates all features of a unit $i$ of the treated group, and $F_{control}$ is a matrix that consists of all features and units of the potential control group. $W_i$ is the weight matrix for target unit $i$. We minimized the root mean square error (RMSE) by using the Synth package in R \cite{abadieSynthPackageSynthetic2011, abadieComparativePoliticsSynthetic2015}. All codes are accessible in the repository.
+
+% 这样一来，基于降维的思想，我们构建出了一系列特征上与实验组最为接近的可比对照。
+In accordance with the idea of dimensionality reduction, we constructed a series of comparable control units that were most similar in characteristics to the treated units. Because the units of the control group were not affected by the institutional shifts, after giving the same weight to the total water use of the control group $M_i * WU_{control}$, the result $W_i*WU_{control}$ could be considered a reasonable estimation of the untreated situation. The net effect of the water allocation institutional shift was then estimated by calculating the difference of water uses after the institutional shift between the treated group and the control group, compared with the water use difference before the shift.
+
+\subsection{Economic model}
+In order to understand the mechanisms underlying the empirical results, we developed a dynamic economic model to analyze how institutional change could have led to the sprint effect in water use. Specifically, we modeled individual provincial decision-making in water resources before quota execution. The analysis result implied that the underlying driver of CPR overuse was incentive distortion.
+
+In developing the model, we highlighted the main features of the YRB, as well as the water use institutions of 1987 and 1998. We proposed three intuitive and general assumptions.
+
+\begin{ass}
+    % (生产)为了简化，由于不可替代性，水是每个省的同质生产函数10的唯一投入。$F(x)$是连续的，满足Inada条件，即$F'(x)>0, F''(x)<0$(边际收益递减假设)，$F'(0)=\infty$,$ F'(\infty)=0$。产品产量处于完全竞争状态，单位价格为15。
+    (Water-dependent production) For simplicity, water is assumed to be the only input of the homogenous production function $F(x)$ of each province because of its irreplaceability. $F(x)$ is continuous and satisfies the Inada Conditions, i.e., $F'(x)>0, F''(x)<0$ (the diminishing marginal returns assumption), $F'(0)=\infty$,$ F'(\infty)=0$. The production output is under perfect competition, with a constant unit price of $P$.
+\end{ass}
+\begin{ass}
+    (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin involved in N provinces, the cost of water use is equally assigned to each province under any water use. The unit cost of water is a constant $C$.
+\end{ass}
+\begin{ass}
+    (Multi-period settings) There are infinite periods with a constant discount factor $\beta$ lying in (0,1). There is no cross-period smoothing in water uses.
+\end{ass}
+
+Under the above assumptions, we can demonstrate three cases consisting of local governments in YRB to simulate their water use decision-making and water use patterns.
+
+\begin{case} Decentralized institution:
+    This case corresponds to a situation without any high-level water allocation institution (i.e., before 1987, see Figure~\ref{structure} B).
+
+    When each province independently decides on its water use, the optimal water use $\hat x_i^*$ in province $i$ satisfies:
+    $$F'(x)=\frac{C}{P \cdot N}$$
+
+    When the decisions in different periods are independent, for $t=0,1,2 \ldots$, then:
+    $$\hat x_{it}^*=\hat x_i^*$$
+
+\end{case}
+
+\begin{case} Mismatched institution
+    This case corresponds to a mismatched institution (i.e., $1987\sim1998$, see Figure~\ref{structure} C).
+
+    The water quota is determined at $t=0$ and imposed in $t=1,2,\ldots$ The total quota is a constant denoted as $Q$, and the quota for province $i$ is determined in a proportional form:
+    $$Q_i=Q \cdot \frac{x_i}{x_i + \begin{matrix} \sum x_{-i} \end{matrix}}$$
+
+    Under a scenario with decentralized decision-making with a water quota institution, given other provinces’ water use decisions remain unchanged, the optimal water use $\widetilde x_{i0}^*$ of province $i$ at $t=0$ satisfies:
+
+    $F'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot f(Q \cdot \frac{x_{i,0}}{\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix})^2}$.
+
+    When future water use is constrained by a water quota, the dynamic optimization problem of province $i$ is shown as follows:
+
+    $max  \quad P \cdot F(x_{i,0})-\frac{C \cdot \begin{matrix} \sum x_{i,0} + x_{-i,0} \end{matrix}}{N}+\beta P \cdot F(x_{i,1})+\beta^2 P \cdot F(x_{i,2})+...$
+
+    $=P \cdot F(x_{i,0})-C \cdot \frac{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}{N}+\frac{\beta}{1-\beta} P \cdot F(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}})$
+
+    First-order condition: $P \cdot F'(x_{i,0})-\frac{C}{N}+\frac{\beta}{1-\beta}[P \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0}+\begin{matrix} \sum  x_{-i,0} \end{matrix})^2}]=0$
+
+    where $f(\cdot)$ is the differential function of $F(\cdot)$.
+
+    The optimal water use in province i at t=0 $\widetilde x_{i,0}^*$ satisfies $P \cdot F'(x_{i,0})=\frac{C}{N}-\frac{\beta}{1-\beta} \cdot P \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$, i.e., $F'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$.
+
+\end{case}
+
+\begin{case} Matched institution
+
+    This case corresponds to the institution under which the YRCC centrally managed water allocation between provinces (i.e., $1998\sim2008$, see Figure~\ref{structure} D).
+
+    When the $N$ provinces decide on water uses as unified whole (e.g., the central government completely decides and controls on the water use in each province), the optimal water use $x_i^*$ of province $i$ satisfies:
+
+    $$F'(x)=\frac{C}{P}$$
+
+\end{case}
+
+We propose Proposition 1 and Proposition 2:
+
+\textbf{Proposition 1}: Compared with the decentralized institution, a matched institution with unified management decreases total water use.
+
+Because $F’$ is monotonically decreasing, based on a comparison of costs and benefits for stakeholders (provinces) in the three cases,
+
+$$\widetilde x_i^*>\hat x_i^*>x_i^*$$
+
+The result of $\hat x_i^*>x_i^*$ indicates that individual rationality would deviate from collective rationality when property rights are unclear \cite{hardinTragedyCommons2009}, because of the common-pool characteristics of water
+\cite{castilla-rhoGroundwaterCommonPool2020,ostromGeneralFrameworkAnalyzing2009}.
+
+The difference of $\widetilde x_i^*$ and $\hat x_i^*$ stems from two parts: the marginal returns effect and the marginal costs effect. First, the “shadow value” provides additional marginal returns of water use in $t=0$, wwhich increases the incentives of water overuse by encouraging bargaining for a larger quota. Second, the future cost of water use would be degraded from $\frac{P}{N}$ to an irrelevant cost.
+
+The optimal water use under the three cases implies that mismatched institutions cause incentive distortions and lead to resource overuse.
+
+\textbf{Proposition 2}: The quota determination of the mismatched institution increases the incentives of current water use.
+
+The intuition for this proposition is straight-forward in that all provinces would use up their allocated quota under a relatively small $Q$. As $Q$ increases, the quota would provide higher future benefits for a pre-emptive water use strategy. Since the provincial water use decisions are exactly symmetric, total water use would increase when each province has higher incentives for current water use. This situation corresponds to a “sprint” effect, where the total water use dramatically increases in the “sprint” period.
+
+Extensions of the model are shown in \textit{Supplementary Material S3}.
