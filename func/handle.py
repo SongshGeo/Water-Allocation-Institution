@@ -467,7 +467,12 @@ class ExpResultsHandler(Experiment):
         return {"k_obs": k_obs, "k_syn": k_syn}
 
     def plot_upset(
-        self, items, threshold=0.05, figszie=(8, 4), height_ratio=(3, 1.5)
+        self,
+        items,
+        threshold=0.05,
+        figszie=(8, 4),
+        height_ratio=(3, 1.5),
+        sort=True,
     ):
         fig = plt.figure(figsize=figszie, constrained_layout=False)
         plt.subplots_adjust(
@@ -517,9 +522,9 @@ class ExpResultsHandler(Experiment):
         ax3.set_title("Correlation", size=10)
         ax2.set_xlabel("Provinces in the YRB")
 
-        ratio = self.dfs["statistic"]["diff_ratio"].sort_values(
-            ascending=False
-        )
+        ratio = self.dfs["statistic"]["diff_ratio"]
+        if sort:
+            ratio = ratio.sort_values(ascending=False)
 
         ax1.bar(
             range(len(ratio)),
@@ -594,6 +599,7 @@ class ExpResultsHandler(Experiment):
             ticks=np.arange(0, 1.1, 0.5), labels=["1.0", "0.5", "0.0"]
         )
         pass
+        return ax1, ax2, ax3
 
 
 if __name__ == "__main__":
