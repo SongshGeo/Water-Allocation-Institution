@@ -10,6 +10,9 @@ import logging
 import os
 import sys
 
+# https://towardsdatascience.com/python-bi-dictionary-key-can-be-value-and-value-can-be-key-50715a2046af
+from bidict import bidict
+
 from func.experiment import Experiment
 from func.handle import ExpResultsHandler
 from func.model import do_synth_analysis, do_synth_model
@@ -78,6 +81,7 @@ NATURAL = {
     "pres": "Near surface air pressure",
     "shum": "Near surface air specific humidity",
 }
+NATURAL = bidict(NATURAL)
 
 # BASIC logging settings.
 LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(message)s "
