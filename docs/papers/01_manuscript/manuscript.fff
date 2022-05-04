@@ -1,0 +1,53 @@
+\begin{figure*}[!h]
+    \includegraphics[width=\linewidth]{diagrams/diagram.pdf}
+\caption{
+% 黄河流域的制度变迁与经济社会结构差异。
+Institutional shifts and related SES structures in the Yellow River Basin (YRB).
+\textbf{A.} The YBR crosses $10$ provinces or the same-level administrative regions, $8$ of which are highly relying on the water resources from the YRB (see \textit{Appendix S1} Table~\ref{tab:scheme87}). The national administrations are the ultimate authority in issuing water governance policies, which are often implemented by basin-level agency (the Yellow River Conservancy Commission, YRCC) and each province-level agency.
+\textbf{B.} Since the YRCC does not use but monitor water, the provincial administrative agencies are the major stakeholders. Since the 87-WAS, with surface water withdraw from the Yellow River restricted by specific quotas, each stakeholder seperatly develop by planning and using fundamental water resources. However, the natural hydrological processes are connected. Although the institutions focus mainly on the surface water (Sur.), it can also influence groundwater inside (Gro.) or water resources outside (Sur. and Gro.'), through systematic socio-hydrological processes within the YRB.
+\textbf{C.} Institutional shifts and following structures changes. (1) From 1975 to 1987, water resources were freely accessible to each stakeholder (denoted by red circles) from connected ecological unit (the reach of Yellow River, denoted by the blue circles). (2) After 1987-WAS, the YRCC (the yellow circles) was monitoring (the dot-line links) river reaches with the water use quota. (3) Since the 98-UBR, stakeholders have to apply water use licences from the YRCC (the connections between the red and yellow circles).
+}
+\label{structure}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}[!tb]
+    \centering
+    \includegraphics[width=32pc]{outputs/main_results2.pdf}
+    \caption{
+        Effects of two institutional shifts on water resources use and allocation in the Yellow River Basin (YRB).
+        \textbf{A.} water uses of the YRB before and after the institutional shift in 1987 (87-WAS);
+        \textbf{B.} water uses of the YRB before and after the institutional shift in 1998 (98-UBR). While the blue lines are statistic water use data, the grey ones are the estimation from the Differenced Synthetic Control method with economic and environmental background controlled.
+        \textbf{C.} Drought intensity in the YRB and drying up events of the Yellow River. The size of the grey bubbles denotes the length of a drying upstream.
+    }
+    \label{main_results}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}[!t]
+    \centering
+    \includegraphics[width=32pc]{outputs/fig3.pdf}
+    \caption{
+        Regulating differences for provinces in the YRB.
+        Red and green bars denote actual water use over the estimation from the model in a decade after the institutional shift -the 87-WAS and the 98-UBR, respectively.
+        The grey bars indicate the proportions of actual water use for each province to total water use of the provinces in a decade after the institutional shift.
+        The triangles mark the water quotas assigned in the institution, scaled into ratios by the same total actual water use, too.
+    }
+    \label{regulating}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}[!htb]
+    \centering
+    \includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/diagrams/world_institutions}
+\caption{
+Overview of water allocation institutions.
+% 世界已有水资源分配制度的大河流域，其中黄河流域最早于1987年提出资源分配方案，后于1998年更改为统一调度方案。
+\textbf{A.} Major river basins in the world with existing water resource allocation systems (shaded red); the YRB first proposed a resource allocation scheme in 1987 (designed in 1983) and then changed to a unified regulation scheme in 1998 (designed in 1997 but implemented in 1998).
+% 不同的水资源分配制度设计模式，中国黄河流域是典型的自上而下。
+\textbf{B.} Different water resource allocation system design patterns; the YRB is typical of a top-down system with multiple levels.
+% 流域分水制度的演化。这种多层次的制度设计有其历史变化过程。
+\textbf{C.} The four periods of institutional evolution of water allocation of the YRB.
+}
+    \label{fig:world}
+\end{figure*}

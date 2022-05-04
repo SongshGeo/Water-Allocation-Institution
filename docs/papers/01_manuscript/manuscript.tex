@@ -8,6 +8,7 @@
 \usepackage{algorithm, algorithmicx, algpseudocode}
 \usepackage{listings}%
 \usepackage{hyperref}
+\usepackage[nofiglist]{endfloat}
 \makeatletter
 \def\uns{\ifmmode\,\else$\,$\fi}%
 \newtheorem{theorem}{Theorem}
@@ -111,13 +112,24 @@
 \input{06_methods.tex}
 
 
-\section{CONCLUSION}\label{sec:conclusion}
+\section{CONCLUSION}\label{sec:conclu sion}
 \input{05_conclusion.tex}
 
 
 %%%%%%%% -----  02_appendix -------- %%%%%%%%%%
 \appendix
 \label{appendix}
+
+\section{Appendix S1: Institutions' contexts}
+\input{../02_appendix/01_institution_context.tex}
+
+\section{Appendix S2: Methods in detials}
+
+\section{Appendix S3: Supplementary figures}
+
+\section{Appendix S4: Marginal revenue model}
+
+\section{Appendix S5: Theoretical scenarios}
 
 %% Put the bibliography here, most people will use BiBTeX in
 %% which case the environment below should be replaced with
