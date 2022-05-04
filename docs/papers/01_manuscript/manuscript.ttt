@@ -17,3 +17,53 @@ Proportion of water from the Yellow River in total water consumption & 48.12\% &
 \footnotesize[a]\leftline{{Calculated by data from 2004 to 2017.}}\\
 \footnotesize[b]{\leftline{The share is too small, thus the provinces (or region) Sichuan and Jinji not to be considered in this study.}}
 \end{table*}
+\efloatseparator
+
+\begin{table}[!h]
+\caption{Variables and their categories for water use predictions}
+\scriptsize
+\label{tab:variables}
+\begin{tabular}{lllll}
+\hline
+Economic sector &
+  Category &
+  Unit &
+  Description &
+  Variables \\ \hline
+Agriculture &
+  Irrigation Area &
+  thousand ha &
+  \begin{tabular}[c]{@{}l@{}}Area equipped for irrgiation by different \\ crop:\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}Rice, \\ Wheat, \\ Maize, \\ Fruits, \\ Others.\end{tabular} \\ \hline
+Industry &
+  \begin{tabular}[c]{@{}l@{}}Industrial gross \\ value added\end{tabular} &
+  Billion Yuan &
+  Industrial GVA by industries &
+  \begin{tabular}[c]{@{}l@{}}Textile, \\ Papermaking, \\ Petrochemicals, \\ Metallurgy, \\ Mining, \\ Food, \\ Cements, \\ Machinery, \\ Electronics, \\ Thermal electrivity, \\ Others.\end{tabular} \\
+ &
+  \begin{tabular}[c]{@{}l@{}}Industrial water \\ use efficiency\end{tabular} &
+  \% &
+  \begin{tabular}[c]{@{}l@{}}The ratio of recycled water and evaporated \\ water to total industrial water use\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}Ratio of industrial water recycling, \\ Ratio of industrial water evaporated.\end{tabular} \\ \hline
+Services &
+  \begin{tabular}[c]{@{}l@{}}Services gross \\ value added\end{tabular} &
+  Billion Yuan &
+  GVA of service activities &
+  Services GVA \\ \hline
+Domestic &
+  Urban population &
+  Million Capita &
+  Population living in urban regions. &
+  Urban pop \\
+ &
+  Rural population &
+  Million Capita &
+  Population living in rural regions. &
+  Rural pop \\
+ &
+  Livestock population &
+  Billion KJ &
+  \begin{tabular}[c]{@{}l@{}}Livestock commodity calories summed from \\ 7 types of animal.\end{tabular} &
+  Livestock \\ \hline
+\end{tabular}
+\end{table}

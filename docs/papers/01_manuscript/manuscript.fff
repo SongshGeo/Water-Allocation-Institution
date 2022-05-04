@@ -51,3 +51,59 @@ Overview of water allocation institutions.
 }
     \label{fig:world}
 \end{figure*}
+\efloatseparator
+
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/diagrams/roadmap}
+    \caption{
+        Technical roadmap for quantitatively analyzing the “sprint effect”. WU is the the core variable we concerned -total water uses of the Yellow River Basin.
+    }
+    \label{fig:roadmap}
+\end{figure}
+\efloatseparator
+
+\begin{figure}[!thb]
+\centering
+\includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/outputs/linear}
+\caption{
+\textbf{A.} Correlation between independent variables and the dependent variable (water use).
+\textbf{B.} Linear relationship between the independent variables and the dependent variable trained by a linear model.
+}
+\label{fig:linear}
+\end{figure}
+\efloatseparator
+
+\begin{figure}[!thb]
+\centering
+\includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/outputs/compared_placebo}
+\caption{
+\textbf{A.} A comparison of the matched placebo dataset and the actual YRB dataset for each province.
+\textbf{B.} Trend of total water use $(10^8 m^3)$ for the matched placebo and actual datasets.
+}
+\label{fig:placebo}
+\end{figure}
+\efloatseparator
+
+\begin{figure*}
+    \includegraphics[width=0.7\linewidth]{outputs/economy.pdf}
+    \centering
+    \caption{test}
+    \label{S3-1}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}
+    \includegraphics[width=0.7\linewidth]{outputs/S3_WUI.pdf}
+    \centering
+    \caption{test}
+    \label{S3-2}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}
+    \includegraphics[width=0.7\linewidth]{outputs/S3_wci.pdf}
+    \centering
+    \caption{test}
+    \label{S3-3}
+\end{figure*}

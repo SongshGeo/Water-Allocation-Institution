@@ -8,27 +8,30 @@
 \usepackage{algorithm, algorithmicx, algpseudocode}
 \usepackage{listings}%
 \usepackage{hyperref}
-\usepackage[nofiglist]{endfloat}
+\usepackage[nofiglist,notablist]{endfloat}
 \makeatletter
 \def\uns{\ifmmode\,\else$\,$\fi}%
-\newtheorem{theorem}{Theorem}
-\newtheorem{construction}{Construction}
-\newtheorem{estimate}{Estimate}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{result}{Result}
-\newtheorem{algth}{Algorithm}
-\newtheorem{proposition}{Proposition}
-\newtheorem{hypothesis}{Hypothesis}
-\newtheorem{experiment}{Experiment}
-\newtheorem{definition}{Definition}
-\newtheorem{condition}{Condition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ass}{Assumption}
+\newtheorem{prop}{Proposition}
+\newtheorem{fig}{Fig.}
+\newtheorem{case}{Case}
+\newtheorem{case_appendix}{Case}
+\newtheorem{example}{Example}[section]
+\renewcommand{\proofname}{\textbf{Proof}}
 \newtheorem{property}{Property}
-\newtheorem{problem}{Problem}
-\newtheorem{fact}{Fact}
-\newtheorem{assumption}{Assumption}
-\newtheorem{eexample}{Example}
-\newtheorem{model}{Model}
+\newtheorem{remark}{Remark}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{multirow}
+\setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setitemize{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\usepackage{booktabs}
+\usepackage{diagbox}
 %%
 \makeatother
 
@@ -47,8 +50,6 @@
 
 \dhead{RESEARCH ARTICLE}
 \subhead{EARTH SCIENCES}
-\newtheorem{ass}{Assumption}   % My command. Assumptions.
-\newtheorem{case}{Case}  % My command. Cases
 
 \bibliographystyle{../nsr}
 
@@ -120,16 +121,20 @@
 \appendix
 \label{appendix}
 
-\section{Appendix S1: Institutions' contexts}\label{secS1}
+\section{Appendix S1: Contexts of institutional shifts}\label{secS1}
 \input{../02_appendix/01_institution_context.tex}
 
 \section{Appendix S2: Methods in detials}\label{secS2}
+\input{../02_appendix/02_method_details.tex}
 
 \section{Appendix S3: Supplementary figures}
+\input{../02_appendix/03_results_appendix.tex}
 
 \section{Appendix S4: Marginal revenue model}
+\input{../02_appendix/04_theoretical_model.tex}
 
-\section{Appendix S5: Theoretical scenarios}
+\section{Appendix S5: Model extensions}
+\input{../02_appendix/05_model_extensions.tex}
 
 %% Put the bibliography here, most people will use BiBTeX in
 %% which case the environment below should be replaced with
