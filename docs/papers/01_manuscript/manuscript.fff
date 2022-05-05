@@ -3,7 +3,7 @@
 \caption{
 % 黄河流域的制度变迁与经济社会结构差异。
 Institutional shifts and related SES structures in the Yellow River Basin (YRB).
-\textbf{A.} The YBR crosses $10$ provinces or the same-level administrative regions, $8$ of which are highly relying on the water resources from the YRB (see \textit{Appendix S1} Table~\ref{tab:quota}). The national administrations are the ultimate authority in issuing water governance policies, which are often implemented by basin-level agency (the Yellow River Conservancy Commission, YRCC) and each province-level agency.
+\textbf{A.} The YBR crosses $10$ provinces or the same-level administrative regions, $8$ of which are highly relying on the water resources from the YRB (see \textit{Appendix \nameref{secS1}} Table~\ref{tab:quota}). The national administrations are the ultimate authority in issuing water governance policies, which are often implemented by basin-level agency (the Yellow River Conservancy Commission, YRCC) and each province-level agency.
 \textbf{B.} Since the YRCC does not use but monitor water, the provincial administrative agencies are the major stakeholders. Since the 87-WAS, with surface water withdraw from the Yellow River restricted by specific quotas, each stakeholder seperatly develop by planning and using fundamental water resources. However, the natural hydrological processes are connected. Although the institutions focus mainly on the surface water (Sur.), it can also influence groundwater inside (Gro.) or water resources outside (Sur. and Gro.'), through systematic socio-hydrological processes within the YRB.
 \textbf{C.} Institutional shifts and following structures changes (details in \textit{Appendix S1}). (1) From 1975 to 1987, water resources were freely accessible to each stakeholder (denoted by red circles) from connected ecological unit (the reach of Yellow River, denoted by the blue circles). (2) After 1987-WAS, the YRCC (the yellow circles) was monitoring (the dot-line links) river reaches with the water use quota. (3) Since the 98-UBR, stakeholders have to apply water use licences from the YRCC (the connections between the red and yellow circles).
 }
@@ -53,16 +53,6 @@ Overview of water allocation institutions.
 \end{figure*}
 \efloatseparator
 
-\begin{figure}[!hbt]
-    \centering
-    \includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/diagrams/roadmap}
-    \caption{
-        Technical roadmap for quantitatively analyzing the “sprint effect”. WU is the the core variable we concerned -total water uses of the Yellow River Basin.
-    }
-    \label{fig:roadmap}
-\end{figure}
-\efloatseparator
-
 \begin{figure}[!thb]
 \centering
 \includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/outputs/linear}
@@ -74,36 +64,9 @@ Overview of water allocation institutions.
 \end{figure}
 \efloatseparator
 
-\begin{figure}[!thb]
-\centering
-\includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/outputs/compared_placebo}
-\caption{
-\textbf{A.} A comparison of the matched placebo dataset and the actual YRB dataset for each province.
-\textbf{B.} Trend of total water use $(10^8 m^3)$ for the matched placebo and actual datasets.
-}
-\label{fig:placebo}
-\end{figure}
-\efloatseparator
-
 \begin{figure*}
-    \includegraphics[width=0.7\linewidth]{outputs/economy.pdf}
+    \includegraphics[width=0.9\linewidth]{outputs/variables.pdf}
     \centering
-    \caption{test}
-    \label{S3-1}
-\end{figure*}
-\efloatseparator
-
-\begin{figure*}
-    \includegraphics[width=0.7\linewidth]{outputs/S3_WUI.pdf}
-    \centering
-    \caption{test}
-    \label{S3-2}
-\end{figure*}
-\efloatseparator
-
-\begin{figure*}
-    \includegraphics[width=0.7\linewidth]{outputs/S3_wci.pdf}
-    \centering
-    \caption{test}
-    \label{S3-3}
+    \caption{Differences ratio of different variables: \textbf{A.} precipitation, \textbf{B.} temperature, \textbf{C.} total irrigated areas, \textbf{D.} industrial gross value added (industrial GVA), \textbf{E.} services GVA, \textbf{F.} population, \textbf{G.} water conservation irrigation (WCI) ratio, and \textbf{H.} industrial water recycling (IWR) ratio.}
+    \label{fig:variables}
 \end{figure*}
