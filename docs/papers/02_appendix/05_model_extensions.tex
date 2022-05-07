@@ -16,19 +16,15 @@ $ max \quad P \cdot (1+g)^t ln(1+x_{i,0})-\frac{C}{N}+\beta^t \begin{matrix} \su
 
 $s.t. \quad x_{i,t} \leq Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}} \quad for \quad \forall t$
 
-We depict the relationship of multi-period profit and water use $x_{i,0}$ in different horizons in Figure 4%%此处引用图片
+We depict the relationship of multi-period profit and water use $x_{i,0}$ in different horizons in Figure~\ref{fig:technology}%%此处引用图片
 ,and thus find out the optimal water use pattern under technology growth. The higher marginal output of water might create enough incentive to set off the untransferable cost since a higher allocated quota provides growth option value. As the provincial decision is under a longer horizon, there is a greater sprint effect due to higher accumulated yield and relatively tighter water use constraints over time.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\linewidth]{Fig3.jpg}
-% \end{figure}
-
-% \begin{fig}
-% Multi-period optimization of optimal water use under technology growth
-
-% \tiny Notes: The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with technology growth. Assume F(x)=ln(1+x), N=8, P=1, C=0.5, $\beta$=0.7, g=0.2, and Q=8.
-% \end{fig}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{outputs/Fig3.jpg}
+    \caption{Multi-period optimization of optimal water use under technology growth. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with technology growth. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta=0.7$, $g=0.2$, and $Q=8$.}
+    \label{fig:technology}
+\end{figure}
 
 (b) Economic benefits and ``remote'' ecological costs with different discount factors
 
@@ -38,18 +34,14 @@ $ max \quad P \cdot ln(1+x_{i,0})-\frac{C}{N}+\beta_1^t \begin{matrix} \sum_{t=1
 
 $s.t. \quad x_{i,t} \leq Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}} \quad for \quad \forall t$
 
-We depict the relationship of multi-period net income and water use $x_{i,0}$ in different horizons in Figure 4%此处引用图片
+We depict the relationship of multi-period net income and water use $x_{i,0}$ in different horizons in Figure~\ref{fig:remote}%此处引用图片
 , and thus find out the optimal water use pattern under ``remote'' ecological costs. The higher discounted ecological costs might create enough incentive to set off the untransferable cost. As the provincial decision is under a longer horizon, there is a greater sprint effect due to a higher accumulated yield.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\linewidth]{Fig4.jpg}
-% \end{figure}
-
-% \begin{fig}
-% Multi-period optimization of water use under ``remote'' ecological cost
-
-% \tiny Notes: The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with ``remote'' ecological cost. Assume F(x)=ln(1+x), N=8, P=1, C=0.5, $\beta_{economy}$=0.7, $\beta_{ecology}$=0.3, and Q=8.
-% \end{fig}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{outputs/Fig4.jpg}
+    \caption{Multi-period optimization of water use under ``remote'' ecological cost. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with ``remote'' ecological cost. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta_{economy}=0.7$, $\beta_{ecology}=0.3$, and $Q=8$.}
+    \label{fig:remote}
+\end{figure}
 
 \end{case_appendix}

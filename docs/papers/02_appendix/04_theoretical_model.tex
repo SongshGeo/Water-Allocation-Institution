@@ -51,17 +51,17 @@ $AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdo
 
 where A denotes $A_H$ for a high-incentive province and $A_L$ for a low-incentive province.
 
-\end{case}
+ \end{case}
 
 
-%case3
-\begin{case} Matched institution: This case corresponds to the institution under which water use in a basin is centrally managed.
+ %case3
+ \begin{case} Matched institution: This case corresponds to the institution under which water use in a basin is centrally managed.
 
-When the $N$ provinces decide on water use as a unified whole (e.g., the central government completely decides and controls the water use in each province), the optimal water use $x_i^*$ of province $i$ satisfies:
+ When the $N$ provinces decide on water use as a unified whole (e.g., the central government completely decides and controls the water use in each province), the optimal water use $x_i^*$ of province $i$ satisfies:
 
 $F'(x)=\frac{C}{P}$.
 
-\end{case}
+ \end{case}
 
 
 We propose Proposition 1 and Proposition 2:
@@ -76,8 +76,17 @@ Proposition 2: The water overuse is higher among provinces with high water use i
 The intuition for this proposition is straightforward in that all provinces would use up their allocated quota under a relatively small $Q$. As production efficiency increases, the marginal benefits of a unit quota increase, and the quota would provide higher future benefits for a pre-emptive water use strategy. Provinces with high production efficiency have higher optimal values of water use under the decentralized decision, and the divergence in water use would be exaggerated during the period that the water quota is expected to be implemented and water use is in greater competition.
 
 
-Extensions of the model are shown in \textit{Appendix S5}.%%%
+Extensions of the model are shown in Supplementary Material S3.%%%
 
+
+
+
+
+%Appendix的模型和proposition推导细节部分
+%放在Appendix
+Appendix: Water Use Optimization
+
+%case1
 \begin{case_appendix}Centralized decision
 
 When the N provinces decide on water uses as a unity, the marginal cost is C, equal to its fixed unit cost.
@@ -87,7 +96,7 @@ Hence, $x_i^*$ satisfies $P \cdot A\cdot F'(x)=C$, i.e., $AF'(x)=\frac{C}{P}$, w
 \end{case_appendix}
 
 %case2
-	\begin{case_appendix}Decentralized decision
+ \begin{case_appendix}Decentralized decision
 
 When each of the N provinces independently decides on its water use, the marginal cost of water use would be $\frac{C}{N}$ as a result of cost-sharing with others.
 Hence, the optimal water use in province i at period t, denoted as $\hat x_i^*$, satisfies $P \cdot A \cdot F'(x_{it})=\frac{C}{N}$, i.e., $A \cdot F'(x)=\frac{C}{P \cdot N}$.
@@ -96,9 +105,9 @@ Since $F'$ is monotonically decreasing, $\hat x_{it}^*>x_i^*$.
 
 
 %case3
-	\begin{case_appendix}Forward-looking decentralized decision under quota restrictions
+ \begin{case_appendix}Forward-looking decentralized decision under quota restrictions
 
-	When the future water use would be constrained by the water quota, the dynamic optimization problem of province i is shown as follows. In t=1,2,..., there would be no relevant cost when the quota is bound that each province takes constant costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. It is sufficient to consider only the total water quota is smaller than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
+ When the future water use would be constrained by the water quota, the dynamic optimization problem of province i is shown as follows. In t=1,2,..., there would be no relevant cost when the quota is bound that each province takes constant costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. It is sufficient to consider only the total water quota is smaller than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
 
 $max  \quad P \cdot A \cdot F(x_{i,0})-\frac{C \cdot \begin{matrix} \sum x_{i,0} + x_{-i,0} \end{matrix}}{N}+\beta P \cdot A \cdot F(x_{i,1})+\beta^2 P \cdot A \cdot F(x_{i,2})+...$
 

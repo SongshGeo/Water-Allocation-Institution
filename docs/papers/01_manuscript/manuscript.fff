@@ -37,6 +37,17 @@ Institutional shifts and related SES structures in the Yellow River Basin (YRB).
 \end{figure*}
 \efloatseparator
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=12cm]{outputs/economic_model.jpg}
+\caption{
+\textbf{A.} The relationship of marginal benefits and water use of province $i$ at $t = 0$ for three different cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{fig:structure}, assuming $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, and $\beta=0.4$ as an example (see \textit{\nameref{sec:model}} The horizontal coordinate of each intersection of marginal benefits and the break-even line represents the optimal water use under each case.
+\textbf{Panel B.} The relation between optimal water use of province $i$ and total quota for Case 3, under time horizon of $T=5$, $T=10$, and an infinite $T$, respectively. The settings are the same as the panel \textbf{A}.
+}
+\label{fig:model}
+\end{figure}
+\efloatseparator
+
 \begin{figure*}[!htb]
     \centering
     \includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/diagrams/world_institutions}
@@ -53,20 +64,25 @@ Overview of water allocation institutions.
 \end{figure*}
 \efloatseparator
 
-\begin{figure}[!thb]
-\centering
-\includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/outputs/linear}
-\caption{
-\textbf{A.} Correlation between independent variables and the dependent variable (water use).
-\textbf{B.} Linear relationship between the independent variables and the dependent variable trained by a linear model.
-}
-\label{fig:linear}
-\end{figure}
-\efloatseparator
-
 \begin{figure*}
     \includegraphics[width=0.9\linewidth]{outputs/variables.pdf}
     \centering
     \caption{Differences ratio of different variables: \textbf{A.} precipitation, \textbf{B.} temperature, \textbf{C.} total irrigated areas, \textbf{D.} industrial gross value added (industrial GVA), \textbf{E.} services GVA, \textbf{F.} population, \textbf{G.} water conservation irrigation (WCI) ratio, and \textbf{H.} industrial water recycling (IWR) ratio.}
     \label{fig:variables}
 \end{figure*}
+\efloatseparator
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{outputs/Fig3.jpg}
+    \caption{Multi-period optimization of optimal water use under technology growth. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with technology growth. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta=0.7$, $g=0.2$, and $Q=8$.}
+    \label{fig:technology}
+\end{figure}
+\efloatseparator
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{outputs/Fig4.jpg}
+    \caption{Multi-period optimization of water use under ``remote'' ecological cost. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with ``remote'' ecological cost. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta_{economy}=0.7$, $\beta_{ecology}=0.3$, and $Q=8$.}
+    \label{fig:remote}
+\end{figure}

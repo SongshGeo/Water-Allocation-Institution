@@ -2,37 +2,65 @@
 %! Date = 2022/3/10
 
 % 为了量化制度变迁为黄河流域用水带来的影响，我们按附图1所示的技术路线执行了分析过程
-We first abstract the SES structures of water using in the YRB from 1975 to 2008, where two institutional shifts split the period into three pieces. We then estimated the net effects of two institutional shifts on total water uses, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method \cite{arkhangelsky2019}. Finally, for discussion, we created an economic model based on marginal revenue to provide a theoretical interpretation for the observed water use outcomes.
+We first abstract the SES structures of water using in the YRB from 1975 to 2008, where two institutional shifts split the period into three pieces. We then estimated the net effects of two institutional shifts on total water uses, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method \cite{arkhangelsky2021}. Finally, for discussion, we created an economic model based on marginal revenue to provide a theoretical interpretation for the observed water use outcomes.
 
 \subsection{Portraying structures}
 % 制度结构关系抽象
-% Because institutions may shape the structure of SESs, describing institutional structure is a first step toward understanding the mechanisms linking structures and outcomes in SESs (Figure~\ref{framework} A).
-% For example, institutions may create a structure that encourages collaboration between the different actors managing connected ecological components (Figure~\ref{framework} B), leading to sustainable outcomes.
-% Similarly, institutions for vertical management may enhance multi-layered SES matching by coordinating horizontal relationships (Figure~\ref{framework} C and D).
-% Empirical studies have suggested that such widespread building blocks in SES are the key to the functioning of structures, and a network model is a widely used way to depict them by abstracting links and nodes.
+We apply network approach to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), govern unit (the YRCC) into general building blocks (or motifs) (see Figure~\ref{framework}), from the official documents.
+For example, institutions may create a horizontal connected structure that encourages collaboration between the different stakeholders managing ecological components (Figure~\ref{framework} c).
+Similarly, institutions for vertical management may enhance multi-layered SES matching by coordinating through the higher-level governing node (Figure~\ref{framework} d).
+Empirical studies have suggested that such widespread building blocks in SES are the key to the functioning of structures, and a network-based description is a widely used way to depict them by abstracting links and nodes \cite{bodin2017a,kluger2020,guerrero2015}.
+In this study, we examined the official documents of the two institutional shifts of concern (87-WAS and 98-UBR, see \textit{Appendix \nameref{secS1}} for details), in which the agents are abstracted as nodes and the required interactions between agents are abstracted as links.
+The resulting structure is mainly used to inference the mechanism of institutional impact in the discussion, and to give an overview understanding of the institutional shifts.
+We try to approve that focusing on SES structures rather than institutional details, can well interpret the differences caused by institutional shifts in the YRB, and keeps consistent with previous studies theoretically.
 
 \subsection{Differenced Synthetic Control}
-Synthetic control is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit \cite{abadie2010, abadie2015, hill2021}.
-In this study, we used a comparative event approach and compared actual post-institutional shift induced water use changes with an appropriate counterfactual of what the water use change would have been.
-The counterfactual was built as the optimally weighted average of provinces not exposed to the institutional shifts.
-The synthetic control method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity \cite{billmeier2013, smith2015}.
-In practice, each of the units (i.e., provinces) in the treated group were affected by institutional shifts in 1987 and 1998, each of which was taken as the “shifted” point $t_0$ and the two steady institutions as $t$ for analyzing in each shift. The synthetic control method generates the control unit by assigning a weight matrix $W$ to units of the potential control group, so that the treated unit and its control unit are similar in each variable before $t_0$, i.e.,
+We estimate water use without institutional shifts effect by using the Differenced Synthetic Control (DSC) method.
+The DSC method is a improved version of the Synthetic Control, an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit \cite{abadie2010, abadie2015, hill2021}.
+This method assumes that the outcome of the treated unit can be explained in terms of a set of control units that were themselves not affected by the intervention (i.e., institutional shifts here).
+By using data-driven weights to balance pre-treatment outcomes for treated and control units, the DSC method imputes post-treatment control outcomes for the treated unit(s) by constructing a synthetic version of the treated unit(s) equal to a convex combination of control units with a new estimator with improved bias properties.
 
-$$\min(V_{i}^{t<t_0} - W_i * F_{control}^{t<t_0})$$
+In practice, each of the units (i.e., provinces) in the treated group were affected by institutional shifts in 1987 and 1998, each of which was taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: 1975-1998; 1987-2008.
+Including each province in the YRB ($n=8$, see \textit{\nameref{sec:dataset}}) as the only treated unit, we consider the $J+1$ units observed in time periods $T = {1,2 \cdots , T}$ with the remaining $J=20$ units are untreated provinces from outside.
+We define $T_0$ to represent the number of pre-treatment periods ($1,\cdots,t_0$) and $T_1$ the number post-treatment periods ($t_0,\cdots,T$), such that $T = T_0+ T_1$.
+That is, treated unit is exposed to the institutional shift in every post-treatment period $T_0$, and unaffected by the institutional shift in all preceding periods $T_1$.
+Then, any weighted average of the control units is a synthetic control and can be represented by a ($J * 1$) vector of weights $\mathbf{W} = (w_{1},...,w_{J})$, with $w_j \in (0, 1)$.
+Among them, by introduce a ($k * k$) diagonal, semidefinite matrix $\mathbf{V}$ that signifies the relative importance of each covariate, the DSC method procedure for finding the optimal synthetic control ($W$) is expressed as follows:
 
-where $V_i$ is a vector that indicates all features of a unit $i$ of the treated group, and $F_{control}$ is a matrix that consists of all features and units of the potential control group. $W_i$ is the weight matrix for target unit $i$. We minimized the root mean square error (RMSE) by using the SyntheticControl package in python3. All codes are accessible in the repository.
+\begin{equation}
+    \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{minimize}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
+\end{equation}
 
-% 这样一来，基于降维的思想，我们构建出了一系列特征上与实验组最为接近的可比对照。
-In accordance with the idea of dimensionality reduction, we constructed a series of comparable control units that were most similar in characteristics to the treated units. Because the units of the control group were not affected by the institutional shifts, after giving the same weight to the total water use of the control group $M_i * WU_{control}$, the result $W_i*WU_{control}$ could be considered a reasonable estimation of the untreated situation. The net effect of the water allocation institutional shift was then estimated by calculating the difference of water uses after the institutional shift between the treated group and the control group, compared with the water use difference before the shift.
+where $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W*(V)}$. We choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{W*(V)}$ that minimizes the following expression:
 
-\subsection{Dataset and variables}
-% 我们使用中国1978年至2012年各省的年度用水量数据集，这个公开的数据集由全国水资源利用调查得到，详细可查看。
-We used China’s provincial annual water consumption dataset from 1978 to 2012. This publicly available dataset was obtained from the National Water Resources Utilization Survey; details are accessible from Zhou (2020) \cite{zhou2020}.
-A total of 10 provinces or regions have been directly affected by the water allocation institutional shifts in the YRB, accounting for $8.6\%$ of the total population of China (in 1990). Eight provinces have been particularly affected because of their greater dependence on the water resources from the Yellow River (see \textit{Supplementary Material S2}). Therefore, we divided the dataset into a “target group” and a “control group”, treating provinces that were greatly affected as the target group $(n=8)$ and provinces that were not affected by the institutional shifts as the potential control group $(n=20)$.
+\begin{equation}
+    \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
+\end{equation}
 
-We focused on total water use in the YRB. The actual water uses are given by the dataset, but when the synthetic control method is used to predict the water use of the control group, other independent influences need to be considered. Thus, we used economic features that are highly related to water use to extrapolate demand (e.g., agriculture, industry, service industry, and domestics, see \textit{Supplementary Material S2, Table 1}
+That is the minimum difference between the outcome of the treated unit and the synthetic control in the pre-treatment period, where $\mathbf{Z}_{1}$ is a ($1*T_0$) matrix containing every observation of the outcome for the treated unit in the pre-treatment period. Similarly, let $\mathbf{Z}_{0}$ is a ($k * T_0$) matrix containing the outcome for each control unit in the pre-treatment period, $k$ is number of variables in the datasets.
+The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties \cite{billmeier2013, smith2015}.
 
-\subsection{Economic model}
-In order to understand the mechanisms underlying the empirical results, we developed a dynamic economic model to analyze how institutional change could have led to the sprint effect in water use. Specifically, we modeled individual provincial decision-making in water resources before quota execution. The analysis result implied that the underlying driver of CPR overuse was incentive distortion.
+\subsection{Dataset and variables}\label{sec:dataset}
+In this study, we aim to compare on actural and estimated water use of the YRB.
+The actual water uses are accessible in China’s provincial annual water consumption dataset from the National Water Resources Utilization Survey, whose details are accessible from Zhou (2020) \cite{zhou2020}.
+To estimate the water use of the YRB by assuming there were not effects from institutional shifts, we focused on variables from five categories (environmental, economic, domestic, and technological) water use factors. Their specific items and origins are listed in Table~\ref{tab:variables}.
 
-In developing the model, we highlighted the main features of the YRB, as well as the water use institutions of 1987 and 1998. We proposed three intuitive and general assumptions.
+Among the total $31$ data-accessible provinces (or regions) directly affected by the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin and Beijing because they influenced by the institutions, but trivial in their water use (see \textit{Appendix}~Table~\ref{tab:quota}). We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$, for applying the DSC.
+
+\subsection{Economic model}\label{sec:model}
+In order to inference the mechanisms underlying the results, we developed a economic model based on marginal revenue to analyze how institutional shift could have led to differences in water use.
+
+\begin{ass}
+    (Water-dependent production) Because of irreplaceability, water is assumed to be the only input of the production function with two types of production efficiency. The production function of a high-incentive province is $A_HF(x)$, and the production function of a low-incentive province is $A_LF(x)$ ($A_H>A_L$). F(x) is continuous, $F'(0)=\infty$, $ F'(\infty)=0$, $F'(x)>0$, and $F''(x)<0$. The production output is under perfect competition, with a constant unit price of $P$.
+\end{ass}
+
+\begin{ass}
+    (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin involved in $N$ provinces, the cost of water use is equally assigned to each province under any water use. The unit cost of water is a constant $C$.
+\end{ass}
+
+\begin{ass}
+    (Multi-period settings) There are infinite periods with a constant discount factor $\beta$ lying in (0,1). There is no cross-period smoothing in water use.
+\end{ass}
+
+Under the above simplified assumptions, we can demonstrate three cases -corresponding the abstracted SES structures (Figure~\ref{structure}), inference stakeholders in a whole basin to simulate their water use patterns by optimization of marginal revenue.
+As one of the possible interpretation for the causity between SES structure and institutional effects, the derivation of the model based on the above three assumptions can be found in \textit{Appendix~\nameref{secS4}}, and some simple model-based extensions are involved in \textit{Appendix~\nameref{secS5}}.
