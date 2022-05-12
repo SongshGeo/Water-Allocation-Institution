@@ -1,11 +1,11 @@
 # Mandatory data:
-name: 98ag
+name: 87aw
 root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
 authors: ["SongshGeo"]
 description: "Excluding 3 provinces, X_inputs (irrigation area, population, gdp1~3, livestock), with water saving!"
 # Paths relative to root:
-experiment_path: reports/n1998/98_all_gdp
-results_path: reports/n1998/98_all_gdp/results
+experiment_path: reports/n1987/87_all_wci
+results_path: reports/n1987/87_all_wci/results
 
 # paths
 datasets:
@@ -23,27 +23,27 @@ parameters:
          'Year',
 #         'IRR',
 #         'Irrigated area: Total',
-#         'Irrigated area: Rice',
-#         'Irrigated area: Wheat',
-#         'Irrigated area: Maize',
-#         'Irrigated area: Vegetables and fruits',
-#         'Irrigated area: Others',
+         'Irrigated area: Rice',
+         'Irrigated area: Wheat',
+         'Irrigated area: Maize',
+         'Irrigated area: Vegetables and fruits',
+         'Irrigated area: Others',
 #         'IND',
 #         'Industrial gross value added (GVA): Total',
-#         'Industrial gross value added (GVA): Textile',
-#         'Industrial gross value added (GVA): Papermaking',
-#         'Industrial gross value added (GVA): Petrochemicals',
-#         'Industrial gross value added (GVA): Metallurgy',
-#         'Industrial gross value added (GVA): Mining',
-#         'Industrial gross value added (GVA): Food',
-#         'Industrial gross value added (GVA): Cements',
-#         'Industrial gross value added (GVA): Machinery',
-#         'Industrial gross value added (GVA): Electronics',
-#         'Industrial gross value added (GVA): Thermal electrivity',
-#         'Industrial gross value added (GVA): Others',
+         'Industrial gross value added (GVA): Textile',
+         'Industrial gross value added (GVA): Papermaking',
+         'Industrial gross value added (GVA): Petrochemicals',
+         'Industrial gross value added (GVA): Metallurgy',
+         'Industrial gross value added (GVA): Mining',
+         'Industrial gross value added (GVA): Food',
+         'Industrial gross value added (GVA): Cements',
+         'Industrial gross value added (GVA): Machinery',
+         'Industrial gross value added (GVA): Electronics',
+         'Industrial gross value added (GVA): Thermal electrivity',
+         'Industrial gross value added (GVA): Others',
 #         'URB',
          'Urban population',
-#         'Service GVA',
+         'Service GVA',
 #         'RUR',
          'Rural population',
          'Livestock population',
@@ -55,28 +55,28 @@ parameters:
          'Ratio of industrial water recycling',
 #         'Ratio of industrial water evaporated',
 #         'gdp',
-         'gdp-1',
-         'gdp-2',
-         'gdp-3',
+#         'gdp-1',
+#         'gdp-2',
+#         'gdp-3',
 #         'gdp-avg',
          'prec',
          'temp',
-         'wind',
+        #  'wind',
          ]
   Y_inputs: 'Total water use'
   province_include: ['Qinghai', 'Gansu', 'Ningxia', 'Neimeng', 'Shanxi', 'Shaanxi', 'Henan', 'Shandong']
   province_exclude: ['Jinji', 'Beijing', 'Sichuan']
   synth: DSC  # DiffSynth
   # adjusted parameters
-  start: 1987
-  end: 2008
-  treat_year: 1998
+  start: 1975
+  end: 1998
+  treat_year: 1987
   n_optim: 100
   pen: auto
   random_seed: 0
 
   # placebo
-  placebo_time: 1995
+  placebo_time: 1984
   placebo_optim: 10
 
 # 结果分析部分

@@ -1,11 +1,11 @@
 # Mandatory data:
-name: 98agr
+name: 98aw
 root: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021
 authors: ["SongshGeo"]
 description: "Excluding 3 provinces, X_inputs (irrigation area, population, gdp1~3, livestock), with water saving!"
 # Paths relative to root:
-experiment_path: reports/agr/87_all_agr
-results_path: reports/agr/87_all_agr/results
+experiment_path: reports/n1998/98_all_wci
+results_path: reports/n1998/98_all_wci/results
 
 # paths
 datasets:
@@ -23,13 +23,13 @@ parameters:
          'Year',
 #         'IRR',
 #         'Irrigated area: Total',
-#         'Irrigated area: Rice',
-#         'Irrigated area: Wheat',
-#         'Irrigated area: Maize',
-#         'Irrigated area: Vegetables and fruits',
-#         'Irrigated area: Others',
-         'IND',
-         'Industrial gross value added (GVA): Total',
+         'Irrigated area: Rice',
+         'Irrigated area: Wheat',
+         'Irrigated area: Maize',
+         'Irrigated area: Vegetables and fruits',
+         'Irrigated area: Others',
+#         'IND',
+#         'Industrial gross value added (GVA): Total',
          'Industrial gross value added (GVA): Textile',
          'Industrial gross value added (GVA): Papermaking',
          'Industrial gross value added (GVA): Petrochemicals',
@@ -42,16 +42,16 @@ parameters:
          'Industrial gross value added (GVA): Thermal electrivity',
          'Industrial gross value added (GVA): Others',
 #         'URB',
-#         'Urban population',
-#         'Service GVA',
+         'Urban population',
+         'Service GVA',
 #         'RUR',
-#         'Rural population',
-#         'Livestock population',
-#         'Total water use',
+         'Rural population',
+         'Livestock population',
+         'Total water use',
 #         'area',
 #         'PIRR',
 #         'AIRR',
-#         'WCI',
+         'WCI',
          'Ratio of industrial water recycling',
 #         'Ratio of industrial water evaporated',
 #         'gdp',
@@ -59,11 +59,11 @@ parameters:
 #         'gdp-2',
 #         'gdp-3',
 #         'gdp-avg',
-#         'prec',
-#         'temp',
-#         'wind',
+         'prec',
+         'temp',
+        #  'wind',
          ]
-  Y_inputs: 'IND'
+  Y_inputs: 'Total water use'
   province_include: ['Qinghai', 'Gansu', 'Ningxia', 'Neimeng', 'Shanxi', 'Shaanxi', 'Henan', 'Shandong']
   province_exclude: ['Jinji', 'Beijing', 'Sichuan']
   synth: DSC  # DiffSynth
