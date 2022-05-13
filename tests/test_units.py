@@ -13,15 +13,28 @@ import pandas as pd
 
 from core.model.datasets import Datasets
 
+df = pd.DataFrame(np.random.random((4, 5)), columns=["A", "B", "C", "D", "E"])
+
 
 class TestUnits:
+    """
+    测试基本单元的运行
+    """
+
     def test_create_dir(self):
-        pass
+        dataset = Datasets(name="test")
+        abs_path = dataset.add_item_from_dataframe(
+            data=df, name="test_data", save="testing"
+        )
+        assert os.path.isfile(abs_path)
 
     def test_report(self):
-        dataset = Datasets(name="data")
+        dataset = Datasets(name="test")
         assert dataset.items == "No items"
-        df = pd.DataFrame(
-            np.random.random((4, 5)), columns=["A", "B", "C", "D", "E"]
+        dataset.add_item_from_dataframe(
+            data=df, name="test_data", save="testing"
         )
-        dataset.add_item_from_dataframe(data=df, name="test", save="test")
+        assert "test_data" in dataset.report()
+        assert "test_data" in dataset.items
+        assert dataset.dt("test_data") is df
+        assert dataset.test_data is df

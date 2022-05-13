@@ -13,8 +13,6 @@ import statsmodels.api as sm
 from matplotlib import pyplot as plt
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
-from func.tools import ROOT
-
 
 def calculate_vif(df):
     vif = pd.DataFrame()

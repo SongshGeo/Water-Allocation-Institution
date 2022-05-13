@@ -54,11 +54,16 @@ class UnitBase(object):
             unit_base = unit_name
         if not log:
             log = logging.getLogger(__file__)
+        if unit_base not in os.listdir(project_base):
+            os.mkdir(os.path.join(project_base, unit_base))
+            self.log.warning(
+                f"No {unit_base} under the project base, created."
+            )
         self._name = unit_name
         self._items = {}
         self._root = project_base
         self._module = unit_base
-        self._log = log
+        self.log = log
         self._unit_path = os.path.join(project_base, unit_base)
         pass
 
@@ -73,6 +78,10 @@ class UnitBase(object):
     def path(self):
         return self._unit_path
 
+    @property
+    def name(self):
+        return self._name
+
     def add_item(self, item):
         """
         Add a new item to the items.
@@ -84,10 +93,13 @@ class UnitBase(object):
             ValueError: name cannot be empty or repeated.
         """
         name = item.name
-        if name in self.items():
+        if name in self.items:
             raise ValueError(f"{name} already in items.")
+        if hasattr(self, name):
+            raise ValueError(f"Attribute {name} already in items.")
         self._items[name] = item
         self.log.info(f"Added item {name} to {self.name}.")
+        setattr(self, name, item.obj)
         pass
 
     def get_item(self, name):
@@ -118,11 +130,10 @@ class UnitBase(object):
         pass
 
     def report(self):
-        pprint(
-            f"""{self._name}:\n
+        string = f"""{self._name}:\n
               {self.items}
               """
-        )
-        pass
+        pprint(string)
+        return string
 
     pass
