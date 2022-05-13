@@ -118,7 +118,6 @@ class UnitBase(object):
         self._module = unit_base
         self.log = log
         self._unit_path = os.path.join(project_base, unit_base)
-        pass
 
     @property
     def items(self):

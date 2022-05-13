@@ -6,7 +6,6 @@
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
 
 import os
-from collections import defaultdict
 
 import pandas as pd
 

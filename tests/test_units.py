@@ -48,3 +48,6 @@ class TestUnits:
         time.sleep(1)
         dataset.test_data.add_notes("Another testing note.")
         dataset.report(show_notes=True)
+
+    def test_metadata(self):
+        pass
