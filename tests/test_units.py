@@ -10,6 +10,7 @@ import sys
 
 import numpy as np
 import pandas as pd
+import pytest
 
 from core.model.datasets import Datasets
 
@@ -28,13 +29,17 @@ class TestUnits:
         )
         assert os.path.isfile(abs_path)
 
+    @pytest.hookimpl(hookwrapper=True, tryfirst=True)
     def test_report(self):
         dataset = Datasets(name="test")
         assert dataset.items == "No items"
         dataset.add_item_from_dataframe(
             data=df, name="test_data", save="testing"
         )
-        assert "test_data" in dataset.report()
         assert "test_data" in dataset.items
         assert dataset.dt("test_data") is df
-        assert dataset.test_data is df
+        assert dataset.test_data.obj is df
+
+        dataset.test_data.add_notes("A testing note.")
+        assert "testing" in dataset.test_data.notes
+        dataset.report()

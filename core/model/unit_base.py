@@ -9,6 +9,8 @@ import os
 from collections import defaultdict
 from pprint import pprint
 
+from prettytable import PrettyTable
+
 
 class ItemBase(object):
     def __init__(self, name, obj, abs_path, metadata=None):
@@ -37,13 +39,21 @@ class ItemBase(object):
     def obj(self):
         return self._obj
 
+    @property
+    def notes(self):
+        return self._metadata.get("notes")
+
+    @property
+    def rel_path(self):
+        return os.path.relpath(self._abs_path)
+
     def add_notes(self, note):
         if not isinstance(note, str):
             raise TypeError("Note must be a string.")
-        self._metadata["notes"] += f"{note}\n"
-
-    def rel_path(self):
-        return os.path.realpath(self._abs_path)
+        if not self.notes:
+            self._metadata["notes"] = f"{note}\n"
+        else:
+            self._metadata["notes"] += f"{note}\n"
 
 
 class UnitBase(object):
@@ -56,9 +66,7 @@ class UnitBase(object):
             log = logging.getLogger(__file__)
         if unit_base not in os.listdir(project_base):
             os.mkdir(os.path.join(project_base, unit_base))
-            self.log.warning(
-                f"No {unit_base} under the project base, created."
-            )
+            log.warning(f"No {unit_base} under the project base, created.")
         self._name = unit_name
         self._items = {}
         self._root = project_base
@@ -99,7 +107,7 @@ class UnitBase(object):
             raise ValueError(f"Attribute {name} already in items.")
         self._items[name] = item
         self.log.info(f"Added item {name} to {self.name}.")
-        setattr(self, name, item.obj)
+        setattr(self, name, item)
         pass
 
     def get_item(self, name):
@@ -108,7 +116,7 @@ class UnitBase(object):
     def add_notes(self, name, notes):
         item = self.get_item(name)
         item.add_notes(notes)
-        self.log.info(f"Add note {notes} to item {name}.")
+        self.log.info(f"Add note to item {name}.")
         pass
 
     def has_dir(self, dirname):
@@ -126,14 +134,16 @@ class UnitBase(object):
             self.log.info(f"Add a new directory {dirname} by {self.name}.")
         return os.path.join(self.path, dirname)
 
-    def save_under_unit(self):
-        pass
-
     def report(self):
-        string = f"""{self._name}:\n
-              {self.items}
-              """
-        pprint(string)
-        return string
+        pt = PrettyTable()
+        pt.field_names = ["Name", "Path", "Notes"]
+        for item in self.items:
+            path = self.get_item(item).rel_path
+            notes = self.get_item(item).notes
+            pt.add_row([item, path, notes])
+        print(
+            f"{self.__class__.__name__} '{self.name}' has {self.items.__len__()} items:"
+        )
+        print(pt)
 
     pass

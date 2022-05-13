@@ -18,9 +18,7 @@ class DataItem(ItemBase):
 class Datasets(UnitBase):
     def __init__(self, name="dataset"):
         super().__init__(unit_name=name)
-        self._dataset = defaultdict(str)
 
-    # @property
     def dt(self, name):
         return self.get_item(name).obj
 
