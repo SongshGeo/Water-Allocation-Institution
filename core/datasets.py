@@ -4,9 +4,11 @@
 # @Contact   : SongshGeo@gmail.com
 # GitHub   : https://github.com/SongshGeo
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
-import datetime
+
 import os
 from collections import defaultdict
+
+import pandas as pd
 
 from .unit_base import ItemBase, UnitBase
 
@@ -22,7 +24,9 @@ class Datasets(UnitBase):
     def dt(self, name):
         return self.get_item(name).obj
 
-    def add_item_from_dataframe(self, data, name, save=False):
+    def add_item_from_dataframe(
+        self, data, name, category="resource", save=False
+    ):
         if save:
             path = self.path
             if isinstance(save, str):
@@ -36,12 +40,24 @@ class Datasets(UnitBase):
             name=name,
             obj=data,
             abs_path=abs_path,
-            metadata={
-                "ctime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            },
+            description="Dataframe added from pd object.",
         )
+        item.update_metadata("category", category)
         self.add_item(item)
         return abs_path
+
+    def add_item_from_csv(self, rel_path, name, category="Source", save=False):
+        path = os.path.join(self.path, rel_path)
+        data = pd.read_csv(path, index_col=0)
+        os.path.basename(path)
+        self.add_item_from_dataframe(data, name)
+        pass
+
+    def load_from_pickle(self, filename):
+        pass
+
+    def dump_all(self, out_path):
+        pass
 
     def process_dataset(self, data, how, name=None):
         pass

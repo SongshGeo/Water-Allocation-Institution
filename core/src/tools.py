@@ -7,16 +7,24 @@
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
 
 import os
+from collections import OrderedDict
 
 import geopandas as gpd
 import numpy as np
 import pandas as pd
 import xarray as xr
+import yaml
 from affine import Affine
 from matplotlib import pyplot as plt
 from qcloudsms_py import SmsSingleSender
 from qcloudsms_py.httpclient import HTTPError
 from rasterio import features
+
+
+def save_dict_to_yaml(dict_value: dict, save_path: str):
+    """dict to yaml"""
+    with open(save_path, "w") as file:
+        file.write(yaml.dump(dict_value, allow_unicode=True, sort_keys=False))
 
 
 def send_finish_message(num):

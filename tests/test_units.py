@@ -6,13 +6,13 @@
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
 
 import os
-import sys
+import time
 
 import numpy as np
 import pandas as pd
 import pytest
 
-from core.model.datasets import Datasets
+from core.datasets import Datasets
 
 df = pd.DataFrame(np.random.random((4, 5)), columns=["A", "B", "C", "D", "E"])
 
@@ -41,5 +41,10 @@ class TestUnits:
         assert dataset.test_data.obj is df
 
         dataset.test_data.add_notes("A testing note.")
-        assert "testing" in dataset.test_data.notes
-        dataset.report()
+        time.sleep(1)
+        dataset.test_data.add_notes("note2")
+        time.sleep(1)
+        dataset.test_data.add_notes("note3 is a very very very loooooog note.")
+        time.sleep(1)
+        dataset.test_data.add_notes("Another testing note.")
+        dataset.report(show_notes=True)

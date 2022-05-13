@@ -16,9 +16,9 @@ import seaborn as sns
 from attrs import define, field
 from matplotlib import pyplot as plt
 
-from func.experiment import Experiment
-from func.plots import NATURE_PALETTE, basic_plot
-from func.tools import extract_mean_std, get_optimal_fit_linear
+from .experiment import Experiment
+from .plots import NATURE_PALETTE, basic_plot
+from .src.tools import extract_mean_std, get_optimal_fit_linear
 
 
 @define
@@ -248,7 +248,7 @@ class ExpResultsHandler(Experiment):
             plt.savefig(save_path, dpi=300)
 
     def original_plots(self, province, save=True):
-        # TODO put this functions into handle class.
+        # TODO put this coretions into handle class.
         if save:
             # 储存图像路径
             figs_folder = os.path.join(self.exp_path, "figs")

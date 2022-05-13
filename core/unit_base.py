@@ -4,21 +4,33 @@
 # @Contact   : SongshGeo@gmail.com
 # GitHub   : https://github.com/SongshGeo
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
+import datetime
 import logging
 import os
-from collections import defaultdict
-from pprint import pprint
+from textwrap import fill
 
 from prettytable import PrettyTable
 
+from .src.tools import save_dict_to_yaml
+
 
 class ItemBase(object):
-    def __init__(self, name, obj, abs_path, metadata=None):
-        if not metadata:
-            metadata = defaultdict(str)
+    def __init__(self, name, obj, abs_path, description="", metadata=None):
         self._name = name
         self._obj = obj
         self._abs_path = abs_path
+        self._description = description
+        self._ctime = datetime.datetime.now()
+        self._mtime = datetime.datetime.now()
+
+        if not metadata:
+            metadata = {}
+            metadata["name"] = name
+            metadata["path"] = abs_path
+            metadata["description"] = description
+            metadata["ctime"] = self._ctime.strftime("%Y-%m-%d %H:%M:%S")
+            metadata["mtime"] = self._mtime.strftime("%Y-%m-%d %H:%M:%S")
+            metadata["notes"] = {}
         self._metadata = metadata
 
     @property
@@ -33,27 +45,60 @@ class ItemBase(object):
     def metadata(self):
         return self._metadata
 
-    pass
+    @property
+    def description(self):
+        return self._description
 
     @property
     def obj(self):
         return self._obj
 
     @property
+    def rel_path(self):
+        return os.path.relpath(self._abs_path)
+
+    @property
     def notes(self):
         return self._metadata.get("notes")
 
     @property
-    def rel_path(self):
-        return os.path.relpath(self._abs_path)
+    def str_notes(self):
+        str_notes = "".join(
+            [f"({i+1}){self.notes[k]}. " for i, k in enumerate(self.notes)]
+        )
+        return str_notes
+
+    def show_notes(self, show=True):
+        notes = self.notes
+        table = PrettyTable()
+        table.field_names = ["Time", "Note"]
+        for k, v in notes.items():
+            table.add_row([k, v])
+        if show:
+            print(f"'{self.name}' has {len(notes)} notes:")
+            print(table)
+        return notes
+
+    def update_mtime(self):
+        self._mtime = datetime.datetime.now()
+        self._metadata["mtime"] = self._mtime.strftime("%Y-%m-%d %H:%M:%S")
 
     def add_notes(self, note):
         if not isinstance(note, str):
             raise TypeError("Note must be a string.")
-        if not self.notes:
-            self._metadata["notes"] = f"{note}\n"
-        else:
-            self._metadata["notes"] += f"{note}\n"
+        notes = self.notes
+        notes[datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")] = note
+        self.update_metadata("notes", notes)
+
+    def update_metadata(self, k, value):
+        self._metadata[k] = value
+        self.update_mtime()
+        pass
+
+    def dump_metadata(self, save_path=""):
+        if not save_path:
+            save_path = os.path.join(save_path, f"{self.name}.yaml")
+        save_dict_to_yaml(self.metadata, save_path)
 
 
 class UnitBase(object):
@@ -90,7 +135,7 @@ class UnitBase(object):
     def name(self):
         return self._name
 
-    def add_item(self, item):
+    def add_item(self, item, **kwargs):
         """
         Add a new item to the items.
 
@@ -101,6 +146,9 @@ class UnitBase(object):
             ValueError: name cannot be empty or repeated.
         """
         name = item.name
+        item.update_metadata("unit", self.name)
+        for k, v in kwargs.items():
+            item.update_metadata(k, v)
         if name in self.items:
             raise ValueError(f"{name} already in items.")
         if hasattr(self, name):
@@ -134,16 +182,30 @@ class UnitBase(object):
             self.log.info(f"Add a new directory {dirname} by {self.name}.")
         return os.path.join(self.path, dirname)
 
-    def report(self):
-        pt = PrettyTable()
-        pt.field_names = ["Name", "Path", "Notes"]
+    def report(self, show_notes=False, max_width=30):
+        table = PrettyTable()
+        table.field_names = ["Name", "Path", "Description"]
         for item in self.items:
             path = self.get_item(item).rel_path
-            notes = self.get_item(item).notes
-            pt.add_row([item, path, notes])
+            description = self.get_item(item).description
+            table.add_row([item, path, description])
+        if show_notes:
+            str_notes = []
+            for item in self.items:
+                str_notes.append(self.get_item(item).str_notes)
+            table.add_column("Notes", str_notes)
+        table.max_width = max_width
         print(
             f"{self.__class__.__name__} '{self.name}' has {self.items.__len__()} items:"
         )
-        print(pt)
+        print(table)
+
+    def dump_metadata(self, save_path=None):
+        if not save_path:
+            save_path = os.path.join(self.path, f"{self.name}.yaml")
+        metadata_dicts = {
+            item: self.get_item(item).metadata for item in self.items
+        }
+        save_dict_to_yaml(metadata_dicts, save_path)
 
     pass

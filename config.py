@@ -13,9 +13,9 @@ import sys
 # https://towardsdatascience.com/python-bi-dictionary-key-can-be-value-and-value-can-be-key-50715a2046af
 from bidict import bidict
 
-from func.experiment import Experiment
-from func.handle import ExpResultsHandler
-from func.model import do_synth_analysis, do_synth_model
+from core.experiment import Experiment
+from core.handle import ExpResultsHandler
+from core.model import do_synth_analysis, do_synth_model
 
 PROJECT_NAME = "WAInstitution_YRB_2021"
 ROOT = "/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021"

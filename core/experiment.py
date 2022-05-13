@@ -14,7 +14,7 @@ import pickle
 import yaml
 from attrs import define, field
 
-from func.tools import send_finish_message
+from .src.tools import send_finish_message
 
 
 @define

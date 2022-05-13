@@ -10,7 +10,7 @@
 import numpy as np
 from attrs import define, field
 
-from func.tools import get_optimal_fit_linear
+from .src.tools import get_optimal_fit_linear
 
 # 自定义配色
 NATURE_PALETTE = {
