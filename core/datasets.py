@@ -13,19 +13,57 @@ from .unit_base import ItemBase, UnitBase
 
 
 class DataItem(ItemBase):
+    def __init__(self, abs_path, category, **kwargs):
+        super().__init__(**kwargs)
+        self._abs_path = abs_path
+        self._category = category
+        self.update_metadata("path", abs_path)
+
     pass
+
+    @property
+    def rel_path(self):
+        if self.abs_path:
+            return os.path.relpath(self._abs_path)
+        else:
+            return None
+
+    @property
+    def category(self):
+        return self._category
 
 
 class Datasets(UnitBase):
-    def __init__(self, name="dataset"):
+    def __init__(self, categories=None, name="dataset"):
         super().__init__(unit_name=name)
+        if not categories:
+            categories = {
+                "assets": "Original datasets",
+                "source": "Source of used data",
+                "out": "Outputs",
+            }
+        self._category = categories
+
+    @property
+    def categories(self):
+        return self._category
 
     def dt(self, name):
         return self.get_item(name).obj
 
+    def in_category(self, category):
+        if category not in self.categories:
+            False
+        else:
+            return True
+
     def add_item_from_dataframe(
-        self, data, name, category="resource", save=False
+        self, data, name, category="assets", save=False, description=""
     ):
+        if not self.in_category(category):
+            raise ValueError(
+                f"{category} not valid in {self.categories.keys()}."
+            )
         if save:
             path = self.path
             if isinstance(save, str):
@@ -39,9 +77,11 @@ class Datasets(UnitBase):
             name=name,
             obj=data,
             abs_path=abs_path,
-            description="Dataframe added from pd object.",
+            category=category,
+            description=description,
         )
         item.update_metadata("category", category)
+        item.update_metadata("path", abs_path)
         self.add_item(item)
         return abs_path
 

@@ -13,6 +13,7 @@ import pandas as pd
 import pytest
 
 from core.datasets import Datasets
+from core.model import Model
 
 df = pd.DataFrame(np.random.random((4, 5)), columns=["A", "B", "C", "D", "E"])
 
@@ -50,4 +51,15 @@ class TestUnits:
         dataset.report(show_notes=True)
 
     def test_metadata(self):
+        pass
+
+    def test_models(self):
+        model = Model()
+        function = np.add
+        model.add_function_item(
+            function=function,
+            name="plus",
+            parameters={1: "first num", 3: "second num"},
+        )
+        assert 1 in model.plus.metadata.get("parameters")
         pass

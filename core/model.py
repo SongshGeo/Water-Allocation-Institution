@@ -11,6 +11,47 @@ from attrs import define, field
 from SyntheticControlMethods import DiffSynth, Synth
 from tqdm import tqdm
 
+from .unit_base import ItemBase, UnitBase
+
+
+class ModelItem(ItemBase):
+    def __init__(self, parameters, **kwargs):
+        super().__init__(**kwargs)
+        self._parameters = parameters
+
+    pass
+
+    @property
+    def parameters(self):
+        return self._parameters
+
+
+class Model(UnitBase):
+    def __init__(self, name="model"):
+        super().__init__(unit_name=name)
+
+    def add_function_item(
+        self, function, name, parameters=None, description=""
+    ):
+        if not parameters:
+            parameters = {}
+        item = ModelItem(
+            name=name,
+            obj=function,
+            parameters=parameters,
+            description=description,
+        )
+        item.update_metadata("parameters", parameters)
+        self.add_item(item)
+        pass
+
+    def add_item_from_yaml(self, yaml_file):
+        pass
+
+    def check_dataset(self, dataset):
+        self.dataset = dataset
+        pass
+
 
 @define
 class ProvinceSynth(Synth):

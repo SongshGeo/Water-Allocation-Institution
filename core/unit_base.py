@@ -7,7 +7,6 @@
 import datetime
 import logging
 import os
-from textwrap import fill
 
 from prettytable import PrettyTable
 
@@ -15,10 +14,9 @@ from .src.tools import save_dict_to_yaml
 
 
 class ItemBase(object):
-    def __init__(self, name, obj, abs_path, description="", metadata=None):
+    def __init__(self, name, obj, description="", metadata=None):
         self._name = name
         self._obj = obj
-        self._abs_path = abs_path
         self._description = description
         self._ctime = datetime.datetime.now()
         self._mtime = datetime.datetime.now()
@@ -26,7 +24,6 @@ class ItemBase(object):
         if not metadata:
             metadata = {}
             metadata["name"] = name
-            metadata["path"] = abs_path
             metadata["description"] = description
             metadata["ctime"] = self._ctime.strftime("%Y-%m-%d %H:%M:%S")
             metadata["mtime"] = self._mtime.strftime("%Y-%m-%d %H:%M:%S")
@@ -52,10 +49,6 @@ class ItemBase(object):
     @property
     def obj(self):
         return self._obj
-
-    @property
-    def rel_path(self):
-        return os.path.relpath(self._abs_path)
 
     @property
     def notes(self):
