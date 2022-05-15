@@ -18,6 +18,7 @@ class DataItem(ItemBase):
         self._abs_path = abs_path
         self._category = category
         self.update_metadata("path", abs_path)
+        self.update_metadata("category", category)
 
     pass
 
@@ -47,6 +48,10 @@ class Datasets(UnitBase):
     @property
     def categories(self):
         return self._category
+
+    def report_by_category(self):
+        # TODO finish the function
+        pass
 
     def dt(self, name):
         return self.get_item(name).obj
@@ -86,6 +91,7 @@ class Datasets(UnitBase):
         return abs_path
 
     def add_item_from_csv(self, rel_path, name, category="Source", save=False):
+        # TODO this should be finished
         path = os.path.join(self.path, rel_path)
         data = pd.read_csv(path, index_col=0)
         os.path.basename(path)
@@ -103,5 +109,20 @@ class Datasets(UnitBase):
 
     def metadata(self, name=None):
         pass
+
+    def report(self, show=True, show_notes=False, max_width=30):
+        table = super().report(show=False, show_notes=show_notes)
+        paths, categories = [], []
+        for item in self.items:
+            item = self.get_item(item)
+            paths.append(item.rel_path)
+            categories.append(item.category)
+        table.add_column("Path", paths)
+        table.add_column("Category", categories)
+        table.max_width = max_width
+        if show:
+            print(table)
+        else:
+            return table
 
     pass

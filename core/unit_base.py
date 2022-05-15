@@ -114,10 +114,7 @@ class UnitBase(object):
 
     @property
     def items(self):
-        if self._items.__len__() == 0:
-            return "No items"
-        else:
-            return [self.get_item(item).name for item in self._items]
+        return tuple(self._items.keys())
 
     @property
     def path(self):
@@ -174,23 +171,25 @@ class UnitBase(object):
             self.log.info(f"Add a new directory {dirname} by {self.name}.")
         return os.path.join(self.path, dirname)
 
-    def report(self, show_notes=False, max_width=30):
+    def report(self, show=True, show_notes=False, max_width=30):
         table = PrettyTable()
-        table.field_names = ["Name", "Path", "Description"]
+        table.field_names = ["Name", "Description"]
         for item in self.items:
-            path = self.get_item(item).rel_path
             description = self.get_item(item).description
-            table.add_row([item, path, description])
+            table.add_row([item, description])
         if show_notes:
             str_notes = []
             for item in self.items:
                 str_notes.append(self.get_item(item).str_notes)
             table.add_column("Notes", str_notes)
         table.max_width = max_width
-        print(
-            f"{self.__class__.__name__} '{self.name}' has {self.items.__len__()} items:"
-        )
-        print(table)
+        if show:
+            print(
+                f"{self.__class__.__name__} '{self.name}' has {self.items.__len__()} items:"
+            )
+            print(table)
+        else:
+            return table
 
     def dump_metadata(self, save_path=None):
         if not save_path:

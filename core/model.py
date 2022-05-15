@@ -14,7 +14,7 @@ from tqdm import tqdm
 from .unit_base import ItemBase, UnitBase
 
 
-class ModelItem(ItemBase):
+class MethodItem(ItemBase):
     def __init__(self, parameters, **kwargs):
         super().__init__(**kwargs)
         self._parameters = parameters
@@ -25,8 +25,14 @@ class ModelItem(ItemBase):
     def parameters(self):
         return self._parameters
 
+    def str_parameters(self):
+        str_parameters = []
+        for i, k in enumerate(self.parameters):
+            str_parameters.append(f"({i+1}) {k}: {self.parameters[k]}.")
+        return "".join(str_parameters)
 
-class Model(UnitBase):
+
+class Method(UnitBase):
     def __init__(self, name="model"):
         super().__init__(unit_name=name)
 
@@ -35,7 +41,7 @@ class Model(UnitBase):
     ):
         if not parameters:
             parameters = {}
-        item = ModelItem(
+        item = MethodItem(
             name=name,
             obj=function,
             parameters=parameters,
@@ -51,6 +57,21 @@ class Model(UnitBase):
     def check_dataset(self, dataset):
         self.dataset = dataset
         pass
+
+    def report(self, show=True, show_notes=False, max_width=30):
+        table = super().report(show=False, show_notes=show_notes)
+        funcs, parameters = [], []
+        for item in self.items:
+            item = self.get_item(item)
+            funcs.append(item.obj.__name__)
+            parameters.append(item.str_parameters())
+        table.add_column("Func", funcs)
+        table.add_column("Params", parameters)
+        table.max_width = max_width
+        if show:
+            print(table)
+        else:
+            return table
 
 
 @define
