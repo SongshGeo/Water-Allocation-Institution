@@ -25,22 +25,28 @@ class MethodItem(ItemBase):
     def parameters(self):
         return self._parameters
 
+    @property
+    def function(self):
+        return self._obj
+
     def str_parameters(self):
         str_parameters = []
         for i, k in enumerate(self.parameters):
-            str_parameters.append(f"({i+1}) {k}: {self.parameters[k]}.")
+            str_parameters.append(f"({i+1}) {k}.")
         return "".join(str_parameters)
 
 
 class Method(UnitBase):
-    def __init__(self, name="model"):
-        super().__init__(unit_name=name)
+    def __init__(self, name="model", **kwargs):
+        super().__init__(unit_name=name, **kwargs)
 
     def add_function_item(
-        self, function, name, parameters=None, description=""
+        self, function, name=None, parameters=None, description=""
     ):
         if not parameters:
             parameters = {}
+        if not name:
+            name = function.__name__
         item = MethodItem(
             name=name,
             obj=function,

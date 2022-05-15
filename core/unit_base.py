@@ -135,17 +135,21 @@ class UnitBase(object):
             ValueError: name cannot be empty or repeated.
         """
         name = item.name
+        flag = False
         item.update_metadata("unit", self.name)
         for k, v in kwargs.items():
             item.update_metadata(k, v)
         if name in self.items:
-            raise ValueError(f"{name} already in items.")
+            self.log.error(f"{name} already in items.")
+            return flag
         if hasattr(self, name):
-            raise ValueError(f"Attribute {name} already in items.")
+            self.log.error(f"Attribute {name} already in items.")
+            return flag
         self._items[name] = item
         self.log.info(f"Added item {name} to {self.name}.")
         setattr(self, name, item)
-        pass
+        flag = True
+        return flag
 
     def get_item(self, name):
         return self._items.get(name)

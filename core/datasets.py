@@ -35,8 +35,8 @@ class DataItem(ItemBase):
 
 
 class Datasets(UnitBase):
-    def __init__(self, categories=None, name="dataset"):
-        super().__init__(unit_name=name)
+    def __init__(self, categories=None, name="dataset", **kwargs):
+        super().__init__(unit_name=name, **kwargs)
         if not categories:
             categories = {
                 "assets": "Original datasets",
@@ -63,20 +63,16 @@ class Datasets(UnitBase):
             return True
 
     def add_item_from_dataframe(
-        self, data, name, category="assets", save=False, description=""
+        self, data, name, category="assets", rel_path_folder="", save=False, description=""
     ):
         if not self.in_category(category):
             raise ValueError(
                 f"{category} not valid in {self.categories.keys()}."
             )
+        path = self.return_or_add_dir(rel_path_folder)
+        abs_path = os.path.join(path, f"{name}.csv")
         if save:
-            path = self.path
-            if isinstance(save, str):
-                path = self.return_or_add_dir(save)
-            abs_path = os.path.join(path, f"{name}.csv")
             data.to_csv(abs_path, index=False)
-        else:
-            abs_path = None
 
         item = DataItem(
             name=name,
@@ -88,15 +84,36 @@ class Datasets(UnitBase):
         item.update_metadata("category", category)
         item.update_metadata("path", abs_path)
         self.add_item(item)
-        return abs_path
+        return item
 
-    def add_item_from_csv(self, rel_path, name, category="Source", save=False):
-        # TODO this should be finished
+    def add_item_from_file(
+            self,
+            rel_path,
+            name=None,
+            category="assets",
+            format='csv',
+            description="",
+            **kwargs):
+        func = getattr(pd, f"read_{format}")
         path = os.path.join(self.path, rel_path)
-        data = pd.read_csv(path, index_col=0)
-        os.path.basename(path)
-        self.add_item_from_dataframe(data, name)
-        pass
+        if os.path.isfile(path):
+            self.log.info(f"Loading data from {rel_path}.")
+        else:
+            msg = f"Failed in loading data from {rel_path}."
+            self.log.error(msg)
+            raise FileExistsError(msg)
+        data = func(path, **kwargs)
+        if not name:
+            name = os.path.basename(path).split(".")[0]
+        rel_path_folder = os.path.dirname(rel_path)
+        item = self.add_item_from_dataframe(
+            data,
+            name,
+            rel_path_folder=rel_path_folder,
+            category=category,
+            description=description
+        )
+        return item
 
     def load_from_pickle(self, filename):
         pass
