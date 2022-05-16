@@ -47,8 +47,10 @@ class AnalystItem(ItemBase):
         self.is_checked = self.obj(*argv, **kwargs)
         return self.is_checked
 
-    def do_analysis(self, save_mode=False):
-        results = self.method.function(self.data.obj, self.method.parameters)
+    def do_analysis(self, save_mode=False, *argv, **kwargs):
+        results = self.method.function(
+            self.data.obj, self.method.parameters, *argv, **kwargs
+        )
         self._results = results
         return results
         pass
@@ -91,4 +93,5 @@ class Analyst(UnitBase):
             print(table)
         else:
             return table
+
     pass
