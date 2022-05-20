@@ -12,6 +12,25 @@ from sklearn import preprocessing
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
+def check_data_align(data):
+    province_counting = data.groupby("Province").count().iloc[:, 0]
+    if not province_counting.max() == province_counting.min():
+        raise ValueError(
+            f"NOT aligned dataset: max year: {province_counting.max()} max year:{province_counting.min()}"
+        )
+    if data["Year"].unique().__len__() != province_counting.min():
+        raise ValueError()
+    return data
+
+
+def generate_pca_data(data, params):
+    features = params["features"]
+    variables = ["Province"]
+    variables.extend(features)
+    data = data[variables].dropna(how="any")
+    return data
+
+
 def fit_pca(pca_data, params):
     features = params["features"]
     n_components = params["n_components"]
@@ -25,8 +44,8 @@ def fit_pca(pca_data, params):
 
 
 def transform_features(transform_data, params, fitted_model):
-    transform_data = transform_data.dropna(how="any")
     features = params["features"]
+    transform_data = transform_data.dropna(how="any", subset=features)
     if params["normalize"]:
         scaled_features = preprocessing.scale(transform_data[features])
     else:

@@ -15,6 +15,11 @@ import yaml
 from attrs import define, field
 
 from .src.tools import send_finish_message
+from .unit_base import ItemBase, UnitBase
+
+
+class Pipeline(ItemBase):
+    pass
 
 
 @define
@@ -288,6 +293,9 @@ class Experiment(object):
             sent = send_finish_message(self.name)
             self.update(msg=f"Notification sending msg: {sent['errmsg']}.")
         return self.state
+
+    def save(self, model, notification=False):
+        pass
 
 
 if __name__ == "__main__":

@@ -55,7 +55,7 @@ class Method(UnitBase):
         )
         item.update_metadata("parameters", parameters)
         self.add_item(item)
-        pass
+        return item
 
     def add_item_from_yaml(self, yaml_file):
         pass

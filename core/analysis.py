@@ -48,6 +48,7 @@ class AnalystItem(ItemBase):
         return self.is_checked
 
     def do_analysis(self, save_mode=False, *argv, **kwargs):
+        # TODO: Safe mode -- check it before do analysis.
         results = self.method.function(
             self.data.obj, self.method.parameters, *argv, **kwargs
         )
@@ -73,7 +74,7 @@ class Analyst(UnitBase):
         item.update_metadata("data", data_item.name)
         item.update_metadata("method", method_item.name)
         self.add_item(item)
-        pass
+        return item
 
     def report(self, show=True, show_notes=False, max_width=30):
         table = super().report(show=False, show_notes=show_notes)

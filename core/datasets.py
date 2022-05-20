@@ -63,7 +63,13 @@ class Datasets(UnitBase):
             return True
 
     def add_item_from_dataframe(
-        self, data, name, category="assets", rel_path_folder="", save=False, description=""
+        self,
+        data,
+        name,
+        category="assets",
+        rel_path_folder="",
+        save=False,
+        description="",
     ):
         if not self.in_category(category):
             raise ValueError(
@@ -72,7 +78,7 @@ class Datasets(UnitBase):
         path = self.return_or_add_dir(rel_path_folder)
         abs_path = os.path.join(path, f"{name}.csv")
         if save:
-            data.to_csv(abs_path, index=False)
+            data.to_csv(abs_path)
 
         item = DataItem(
             name=name,
@@ -87,13 +93,14 @@ class Datasets(UnitBase):
         return item
 
     def add_item_from_file(
-            self,
-            rel_path,
-            name=None,
-            category="assets",
-            format='csv',
-            description="",
-            **kwargs):
+        self,
+        rel_path,
+        name=None,
+        category="assets",
+        format="csv",
+        description="",
+        **kwargs,
+    ):
         func = getattr(pd, f"read_{format}")
         path = os.path.join(self.path, rel_path)
         if os.path.isfile(path):
@@ -111,7 +118,7 @@ class Datasets(UnitBase):
             name,
             rel_path_folder=rel_path_folder,
             category=category,
-            description=description
+            description=description,
         )
         return item
 
