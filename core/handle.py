@@ -168,7 +168,7 @@ class ExpResultsHandler(Experiment):
         sc = self.result.get(province)
         sc.plot(panels)
 
-    def panel_plots(self, how="original", save_path=None):
+    def panel_plots(self, how="original", save_path=None, **kwargs):
         fig, (axs1, axs2) = plt.subplots(
             2, 4, figsize=(16, 8), constrained_layout=True
         )
@@ -177,7 +177,7 @@ class ExpResultsHandler(Experiment):
         axs.extend(axs2)
         for province, ax in zip(self.provinces, axs):
             sc = self.result.get(province)
-            basic_plot(how=how, ax=ax, sc=sc)
+            basic_plot(how=how, ax=ax, sc=sc, **kwargs)
             ax.set_xlabel(f"{province}")
         if save_path:
             self.log.info(f"Panel plots saved in {save_path}.")

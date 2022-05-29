@@ -3,11 +3,9 @@
 
 \paragraph{Setup}
 
-In order to understand the mechanisms through which the SES structure impacts provincial water use, we developed a dynamic economic model to analyze how institutional mismatch could have led to the changes of water use, especially among provinces with high incentives for excess water use. Specifically, we modeled individual provincial decision-making in water resources before quota execution.
+To understand the mechanisms through which the SES structure impacts provincial water use, we developed a dynamic economic model to analyze how institutional mismatch could have led to the changes in water use, especially among provinces with high incentives for excess water use. Specifically, we modeled individual provincial decision-making in water resources before quota execution.
 
-We proposed three intuitive and general assumptions.
-
-%There are infinite discrete periods (t=1, 2,...) and N provinces. The water use of province i is denoted as $x_{i}$. At t=0, there is no constraints on water use. In the following periods (t=1,2,...), each province is imposed of quota restrictions determined at t=0. The water use decision of each province is forward-looking, based on not only current benefits and costs but also its future impacts on quota restriction. There are several key assumptions on the water use about production input, output, and water use constraints.
+We proposed three intuitive and general assumptions:
 
 \begin{ass}
 (Water-dependent production) Because of irreplaceability, water is assumed to be the only input of the production function with two types of production efficiency. The production function of a high-incentive province is $A_HF(x)$, and the production function of a low-incentive province is $A_LF(x)$ ($A_H>A_L$). F(x) is continuous, $F'(0)=\infty$, $ F'(\infty)=0$, $F'(x)>0$, and $F''(x)<0$. The production output is under perfect competition, with a constant unit price of $P$.
@@ -30,9 +28,9 @@ When each province independently decides on its water use, the optimal water use
 
  $AF'(x)=\frac{C}{P}$,
 
- where A denotes $A_H$ for a high-incentive province and $A_L$ for a low-incentive province.
+ where $A_H$ and $A_L$ denote high-incentive and low-incentive provinces, respectively.
 
- When the decisions in different periods are independent, for $t$ = 0, 1, 2, ..., then:
+ When the decisions in different periods are independent, for $t$ = $0, 1, 2 \cdots$, then:
 
  $x_{it}^* = x_i^*$
 
@@ -43,13 +41,13 @@ When each province independently decides on its water use, the optimal water use
 
  The water quota is determined at $t$=0 and imposed in $t$=1,2,... Under the subjective expectation of each province that current water use may influence the future water allocation determined by high-level authorities, the total quota is a constant denoted as Q, and the quota for province $i$ is determined in a proportional form:
 
- $Q_i=Q \cdot \frac{x_i}{x_i + \begin{matrix}\sum{x_{-i}} \end{matrix}}  $.
+ $Q_i=Q \cdot \frac{x_i}{x_i + \begin{matrix}\sum{x_{-i}} \end{matrix}}$.
 
 Under a scenario with decentralized decision-making with a water quota, given other provinces' decisions on water use remain unchanged, the optimal water use of province $i$ at $t$=0 satisfies:
 
 $AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix})^2}$,
 
-where A denotes $A_H$ for a high-incentive province and $A_L$ for a low-incentive province.
+where $A_H$ denotes a high-incentive province and $A_L$ denotes a low-incentive province.
 
  \end{case}
 
@@ -71,9 +69,9 @@ Proposition 1: Compared with the decentralized institution, a matched institutio
 The optimal water use under the three cases implies that mismatched institutions cause incentive distortions and lead to resource overuse.
 
 
-Proposition 2: The water overuse is higher among provinces with high water use incentives than that with low water use incentives under a mismatched institution.
+Proposition 2: Water overuse is higher among provinces with high water use incentives than low- water use incentives under a mismatched institution.
 
-The intuition for this proposition is straightforward in that all provinces would use up their allocated quota under a relatively small $Q$. As production efficiency increases, the marginal benefits of a unit quota increase, and the quota would provide higher future benefits for a pre-emptive water use strategy. Provinces with high production efficiency have higher optimal values of water use under the decentralized decision, and the divergence in water use would be exaggerated during the period that the water quota is expected to be implemented and water use is in greater competition.
+The intuition for this proposition is straightforward in that all provinces would use up their allocated quota under a relatively small $Q$. As production efficiency increases, the marginal benefits of a unit quota increase, and the quota would provide higher future benefits for a pre-emptive water use strategy. Provinces with high production efficiency have higher optimal water use values under the decentralized decision. The divergence in water use would be exaggerated when the water quota is expected to be implemented with greater competition.
 
 
 Extensions of the model are shown in Supplementary Material S3.%%%
@@ -107,7 +105,7 @@ Since $F'$ is monotonically decreasing, $\hat x_{it}^*>x_i^*$.
 %case3
  \begin{case_appendix}Forward-looking decentralized decision under quota restrictions
 
- When the future water use would be constrained by the water quota, the dynamic optimization problem of province i is shown as follows. In t=1,2,..., there would be no relevant cost when the quota is bound that each province takes constant costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. It is sufficient to consider only the total water quota is smaller than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
+ When the water quota would constrain future water use, the dynamic optimization problem of province i is shown as follows. In $t=1,2,\cdots$, there would be no relevant cost when the quota is bound that each province takes ongoing costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. Therefore, it is sufficient to consider only the total water quota is less than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
 
 $max  \quad P \cdot A \cdot F(x_{i,0})-\frac{C \cdot \begin{matrix} \sum x_{i,0} + x_{-i,0} \end{matrix}}{N}+\beta P \cdot A \cdot F(x_{i,1})+\beta^2 P \cdot A \cdot F(x_{i,2})+...$
 
@@ -143,14 +141,3 @@ implies a positive relation between $x_{i0}$ and A, when $\beta, P, C, Q$, and o
 
 The difference between $\widetilde x_i^*$ and $\hat x_i^*$ (i.e., $\frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$) represents the incentive of water overuse derived from an expectation of water quota allocation. The incentive of water overuse increases by A.
 \end{case_appendix}
-
-
-
-
-%图注释
-
-\begin{fig}
-Optimal water use under different institutions
-
-\tiny Notes: The figure depicts the relationship of marginal return deducted from marginal cost and water use of province $i$ at t=0 under centralized decisions, decentralized decisions, and decentralized decisions under quota restrictions, for a province with high water use incentive in Panel (A), and for a province with low water use incentive in Panel (B). Assume $F_H(x)=A_Hln(1+x), F_L(x)=A_Lln(1+x), A_H=1, A_L=0.8, N=8, P=1, C=0.5, \beta=0.7$, and $Q=8$. In Case 3, others' water use is taken as given, equal to the optimal water use under Case 2. The horizontal coordinate of each intersection of marginal return minus the marginal cost and break-even line represents the optimal water use under each case.
-\end{fig}

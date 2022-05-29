@@ -19,7 +19,7 @@ Proportion of water from the Yellow River in total water consumption & 48.12\% &
 \end{table*}
 \efloatseparator
 
-\begin{table}[!h]
+\begin{table*}[!ht]
 \caption{Variables and their categories for water use predictions}
 \scriptsize
 \label{tab:variables}
@@ -66,4 +66,28 @@ Domestic &
   \begin{tabular}[c]{@{}l@{}}Livestock commodity calories summed from \\ 7 types of animal.\end{tabular} &
   Livestock \\ \hline
 \end{tabular}
-\end{table}
+\end{table*}
+\efloatseparator
+
+\begin{table*}
+\caption{Pre and post treatment root mean squared prediction error (RMSPE) for YRB's provinces}
+\label{tab:DSC_summary}
+\scriptsize
+\centering
+\begin{tabular}{lrrrrrrrr}
+\hline
+ & \multicolumn{4}{c}{1987-WAS} & \multicolumn{4}{c}{1998-UBR} \\
+ Provinces & Pre-RMSPE & Post-RMSPE & Ratio & Significant$^a$ & Pre-RMSPE & Post-RMSPE & Ratio & Significant$^a$ \\
+ \hline
+ Qinghai & 0.016 & 0.231 & 14.606 & True & 0.230 & 1.170 & 5.096 & True \\
+Gansu & 0.056 & 1.307 & 23.265 & True & 0.244 & 0.841 & 3.448 & True \\
+Ningxia & 0.097 & 0.944 & 9.697 & True & 0.332 & 1.091 & 3.284 & True \\
+Neimeng & 0.335 & 3.846 & 11.479 & True & 1.320 & 1.183 & 0.896 & False \\
+Shanxi & 0.208 & 0.675 & 3.241 & False & 0.264 & 0.401 & 1.520 & False \\
+Shaanxi & 0.181 & 0.572 & 3.164 & False & 0.096 & 0.724 & 7.579 & True \\
+Henan & 0.210 & 3.207 & 15.292 & True & 1.222 & 2.479 & 2.029 & False \\
+Shandong & 0.209 & 1.840 & 8.785 & True & 0.431 & 1.517 & 3.516 & True \\
+\hline
+\end{tabular}
+\footnotesize[a]\leftline{{Larger post/pre RMSPE than the median of the placebos.}}\\
+\end{table*}

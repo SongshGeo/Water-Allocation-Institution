@@ -1,11 +1,11 @@
-\begin{figure*}[!h]
+\begin{figure*}[!htb]
     \includegraphics[width=\linewidth]{diagrams/diagram.pdf}
 \caption{
 % 黄河流域的制度变迁与经济社会结构差异。
 Institutional shifts and related SES structures in the Yellow River Basin (YRB).
 \textbf{A.} The YBR crosses $10$ provinces or the same-level administrative regions, $8$ of which are highly relying on the water resources from the YRB (see \textit{Appendix \nameref{secS1}} Table~\ref{tab:quota}). The national administrations are the ultimate authority in issuing water governance policies, which are often implemented by basin-level agency (the Yellow River Conservancy Commission, YRCC) and each province-level agency.
-\textbf{B.} Since the YRCC does not use but monitor water, the provincial administrative agencies are the major stakeholders. Since the 87-WAS, with surface water withdraw from the Yellow River restricted by specific quotas, each stakeholder seperatly develop by planning and using fundamental water resources. However, the natural hydrological processes are connected. Although the institutions focus mainly on the surface water (Sur.), it can also influence groundwater inside (Gro.) or water resources outside (Sur. and Gro.'), through systematic socio-hydrological processes within the YRB.
-\textbf{C.} Institutional shifts and following structures changes (details in \textit{Appendix S1}). (1) From 1979 to 1987, water resources were freely accessible to each stakeholder (denoted by red circles) from connected ecological unit (the reach of Yellow River, denoted by the blue circles). (2) After 1987-WAS, the YRCC (the yellow circles) was monitoring (the dot-line links) river reaches with the water use quota. (3) Since the 98-UBR, stakeholders have to apply water use licences from the YRCC (the connections between the red and yellow circles).
+\textbf{B.} Provincial administrative agencies are the major stakeholders. Since the 87-WAS, with surface water withdrawal from the Yellow River restricted by specific quotas, each stakeholder plan and use water resources for development. However, the natural hydrological processes are connected. Although the institutions focus mainly on surface water (Sur.), it can also influence groundwater inside (Gro.) or water resources outside (Sur. and Gro.') through systematic socio-hydrological processes within the YRB. The YRCC only monitors water withdrawals at that time.
+\textbf{C.} Institutional shifts and following structures changes (details in \textit{Appendix \nameref{secS1}}). (1) From 1979 to 1987, water resources were freely accessible to each stakeholder (denoted by red circles) from the connected ecological unit (the reach of Yellow River, denoted by the blue circles). (2) After 1987-WAS, the YRCC (the yellow circles) was monitoring (the dot-line links) river reaches with the water use quota. (3) Since the 98-UBR, stakeholders have to apply for water use licenses from the YRCC (the connections between the red and yellow circles).
 }
 \label{structure}
 \end{figure*}
@@ -29,9 +29,9 @@ Institutional shifts and related SES structures in the Yellow River Basin (YRB).
     \includegraphics[width=32pc]{outputs/fig3.pdf}
     \caption{
         Regulating differences for provinces in the YRB.
-        Red and green bars denote actual water use over the estimation from the model in a decade after the institutional shift -the 87-WAS and the 98-UBR, respectively.
-        The grey bars indicate the proportions of actual water use for each province to total water use of the provinces in a decade after the institutional shift.
-        The triangles mark the water quotas assigned in the institution, scaled into ratios by the same total actual water use, too.
+        Red (the 87-WAS) and green bars (the 98-UBR) denote an increased or decreased ratio for the actual water use over the estimation from the model in a decade after the institutional shift.
+        The grey bars indicate the proportions of actual water use for each province to their total water use in a decade after the institutional shift.
+        The triangles mark the water quotas assigned in the institution, scaled into ratios by dividing by their sum, too.
     }
     \label{regulating}
 \end{figure*}
@@ -39,12 +39,22 @@ Institutional shifts and related SES structures in the Yellow River Basin (YRB).
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=12cm]{outputs/economic_model.jpg}
+    \includegraphics[width=0.9\linewidth]{outputs/economic_model.pdf}
 \caption{
-\textbf{A.} The relationship of marginal benefits and water use of province $i$ at $t = 0$ for three different cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{fig:structure}, assuming $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, and $\beta=0.4$ as an example (see \textit{\nameref{sec:model}} The horizontal coordinate of each intersection of marginal benefits and the break-even line represents the optimal water use under each case.
-\textbf{Panel B.} The relation between optimal water use of province $i$ and total quota for Case 3, under time horizon of $T=5$, $T=10$, and an infinite $T$, respectively. The settings are the same as the panel \textbf{A}.
-}
+\textbf{A.} The relationship of marginal benefits and water use of individual province under varying cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{structure}) Major water users' theoretically optimal water use is also larger (see \nameref{sec:model} and \textit{\nameref{secS4}}).}
 \label{fig:model}
+\end{figure}
+\efloatseparator
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\linewidth]{diagrams/framework.jpg}
+\caption{
+Framework for understanding linkages between SES structures and outcomes.
+\textbf{a.} The general framework for analyzing social-ecological systems (SESs) (adapted from Ostrom \cite{ostrom2009}). Institutions embedded in SESs may reshape structures by changing the interactions between core subsystems, resulting in different outcomes.
+        Three typical types of abstracted SES structures are shown as \textbf{b.}, \textbf{c.} and \textbf{d.} (adapted from Bodin, 2017)\cite{bodin2017b}. Red circles indicate social actors, and green ones indicate ecological components. Connection (ties between two ecological components), collaboration (ties between two social actors), or management (ties between a social actor and an ecological component) exist when gray lines link two units. According to empirical evidence, the gray dashed lines show aligned SES structures that are more likely to achieve a desirable outcome.
+        }
+    \label{framework}
 \end{figure}
 \efloatseparator
 
@@ -65,16 +75,48 @@ Overview of water allocation institutions.
 \efloatseparator
 
 \begin{figure*}
-    \includegraphics[width=0.9\linewidth]{outputs/variables.pdf}
+    \includegraphics[width=0.9\linewidth]{outputs/87panel.pdf}
     \centering
-    \caption{Differences ratio of different variables: \textbf{A.} precipitation, \textbf{B.} temperature, \textbf{C.} total irrigated areas, \textbf{D.} industrial gross value added (industrial GVA), \textbf{E.} services GVA, \textbf{F.} population, \textbf{G.} water conservation irrigation (WCI) ratio, and \textbf{H.} industrial water recycling (IWR) ratio.}
-    \label{fig:variables}
+    \caption{Comparations between YRB' provinces and their synthetic controls around the 87-WAS.}
+    \label{fig:87panel}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/98panel.pdf}
+    \centering
+    \caption{Comparations between YRB' provinces and their synthetic controls around the 98-UBR.}
+    \label{fig:98panel}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/87placebo.pdf}
+    \centering
+    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 87-WAS, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE).}
+    \label{fig:87placebo}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/98placebo.pdf}
+    \centering
+    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 98-UBR, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE)}
+    \label{fig:98placebo}
+\end{figure*}
+\efloatseparator
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/elbow.pdf}
+    \centering
+    \caption{Choose number of pricipal components by Elbow method, $5$ pricipal components already capture $89.63\%$ explained variance.}
+    \label{fig:elbow}
 \end{figure*}
 \efloatseparator
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{outputs/Fig3.jpg}
+    \includegraphics[width=0.9\linewidth]{outputs/Fig3.jpg}
     \caption{Multi-period optimization of optimal water use under technology growth. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with technology growth. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta=0.7$, $g=0.2$, and $Q=8$.}
     \label{fig:technology}
 \end{figure}
@@ -82,7 +124,7 @@ Overview of water allocation institutions.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{outputs/Fig4.jpg}
+    \includegraphics[width=0.9\linewidth]{outputs/Fig4.jpg}
     \caption{Multi-period optimization of water use under ``remote'' ecological cost. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with ``remote'' ecological cost. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta_{economy}=0.7$, $\beta_{ecology}=0.3$, and $Q=8$.}
     \label{fig:remote}
 \end{figure}
