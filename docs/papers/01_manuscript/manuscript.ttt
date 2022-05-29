@@ -25,7 +25,7 @@ Proportion of water from the Yellow River in total water consumption & 48.12\% &
 \label{tab:variables}
 \begin{tabular}{lllll}
 \hline
-Economic sector &
+Sector &
   Category &
   Unit &
   Description &
@@ -65,6 +65,9 @@ Domestic &
   Billion KJ &
   \begin{tabular}[c]{@{}l@{}}Livestock commodity calories summed from \\ 7 types of animal.\end{tabular} &
   Livestock \\ \hline
+Environment &
+  Temperature & $K$ & Near surface air temperature & Temperature \\
+& Precipitation & $mm$ & Annual accumulated precipitation & Precipitation \\ \hline
 \end{tabular}
 \end{table*}
 \efloatseparator
