@@ -1,9 +1,0 @@
-name: test
-path: /Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/data/test/test.csv
-description: Dataframe
-ctime: '2022-05-13 20:38:14'
-mtime: '2022-05-13 20:38:14'
-notes: {}
-category: resource
-unit: data
-test: testing
