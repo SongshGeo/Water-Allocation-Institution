@@ -17,8 +17,8 @@ Institutional shifts and related SES structures in the Yellow River Basin (YRB).
     \caption{
         Effects of two institutional shifts on water resources use and allocation in the Yellow River Basin (YRB).
         \textbf{A.} water uses of the YRB before and after the institutional shift in 1987 (87-WAS);
-        \textbf{B.} water uses of the YRB before and after the institutional shift in 1998 (98-UBR). While the blue lines are statistic water use data, the grey ones are the estimation from the Differenced Synthetic Control method with economic and environmental background controlled.
-        \textbf{C.} Drought intensity in the YRB and drying up events of the Yellow River. The size of the grey bubbles denotes the length of a drying upstream.
+        \textbf{B.} water uses of the YRB before and after the institutional shift in 1998 (98-UBR). Blue lines are statistics derived from water use data; grey lines are estimates from the Differenced Synthetic Control method with economic and environmental background controlled;
+        \textbf{C.} Drought intensity in the YRB and drying up events of the Yellow River. The size of the grey bubbles denotes the length of drying upstream.
     }
     \label{main_results}
 \end{figure*}
@@ -29,9 +29,9 @@ Institutional shifts and related SES structures in the Yellow River Basin (YRB).
     \includegraphics[width=32pc]{outputs/fig3.pdf}
     \caption{
         Regulating differences for provinces in the YRB.
-        Red (the 87-WAS) and green bars (the 98-UBR) denote an increased or decreased ratio for the actual water use over the estimation from the model in a decade after the institutional shift.
-        The grey bars indicate the proportions of actual water use for each province to their total water use in a decade after the institutional shift.
-        The triangles mark the water quotas assigned in the institution, scaled into ratios by dividing by their sum, too.
+        Red (the 87-WAS) and green (the 98-UBR) bars denote an increased or decreased ratio for actual water use relative to the estimate from the model in the decade after the institutional shift.
+        The grey bars indicate the proportions of actual water use for each province relative to their total water use in the decade after the institutional shift.
+        The triangles mark the water quotas assigned under the institution, converted to ratios by dividing by their sum.
     }
     \label{regulating}
 \end{figure*}
@@ -41,7 +41,7 @@ Institutional shifts and related SES structures in the Yellow River Basin (YRB).
     \centering
     \includegraphics[width=0.9\linewidth]{outputs/economic_model.pdf}
 \caption{
-The relationship of marginal benefits and water use of individual province under varying cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{structure}) Major water users' theoretically optimal water use is also larger (see \nameref{sec:model} and \textit{\nameref{secS4}}).}
+The proposed relationship of marginal benefits and water use of individual province under varying cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{structure}) Major water users' theoretically optimal water use is also larger (see \nameref{sec:model} and \textit{\nameref{secS4}}).}
 \label{fig:model}
 \end{figure}
 \efloatseparator
