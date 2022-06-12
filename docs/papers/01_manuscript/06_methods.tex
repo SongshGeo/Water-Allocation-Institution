@@ -3,16 +3,16 @@
 
 % 为了量化制度变迁为黄河流域用水带来的影响，我们按附图1所示的技术路线执行了分析过程
 We first abstract the SES structures of water used in the YRB from 1979 to 2008, where two institutional shifts split the period into three pieces.
-For preprocessing the data, we use Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
+To process the data, we use the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
 We then estimated the net effects of two institutional shifts on total water use, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method \cite{arkhangelsky2021}.
-Finally, for discussion, we created an economic model based on marginal revenue to provide the observed pattern of water use changes with a theoretical interpretation.
+Finally, for theoretical discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
 
 % 为了DSC的模型稳定性，我们使用PCA为影响用水量的众多变量进行了降维
 
 \subsection{Portraying structures}\label{sec:structures}
 % 制度结构关系抽象
 We apply the network \cite{bodin2017b} approach to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit (the YRCC) into general building blocks (or motifs) (see Figure~\ref{framework}), from the official documents.
-Empirical studies have suggested that such widespread building blocks in SES are the key to the functioning of structures, and the network-based approach is to abstract connections between entities into links and nodes \cite{bodin2017a,kluger2020,guerrero2015}.
+Empirical studies have suggested that such widespread building blocks in SES are the key to the functioning of structures. The network-based approach is to abstract connections between entities into links and nodes \cite{bodin2017a,kluger2020,guerrero2015}.
 In this study, we examined the official documents of the two institutional shifts of concern (87-WAS and 98-UBR, see \textit{Appendix \nameref{secS1}} for details).
 Besides the ecologically connected river reaches, the agents (provinces and the YRCC) are abstracted as nodes, and their required interactions regarding water use are summarized as links.
 The 1987-WAS requires the YRCC to monitor each river's reach, while the 1998-UBR requires direct interactions (through water use licenses) between the YRCC and the provinces.
@@ -30,7 +30,7 @@ Using the normalized data of all variables, we performed the PCA reduction to ca
 
 
 \subsection{Differenced Synthetic Control}\label{sec:DSC}
-We estimate water use without institutional shifts effect using the Differenced Synthetic Control (DSC) method.
+Using the Differenced Synthetic Control (DSC) method, we estimate water use without the effect of the institutional shift.
 The DSC method is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit \cite{abadie2010, abadie2015, hill2021}.
 
 This method aims to evaluate the effects of policy change that are not random across units but focuses on some of them (i.e., institutional shifts in the YRB here).
@@ -58,20 +58,20 @@ where $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes t
 That is the minimum difference between the outcome of the treated unit and the synthetic control in the pre-treatment period, where $\mathbf{Z}_{1}$ is a ($1*T_0$) matrix containing every observation of the outcome for the treated unit in the pre-treatment period. Similarly, let $\mathbf{Z}_{0}$ be a ($k * T_0$) matrix containing the outcome for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
 The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties \cite{billmeier2013, smith2015}.
 
-\subsection{Economic model}\label{sec:model}
-To infer the mechanisms underlying the results, we developed an economic model based on marginal revenue to analyze how the institutional shift could have led to differences in water use.
+\subsection{Marginal benefits analysis}\label{sec:model}
+To infer the mechanisms underlying the results, we developed an marginal benefits analysis based on marginal revenue to analyze how the institutional shift could have led to differences in water use.
 
 \begin{ass}
-    (Water-dependent production) Because of irreplaceability, water is assumed to be the only input of the production function with two types of production efficiency.
+    (Water-dependent production) Because of irreplaceably, water is assumed to be the only production function input with two production efficiency types.
 \end{ass}
 
 \begin{ass}
-    (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin involved, the cost of water use is equally assigned to each province.
+    (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin, the water use cost is equally assigned to each province.
 \end{ass}
 
 \begin{ass}
     (Multi-period settings) There are multiple settings periods with a constant discount factor for the expectation of future water use.
 \end{ass}
 
-Under the above-simplified assumptions, we demonstrate three cases -corresponding to the abstracted SES structures (Figure~\ref{structure}), inference of how SES structure alters the expected marginal benefits and costs of provinces making decisions.
+Under the above-simplified assumptions, we demonstrate three cases -corresponding to the abstracted SES structures (Figure~\ref{fig:structure}), inference of how SES structure alters the expected marginal benefits and costs of provinces making decisions.
 As one of the possible interpretations for the causality between SES structure and institutional effects, the derivation of the model based on the above three assumptions can be found in \textit{Appendix~\nameref{secS4}}, and some simple model-based extensions are involved in \textit{Appendix~\nameref{secS5}}.

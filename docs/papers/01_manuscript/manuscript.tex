@@ -8,7 +8,7 @@
 \usepackage{algorithm, algorithmicx, algpseudocode}
 \usepackage{listings}%
 \usepackage{hyperref}
-\usepackage[nofiglist,notablist]{endfloat}
+% \usepackage[nofiglist,notablist]{endfloat}
 \makeatletter
 \def\uns{\ifmmode\,\else$\,$\fi}%
 \newtheorem{defn}{Definition}
@@ -26,6 +26,7 @@
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{multirow}
+\usepackage[switch]{lineno}
 \setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 \setitemize{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
@@ -87,14 +88,14 @@
      Townsville 4811,
      QLD, Australia}
 
-\affil{$^4$The research for this article was financed by....... The authors thank....... for insightful comments and ....... for expert research assistance. A supplementary online appendix is available with this article at the \em{National Science Review} website.}
+\affil{$^4$The research for this article was financed by the National Natural Science Foundation of China (CN) (Grant Nos. NSFC 42041007). The authors thank Fuqiang Tian for his insightful comments. A supplementary online appendix is available with this article at the \em{National Science Review} website.}
 
 \authornote{\textbf{Corresponding authors.} Email: shuaiwang@bnu.edu.cn}
 %\authornote{Shuang Song and Huiyu Wen equally contributed to this work.}
-
+\pagewiselinenumbers
 \abstract[ABSTRACT]{
-    \input{abstract}
-}  %! Notice input
+     Increasing competition for water is leading to depletion of freshwater globally and calls for an urgent transformation of water governance. To better understand how institutions contribute to water governance, we quantified institutional shifts for the Yellow River Basin (YRB).  The YRB is a valuable case study because it is one of the most anthropogenically altered large river basins. It was first overdrawn, then dried up, and finally has been successfully restored. Our results suggest that two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), framed different social-ecological system (SES) structures. During the decade following the introduction of the 87-WAS, observed water use of the YRB increased by $8.57\%$ more than expected, while 98-UBR ultimately decreased total water use. Furthermore, these heterogeneous effects and a further theoretical marginal benefits analysis support the hypothesis that SES structural changes play a vital role in YRB's restoration. This quasi-natural experiment of the YRB offers profound insights into the links between SESs structures and outcomes, providing valuable guidelines for water depletion basins worldwide.
+     }  %! Notice input
 
 \keywords{\input{keywords}}  %! Notice input
 \maketitle
@@ -119,20 +120,39 @@
 %%%%%%%% -----  02_appendix -------- %%%%%%%%%%
 \appendix
 \label{appendix}
+\renewcommand{\figurename}{Supplementary Figure}
+\renewcommand{\appendixname}{Appendix~\Alph{section}}
+\setcounter{section}{0}
 
-\section{S1: Contexts of institutional shifts}\label{secS1}
+\section{Appendix~A: Contexts of institutional shifts}\label{secS1}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
 \input{../02_appendix/01_institution_context.tex}
 
-\section{S2: Robustness of DSC method}\label{secS2}
+\section{Appendix~B: Robustness of DSC method}\label{secS2}
+\renewcommand{\thefigure}{B\arabic{figure}}
+\renewcommand{\thetable}{B\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
 \input{../02_appendix/02_method_details.tex}
 
 % \section{S2: Methods in details}\label{secS3}
 % \input{../02_appendix/03_results_appendix.tex}
 
-\section{S3: Optimization model for water use}\label{secS4}
+\section{Appendix~C: Optimization model for water use}\label{secS4}
+\renewcommand{\thefigure}{C\arabic{figure}}
+\renewcommand{\thetable}{C\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
 \input{../02_appendix/04_theoretical_model.tex}
 
-\section{S4: Model extensions}\label{secS5}
+\section{Appendix~D: Model extensions}\label{secS5}
+\renewcommand{\thefigure}{D\arabic{figure}}
+\renewcommand{\thetable}{D\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
 \input{../02_appendix/05_model_extensions.tex}
 
 %% Put the bibliography here, most people will use BiBTeX in
