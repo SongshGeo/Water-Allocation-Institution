@@ -1,0 +1,111 @@
+\documentclass[default,sn-standardnature]{sn-jnl}
+\usepackage{amsmath,graphicx,array}
+\usepackage{dcolumn,soul}%
+\let\openbox\relax
+\usepackage{amsthm}
+\usepackage[figuresright]{rotating}%
+\usepackage{algorithm, algorithmicx, algpseudocode}
+\usepackage{listings}%
+\usepackage{hyperref}
+
+% \usepackage[nofiglist,notablist]{endfloat}
+\makeatletter
+\def\uns{\ifmmode\,\else$\,$\fi}%
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ass}{Assumption}
+\newtheorem{prop}{Proposition}
+\newtheorem{fig}{Fig.}
+\newtheorem{case}{Case}
+\newtheorem{case_appendix}{Case}
+\newtheorem{example}{Example}[section]
+\renewcommand{\proofname}{\textbf{Proof}}
+\newtheorem{property}{Property}
+\newtheorem{remark}{Remark}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage[switch]{lineno}
+\setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setitemize{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\graphicspath{{../../../figs/}}
+
+\begin{document}
+\title{Appendix for: Institutional shifts and sustainable water use of the Yellow River Basin}
+
+\author{Shuang Song$^{1}$}
+\author{Huiyu Wen$^2$}
+\author{*Shuai Wang$^{1}$}
+\author{Xutong Wu$^{1}$}
+
+\author{Graeme S. Cumming$^{3}$}
+\author{Bojie Fu$^{1,4}$}
+
+
+\affil{$^1$State Key Laboratory of Earth Surface Processes and Resource Ecology,
+     Faculty of Geographical Science,
+     Beijing Normal University,
+     Beijing 100875,
+     P.R. China}
+
+% \affil{$^2$Institute of Land Surface System and Sustainability,
+%      Faculty of Geographical Science,
+%      Beijing Normal University,
+%      Beijing 100875,
+%      P.R. China}
+
+\affil{$^2$School of Finance,
+     Renmin University of China,
+     Beijing 100875,
+     P.R. China}
+
+\affil{$^3$ARC Centre of Excellence for Coral Reef Studies,
+     James Cook University,
+     Townsville 4811,
+     QLD, Australia}
+
+
+\maketitle
+% \appendix
+% \label{appendix}
+\renewcommand{\figurename}{Supplementary Figure}
+\renewcommand{\appendixname}{Appendix~\Alph{section}}
+\setcounter{section}{0}
+
+\section*{Appendix~A: Contexts of institutional shifts}\label{secS1}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\input{01_institution_context.tex}
+
+\section*{Appendix~B: Robustness of DSC method}\label{secS2}
+\renewcommand{\thefigure}{B\arabic{figure}}
+\renewcommand{\thetable}{B\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\input{02_method_details.tex}
+
+% \section{S2: Methods in details}\label{secS3}
+% \input{../02_appendix/03_results_appendix.tex}
+
+\section*{Appendix~C: Optimization model for water use}\label{secS4}
+\renewcommand{\thefigure}{C\arabic{figure}}
+\renewcommand{\thetable}{C\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\input{04_theoretical_model.tex}
+
+\section*{Appendix~D: Model extensions}\label{secS5}
+\renewcommand{\thefigure}{D\arabic{figure}}
+\renewcommand{\thetable}{D\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\input{05_model_extensions.tex}
+
+\bibliography{../mybib}
+\bibliographystyle{sn-standardnature}
+\label{bib}
+\end{document}
