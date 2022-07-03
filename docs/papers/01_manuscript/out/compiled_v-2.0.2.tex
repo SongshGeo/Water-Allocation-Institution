@@ -1,0 +1,886 @@
+\documentclass[default, sn-standardnature]{sn-jnl}
+\usepackage{amsmath,graphicx,array}
+\usepackage{dcolumn,soul}%
+\let\openbox\relax
+\usepackage{amsthm}
+\usepackage[figuresright]{rotating}%
+\usepackage{algorithm, algorithmicx, algpseudocode}
+\usepackage{listings}%
+\usepackage{hyperref}
+\newgeometry{left=2cm, right=2cm}
+\linespread{1.5}
+% \usepackage[nofiglist,notablist]{endfloat}
+\makeatletter
+\def\uns{\ifmmode\,\else$\,$\fi}%
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ass}{Assumption}
+\newtheorem{prop}{Proposition}
+\newtheorem{fig}{Fig.}
+\newtheorem{case}{Case}
+\newtheorem{case_appendix}{Case}
+\newtheorem{example}{Example}[section]
+\renewcommand{\proofname}{\textbf{Proof}}
+\newtheorem{property}{Property}
+\newtheorem{remark}{Remark}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{lineno}
+\setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setitemize{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\usepackage{booktabs}
+\usepackage{diagbox}
+%%
+\makeatother
+
+% \jvol{XX}
+% \jnum{X}
+% \jyear{Year}
+% \doi{10.1093/nsr/XXXX}
+% \received{XX XX Year}
+% \revised{XX XX Year}
+% \accepted{XX XX Year}
+
+\markboth{One, Two, and Three}{One, Two, and Three}
+\graphicspath{{../../../figs/}}
+
+\begin{document}
+\normalsize
+% \dhead{RESEARCH ARTICLE}
+% \subhead{EARTH SCIENCES}
+
+\bibliographystyle{../nsr}
+
+\title{Approaching social-ecological matches of river basin systems for sustainability}  %! Notice Input
+
+
+\author{Shuang Song$^{1}$}
+\author{Huiyu Wen$^2$}
+\author{*Shuai Wang$^{1}$}
+\author{Xutong Wu$^{1}$}
+
+\author{Graeme S. Cumming$^{3}$}
+\author{Bojie Fu$^{1}$}
+
+
+\affil{$^1$State Key Laboratory of Earth Surface Processes and Resource Ecology,
+     Faculty of Geographical Science,
+     Beijing Normal University,
+     Beijing 100875,
+     P.R. China}
+
+% \affil{$^2$Institute of Land Surface System and Sustainability,
+%      Faculty of Geographical Science,
+%      Beijing Normal University,
+%      Beijing 100875,
+%      P.R. China}
+
+\affil{$^2$School of Finance,
+     Renmin University of China,
+     Beijing 100875,
+     P.R. China}
+
+\affil{$^3$ARC Centre of Excellence for Coral Reef Studies,
+     James Cook University,
+     Townsville 4811,
+     QLD, Australia}
+
+% \affil{$^4$The research for this article was financed by the National Natural Science Foundation of China (CN) (Grant Nos. NSFC 42041007). A supplementary online appendix is available with this article at the \em{National Science Review} website.}
+
+% \authornote{\textbf{Corresponding authors.} Email: shuaiwang@bnu.edu.cn}
+%\authornote{Shuang Song and Huiyu Wen equally contributed to this work.}
+\renewcommand\linenumberfont{\normalfont\bfseries\small}
+\linenumbers
+\abstract{
+     Increasing competition for water is leading to depletion of freshwater globally and calls for efficient institutions in water governance.
+     Alignments of social-ecological system (SES) structures are a crucial approach to institutional matches, but an understanding of its causal links and underlying processes are still weaknesses.
+     To fill these knowledge gaps, we select the Yellow River Basin (YRB) in China as a typical case study to quantitatively measure the effects of SES structures changing because it is one of the most anthropogenically altered large river basins.
+     Under different water allocation institutions, its streamflow was first overdrawn, then dried up, and finally has been successfully restored.
+     We focused on two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), which re-framed different SES structures.
+     We conduct counterfactual identification on the effect of these institutional shifts, our results suggested that during the decade following the introduction of the 87-WAS, observed water use of the YRB increased by $8.57\%$ more than expected, while 98-UBR ultimately decreased total water use.
+     Furthermore, these heterogeneous effects of water use responses to SES structures aligned with our further theoretical marginal benefits analysis, supporting the hypothesis that SES structural changes played a vital role in sustainable water use.
+     This quasi-natural experiment on the YRB offers profound insights into the links between SESs structures and outcomes, suggesting that fragmented ecological units linked to separated social actors should be avoided for sustainability.
+     }  %! Notice input
+
+\keywords{Yellow River, water use, water governance, social-ecological system, institutional fit}  %! Notice input
+\maketitle
+
+\section{INTRODUCTION}\label{sec:introduction}
+% 水竞争的重要性
+Widespread freshwater scarcity and overuse challenge the sustainability of large river basins, resulting in systematic risks to economies, societies, and ecosystems globally \cite{distefano2017, dolan2021, xu2020b, mekonnen2016}.
+In the context of future climate change, the gap between supply and demand for water resources in large river basins is expected to become increasingly more prominent \cite{florke2018, yoon2021}.
+Those river basin systems successfully supporting sustainable water resource use are structurally well-aligned with water provisioning and social-ecological demands, without inefficient competition or overuses \cite{wang2019d}.
+However, balancing the water demands of ecosystems and development in heavily human-dominated river basins is a challenge because human activities and water are intertwined in their structures as complex social-ecological systems (SES) \cite{huggins2022,konar2019}.
+
+For governing river basin systems, their SES structures can be reshaped by institutions, such as policies, laws, and norms \cite{young2008,cumming2020b}.
+Representing all relative governance practices, institutions include interplays between social actors, ecological units, or between social and ecological system elements
+\cite{lien2020, bodin2017b}.
+Understanding how these complex interplays are crucial for developing strategies to effectively manage natural resources and enhance the resilience of social-ecological systems \cite{kluger2020}.
+Effective (``matched'' or ``fit'') institutions operate at appropriate spatial, temporal, and functional scales to manage and balance different relationships and interactions between human and water systems, supporting (but not guaranteeing) the sustainability of SES \cite{epstein2015, wang2019d}.
+Some institutional advances have had desirable water governance outcomes (e.g., the Ecological Water Diversion Project in Heihe River Basin, China \cite{wang2019d}, and collaborative water governance systems in Europe \cite{green2013}).
+However, imposing institutional changes on a large, complex river basin may create or destroy hundreds of connections between social agents and ecological units, where matched social-ecological structures are not ubiquitous.
+Two particular weaknesses in existing knowledge of institutional matches include understanding: (i) the causal links between SES structures and outcomes; (ii) details of the underlying processes, and especially the coordination of the incentives of different participants, that result from an institutional lack of matches.
+These weaknesses limit understanding of institutional design and hinder approaches toward institutional matches for improving the sustainability of river basin systems.
+
+To better understand how water governance institutions match their social-ecological context, we take the Yellow River Basin (YRB), China, as an example \textit{\nameref{sec:yrb}} to dive into causal links between SES structures and outcomes.
+Specifically, we focused on two institutional shifts in water allocation of the YRB: the 1987 Water Allocation Scheme (87-WAS), and the 1998 Unified Basinal Regulation (98-UBR), which reframed SES structures significantly.
+The YRB provides an informative case for two main reasons:
+(1) The top-down institutional shifts induced sharp changes in SES structures, enabling us to estimate their net effects quantitatively.
+(2) Since few large river basins have experienced such radical institutional shifts more than once, this case study provides comparable natural experiments for understanding the impacts of structural changes in SESs on natural resources.
+
+In methodology, we explored causal linkages between SES structures and sustainability-related outcomes by quasi-natural experiments (institutional shifts imposed by central government) in the YRB.
+Firstly, we used data on changes in official documents following two institutional shifts (the 87-WAS and the 98-UBR) to describe comparable changes in the SES structures associated with the YRB from 1979 to 2008, by abstracting them into SES structures motifs (or building blocks, see \textit{\nameref{sec:structures}}).
+We then used a method called `Differenced Synthetic Control (DSC)' \cite{arkhangelsky2021}, which considers economic growth and natural background, to estimate theoretical water use scenarios without institutional shifts (\textit{\nameref{sec:DSC}} and \textit{\nameref{secS2}}).
+This approach allowed us to create a counterfactual against which to explore the mechanisms linking SESs structure and outcomes for a deeper understanding of the potential role of institutions in water governance worldwide.
+Finally, we further developed an approach for marginal benefits analysis, to interpret the underlying processes of the match and mismatched institutions based on SESs structures (\textit{\nameref{sec:model}}).
+
+
+\section{RESULTS}\label{sec:results}
+%! Author = songshgeo
+%! Date = 2022/3/10
+
+% \subsection{INSTITUTIONAL SHIFTS AND STRUCTURES}
+\subsection{Institutional shifts and structures}
+\label{results-1}
+
+\begin{figure*}[!t]
+	\includegraphics[width=\linewidth]{diagrams/diagram.pdf}
+	\caption{
+		% 黄河流域的制度变迁与经济社会结构差异。
+		Institutional shifts and related SES structures in the Yellow River Basin (YRB).
+		\textbf{A.} The YBR crosses $10$ provinces or the same-level administrative regions, $8$ of which are highly relying on the water resources from the YRB (see \textit{\nameref{secS1}} Table~\ref{tab:quota}). The national administrations are the ultimate authority in issuing water governance policies, which are often implemented by basin-level agency (the Yellow River Conservancy Commission, YRCC) and each province-level agency.
+		\textbf{B.} Provincial administrative agencies are the major stakeholders. Since the 87-WAS, with surface water withdrawal from the Yellow River restricted by specific quotas, each stakeholder plan and use water resources for development. However, the natural hydrological processes are connected. Although the institutions focus mainly on surface water (Sur.), it can also influence groundwater inside (Gro.) or water resources outside (Sur. and Gro.') through systematic socio-hydrological processes within the YRB. The YRCC only monitors water withdrawals at that time.
+		\textbf{C.} Institutional shifts and following structures changes (details in \textit{\nameref{secS1}}). (1) From 1979 to 1987, water resources were freely accessible to each stakeholder (denoted by red circles) from the connected ecological unit (the reach of Yellow River, denoted by the blue circles). (2) After 1987-WAS, the YRCC (the yellow circles) was monitoring (the dot-line links) river reaches with the water use quota. (3) Since the 98-UBR, stakeholders have to apply for water use licenses from the YRCC (the connections between the red and yellow circles).
+	}
+	\label{fig:structure}
+\end{figure*}
+
+% 制度变动综述
+The institutional shifts in the YRB in 1987 (87-WAS) and 1998 (98-UBR) were two widely recognized milestones in restricting water use among YRB's water governance practices (\textit{\nameref{sec:yrb}} and \textit{\nameref{secS1}}).
+Until the 87-WAS, stakeholders (the provinces in the YRB) had free access to the YR water resources for development, but there were geographic and temporal differences between freshwater demand and availability.
+The YRCC had no links to the provinces regarding water use before 1987, and the provinces could link directly to the Yellow River reaches (Figure~\ref{fig:structure}~C).
+To shrink water deficits, in 87-WAS, national authorities proposed in 87-WAS allocating specific water quotas between $10$ provinces (or regions) along the YR basin (Table~\ref{tab:quota}).
+Simultaneously, according to the extracted information from documents of the 87-WAS issued by national ministries, the YRCC started to report water use in each reach.
+As it was the first time the responsibility of the YRCC involved water use, this introduced new links between the YRCC and the ecological nodes (Figure~\ref{fig:structure}~C).
+However, the controversial 87-WAS did not resolve water depletion.
+In 1998, another strategy (98-UBR) was developed to strengthen the responsibilities of the YRCC for integrated managing water use.
+Information from the 98-UBR documents demonstrated that the provinces had to apply their plan for an annual water use license to YRCC instead of direct access to the Yellow River water.
+Thus, the YRCC has been linked to the provinces since 1998 (Figure~\ref{fig:structure}~C).
+% 因此，两次制度转换重塑了，形成了三个由社会行动者和生态节点连接而成的一般性结构
+As result, the two institutional shifts reshaped SES structures, leading to three general structures linked by social actors and ecological nodes (Figure~\ref{fig:structure}~C).
+
+%! Author = songshgeo
+%! Date = 2022/3/10
+% \MakeUppercase{\subsection{Cascading effects of the institutional shifts}}
+
+%\subsection{INSTITUTIONAL SHIFTS IMPACT ON WATER USE OF THE YRB}
+\subsection{Institutional shifts impact on water use}
+\label{result-2}
+% 结果一：展示制度转变带来的用水量变化
+
+\begin{figure*}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{outputs/main_results2.pdf}
+	\caption{
+		Effects of two institutional shifts on water resources use and allocation in the Yellow River Basin (YRB).
+		\textbf{A.} water uses of the YRB before and after the institutional shift in 1987 (87-WAS);
+		\textbf{B.} water uses of the YRB before and after the institutional shift in 1998 (98-UBR). Blue lines are statistics derived from water use data; grey lines are estimates from the Differenced Synthetic Control method with economic and environmental background controlled;
+		\textbf{C.} Drought intensity in the YRB and drying up events of the Yellow River. The size of the grey bubbles denotes the length of drying upstream.
+	}
+	\label{fig:main_results}
+\end{figure*}
+
+
+\label{result-1-p2}
+Our estimation of theoretical water use suggests that the institutional shift in 1987 (87-WAS) stimulated the provinces to withdraw more water than would have been used without an institutional shift (Figure~\ref{fig:main_results}A).
+From 1988 to 1998, on average, while the estimation of annual water use only suggests $974.34$ billion $m^3$, the observed water use of the YRB provinces reached $1038.36$ billion $m^3$ (an increase of $6.57\%$).
+However, after the institutional change in 1998 (98-UBR), trends of increasing water use appeared to be effectively suppressed. From 1998 to 2008, the total observed water use decreased by $0.49$ billion $m^3/yr$ per year, while the estimation of water use still suggests $0.82$ billion $m^3/yr$ increases (Figure~\ref{fig:main_results} B).
+The increased water uses after 87-WAS aligns with the severe drying-down of the surface streamflow from 1987 to 1998, an obvious indicator of river degradation and environmental crisis (Figure~\ref{fig:main_results}C).
+On the other hand, the 98-UBR ended river depletion, despite subsequent increases in drought intensity (from $0.47$ after 87-WAS to $0.62$ after 98-UBR on average) (Figure~\ref{fig:main_results}C).
+
+
+
+%\subsection{REGIONAL DIFFERENCES IN RESPONSES TO INSTITUTIONAL SHIFTS}
+\subsection{Heterogeneous effects and interpretation}
+\label{result-3}
+
+\begin{figure*}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{outputs/fig3.pdf}
+	\caption{
+		Regulating differences for provinces in the YRB.
+		Red (the 87-WAS) and green (the 98-UBR) bars denote an increased or decreased ratio for actual water use relative to the estimate from the model in the decade after the institutional shift.
+		The grey bars indicate the proportions of actual water use for each province relative to their total water use in the decade after the institutional shift.
+		The triangles mark the water quotas assigned under the institution, converted to ratios by dividing by their sum.
+	}
+	\label{fig:regulating}
+\end{figure*}
+
+% 结果2部分：展示区域相应差异
+Our results also suggest differences between patterns of provinces in their responses to the two institutional regulating.
+During the decade after the 87-WAS, the major water-using provinces (e.g., Inner Mongolia, Henan, Shandong) had apparent accelerations (Figure~\ref{fig:regulating}).
+The proportion of increased (or decreased) water use for each province (over the estimated water use by the model) correlated significantly (partial correlation coefficient is $0.77$, $p<0.05$) with actual water use from the Yellow River.
+On average, the major water users (Shandong, Inner Mongolia, Henan, and Ningxia) used $32.14\%$ more water than predicted from 1987 to 1998.
+By contrast, after the 98-UBR (from 1998 to 2008), almost all provinces have seen declines ($-16.54\%$ on average) in water use.
+Furthermore, the regulated water use of provinces was unrelated (partial correlation coefficient is $0.33$, $p>0.1$) to their proportional water use from the Yellow River.
+
+
+
+% \subsection{Structure-based marginal benefit analysis}
+% \label{result-4}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.6\linewidth]{outputs/economic_model.pdf}
+	\caption{
+		The proposed relationship of marginal benefits and water use of individual province under varying cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{fig:structure}) Major water users' theoretically optimal water use is also larger (see \nameref{sec:model} and \textit{\nameref{secS4}}).}
+	\label{fig:model}
+\end{figure}
+
+
+For interpretation of the pattern, we compared the theoretical marginal returns and optimal water use under three different structural cases (analogy to Figure~\ref{fig:structure}~C, see \nameref{sec:model}~Figure~\ref{fig:model}, detailed derivation in \textit{\nameref{secS4}}).
+Assuming that water is the factor input with decreasing marginal output of each province, results show that varying incentives for water use in each province derive from the relationship between the benefits and costs of water use.
+Until water-use decisions are consolidated into unified management, each stakeholder’s expectation that current water use helps bargain for a favorable water quota may intensify the incentive to use water, leading to higher water use.
+Furthermore, water users with higher capability are more stimulated by institutional shifts and away from the theoretically optimal water use under a unified allocation.
+
+
+\section{DISCUSSION}\label{sec:discussion}
+%! Author = songshgeo
+%! Date = 2022/3/10
+
+% \subsection{CAUSES OF INSTITUTIONAL IMPACTS}
+% \subsection{}
+\label{discussion-1}
+% discussion-1:
+% 用水量的上升、下降-结果解读
+% 制度对社会生态系统的结果产生影响在世界范围内都很普遍，
+The influences of institutions on the outcomes of social-ecological systems (SESs) were widely reported worldwide, but few attempts to quantify their net effects \cite{cumming2020a}.
+Our results show that while 98-UBR decreased water use in the YRB, 87-WAS increased it by $8.57\%$.
+The results challenged previous analyses (i.e., suggesting that 87-WAS ''had little practical effect'') because theoretically, there should be few gaps between actual and synthetic water use in the YRB if no effect is present \cite{abadie2015,hill2021}.
+However, the significant net effect indicated by our analysis suggests 87-WAS was followed by more water use even after controlling for environmental and economic variables (see \textit{\nameref{secS2}}~Table~\ref{tab:variables}).
+On the contrary, the 98-UBR reduced water competition, so many studies attributed the restoration mainly to the successful introduction of this institution \cite{chen2021,huangang2002,an2007}.
+
+\label{discussion-2}
+% discussion-2: 87的增加
+% 结果与制度的目的完全相反的87-WAS与许多其它的SES失败治理案例类似，表明不匹配的社会生态结构可能促进了对公共资源的掠夺式开采。
+The above comparison suggests that the 87-WAS, whose results were contrary to the purpose of the institution, is similar to many other SES governance failures, supporting that mismatched socio-ecological structures can deterioration of common resources \cite{kellenberg2009,cai2016,barnes2019}.
+The increased water use after 87-WAS aligns with concerns about frequently scrambling for water in some provinces during this period \cite{mao2000, bouckaert2022}.
+Although reasons for the non-ideal effect of 87-WAS had been widely discussed \cite{huangang2002} (such as enforcement, feasibility, and equity), however, structural change has received limited attention.
+Our results show that the correlation between current water use and changed (increased or decreased) water use was significant after 87-WAS (Figure~\ref{fig:regulating}).
+This ``major users use more'' pattern supports the hypothesis that separated stakeholders (individual provinces) will respond to structure by maximizing utility (interpreted in our structure-based model, see Figure~\ref{fig:model}).
+
+The validity of our theoretical analysis is supported by two facts:
+(1) The water quotas of 87-WAS (or the initial water rights) went through a stage of ``bargaining'' among stakeholders (from 1982 to 1987) \cite{wang2019a, wang2019d}, where each province attempted to demonstrate its development potential related to water use.
+The bargaining was also a process for matching water shares to economic volume because the major water users (like Shandong and Henan) needed more water than their original quota (if only considering economic potentials when designing the institution) \cite{zuo2020}.
+(2) Provinces with higher current water use might have greater bargaining power in water use allocation because of information asymmetry between decision-makers and stakeholders.
+Therefore, stakeholders had considerable incentives to prevent water quotas from hindering their economic potential, which aligned with their appeals to the higher central government for larger shares \cite{wang2019a, wang2019d}.
+
+\label{discussion-3}
+On the other hand, social-ecological matches can also be supported by structure effects.
+After 98-UBR, the YRCC could adjust water use quotas to match river conditions for the whole YRB.
+When the YRCC began to coordinate among stakeholders, the external appeals of provinces for larger quotas turned into internal innovation to improve water efficiency (e.g., drastically increased water-conserving equipment)
+\cite{krieger1955, ostrom1990}.
+During this period, proportional decreased water use of provinces indicated a positive result of the regulation (see \nameref{result-3}).
+The 98-UBR thus led to expected institutional outcomes at a basin scale, indicating that successful governance of SES emerged by indirectly (or vertically) creating links between different stakeholders.
+Our model demonstrates that in this case, a unified scale-matched institution was indispensable for sustainable water use.
+
+The structural building blocks we depicted here (Figure~\ref{fig:structure}) have also been reported in other SESs worldwide \cite{kluger2020,guerrero2015,bodin2012}.
+Before 98-UBR, SES structure (i.e., fragment ecological units linked to separate social actors) was more likely to be mismatched because isolated actors generally struggle to maintain interconnected ecosystems holistically \cite{sayles2017,sayles2019,cai2016,bergsten2019}.
+Institutional re-alignments since 98-UBR improved the authority of the YRCC and helped it match the scale of resource provisioning in the YRB, leading to enhanced social-ecological fit and better outcomes \cite{cumming2020a,wang2019d}.
+The comparison demonstrates again the challenge of finding win-win situations in coupled human-nature systems \cite{hegwood2022}, and the need to more deeply understand the role of social-ecological structures \cite{bergsten2019, sayles2019}.
+% Therefore, the YRB cases can provide further explanation of the matching and mismatching of the previous SES building blocks, linking SES structure and outcomes by plausible reasons of causality and underlying processes.
+
+% \subsection{LIMITATION, INSIGHTS AND IMPLICATIONS}
+% \subsection{Limitation, insights and implications}
+% \label{discussion-4}
+% discussion-3: 启示、未来的展望
+
+Our approach has some inevitable limitations.
+First, the contributions of economic growth and institutional shifts are difficult to distinguish because of intertwined causality (institutional changes can also influence the relative economic variables);
+and second, when applying the DSC method, it is difficult to rule out the effects of other policies over the same time breakpoints (1987 and 1998).
+Our quasi-experiment approach nonetheless provides evidence supporting the view that there was a change in water use trajectory following the YRB's unique institutional shifts and offers insights into water governance (and particularly the importance of having a scale-matched, basin-wide authority for water allocation solutions \cite{bodin2017b, ostrom2009, reyers2018})
+Moreover, the ultimate success of the 98-UBR institutional shift theoretically and practically proved the importance of social-ecological fit.
+For sustainability in the future, therefore, it is necessary to emphasize the necessity of strengthening connections between stakeholders by agents consistent with the scale of the ecological system.
+From these perspectives, two scenarios based on the marginal benefit analysis (see \textit{\nameref{secS5}}) can inspire institutional design on how to reduce mismatches.
+For example, water rights transfers may be another way to build horizontal links between stakeholders that also have the potential to result in better water governance.
+In addition, policymakers can propose more dynamic and flexible institutions to increase the adaptation of stakeholders to a changing SES context \cite{reyers2018}.
+
+The structural building blocks that led to different outcomes are recurring motifs in global SESs, so our proposed mechanism is crucial to governing such coupled systems.
+Calls for a redesign of water allocation institutions in the YRB in recent years also illustrate the importance of institutional solutions for sustainability (see \textit{\nameref{secS1}}) \cite{yu2019}.
+Given the changing environmental context, outdated and inflexible water quotas can no longer meet the demands of sustainable development \cite{wang2019a}.
+Thus, the Chinese government has embarked on a plan to redesign its decades-old water allocation institution (see \textit{\nameref{secS1}}).
+Our analysis suggests that these initiatives can benefit by actively incorporating social-ecological matched building blocks when developing new institutions \cite{bodin2017b}.
+Moreover, our research provides a cautionary tale of how institutions can create perverse incentives \cite{hegwood2022}, while insights from the YRB can provide guidelines for SESs management worldwide \cite{muneepeerakul2017, leslie2015}.
+
+
+\section{CONCLUSION}\label{sec:conclusion}
+%! Author = songshgeo
+%! Date = 2022/3/10
+
+Intense water use in one of the most anthropogenically altered large river basins, the Yellow River Basin (YRB), once led to drying up.
+Alterations of institutions eventually successfully restored water governance practices on a decadal time scale.
+We propose that the institutional shifts in the YRB (87-WAS and 98-UBR) framed two different SES structures and depicted them as widespread building blocks.
+We quantitatively estimate the net effects of these changes in the YRB and analyze the reasons from SES structural perspectives.
+Our results show that the historical records, the responses from stakeholders to structural changes, and the theoretical analysis from the marginal benefits analysis all support that fragmented ecological units linked to separate social actors frames a mismatched SES structure.
+Through the quasi-natural experiments of the YRB, we demonstrate that social-ecological fits can lead to successful SESs management worldwide with better sustainability outcomes.
+
+
+\section{MATERIALS AND METHODS}\label{sec:methods}
+%! Author = songshgeo
+%! Date = 2022/3/10
+
+% 为了量化制度变迁为黄河流域用水带来的影响，我们按附图1所示的技术路线执行了分析过程
+We first abstract the SES structures of water used in the YRB from 1979 to 2008, where two institutional shifts split the period into three pieces.
+To process the data, we use the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
+We then estimated the net effects of two institutional shifts on total water use, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method \cite{arkhangelsky2021}.
+Finally, for theoretical discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
+
+\subsection{Study area}\label{sec:yrb}
+
+% 黄河的介绍
+The Yellow River Basin (YRB), the fifth-largest river basin worldwide, is known for its vital role in the socio-economic development of China.
+It supports $35.63\%$ of China's irrigation and $30\%$ of its population while containing only $2.66\%$ of its water resources (data from \href{http://www.yrcc.gov.cn}{http://www.yrcc.gov.cn}, last access: \today).
+In the 1980s, intense water use, accounting for about $80\%$ of Yellow River surface runoff, combined with other forms of human interference (e.g., soil conservation and water conservancy projects), caused consecutive drying events and substantial ecological, economic, and social crises (e.g., wetland shrinkage, agriculture reduction, and a scramble for water).
+In response, Chinese authorities implemented several ambitious water management practices in the YRB to relieve water stress, such as reservoir regulation, the South-to-north Water Diversion Project (WDP), the 1987 Water Allocation Scheme (87-WAS), and the 1998 Unified Basinal Regulation (98-UBR) \cite{long2020, wang2019d}.
+Those efforts led to ecological restoration of wetlands and the estuarine delta. Drying up has been avoided for over 20 years, which is widely considered a substantial management achievement.
+Instead of relying on engineering to increase water supply, institutional strategies like the 87-WAS (which assigned water quotas for provinces in the YRB) and the 98-UBR (under which provinces had to obtain permits from the Yellow River Conservancy Commission, YRCC, authority at a basin-level) focused mainly on limiting demand for water \cite{bouckaert2022, speed2013}.
+While researchers have carefully evaluated and quantified the effects of engineering solutions on water supply\cite{long2020}, there have been few attempts to assess institutional contributions to successful water governance in the YRB.
+
+\subsection{Portraying structures}\label{sec:structures}
+% 制度结构关系抽象
+We apply the network \cite{bodin2017b} approach to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit (the YRCC) into general building blocks (or motifs) (see Figure~\ref{framework}), from the official documents.
+Empirical studies have suggested that such widespread building blocks in SES are the key to the functioning of structures. The network-based approach is to abstract connections between entities into links and nodes \cite{bodin2017a,kluger2020,guerrero2015}.
+In this study, we examined the official documents of the two institutional shifts of concern (87-WAS and 98-UBR, see \textit{Appendix \nameref{secS1}} for details).
+Besides the ecologically connected river reaches, the agents (provinces and the YRCC) are abstracted as nodes, and their required interactions regarding water use are summarized as links.
+The 1987-WAS requires the YRCC to monitor each river's reach, while the 1998-UBR requires direct interactions (through water use licenses) between the YRCC and the provinces.
+Therefore, we linked the YRCC unit to each ecological unit after 87-WAS and each province unit after the 98-UBR.
+We tested whether focusing on SES structures rather than institutional details could reasonably explain the differences caused by institutional shifts in the YRB.
+
+\subsection{Dataset and preprocessing}\label{sec:dataset}
+We choose datasets and variables to compare on actual and estimated water use of the YRB.
+The actual water uses are accessible in China’s provincial annual water consumption dataset from the National Water Resources Utilization Survey, whose details are accessible from Zhou (2020) \cite{zhou2020}.
+To estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on variables from five categories (environmental, economic, domestic, and technological) water use factors. Their specific items and origins are listed in Table~\ref{tab:variables}.
+
+Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin, and Beijing because of their trivial water use from the YRB (see \textit{Appendix}~Table~\ref{tab:quota}). We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.
+
+Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components \textit{Appendix~\nameref{secS2}}. Bayan had proved that combining PCA and DSC can raise the robustness of causal inference \cite{bayani2021}. We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\nameref{secS2}~Figure~\ref{fig:elbow}}). Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
+
+
+\subsection{Differenced Synthetic Control}\label{sec:DSC}
+Using the Differenced Synthetic Control (DSC) method, we estimate water use without the effect of the institutional shift.
+The DSC method is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit \cite{abadie2010, abadie2015, hill2021}.
+
+This method aims to evaluate the effects of policy change that are not random across units but focuses on some of them (i.e., institutional shifts in the YRB here).
+By re-weighting units to match the pre-trend for the treated and control units, the DSC method imputes post-treatment control outcomes for the treated unit(s) by constructing a synthetic version of the treated unit(s) equal to a convex combination of control units.
+Therefore, the synthetic and actual version difference can be estimated as a net effect for a treated unit.
+
+In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: 1979-1998; 1987-2008.
+We include each province in the YRB ($n=8$, see \textit{\nameref{sec:dataset}}) as the treated unit separately, as multiple treated units approach had been widely applied \cite{abadie2021}.
+Then, we consider the $J+1$ units observed in time periods $T = {1,2 \cdots , T}$ with the remaining $J=20$ units are untreated provinces from outside.
+We define $T_0$ to represent the number of pre-treatment periods ($1,\cdots,t_0$) and $T_1$ the number post-treatment periods ($t_0,\cdots,T$), such that $T = T_0+ T_1$.
+The treated unit is exposed to the institutional shift in every post-treatment period $T_0$, unaffected by the institutional shift in all preceding periods $T_1$.
+Then, any weighted average of the control units is a synthetic control and can be represented by a ($J * 1$) vector of weights $\mathbf{W} = (w_{1},...,w_{J})$, with $w_j \in (0, 1)$.
+Among them, by introduce a ($k * k$) diagonal, semidefinite matrix $\mathbf{V}$ that signifies the relative importance of each covariate, the DSC method procedure for finding the optimal synthetic control ($W$) is expressed as follows:
+
+\begin{equation}
+    \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{minimize}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
+\end{equation}
+
+where $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W*(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{W*(V)}$ that minimizes the following expression:
+
+\begin{equation}
+    \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
+\end{equation}
+
+That is the minimum difference between the outcome of the treated unit and the synthetic control in the pre-treatment period, where $\mathbf{Z}_{1}$ is a ($1*T_0$) matrix containing every observation of the outcome for the treated unit in the pre-treatment period. Similarly, let $\mathbf{Z}_{0}$ be a ($k * T_0$) matrix containing the outcome for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
+The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties \cite{billmeier2013, smith2015}.
+
+\subsection{Marginal benefits analysis}\label{sec:model}
+To infer the mechanisms underlying the results, we developed an marginal benefits analysis based on marginal revenue to analyze how the institutional shift could have led to differences in water use.
+
+\begin{ass}
+    (Water-dependent production) Because of irreplaceably, water is assumed to be the only production function input with two production efficiency types.
+\end{ass}
+
+\begin{ass}
+    (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin, the water use cost is equally assigned to each province.
+\end{ass}
+
+\begin{ass}
+    (Multi-period settings) There are multiple settings periods with a constant discount factor for the expectation of future water use.
+\end{ass}
+
+Under the above-simplified assumptions, we demonstrate three cases -corresponding to the abstracted SES structures (Figure~\ref{fig:structure}), inference of how SES structure alters the expected marginal benefits and costs of provinces making decisions.
+As one of the possible interpretations for the causality between SES structure and institutional effects, the derivation of the model based on the above three assumptions can be found in \textit{Appendix~\nameref{secS4}}, and some simple model-based extensions are involved in \textit{Appendix~\nameref{secS5}}.
+
+
+\bibliography{../mybib}
+\bibliographystyle{sn-standardnature}
+\label{bib}
+
+%%%%%%%% -----  02_appendix -------- %%%%%%%%%%
+\newpage
+\appendix
+\label{appendix}
+\renewcommand{\figurename}{Supplementary Figure}
+\renewcommand{\appendixname}{Appendix~\Alph{section}}
+\setcounter{section}{0}
+
+\section{Appendix~A: Contexts of institutional shifts}\label{secS1}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+%! Author = songshgeo
+%! Date = 2022/3/10
+
+We aim to abstract the water allocating institutions from the description in official documents with necessary context into SES building blocks (Figure~\ref{framework})
+Widespread building blocks in SES are the key to the functioning of structures, and a network-based description is a widely used way to depict them by abstracting links and nodes \cite{bodin2017a,kluger2020,guerrero2015}.
+
+\begin{figure}[!bh]
+	\centering
+	\includegraphics[width=0.9\linewidth]{diagrams/framework.jpg}
+	\caption{
+		Framework for understanding linkages between SES structures and outcomes.
+		\textbf{a.} The general framework for analyzing social-ecological systems (SESs) (adapted from Ostrom \cite{ostrom2009}). Institutions embedded in SESs may reshape structures by changing the interactions between core subsystems, resulting in different outcomes.
+        Three typical types of abstracted SES structures are shown as \textbf{b.}, \textbf{c.} and \textbf{d.} (adapted from Bodin, 2017)\cite{bodin2017b}. Red circles indicate social actors, and green ones indicate ecological components. Connection (ties between two ecological components), collaboration (ties between two social actors), or management (ties between a social actor and an ecological component) exist when gray lines link two units. According to empirical evidence, the gray dashed lines show aligned SES structures that are more likely to achieve a desirable outcome.
+        }
+    \label{framework}
+\end{figure}
+
+% 水资源分配方案在全世界范围内都是流域管理的普遍制度。
+Water allocation institutions are widespread in large river basin management programs throughout the world (see \textit{Appendix} Figure~\ref{fig:world}) \cite{speed2013}.
+This was the first basin in China for which a water resource allocation institution was created, and institutional shifts can be traced through several documents released by the Chinese government (at the national level)\cite{wang2019a}:
+\begin{itemize}
+    \item \textbf{1982}: The provinces and the Yellow River Water Conservancy Commission (YRCC) are required to develop a water resource plan for the Yellow River \cite{wang2019, wang2019a}.
+    \item \textbf{1987}: Implementation of the Allocation Plan. (\href{http://www.gov.cn/zhengce/content/2011-03/30/content_3138.htm#}{http://www.mwr.gov.cn}, last access: \today).
+    \item \textbf{1998}: Implementation of unified regulation. (\href{http://www.mwr.gov.cn/ztpd/2013ztbd/2013fxkh/fxkhswcbcs/cs/flfg/201304/t20130411_433489.html}{http://www.mwr.gov.cn}, last access: \today).
+    % 各省按要求编制新的黄河流域水资源规划，将水资源额度分配进一步细化。
+    \item \textbf{2008}: Provinces are asked to draw up new water resources plans for the YRB to further refine water allocations \cite{wang2019,wang2019a}.
+    \item \textbf{2021}: A call for redesigning the water allocation institution (\href{http://www.ccgp.gov.cn/cggg/zygg/gkzb/202107/t20210721_16591901.htm}{http://www.ccgp.gov.cn}, last access: \today).
+\end{itemize}
+
+% 在上述文件中，1982年的文件标志着设计分水制度尝试的开始，2008年标志着该制度走向成熟（完全建立起流域-省-市区的多级水资源分配和统一调度）。
+Since 1982, administrations attemptted to design a quota institution, and the 2008 document marked the maturity of the scheme (complete establishment of basin-level, provincial, and district water quotas).
+Between the period, two significant institutional shits can be analyzed by using the 1987 (87-WAS) and 1998 (98-UBR) documents.
+
+% It is worth noting that, although the essential reason for these institutions was the mismatch between the spatial and temporal distribution of water resources as well as social and economic water demands, the direct reason for their introduction was the depletion of the Yellow River.
+
+The official documents in 1987 (\href{http://www.gov.cn/zhengce/content/2011-03/30/content_3138.htm#}{http://www.mwr.gov.cn}, last access: \today) convey the following key points:
+
+\begin{itemize}
+	% 该政策面向的目标是各省（区域），黄委会没有被提及
+	\item The policy is aimed at related provinces (or regions at the same administrative level).
+	% 政策制定的首要考虑是解决断流问题
+	\item Depletion of the river is identified as the first consideration of this institution.
+	% 各省被鼓励在此配额下制定自己的用水计划
+	\item Provinces are encouraged to develop their water use plans based on a quota system.
+	% 水资源供给无法满足需求对相关省（地区）是普遍现象。
+	\item Water in short supply is a common phenomenon in relevant provinces (regions).
+\end{itemize}
+
+The official documents in 1998
+(\href{http://www.mwr.gov.cn/ztpd/2013ztbd/2013fxkh/fxkhswcbcs/cs/flfg/201304/t20130411_433489.html}{http://www.mwr.gov.cn}, last access: \today) convey the following key points:
+
+\begin{itemize}
+	% 除了说明政策针对的各省区之外，明确指出其用水需要黄河水利委员会进行申报，并由其组织和监管
+	\item The document points out that not only provinces and autonomous regions involved in water resources management (see \textit{Article 3}), the provinces’ and regions’ water use shall be declared, organized, and supervised by the YRCC (\textit{Article 11 and Chapter III to Chapter V, and Chapter VII}).
+	% 本研究(\textit{ Article 1})首先考虑的是上、中、下游用水的总体规划。
+	\item Creating the overall plan of water use in the upper, middle, and lower reaches is identified as the first consideration of this institution (\textit{Article 1}).
+	% 各省需要
+	\item With the same quota as used in the 1987 policy, provinces were encouraged to further distribute their quota into lower-level administrations (see \textit{Article 6 and Article 41}).
+	% 强调以总量确定供给，以供给决定需求。
+	\item They emphasize that supply is determined by total quantity, and water use should not exceed the quota proposed in 1987 (see \textit{Article 2}).
+\end{itemize}
+
+\begin{figure*}[!htb]
+    \centering
+    \includegraphics[width=12cm]{/Users/songshgeo/Documents/Pycharm/WAInstitution_YRB_2021/figs/diagrams/world_institutions}
+	\caption{
+		Overview of water allocation institutions.
+		% 世界已有水资源分配制度的大河流域，其中黄河流域最早于1987年提出资源分配方案，后于1998年更改为统一调度方案。
+		\textbf{A.} Major river basins in the world with water resource allocation systems (shaded red); the YRB first proposed a resource allocation scheme in 1987 (designed since 1983) and then changed to a unified regulation scheme in 1998 (designed in 1997 but implemented in 1998) \cite{speed2013}.
+		% 不同的水资源分配制度设计模式，中国黄河流域是典型的自上而下。
+		\textbf{B.} Different water resource allocation system design patterns; the YRB is typical of a top-down system.
+		% 流域分水制度的演化。这种多层次的制度设计有其历史变化过程。
+		\textbf{C.} The four periods of institutional evolution of water allocation of the YRB.
+	}
+    \label{fig:world}
+\end{figure*}
+
+% 基于上述分析，我们抽象出了两次制度转变之后的SES结构变化如正文的图1C所示。
+Based on the above documents, we abstracted the structural changes of SES (see \textit{Appendix S2}) after the two institutional changes, as shown in Figure~\ref{fig:structure}~C.
+
+\begin{table*}
+    \centering
+    \small
+    \caption{Water quotas assigned in the 87-WAS}\label{tab:quota}
+	\resizebox{\linewidth}{!}{
+    \begin{tabular}{p{0.24\linewidth}llllp{0.1\linewidth}lllll}
+	\hline
+	Items (water volume, billion $m^3$)                    & Qinghai & Sichuan & Gansu   & Ningxia & Inner Mongolia & Shanxi  & Shaanxi & Henan   & Shandong & Jinji  \\
+	\hline
+	Demands in water plan                                                & 35.7    & 0       & 73.5    & 60.5    & 148.9          & 115     & 60.8    & 111.8   & 84       & 6      \\
+	Quota designed in 1983                                               & 14      & 0       & 30      & 40      & 62             & 43      & 52      & 58      & 75       & 0      \\
+	Quota assigned in 1987                                               & 14.1    & 0.4     & 30.4    & 40.0    & 58.6           & 38.0    & 43.1    & 55.4    & 70.0     & 20     \\
+	Average water consumption from the Yellow River from 1987-2008       & 12.03   & 0.25$^a$   & 25.80   & 36.58   & 61.97          & 21.16   & 11.97   & 34.30   & 77.87    & 5.85$^a$  \\
+	Proportion of water from the Yellow River in total water consumption & 48.12\% & 0.10$^b$\%  & 30.79\% & 58.45\% & 47.82\%        & 73.55\% & 44.39\% & 24.77\% & 34.41\%  & 3.11\%$^b$ \\
+    \hline
+    \end{tabular}}
+	\footnotesize[a]\leftline{{Calculated by data from 2004 to 2017.}}\\
+	\footnotesize[b]{\leftline{The share is too small, thus the provinces (or region) Sichuan and Jinji not to be considered in this study.}}
+\end{table*}
+
+
+\section{Appendix~B: Robustness of DSC method}\label{secS2}
+\renewcommand{\thefigure}{B\arabic{figure}}
+\renewcommand{\thetable}{B\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+%! Author = songshgeo
+%! Date = 2022/3/19
+
+
+% 找到具解释力的变量是构造合成控制法稳健的关键。
+Explanatory variables are the key to constructing a robust synthetic control method.
+% 我们共使用了用水量密切相关的26个变量，这些变量的数据集已在先前的研究中被用来解释中国的用水量变化
+We used a total of $24$ variables related to water consumption Table~\ref{tab:variables}, which datasets have been used in previous studies to explain changes in water use in China \cite{zhou2020}.
+% 由于这些变量间存在自相关，我们通过肘部法供选择了5个主成分作为DSC的输入，前人研究表明PCA方法的结合能够增强合成控制法的稳健性
+In addition, we selected $5$ principal components as input by the elbow method because selection in autocorrelated variables reduces dimensions and then enhances the robustness of the DSC (Figure~\ref{fig:elbow}).
+
+There are two approaches to validity testing of the DSC: (1) comparing the post-treated and pre-treated reconstructions and (2) testing robustness through placebo analysis.
+For (1), differences between each province and their synthetic are significant in post-treated periods and small in pre-treated periods (Figure~\ref{fig:87panel} and figure~\ref{fig:98panel}), which show good reconstructions of their water use changes' estimation.
+For (2), we applied the in-place placebo analysis described by \cite{abadie2010}. In most provinces, ratios of post-MSPE to pre-MSPE are higher than the median of other placebo units, which suggests the institutional shifts in treated time (1987 and 1998 here) influenced them more than most of the other provinces (figure~\ref{fig:87placebo}, figure~\ref{fig:98placebo}, Table~\ref{tab:DSC_summary}).
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/87panel.pdf}
+    \centering
+    \caption{Comparations between YRB' provinces and their synthetic controls around the 87-WAS.}
+    \label{fig:87panel}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/98panel.pdf}
+    \centering
+    \caption{Comparations between YRB' provinces and their synthetic controls around the 98-UBR.}
+    \label{fig:98panel}
+\end{figure*}
+
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/87placebo.pdf}
+    \centering
+    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 87-WAS, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE).}
+    \label{fig:87placebo}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/98placebo.pdf}
+    \centering
+    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 98-UBR, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE)}
+    \label{fig:98placebo}
+\end{figure*}
+
+\begin{table*}[!ht]
+	\caption{Variables and their categories for water use predictions}
+	\scriptsize
+	\label{tab:variables}
+	\resizebox{\linewidth}{!}{
+	\begin{tabular}{lllll}
+	\hline
+	Sector &
+	  Category &
+	  Unit &
+	  Description &
+	  Variables \\ \hline
+	Agriculture &
+	  Irrigation Area &
+	  thousand ha &
+	  \begin{tabular}[c]{@{}l@{}}Area equipped for irrgiation by different \\ crop:\end{tabular} &
+	  \begin{tabular}[c]{@{}l@{}}Rice, \\ Wheat, \\ Maize, \\ Fruits, \\ Others.\end{tabular} \\ \hline
+	Industry &
+	  \begin{tabular}[c]{@{}l@{}}Industrial gross \\ value added\end{tabular} &
+	  Billion Yuan &
+	  Industrial GVA by industries &
+	  \begin{tabular}[c]{@{}l@{}}Textile, \\ Papermaking, \\ Petrochemicals, \\ Metallurgy, \\ Mining, \\ Food, \\ Cements, \\ Machinery, \\ Electronics, \\ Thermal electrivity, \\ Others.\end{tabular} \\
+	 &
+	  \begin{tabular}[c]{@{}l@{}}Industrial water \\ use efficiency\end{tabular} &
+	  \% &
+	  \begin{tabular}[c]{@{}l@{}}The ratio of recycled water and evaporated \\ water to total industrial water use\end{tabular} &
+	  \begin{tabular}[c]{@{}l@{}}Ratio of industrial water recycling, \\ Ratio of industrial water evaporated.\end{tabular} \\ \hline
+	Services &
+	  \begin{tabular}[c]{@{}l@{}}Services gross \\ value added\end{tabular} &
+	  Billion Yuan &
+	  GVA of service activities &
+	  Services GVA \\ \hline
+	Domestic &
+	  Urban population &
+	  Million Capita &
+	  Population living in urban regions. &
+	  Urban pop \\
+	 &
+	  Rural population &
+	  Million Capita &
+	  Population living in rural regions. &
+	  Rural pop \\
+	 &
+	  Livestock population &
+	  Billion KJ &
+	  \begin{tabular}[c]{@{}l@{}}Livestock commodity calories summed from \\ 7 types of animal.\end{tabular} &
+	  Livestock \\ \hline
+	Environment &
+		  Temperature & $K$ & Near surface air temperature & Temperature \\
+			& Precipitation & $mm$ & Annual accumulated precipitation & Precipitation \\ \hline
+	\end{tabular}}
+\end{table*}
+
+\begin{figure*}
+    \includegraphics[width=0.9\linewidth]{outputs/elbow.pdf}
+    \centering
+    \caption{Choose number of pricipal components by Elbow method, $5$ pricipal components already capture $89.63\%$ explained variance.}
+    \label{fig:elbow}
+\end{figure*}
+
+\begin{table*}
+	\caption{Pre and post treatment root mean squared prediction error (RMSPE) for YRB's provinces}
+	\label{tab:DSC_summary}
+	\scriptsize
+	\centering
+	\resizebox{\linewidth}{!}{
+	\begin{tabular}{lrrrrrrrr}
+	\hline
+	 & \multicolumn{4}{c}{1987-WAS} & \multicolumn{4}{c}{1998-UBR} \\
+	 Provinces & Pre-RMSPE & Post-RMSPE & Ratio & Significant$^a$ & Pre-RMSPE & Post-RMSPE & Ratio & Significant$^a$ \\
+	 \hline
+	 Qinghai & 0.016 & 0.231 & 14.606 & True & 0.230 & 1.170 & 5.096 & True \\
+	Gansu & 0.056 & 1.307 & 23.265 & True & 0.244 & 0.841 & 3.448 & True \\
+	Ningxia & 0.097 & 0.944 & 9.697 & True & 0.332 & 1.091 & 3.284 & True \\
+	Neimeng & 0.335 & 3.846 & 11.479 & True & 1.320 & 1.183 & 0.896 & False \\
+	Shanxi & 0.208 & 0.675 & 3.241 & False & 0.264 & 0.401 & 1.520 & False \\
+	Shaanxi & 0.181 & 0.572 & 3.164 & False & 0.096 & 0.724 & 7.579 & True \\
+	Henan & 0.210 & 3.207 & 15.292 & True & 1.222 & 2.479 & 2.029 & False \\
+	Shandong & 0.209 & 1.840 & 8.785 & True & 0.431 & 1.517 & 3.516 & True \\
+	\hline
+	\end{tabular}}
+	\footnotesize[a]\leftline{{Larger post/pre RMSPE than the median of the placebos.}}\\
+\end{table*}
+
+
+% \section{S2: Methods in details}\label{secS3}
+% \input{../02_appendix/03_results_appendix.tex}
+
+\section{Appendix~C: Optimization model for water use}\label{secS4}
+\renewcommand{\thefigure}{C\arabic{figure}}
+\renewcommand{\thetable}{C\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+%! Author = songshgeo
+%! Date = 2022/3/19
+
+\paragraph{Setup}
+
+To understand the mechanisms through which the SES structure impacts provincial water use, we developed a dynamic marginal benefits analysis to analyze how institutional mismatch could have led to the changes in water use, especially among provinces with high incentives for excess water use. Specifically, we modeled individual provincial decision-making in water resources before quota execution.
+
+We proposed three intuitive and general assumptions:
+
+\begin{ass}
+(Water-dependent production) Because of irreplaceability, water is assumed to be the only input of the production function with two types of production efficiency. The production function of a high-incentive province is $A_HF(x)$, and the production function of a low-incentive province is $A_LF(x)$ ($A_H>A_L$). F(x) is continuous, $F'(0)=\infty$, $ F'(\infty)=0$, $F'(x)>0$, and $F''(x)<0$. The production output is under perfect competition, with a constant unit price of $P$.
+\end{ass}
+
+\begin{ass}
+ (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin involved in $N$ provinces, the cost of water use is equally assigned to each province under any water use. The unit cost of water is a constant $C$.
+\end{ass}
+\begin{ass}
+(Multi-period settings) There are infinite periods with a constant discount factor $\beta$ lying in (0,1). There is no cross-period smoothing in water use.
+\end{ass}
+Under the above assumptions, we can demonstrate three cases to simulate the water use decision-making and water use patterns in a whole basin.
+
+Under the above assumptions, we can demonstrate three cases consisting of local governments in a whole basin to simulate their water use decision-making and water use patterns.
+
+ %case1
+\begin{case}Dentralized decision: This case corresponds to a situation without any high-level water allocation institution.
+
+When each province independently decides on its water use, the optimal water use $x_i^*$ in province $i$ satisfies:
+
+ $AF'(x)=\frac{C}{P}$,
+
+ where $A_H$ and $A_L$ denote high-incentive and low-incentive provinces, respectively.
+
+ When the decisions in different periods are independent, for $t$ = $0, 1, 2 \cdots$, then:
+
+ $x_{it}^* = x_i^*$
+
+ \end{case}
+
+ %case2
+ \begin{case} Mismatched decision: This case corresponds to a mismatched institution.
+
+ The water quota is determined at $t$=0 and imposed in $t$=1,2,... Under the subjective expectation of each province that current water use may influence the future water allocation determined by high-level authorities, the total quota is a constant denoted as Q, and the quota for province $i$ is determined in a proportional form:
+
+ $Q_i=Q \cdot \frac{x_i}{x_i + \begin{matrix}\sum{x_{-i}} \end{matrix}}$.
+
+Under a scenario with decentralized decision-making with a water quota, given other provinces' decisions on water use remain unchanged, the optimal water use of province $i$ at $t$=0 satisfies:
+
+$AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix})^2}$,
+
+where $A_H$ denotes a high-incentive province and $A_L$ denotes a low-incentive province.
+
+ \end{case}
+
+
+ %case3
+ \begin{case} Matched institution: This case corresponds to the institution under which water use in a basin is centrally managed.
+
+ When the $N$ provinces decide on water use as a unified whole (e.g., the central government completely decides and controls the water use in each province), the optimal water use $x_i^*$ of province $i$ satisfies:
+
+$F'(x)=\frac{C}{P}$.
+
+ \end{case}
+
+
+We propose Proposition 1 and Proposition 2:
+
+Proposition 1: Compared with the decentralized institution, a matched institution with unified management decreases total water use.
+
+The optimal water use under the three cases implies that mismatched institutions cause incentive distortions and lead to resource overuse.
+
+
+Proposition 2: Water overuse is higher among provinces with high water use incentives than low- water use incentives under a mismatched institution.
+
+The intuition for this proposition is straightforward in that all provinces would use up their allocated quota under a relatively small $Q$. As production efficiency increases, the marginal benefits of a unit quota increase, and the quota would provide higher future benefits for a pre-emptive water use strategy. Provinces with high production efficiency have higher optimal water use values under the decentralized decision. The divergence in water use would be exaggerated when the water quota is expected to be implemented with greater competition.
+
+
+Extensions of the model are shown in Supplementary Material S3.%%%
+
+
+
+
+
+%Appendix的模型和proposition推导细节部分
+%放在Appendix
+Appendix: Water Use Optimization
+
+%case1
+\begin{case_appendix}Centralized decision
+
+When the N provinces decide on water uses as a unity, the marginal cost is C, equal to its fixed unit cost.
+The water use of province $i$ aims to maximize $P\cdot A\cdot F(x)-C$.
+Hence, $x_i^*$ satisfies $P \cdot A\cdot F'(x)=C$, i.e., $AF'(x)=\frac{C}{P}$, where A denotes $A_H$ for a high-incentive province and $A_L$ for a low-incentive province.
+
+\end{case_appendix}
+
+%case2
+ \begin{case_appendix}Decentralized decision
+
+When each of the N provinces independently decides on its water use, the marginal cost of water use would be $\frac{C}{N}$ as a result of cost-sharing with others.
+Hence, the optimal water use in province i at period t, denoted as $\hat x_i^*$, satisfies $P \cdot A \cdot F'(x_{it})=\frac{C}{N}$, i.e., $A \cdot F'(x)=\frac{C}{P \cdot N}$.
+Since $F'$ is monotonically decreasing, $\hat x_{it}^*>x_i^*$.
+\end{case_appendix}
+
+
+%case3
+ \begin{case_appendix}Forward-looking decentralized decision under quota restrictions
+
+ When the water quota would constrain future water use, the dynamic optimization problem of province i is shown as follows. In $t=1,2,\cdots$, there would be no relevant cost when the quota is bound that each province takes ongoing costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. Therefore, it is sufficient to consider only the total water quota is less than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
+
+$max  \quad P \cdot A \cdot F(x_{i,0})-\frac{C \cdot \begin{matrix} \sum x_{i,0} + x_{-i,0} \end{matrix}}{N}+\beta P \cdot A \cdot F(x_{i,1})+\beta^2 P \cdot A \cdot F(x_{i,2})+...$
+
+$=P \cdot A \cdot F(x_{i,0})-C \cdot \frac{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}{N}+\frac{\beta}{1-\beta} P \cdot A \cdot F(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}})$
+
+First-order condition: $P \cdot A \cdot F'(x_{i,0})-\frac{C}{N}+\frac{\beta}{1-\beta}[P \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0}+\begin{matrix} \sum  x_{-i,0} \end{matrix})^2}]=0$
+
+where $f(\cdot)$ is the differential function of $F(\cdot)$.
+
+The optimal water use in province i at t=0 $\widetilde x_{i,0}^*$ satisfies $P \cdot A \cdot F'(x_{i,0})=\frac{C}{N}-\frac{\beta}{1-\beta} \cdot P \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$,
+i.e.,
+$A \cdot F'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$.
+
+Since $F'>0$ and $F''<0$, $\widetilde x_i^*>\hat x_i^*>x_i^*$, taken others' water use $x_{-i,0}$ as given. Since the provincial water use decisions are exactly symmetric, total water use would increase when each province has higher incentives for current water use.
+
+%Proposition 1
+Proof of Proposition 1:
+
+Because $F'>0$ and $F''(x)<0$ is monotonically decreasing, based on a comparison of costs and benefits for stakeholders (provinces) in the three cases,
+
+$\widetilde x_i^*>\hat x_i^*>x_i^*$.
+
+The result of $\hat x_i^*>x_i^*$ indicates that individual rationality would deviate from collective rationality under unclear property rights where a water user is fully responsible for the relevant costs. The result of $\hat x_i^*>x_i^*$
+
+The difference between $ x_i^*$ and $\hat x_i^*$ stems from two parts: the effect of the marginal returns and the effect of the marginal costs. First, the ``shadow value'' provides additional marginal returns of water use in $t$ = 0, which increases the incentives of water overuse by encouraging bargaining for a larger quota. Second, the future cost of water use would be degraded from $\frac{P}{N}$ to an irrelevant cost.
+
+%Proposition 2
+Proof of Proposition 2:
+
+Since $A_H>A_L$, $F'(x_H)<F'(x_L)$,
+Eq.(xxx) %此处引用：$AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix})^2}$
+implies a positive relation between $x_{i0}$ and A, when $\beta, P, C, Q$, and other provinces' water use are taken as given.
+
+The difference between $\widetilde x_i^*$ and $\hat x_i^*$ (i.e., $\frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$) represents the incentive of water overuse derived from an expectation of water quota allocation. The incentive of water overuse increases by A.
+\end{case_appendix}
+
+
+\section{Appendix~D: Model extensions}\label{secS5}
+\renewcommand{\thefigure}{D\arabic{figure}}
+\renewcommand{\thetable}{D\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+%Model extension部分
+Using the marginal benefits analysis (see the Methods section in the main text), we also explored the response of stakeholders to water quota policies. We considered two additional scenarios for stakeholders: technology growth and one that felt different valuations through time (via the discount rate) of economic benefits and ecological costs. In the following scenarios, the cost is assumed to be untransferable, which could be fully allocated to the one incurring the water use. Explaining plausible scenarios for these stakeholders will help us better understand the causes of water overuse and potential solutions. We argue that water overuse remains robust even if a complete and equitable system.
+
+% technology growth
+    \begin{case_appendix}Forward-looking decentralized decision, taken ecology cost into considerations
+
+    Even if the negative externality of water overuse is eliminated by ``fair'' ecology cost of $\frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}} \cdot Q \cdot C$, it is possible that the future growth opportunities and ``remote" ecological costs provide enough incentive for the sprint.  Water overuse has the value of future economic benefits by slacking the water use constraint in the future. The heterogeneous production efficiency is omitted in this section, and we set A=1.
+
+(a) technology growth
+
+Assume that there is an exogenous technology growth rate of g in the scenario of $N$ provinces bargaining for water use under total quota $Q$, with unit price of output $P$, unit cost $C$, and discount factor $\beta$. For simplicity, consider a finite-period water use optimization:
+
+$ max \quad P \cdot (1+g)^t ln(1+x_{i,0})-\frac{C}{N}+\beta^t \begin{matrix} \sum_{t=1}^T [P \cdot (1+g)^t ln(x_{i,t}+1)-C \cdot x_{i,t}] \end{matrix}$
+
+$s.t. \quad x_{i,t} \leq Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}} \quad for \quad \forall t$
+
+We depict the relationship between multi-period profit and water use $x_{i,0}$ in different horizons in Figure~\ref{fig:technology}
+, and thus find out the optimal water use pattern under technology growth. The higher marginal water output might create enough incentive to offset the untransferable cost since a higher allocated quota provides growth option value. On the other hand, as the provincial decision is under a longer horizon, there is a more significant sprint effect due to higher accumulated yield and relatively tighter water use constraints over time.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{outputs/Fig3.jpg}
+    \caption{Multi-period optimization of optimal water use under technology growth. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with technology growth. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta=0.7$, $g=0.2$, and $Q=8$.}
+    \label{fig:technology}
+\end{figure}
+
+(b) Economic benefits and ``remote'' ecological costs with different discount factors
+
+Assuming that there is a high discount rate for economic benefits and a low discount rate for ecological costs, in the scenario of $N$ provinces bargaining for water use under total quota $Q$, with unit price of output $P$, unit cost $C$, discount factor $\beta^{economy}$ and $\beta^{ecology}$ ($\beta^{economy} > \beta^{ecology}$). For simplicity, consider the following finite-period water use optimization, noting the water use of province $i$ at period $t$:
+
+$ max \quad P \cdot ln(1+x_{i,0})-\frac{C}{N}+\beta_1^t \begin{matrix} \sum_{t=1}^T [P \cdot ln(x_{i,t}+1)]  \end{matrix} - \beta_2^t \begin{matrix} \sum_{t=1}^T [C \cdot x_{i,t}] \end{matrix}$
+
+$s.t. \quad x_{i,t} \leq Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}} \quad for \quad \forall t$
+
+We depict the relationship of multi-period net income and water use $x_{i,0}$ in different horizons in Figure~\ref{fig:remote}
+, and thus find out the optimal water use pattern under ``remote'' ecological costs. The higher discounted ecological costs might create enough incentive to set off the untransferable cost. On the other hand, as the provincial decision is under a longer horizon, a more significant sprint effect is due to a higher accumulated yield.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{outputs/Fig4.jpg}
+    \caption{Multi-period optimization of water use under ``remote'' ecological cost. The figure depicts the relationship of multi-period benefits of province $i$ and water use under Case 3 with ``remote'' ecological cost. Assume $F(x)=ln(1+x)$, $N=8$, $P=1$, $C=0.5$, $\beta_{economy}=0.7$, $\beta_{ecology}=0.3$, and $Q=8$.}
+    \label{fig:remote}
+\end{figure}
+
+\end{case_appendix}
+
+
+%% Put the bibliography here, most people will use BiBTeX in
+%% which case the environment below should be replaced with
+%% the \bibliography{} command.
+% \newpage
+% \newpage
+% \bibliography{../mybib}
+% \bibliographystyle{sn-standardnature}
+% \label{bib}
+\end{document}
