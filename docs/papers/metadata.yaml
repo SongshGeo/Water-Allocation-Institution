@@ -1,17 +1,17 @@
 # metadata
 title: Institutional shifts and sustainable water use of the Yellow River Basin
-abstract: Increasing competition for water is leading to depletion of freshwater globally and calls for an urgent transformation of water governance. To better understand how institutions contribute to water governance, we quantified institutional shifts for the Yellow River Basin (YRB).  The YRB is a valuable case study because it is one of the most anthropogenically altered large river basins. It was first overdrawn, then dried up, and finally has been successfully restored. Our results suggest that two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), framed different social-ecological system (SES) structures. During the decade following the introduction of the 87-WAS, observed water use of the YRB increased by $8.57\%$ more than expected while 98-UBR successfully decreased total water use, ultimately. Specifically, 87-WAS stimulated increased water use in some provinces (e.g., Inner Mongolia, Henan, and Shandong), but 98-UBR regulated nearly all provinces. A mathematical marginal benefits model supports the hypothesis that regional variations were driven by SES structural changes. The quasi-natural experimental setting of the YRB and its significant structural changes over time offer deep insights into the links between SESs structures and outcomes, providing valuable guidelines for SESs worldwide that are facing water depletion.
+abstract: Increasing competition for water is leading to the depletion of freshwater globally and calls for efficient institutions in water governance. Alignments of social-ecological system (SES) structures are a crucial approach to institutional matches, but an understanding of its causal links and underlying processes still needs to be improved. To fill these knowledge gaps, we select the Yellow River Basin (YRB) in China as a typical case study to quantitatively measure the effects of SES structures changing because it is one of the most anthropogenically altered large river basins. Under different surface water allocation institutions, its streamflow was first overdrawn, dried up, and successfully restored. We focused on two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), which re-framed different SES structures. We conduct counterfactual identification on the effect of these institutional shifts; our results suggested that during the decade following the introduction of the 87-WAS, observed water use of the YRB increased by 8.57% more than expected, while 98-UBR ultimately decreased total water use. Furthermore, these heterogeneous effects of water use responses to SES structures aligned with our further theoretical marginal benefits analysis, supporting the hypothesis that SES structural changes played a vital role. This quasi-natural experiment on the YRB offers profound insights into the links between SESs structures and outcomes, suggesting that fragmented ecological units linked to separated social actors should be avoided for sustainability.
 
-target journal: National Science Review
-current version: 2.1.0
+target journal: Ecology & Society
+current version: 3.0.1
 
 
 keywords: [
-    Yellow River,
-    water use,
-    water governance,
     social-ecological system,
+    water governance,
+    water use,
     institutional fit,
+    Yellow River,
 ]
 
 authors:
