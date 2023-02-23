@@ -165,4 +165,3 @@ if __name__ == "__main__":
     exp2.load_from_pickle()
     sc_analysis = exp2.do_analysis(model=do_synth_analysis, notification=True)
     exp2.drop_exp_to_pickle()
-    pass

@@ -13,8 +13,8 @@ import pickle
 
 import yaml
 from attrs import define, field
+from cos import notify_me_finished
 
-from .src.tools import send_finish_message
 from .unit_base import ItemBase, UnitBase
 
 
@@ -91,13 +91,9 @@ class Experiment(object):
             root = parameters.get("root")
             os.chdir(root)
             if not results_path:
-                results_path = os.path.join(
-                    root, parameters.get("results_path")
-                )
+                results_path = os.path.join(root, parameters.get("results_path"))
             if not experiment_path:
-                experiment_path = os.path.join(
-                    root, parameters.get("experiment_path")
-                )
+                experiment_path = os.path.join(root, parameters.get("experiment_path"))
             file.close()
 
         # basic attributions
@@ -116,12 +112,8 @@ class Experiment(object):
         # setup paths
         self.paths["root"] = root
         self.paths["yaml"] = os.path.abspath(yaml_file)
-        self.paths["experiment"] = os.path.abspath(
-            os.path.join(root, experiment_path)
-        )
-        self.paths["results"] = os.path.abspath(
-            os.path.join(root, results_path)
-        )
+        self.paths["experiment"] = os.path.abspath(os.path.join(root, experiment_path))
+        self.paths["results"] = os.path.abspath(os.path.join(root, results_path))
         self.paths["log"] = os.path.join(root, f"{self.log.name}.log")
 
         for dataset in self.datasets.keys():
@@ -134,17 +126,12 @@ class Experiment(object):
                 continue
             if not os.path.exists(path):
                 os.mkdir(path)
-                self.log.warning(
-                    f"{key} folder made in {os.path.dirname(path)}."
-                )
+                self.log.warning(f"{key} folder made in {os.path.dirname(path)}.")
 
     def get_path(self, key="experiment", absolute=True):
         path = self.paths.get(key)
         root = self.paths.get("root")
-        if absolute:
-            return path
-        else:
-            return os.path.relpath(path, root)
+        return path if absolute else os.path.relpath(path, root)
 
     def change_experiment_logger(self, exp_log):
         """
@@ -164,7 +151,8 @@ class Experiment(object):
         self.paths["log"] = os.path.join(exp_path, f"{self.name}.log")
         return exp_log
 
-    def do_experiment(self, model=None, notification=False):
+    @notify_me_finished
+    def do_experiment(self, model=None):
         """
         Main func, do experiment.
         :param model: how to do the experiment.
@@ -180,11 +168,6 @@ class Experiment(object):
         result = self.model(self.datasets, self.parameters)
         self.state = "finished"
         log.info("End experiment.")
-
-        # Send a message to my phone for notification.
-        if notification:
-            sent = send_finish_message(self.name)
-            log.info(f"Notification sending msg: {sent['errmsg']}.")
 
         # Save results.
         self.result = result
@@ -238,24 +221,20 @@ class Experiment(object):
             else:
                 category = "Unknown"
             categories.append(category)
-        return [(n, c) for n, c in zip(names, categories)]
+        return list(zip(names, categories))
 
     def update(self, attr=None, val=None, msg="Nothing."):
         """Update something."""
         flag = False
         if not attr and not val:
-            self._updated_time = datetime.datetime.now().strftime(
-                self._strftime
-            )
+            self._updated_time = datetime.datetime.now().strftime(self._strftime)
             self.log.info(f"Updated: {msg}")
             return flag
         old_val = getattr(self, attr)
         if val != old_val:
             flag = True
             setattr(self, attr, val)
-            self._updated_time = datetime.datetime.now().strftime(
-                self._strftime
-            )
+            self._updated_time = datetime.datetime.now().strftime(self._strftime)
             self.log.info(f"{attr} changed to {val} at {self._updated_time}.")
         return flag
 
@@ -283,20 +262,14 @@ class Experiment(object):
         self.description = parameters.get("description")
         return new
 
+    @notify_me_finished
     def do_analysis(self, model, notification=False):
         self.update(msg=f"Start analysis {model.__name__}")
         result = model(self, self.parameters, self.analysis)
         self.update(msg=f"End analysis {model.__name__}.")
         self.result = result
         self.update("state", "analyzed")
-        if notification:
-            sent = send_finish_message(self.name)
-            self.update(msg=f"Notification sending msg: {sent['errmsg']}.")
         return self.state
 
     def save(self, model, notification=False):
         pass
-
-
-if __name__ == "__main__":
-    pass

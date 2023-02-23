@@ -18,13 +18,13 @@ geopandas = "^0.12.2"
 pyyaml = "^6.0"
 tqdm = "^4.64.1"
 syntheticcontrolmethods = "^1.1.17"
-pca = "^1.9.1"
 pingouin = "^0.5.3"
 rasterio = "^1.3.6"
 pygam = "^0.8.0"
 bidict = "^0.22.1"
 prettytable = "^3.6.0"
 cos = { git = "git@github.com:SongshGeo/tencent-cos-manipulations.git", branch = "main" }
+pca = "^1.9.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.1"

@@ -56,7 +56,7 @@ class ExpResultsHandler(Experiment):
             obj = getattr(experiment, attr)
             if attr.startswith("__"):
                 continue
-            if any([check(obj) for check in checks]):
+            if any(check(obj) for check in checks):
                 continue
             val = getattr(experiment, attr)
             setattr(self, attr, val)
@@ -80,23 +80,25 @@ class ExpResultsHandler(Experiment):
             dataset[f"{province}_synth"] = synth_data
             dataset[f"{province}_actual"] = actual_data
         if save:
-            path = os.path.join(
-                self.paths.get("results"),
-                f"{self.name}_diff.csv",
-            )
-            self.log.info("Saved diff dataset into csv.")
-            dataset.to_csv(path)
-            self.add_item("dfs", "diff", dataset)
-            self.add_item("paths", "diff_csv", path)
-            self.add_item("datasets", "diff_csv", path)
+            self._extracted_from_transfer_exp_pickle_to_data_16(dataset)
         return dataset
+
+    # TODO Rename this here and in `transfer_exp_pickle_to_data`
+    def _extracted_from_transfer_exp_pickle_to_data_16(self, dataset):
+        path = os.path.join(
+            self.paths.get("results"),
+            f"{self.name}_diff.csv",
+        )
+        self.log.info("Saved diff dataset into csv.")
+        dataset.to_csv(path)
+        self.add_item("dfs", "diff", dataset)
+        self.add_item("paths", "diff_csv", path)
+        self.add_item("datasets", "diff_csv", path)
 
     def get_statistic_df(self, save=False):
         provinces = self.result.keys()
         data = self.transfer_exp_pickle_to_data()
-        start, end = self.parameters.get("treat_year"), self.parameters.get(
-            "end"
-        )
+        start, end = self.parameters.get("treat_year"), self.parameters.get("end")
         statistic = pd.DataFrame(index=provinces)
         for province in provinces:
             diff = data[f"{province}_actual"] - data[f"{province}_synth"]
@@ -169,9 +171,7 @@ class ExpResultsHandler(Experiment):
         sc.plot(panels)
 
     def panel_plots(self, how="original", save_path=None, **kwargs):
-        fig, (axs1, axs2) = plt.subplots(
-            2, 4, figsize=(16, 8), constrained_layout=True
-        )
+        fig, (axs1, axs2) = plt.subplots(2, 4, figsize=(16, 8), constrained_layout=True)
         axs = []
         axs.extend(axs1)
         axs.extend(axs2)
@@ -182,7 +182,6 @@ class ExpResultsHandler(Experiment):
         if save_path:
             self.log.info(f"Panel plots saved in {save_path}.")
             fig.save(save_path, dpi=300)
-        pass
 
     def outcome_panel_data(self, outcome_var, save=False, plot=False):
         params = self.parameters
@@ -204,17 +203,19 @@ class ExpResultsHandler(Experiment):
             datasets.append(df)
         dataset = pd.concat(datasets)
         if save:
-            name = f"panel_{outcome_var}"
-            path = os.path.join(
-                self.get_path("results", absolute=True), f"{name}.csv"
-            )
-            dataset.to_csv(path)
-            self.add_item("paths", name, path)
-            self.add_item("datasets", name, path)
-            self.log.info(f"{name} dataframe saved.")
+            self._extracted_from_outcome_panel_data_21(outcome_var, dataset)
         if plot:
             self.plot_grid(dataset)
         return dataset
+
+    # TODO Rename this here and in `outcome_panel_data`
+    def _extracted_from_outcome_panel_data_21(self, outcome_var, dataset):
+        name = f"panel_{outcome_var}"
+        path = os.path.join(self.get_path("results", absolute=True), f"{name}.csv")
+        dataset.to_csv(path)
+        self.add_item("paths", name, path)
+        self.add_item("datasets", name, path)
+        self.log.info(f"{name} dataframe saved.")
 
     def plot_grid(self, panel_df, save_path=None):
         grid = sns.FacetGrid(
@@ -224,9 +225,7 @@ class ExpResultsHandler(Experiment):
             height=3,
         )
 
-        grid.map(
-            plt.axvline, x=self.parameters.get("treat_year"), ls=":", c=".5"
-        )
+        grid.map(plt.axvline, x=self.parameters.get("treat_year"), ls=":", c=".5")
         grid.map(
             plt.plot,
             "Year",
@@ -307,9 +306,7 @@ class ExpResultsHandler(Experiment):
         if not placebo_time:
             placebo_time = self.parameters.get("placebo_time")
         for province in self.provinces:
-            self.result[province].in_time_placebo(
-                placebo_time, n_optim=n_optim
-            )
+            self.result[province].in_time_placebo(placebo_time, n_optim=n_optim)
         return self.result
 
     def do_in_place_placebo(self, n_optim=None):
@@ -326,7 +323,6 @@ class ExpResultsHandler(Experiment):
             result = exp_copy.do_in_time_placebo(placebo_time=year)
             self.time_placebo_results[year] = result
             self.log.info(f"In time placebo done in {year}.")
-        pass
 
     def summarize_analysis(self):
         df_synth = pd.DataFrame()
@@ -423,9 +419,7 @@ class ExpResultsHandler(Experiment):
             s=50,
             alpha=0.4,
         )
-        y_sim_obs, k_obs = get_optimal_fit_linear(
-            obs_post.index, obs_post.values
-        )
+        y_sim_obs, k_obs = get_optimal_fit_linear(obs_post.index, obs_post.values)
         ax.plot(
             obs_post.index,
             y_sim_obs,
@@ -433,9 +427,7 @@ class ExpResultsHandler(Experiment):
             lw=2,
             ls="--",
         )
-        y_sim_syn, k_syn = get_optimal_fit_linear(
-            syn_post.index, syn_post.values
-        )
+        y_sim_syn, k_syn = get_optimal_fit_linear(syn_post.index, syn_post.values)
         ax.plot(
             syn_post.index,
             y_sim_syn,
@@ -455,7 +447,7 @@ class ExpResultsHandler(Experiment):
                 ls=":",
                 lw=4,
                 color=NATURE_PALETTE["NG"],
-                label="Policy: {}".format(treat),
+                label=f"Policy: {treat}",
             )
         ax.set_xlabel("")
 
@@ -516,9 +508,7 @@ class ExpResultsHandler(Experiment):
         ax3.set_xlim(0, 1)
 
         for i in range(3):
-            ax2.axhspan(
-                i - 0.3, i + 0.3, color=NATURE_PALETTE["Nature"], alpha=0.05
-            )
+            ax2.axhspan(i - 0.3, i + 0.3, color=NATURE_PALETTE["Nature"], alpha=0.05)
 
         ax2.set_xlabel("")
         ax2.set_xticklabels("")
@@ -598,10 +588,7 @@ class ExpResultsHandler(Experiment):
         ax2.set_ylim(-0.5, len(items) - 0.5)
         ax3.set_ylim(-0.5, len(items) - 0.5)
         ax2.set_yticklabels(labels)
-        ax3.set_xticks(
-            ticks=np.arange(0, 1.1, 0.5), labels=["1.0", "0.5", "0.0"]
-        )
-        pass
+        ax3.set_xticks(ticks=np.arange(0, 1.1, 0.5), labels=["1.0", "0.5", "0.0"])
         return ax1, ax2, ax3
 
 

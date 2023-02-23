@@ -12,12 +12,11 @@ from collections import OrderedDict
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+import pygam
 import xarray as xr
 import yaml
 from affine import Affine
 from matplotlib import pyplot as plt
-from qcloudsms_py import SmsSingleSender
-from qcloudsms_py.httpclient import HTTPError
 from rasterio import features
 
 
@@ -25,43 +24,6 @@ def save_dict_to_yaml(dict_value: dict, save_path: str):
     """dict to yaml"""
     with open(save_path, "w") as file:
         file.write(yaml.dump(dict_value, allow_unicode=True, sort_keys=False))
-
-
-def send_finish_message(num):
-    """
-    Send message to myself as notification.
-    :param num: experiment num
-    :return: dict, sending result from the network.
-    """
-    # 短信应用SDK AppID
-    appid = 1400630042  # SDK AppID是1400开头
-    # 短信应用SDK AppKey
-    app_key = "ad30ec46aa617263813ca8996e1a0113"
-    # 需要发送短信的手机号码
-    phone_numbers = ["18500685922"]
-    # 短信模板ID，需要在短信应用中申请
-    template_id = 1299444
-    # 签名
-    sms_sign = "隅地公众号"
-
-    s_sender = SmsSingleSender(appid, app_key)
-    params = [num]  # 当模板没有参数时，`params = []`
-    try:
-        result = s_sender.send_with_param(
-            86,
-            phone_numbers[0],
-            template_id,
-            params,
-            sign=sms_sign,
-            extend="",
-            ext="",
-        )  # 签名参数不允许为空串
-        print(result)
-        return result
-    except HTTPError as e:
-        print(e)
-    except Exception as e:
-        print(e)
 
 
 # 使用图片的比例来定位
@@ -156,9 +118,7 @@ def rasterize(
         **kwargs,
     )
     spatial_coords = {latitude: coords[latitude], longitude: coords[longitude]}
-    return xr.DataArray(
-        raster, coords=spatial_coords, dims=(latitude, longitude)
-    )
+    return xr.DataArray(raster, coords=spatial_coords, dims=(latitude, longitude))
 
 
 def add_shape_coord_from_data_array(xr_da, shp_path, coord_name):
@@ -189,23 +149,13 @@ def add_shape_coord_from_data_array(xr_da, shp_path, coord_name):
 
 
 def within_province_mask(provinces, ds, var, **kwargs):
-    # TODO finish the doc
-    """
-    Transform NetCDF datasets (ds) masked by provinces.shp into Chinese map
-    :param provinces:
-    :param ds:
-    :param kwargs:
-    :return:
-    """
     provinces_ids = {k: i for i, k in enumerate(provinces.NAME)}
     shapes = [(shape, n) for n, shape in enumerate(provinces.geometry)]
     ds["states"] = rasterize(shapes, ds.coords, **kwargs)
     result = pd.DataFrame()
     for province in provinces_ids:
         data = (
-            ds[var]
-            .where(ds.states == provinces_ids[province])
-            .mean(dim=["lat", "lon"])
+            ds[var].where(ds.states == provinces_ids[province]).mean(dim=["lat", "lon"])
         )
         index = pd.DatetimeIndex(ds.time).strftime("%Y")
         result[province] = pd.Series(data, index=index)
@@ -237,17 +187,16 @@ def show_files(path, all_files=None, full_path=False, suffix=None):
         if isinstance(suffix, str):
             judge = not cur_path.endswith(suffix)
         else:
-            judge = all([not cur_path.endswith(suf) for suf in suffix])
+            judge = all(not cur_path.endswith(suf) for suf in suffix)
         if judge:
             continue
         # 判断是否是文件夹
         if os.path.isdir(cur_path):
             show_files(cur_path, all_files, full_path)
+        elif full_path:
+            all_files.append(cur_path)
         else:
-            if full_path:
-                all_files.append(cur_path)
-            else:
-                all_files.append(file)
+            all_files.append(file)
     return all_files
 
 
@@ -266,19 +215,12 @@ def plot_gam_and_interval(
     if not ax:
         fig, ax = plt.subplots()
 
-    import pygam
-
     X = x.reshape(-1, 1)
 
     gam = pygam.LinearGAM(n_splines=25).gridsearch(X, y)
     XX = gam.generate_X_grid(term=0, n=500)
 
-    ax.plot(
-        XX,
-        gam.predict(XX),
-        color=main_color,
-        label="{} GAM Fitted".format(y_label),
-    )  # 拟合曲线
+    ax.plot(XX, gam.predict(XX), color=main_color, label=f"{y_label} GAM Fitted")
     ax.scatter(X, y, facecolor=main_color, alpha=scatter_alpha, label="")  # 散点
 
     if err_space:
@@ -297,5 +239,5 @@ def plot_gam_and_interval(
             err[:, 1],
             color=err_color,
             alpha=alpha,
-            label="{} Confidence interval".format(y_label),
+            label=f"{y_label} Confidence interval",
         )
