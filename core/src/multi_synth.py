@@ -11,7 +11,6 @@ from typing import Iterable, Optional
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import pingouin as pg
 from cos import notify_me_finished
 from SyntheticControlMethods import DiffSynth, Synth
 

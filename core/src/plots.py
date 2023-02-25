@@ -212,25 +212,14 @@ def basic_plot(
         min_value = min(np.min(data.treated_outcome_all), np.min(data.synth_outcome))
 
         # Make plot
-        ax.set_title("{} vs. {}".format(treated_label, synth_label))
+        ax.set_title(f"{treated_label} vs. {synth_label}")
         ax.plot(time, synth.T, "r--", label=synth_label)
         ax.plot(time, data.treated_outcome_all, "b-", label=treated_label)
         ax.axvline(data.treatment_period - 1, linestyle=":", color="gray")
         ax.set_ylim(
             -1.2 * abs(min_value), 1.2 * abs(max_value)
         )  # Do abs() in case min is positive, or max is negative
-        # ax.annotate(treatment_label,
-        #             # Put label below outcome if pre-treatment trajectory is decreasing, else above
-        #             xy=(data.treatment_period - 1, data.treated_outcome[-1] * (
-        #                         1 + 0.2 * np.sign(data.treated_outcome[-1] - data.treated_outcome[0]))),
-        #             xytext=(-160, -4),
-        #             xycoords='data',
-        #             textcoords='offset points',
-        #             arrowprops=dict(arrowstyle="->"))
-        ax.set_ylabel(data.outcome_var)
-        ax.set_xlabel(data.time)
-        ax.legend()
-
+        _better_labels(ax, data)
     if "pointwise" in how:
         # Subtract outcome of synth from both synth and treated outcome
         normalized_treated_outcome = data.treated_outcome_all - synth.T
@@ -242,16 +231,7 @@ def basic_plot(
         ax.plot(time, normalized_treated_outcome, "b-", label=treated_label)
         ax.axvline(data.treatment_period - 1, linestyle=":", color="gray")
         ax.set_ylim(-1.2 * most_extreme_value, 1.2 * most_extreme_value)
-        # ax.annotate(treatment_label,
-        #             xy=(data.treatment_period - 1, 0.5 * most_extreme_value),
-        #             xycoords='data',
-        #             xytext=(-160, -4),
-        #             textcoords='offset points',
-        #             arrowprops=dict(arrowstyle="->"))
-        ax.set_ylabel(data.outcome_var)
-        ax.set_xlabel(data.time)
-        ax.legend()
-
+        _better_labels(ax, data)
     if "cumulative" in how:
         normalized_treated_outcome = data.treated_outcome_all - synth.T
         # Compute cumulative treatment effect as cumulative sum of pointwise effects
@@ -268,17 +248,7 @@ def basic_plot(
         ax.plot(time, normalized_synth, "r--", label=synth_label)
         ax.plot(time, cummulative_treated_outcome, "b-", label=treated_label)
         ax.axvline(data.treatment_period - 1, linestyle=":", color="gray")
-        # ax.set_ylim(-1.1*most_extreme_value, 1.1*most_extreme_value)
-        # ax.annotate(treatment_label,
-        #             xy=(data.treatment_period - 1, cummulative_treated_outcome[-1] * 0.3),
-        #             xycoords='data',
-        #             xytext=(-160, -4),
-        #             textcoords='offset points',
-        #             arrowprops=dict(arrowstyle="->"))
-        ax.set_ylabel(data.outcome_var)
-        ax.set_xlabel(data.time)
-        ax.legend()
-
+        _better_labels(ax, data)
     if "in-space placebo" in how:
         # assert self.in_space_placebos != None, "Must run in_space_placebo() before you can plot!"
 
@@ -304,10 +274,7 @@ def basic_plot(
         ax.axvline(data.treatment_period - 1, linestyle=":", color="gray")
         ax.plot(time, normalized_treated_outcome, "b-", label=treated_label)
 
-        ax.set_ylabel(data.outcome_var)
-        ax.set_xlabel(data.time)
-        ax.legend()
-
+        _better_labels(ax, data)
     if "rmspe ratio" in how:
         assert (
             data.rmspe_df.shape[0] != 1
@@ -337,23 +304,27 @@ def basic_plot(
         ax.set_xlabel("Postperiod RMSPE / Preperiod RMSPE")
 
     if "in-time placebo" in how:
-        ax.set_title("In-time placebo: {} vs. {}".format(treated_label, synth_label))
+        ax.set_title(f"In-time placebo: {treated_label} vs. {synth_label}")
 
         ax.plot(time, data.in_time_placebo_outcome.T, "r--", label=synth_label)
         ax.plot(time, data.treated_outcome_all, "b-", label=treated_label)
 
         ax.axvline(data.placebo_treatment_period, linestyle=":", color="gray")
-        # ax.annotate('Placebo Treatment',
-        #             xy=(data.placebo_treatment_period,
-        #                 data.treated_outcome_all[data.placebo_periods_pre_treatment] * 1.2),
-        #             xytext=(-160, -4),
-        #             xycoords='data',
-        #             textcoords='offset points',
-        #
-        #             arrowprops=dict(arrowstyle="->"))
-        ax.set_ylabel(data.outcome_var)
-        ax.set_xlabel(data.time)
-        ax.legend()
+        _better_labels(ax, data)
+
+
+def _better_labels(ax, data):
+    # ax.annotate(treatment_label,
+    #             # Put label below outcome if pre-treatment trajectory is decreasing, else above
+    #             xy=(data.treatment_period - 1, data.treated_outcome[-1] * (
+    #                         1 + 0.2 * np.sign(data.treated_outcome[-1] - data.treated_outcome[0]))),
+    #             xytext=(-160, -4),
+    #             xycoords='data',
+    #             textcoords='offset points',
+    #             arrowprops=dict(arrowstyle="->"))
+    ax.set_ylabel(data.outcome_var)
+    ax.set_xlabel(data.time)
+    ax.legend()
 
 
 def correlation_analysis(data, xs, y, ax=None, covar=True, method="pearson", **kwargs):
