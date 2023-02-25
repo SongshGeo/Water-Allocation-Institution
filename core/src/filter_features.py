@@ -8,10 +8,10 @@
 import numpy as np
 import pandas as pd
 from pca import pca
-from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 def my_scale(data):
+    """对给定的数据进行标准化处理，返回标准化后的数据。"""
     mean = np.mean(data, axis=0)
     std = np.std(data, axis=0)
     return (data - mean) / std
@@ -58,22 +58,3 @@ def transform_features(transform_data, features, fitted_model, normalize=True):
     result = result.drop("index", axis=1)
     result.index = transformed_data.index
     return result
-
-
-def filter_features_by_vif(df, params):
-    def calculate_vif(df):
-        vif = pd.DataFrame()
-        vif["index"] = df.columns
-        vif["VIF"] = [
-            variance_inflation_factor(df.values, i) for i in range(df.shape[1])
-        ]
-        return vif
-
-    threshold = params["threshold"]
-    if params["normalize"]:
-        df = pd.DataFrame(my_scale(df), index=df.index, columns=df.columns)
-    vif = calculate_vif(df)
-    while (vif["VIF"] > threshold).any():
-        remove = vif.sort_values(by="VIF", ascending=False)["index"][:1].values[0]
-        df.drop(remove, axis=1, inplace=True)
-        vif = calculate_vif(df)

@@ -1,16 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/env python 3.11.0
 # -*-coding:utf-8 -*-
-# Created date: 2022/3/4
-# @Author  : Shuang Song
+# @Author  : Shuang (Twist) Song
 # @Contact   : SongshGeo@gmail.com
 # GitHub   : https://github.com/SongshGeo
-# Research Gate: https://www.researchgate.net/profile/Song_Shuang9
+# Website: https://cv.songshgeo.com/
 
-
+import matplotlib.pyplot as plt
 import numpy as np
-from attrs import define, field
+import pingouin as pg
 
-from .src.tools import get_optimal_fit_linear
+from .tools import get_optimal_fit_linear
 
 # 自定义配色
 NATURE_PALETTE = {
@@ -24,40 +23,100 @@ NATURE_PALETTE = {
 }
 
 
-@define
-class BeautyPlot(object):
-    elements: dict = field(factory=dict, repr=True)
-    beauty_dicts: dict = field(factory=dict, repr=False)
+def plot_pre_post(
+    data,
+    treat,
+    ylabel,
+    ax=None,
+    figsize=(4, 3),
+    axvline=True,
+):
+    synth, actual = data["Synth"], data["Origin"]
+    if not ax:
+        _, ax = plt.subplots(figsize=figsize)
 
-    def add_beauty_dict(self, label, beauty_dict):
-        self.beauty_dicts[label] = beauty_dict
-        return f"{beauty_dict} added."
+    # prepare data
+    obs_pre = actual.loc[:treat]
+    obs_post = actual.loc[treat:]
+    syn_pre = synth.loc[:treat]
+    syn_post = synth.loc[treat:]
 
-    def get_beauty_dict(self, label):
-        return self.beauty_dicts.get(label)
+    # plots
+    ax.plot(
+        obs_pre.index,
+        obs_pre,
+        color=NATURE_PALETTE["NCC"],
+        marker="o",
+        lw=2,
+        zorder=2,
+        label="Observation",
+    )
+    ax.plot(
+        syn_pre.index,
+        syn_pre,
+        color="lightgray",
+        marker="o",
+        lw=2,
+        zorder=1,
+        label="Prediction",
+    )
+    ax.scatter(
+        syn_post.index,
+        syn_post,
+        color="gray",
+        edgecolor=NATURE_PALETTE["Nature"],
+        alpha=0.4,
+        s=50,
+    )
+    ax.scatter(
+        obs_post.index,
+        obs_post,
+        color=NATURE_PALETTE["NCC"],
+        edgecolor=NATURE_PALETTE["NCC"],
+        s=50,
+        alpha=0.4,
+    )
+    y_sim_obs, k_obs = get_optimal_fit_linear(obs_post.index, obs_post.values)
+    ax.plot(
+        obs_post.index,
+        y_sim_obs,
+        color=NATURE_PALETTE["NCC"],
+        lw=2,
+        ls="--",
+    )
+    y_sim_syn, k_syn = get_optimal_fit_linear(syn_post.index, syn_post.values)
+    ax.plot(
+        syn_post.index,
+        y_sim_syn,
+        color="gray",
+        lw=2,
+        ls="--",
+    )
 
-    def add_element(self, data, ax, how, label):
-        beauty_dict = self.get_beauty_dict(label)
-        if hasattr(self, how):
-            func_ = getattr(self, how)
-            new_elements = func_(ax=ax, data=data, label=label)
-        elif not hasattr(ax, how):
-            raise "Incorrect plotting way."
-        else:
-            func_ = getattr(ax, how)
-            element = func_(*data, **beauty_dict)
-            new_elements = (label, how)
-            self.elements[label] = element
-        return new_elements
+    # ticks
+    x_min, x_max = ax.get_xlim()
+    # ax.axvspan(x_min, treat, color=NATURE_PALETTE['NG'], alpha=0.4)
+    ax.set_xticks([(treat + x_min) / 2, (x_max + treat) / 2])
+    ax.set_xticklabels(["Before", "After"])
+    if axvline:
+        ax.axvline(
+            treat,
+            ls=":",
+            lw=4,
+            color=NATURE_PALETTE["NG"],
+            label=f"Policy: {treat}",
+        )
+    ax.set_xlabel("")
 
-    def linear_fit(self, ax, data, label):
-        beauty_points = self.get_beauty_dict(f"{label}_points")
-        beauty_line = self.get_beauty_dict(f"{label}_line")
-        scatter = ax.scatter(*data, **beauty_points)
-        y_sim = get_optimal_fit_linear(*data)
-        line = ax.plot(data[0], y_sim, **beauty_line, label=label)
-        self.elements[label] = (scatter, line)
-        return label, "linear_fit", line
+    # spines visibility
+    ax.legend()
+    ax.spines["top"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["bottom"].set_visible(True)
+    ax.set_ylabel(ylabel=ylabel)
+    ax.set_xlabel("")
+    return {"k_obs": k_obs, "k_syn": k_syn}
 
 
 def basic_plot(
@@ -149,12 +208,8 @@ def basic_plot(
 
     if "original" in how:
         # Determine appropriate limits for y-axis
-        max_value = max(
-            np.max(data.treated_outcome_all), np.max(data.synth_outcome)
-        )
-        min_value = min(
-            np.min(data.treated_outcome_all), np.min(data.synth_outcome)
-        )
+        max_value = max(np.max(data.treated_outcome_all), np.max(data.synth_outcome))
+        min_value = min(np.min(data.treated_outcome_all), np.min(data.synth_outcome))
 
         # Make plot
         ax.set_title("{} vs. {}".format(treated_label, synth_label))
@@ -236,19 +291,16 @@ def basic_plot(
         # Plot each placebo
         ax.plot(time, data.in_space_placebos[0], "0.7", label="Placebos")
         for i in range(1, data.n_controls):
-
             # If the pre rmspe is not more than
             # in_space_exclusion_multiple times larger than synth pre rmspe
-            if in_space_exclusion_multiple is not None:
-                if (
-                    data.rmspe_df["pre_rmspe"].iloc[i]
-                    < in_space_exclusion_multiple
-                    * data.rmspe_df["pre_rmspe"].iloc[0]
-                ):
-                    ax.plot(time, data.in_space_placebos[i], "0.7")
-            else:
+            if in_space_exclusion_multiple is None:
                 ax.plot(time, data.in_space_placebos[i], "0.7")
 
+            elif (
+                data.rmspe_df["pre_rmspe"].iloc[i]
+                < in_space_exclusion_multiple * data.rmspe_df["pre_rmspe"].iloc[0]
+            ):
+                ax.plot(time, data.in_space_placebos[i], "0.7")
         ax.axvline(data.treatment_period - 1, linestyle=":", color="gray")
         ax.plot(time, normalized_treated_outcome, "b-", label=treated_label)
 
@@ -285,9 +337,7 @@ def basic_plot(
         ax.set_xlabel("Postperiod RMSPE / Preperiod RMSPE")
 
     if "in-time placebo" in how:
-        ax.set_title(
-            "In-time placebo: {} vs. {}".format(treated_label, synth_label)
-        )
+        ax.set_title("In-time placebo: {} vs. {}".format(treated_label, synth_label))
 
         ax.plot(time, data.in_time_placebo_outcome.T, "r--", label=synth_label)
         ax.plot(time, data.treated_outcome_all, "b-", label=treated_label)
@@ -304,3 +354,27 @@ def basic_plot(
         ax.set_ylabel(data.outcome_var)
         ax.set_xlabel(data.time)
         ax.legend()
+
+
+def correlation_analysis(data, xs, y, ax=None, covar=True, method="pearson", **kwargs):
+    if not ax:
+        _, ax = plt.subplots()
+    p_val = []
+    r_results = []
+    for x in xs:
+        if covar:
+            covar = xs.copy()
+            covar.remove(x)
+            result = pg.partial_corr(
+                data=data, x=x, y=y, covar=covar, method=method, **kwargs
+            )
+        else:
+            result = pg.corr(data[x], data[y], method=method)
+        r_results.append(result.loc[method, "r"])
+        p_val.append(result.loc[method, "p-val"])
+    ax.bar(x=np.arange(len(r_results)), height=r_results)
+    ax.set_ylim(-1, 1)
+    ax.set_xticks(np.arange(len(r_results)))
+    ax.set_xticklabels(xs)
+    ax.set_ylabel(f"Partial Corr to {y}")
+    return r_results, p_val
