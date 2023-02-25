@@ -149,3 +149,5 @@ data
 
 # pytest & allure
 tmp
+.virtual_documents
+poetry.lock

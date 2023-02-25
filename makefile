@@ -17,6 +17,9 @@ setup-pre-commit:
 install-jupyter:
 	poetry add ipykernel --group dev
 	poetry add --group dev jupyterlab
+	poetry add jupyterlab_execute_time --group dev
+	poetry add jupyterlab-lsp --group dev
+	poetry add python-lsp-server --group dev
 
 install-tests:
 	poetry add pytest allure-pytest --group dev
