@@ -5,13 +5,11 @@
 # @Contact   : SongshGeo@gmail.com
 # GitHub   : https://github.com/SongshGeo
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
-import copy
-import inspect
+
 import os
 
 import numpy as np
 import pandas as pd
-import pingouin as pg
 import seaborn as sns
 from attrs import define, field
 from experiment import Experiment
