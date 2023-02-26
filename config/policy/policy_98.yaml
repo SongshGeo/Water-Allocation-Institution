@@ -1,6 +1,0 @@
-# adjusted parameters
-name: 流域统一调度
-start: 1987
-end: 2008
-treat_year: 1998
-placebo_time: 1995
