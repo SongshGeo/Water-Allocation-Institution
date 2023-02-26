@@ -150,6 +150,13 @@ data
 # pytest & allure
 tmp
 .virtual_documents
+
+# poetry
 poetry.lock
+
+# Hydra
 outputs
 multirun
+
+# MacOS
+.DS_Store

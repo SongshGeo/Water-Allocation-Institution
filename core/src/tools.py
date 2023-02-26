@@ -6,8 +6,11 @@
 # GitHub   : https://github.com/SongshGeo
 # Research Gate: https://www.researchgate.net/profile/Song_Shuang9
 
+import contextlib
+import io
 import os
-from collections import OrderedDict
+import sys
+from functools import wraps
 
 import geopandas as gpd
 import numpy as np
@@ -18,6 +21,27 @@ import yaml
 from affine import Affine
 from matplotlib import pyplot as plt
 from rasterio import features
+
+
+def mute_stdout(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        out = io.StringIO()
+        err = io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            try:
+                result = func(*args, **kwargs)
+            except Exception as e:
+                sys.stdout = sys.__stdout__
+                sys.stderr = sys.__stderr__
+                raise e
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
+        if err.getvalue():
+            print(err.getvalue(), file=sys.stderr)
+        return result
+
+    return wrapper
 
 
 def save_dict_to_yaml(dict_value: dict, save_path: str):
