@@ -10,8 +10,11 @@ import pandas as pd
 from pca import pca
 
 
-def my_scale(data):
-    """对给定的数据进行标准化处理，返回标准化后的数据。"""
+def my_scale(data: pd.DataFrame) -> pd.DataFrame:
+    """对给定的数据进行标准化处理。
+    $$ x_{\textit{normalized}}=\frac{x-\bar{x}}{s} $$
+    其中，$x_i$ 表示第 $i$ 个数据，$\bar{x}$ 表示数据的均值，$s$ 表示标准差。
+    """
     mean = np.mean(data, axis=0)
     std = np.std(data, axis=0)
     return (data - mean) / std
