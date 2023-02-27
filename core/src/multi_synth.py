@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from cos import notify_me_finished
+from mksci_font import mksci_font
+from src import PROVINCES_CHN2ENG
 from src.plots import plot_pre_post, save_plot
 from SyntheticControlMethods import DiffSynth, Synth
 
@@ -201,6 +203,7 @@ class OneSynth:
         # result['pre/post_p-value'] = judge_sig(, 'greater')
         return result
 
+    # @mksci_font(xlabel="均方根误差", ylabel="合成控制实验")
     def plot_rmse(self, cl=0.95, ax=None):
         if ax is None:
             _, ax = plt.subplots(figsize=(3, 4))
@@ -211,6 +214,9 @@ class OneSynth:
         colors = ["black" if unit == self.treated_unit else "gray" for unit in units]
         ax.barh(units, value, edgecolor="white", color=colors)
         ax.axvspan(res["low"], res["high"], color="red", alpha=0.4)
+        ax.set_xlabel("Root Mean Square Error (RMSE)")
+        ax.set_ylabel("Synth Control tests")
+        ax.set_yticklabels([])
         return ax
 
     def plot_trend(self, exclusion_multiple=5, ax=None):
@@ -240,6 +246,8 @@ class OneSynth:
         ax.axvline(data.treatment_period, linestyle=":", color="gray")
         normalized_treated_outcome = data.treated_outcome_all - data.synth_outcome.T
         ax.plot(self.time, normalized_treated_outcome, "b-")
+        ax.set_ylabel(f"Normalized {self.outcome_var}")
+        return ax
 
 
 class MultiSynth:
@@ -406,8 +414,11 @@ class MultiSynth:
         supported = ("rmse", "trend")
         if how not in supported:
             raise KeyError(f"Unsupported plot type: {how}.")
-        _, axes = plt.subplots(2, 4, figsize=figsize, constrained_layout=True)
+        fig, axes = plt.subplots(2, 4, figsize=figsize, constrained_layout=True)
         for i, (unit, sc) in enumerate(self.units.items()):
             ax = axes.flatten()[i]
             ax.set_title(unit)
             ax = getattr(sc, f"plot_{how}")(ax=ax, **kwargs)
+            if i not in [0, 4]:
+                ax.set_ylabel("")
+        return fig

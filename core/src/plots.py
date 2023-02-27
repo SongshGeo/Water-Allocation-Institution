@@ -116,6 +116,7 @@ def plot_pre_post(
     # ax.axvspan(x_min, treat, color=NATURE_PALETTE['NG'], alpha=0.4)
     ax.set_xticks([(treat + x_min) / 2, (x_max + treat) / 2])
     ax.set_xticklabels(["Before", "After"])
+    # ax.set_xticklabels(["政策干预前", "政策干预后"])
     if axvline:
         ax.axvline(
             treat,

@@ -193,6 +193,7 @@ def plot_comprehensive_fig1(exp87, exp98, cfg: DictConfig):
         handleheight=1.5,
         markerscale=0.7,
     )
+    return fig
 
 
 @save_plot
@@ -278,17 +279,6 @@ def comparison_plot(compare_df):
     xticklabels = index.to_list()
     ax1.set_xticks(range(len(xticklabels)))
     ax1.set_xticklabels(xticklabels)
-    claen_labels = []
-    for label in ax1.get_xticklabels():
-        text = label.get_text()
-        if text == "Neimeng":
-            text = "Inner\nMongolia"
-        elif text == "Shanxi":
-            text = "Shaanxi"
-        elif text == "Shaanxi":
-            text = "Shanxi"
-        claen_labels.append(text)
-    ax1.set_xticklabels(claen_labels)
     ax1.set_ylabel("Extra WU over the estimation")
     ax2.set_ylabel("WU ratio")
     #### 辅助线 ========
@@ -332,3 +322,4 @@ def comparison_plot(compare_df):
         labels=legend_labels,
         handletextpad=1.5,
     )
+    return fig
