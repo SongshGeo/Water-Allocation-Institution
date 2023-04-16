@@ -1,4 +1,24 @@
-\documentclass[default, sn-standardnature]{sn-jnl}
+% chktex-file 46
+\documentclass[preprint, 12pt]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
 \usepackage{amsmath, graphicx, array}
 \usepackage{dcolumn, soul}%
 \let\openbox\relax
@@ -7,11 +27,11 @@
 \usepackage{algorithm, algorithmicx, algpseudocode}
 \usepackage{listings}%
 \usepackage{hyperref}
-\newgeometry{left=2cm, right=2cm}
+
+% 行距
 \linespread{1.5}
 % \usepackage[nofiglist,notablist]{endfloat}
-\makeatletter
-\def\uns{\ifmmode\,\else$\,$\fi}%
+% \def\uns{\ifmmode\,\else$\,$\fi}%
 \newtheorem{defn}{Definition}
 \newtheorem{thm}{Theorem}
 \newtheorem{ass}{Assumption}
@@ -27,15 +47,10 @@
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{multirow}
-\usepackage{lineno}
-\setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
-\setitemize{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
-\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
-
+% \usepackage{lineno}
 \usepackage{booktabs}
 \usepackage{diagbox}
 %%
-\makeatother
 
 % \jvol{XX}
 % \jnum{X}
@@ -45,61 +60,83 @@
 % \revised{XX XX Year}
 % \accepted{XX XX Year}
 
-\markboth{One, Two, and Three}{One, Two, and Three}
+% \markboth{One, Two, and Three}{One, Two, and Three}
 \graphicspath{{../../../figs/}}
+\journal{Jounral of Hydrology}
 
 \begin{document}
-\normalsize
+\begin{frontmatter}
+% \normalsize
 % \dhead{RESEARCH ARTICLE}
 % \subhead{EARTH SCIENCES}
 
 % \bibliographystyle{../nsr}
-
-\title{Approaching causal linkages between SES structures and outcomes of the Yellow River Basin, China}  %! Notice Input
-
-
-\author{Shuang Song$^{1}$}
-\author{Huiyu Wen$^2$}
-\author{*Shuai Wang$^{1}$}
-\author{Xutong Wu$^{1}$}
-
-\author{Graeme S. Cumming$^{3}$}
-\author{Bojie Fu$^{1}$}
+% 社会水文学专刊地址
+% https://www.sciencedirect.com/journal/journal-of-hydrology/about/call-for-papers#grounded-sociohydrology
+\title{Achieving Effective River Basin Governance: Examining Institutional Shifts and Incentives in the Yellow River Basin's Social-Ecological Systems}
 
 
-\affil{$^1$State Key Laboratory of Earth Surface Processes and Resource Ecology,
+\author[inst1]{Shuang Song}
+\author[inst2]{Huiyu Wen}
+\author[inst1]{*Shuai Wang}
+\author[inst1]{Xutong Wu}
+
+\author[inst3]{Graeme S. Cumming}
+\author[inst1]{Bojie Fu}
+
+
+\affiliation[inst1]{
+     State Key Laboratory of Earth Surface Processes and Resource Ecology,
      Faculty of Geographical Science,
      Beijing Normal University,
      Beijing 100875,
      P.R. China}
 
-% \affil{$^2$Institute of Land Surface System and Sustainability,
+% \affil{stitute of Land Surface System and Sustainability,
 %      Faculty of Geographical Science,
 %      Beijing Normal University,
 %      Beijing 100875,
 %      P.R. China}
 
-\affil{$^2$School of Finance,
+\affiliation[inst2]{School of Finance,
      Renmin University of China,
      Beijing 100875,
      P.R. China}
 
-\affil{$^3$ARC Centre of Excellence for Coral Reef Studies,
+\affiliation[inst3]{
+     ARC Centre of Excellence for Coral Reef Studies,
      James Cook University,
      Townsville 4811,
      QLD, Australia}
 
-% \affil{$^4$The research for this article was financed by the National Natural Science Foundation of China (CN) (Grant Nos. NSFC 42041007). A supplementary online appendix is available with this article at the \em{National Science Review} website.}
+% \affil{e research for this article was financed by the National Natural Science Foundation of China (CN) (Grant Nos. NSFC 42041007). A supplementary online appendix is available with this article at the \em{National Science Review} website.}
 
 % \authornote{\textbf{Corresponding authors.} Email: shuaiwang@bnu.edu.cn}
 %\authornote{Shuang Song and Huiyu Wen equally contributed to this work.}
-\renewcommand\linenumberfont{\normalfont\bfseries\small}
-\linenumbers
-\abstract{
-     Increasing competition for water is leading to the depletion of freshwater globally and calls for efficient institutions in water governance. Alignments of social-ecological system (SES) structures are a crucial approach to institutional matches, but an understanding of its causal links and underlying processes still needs to be improved. To fill these knowledge gaps, we select the Yellow River Basin (YRB) in China as a typical case study to quantitatively measure the effects of SES structures changing because it is one of the most anthropogenically altered large river basins. Under different surface water allocation institutions, its streamflow was first overdrawn, dried up, and successfully restored. We focused on two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), which re-framed different SES structures. We conduct counterfactual identification on the effect of these institutional shifts; our results suggested that during the decade following the introduction of the 87-WAS, observed water use of the YRB increased by $8.57\%$ more than expected, while 98-UBR ultimately decreased total water use. Furthermore, these heterogeneous effects of water use responses to SES structures aligned with our further theoretical marginal benefits analysis, supporting the hypothesis that SES structural changes played a vital role. This quasi-natural experiment on the YRB offers profound insights into the links between SESs structures and outcomes, suggesting that fragmented ecological units linked to separated social actors should be avoided for sustainability.
-     }  %! Notice input
+% \renewcommand\linenumberfont{\normalfont\bfseries\small}
+% \linenumbers
+\begin{abstract}
+Increasing competition for water is leading to the depletion of freshwater globally and calls for efficient institutions in water governance. Alignments of social-ecological system (SES) structures are a crucial approach to institutional matches, but an understanding of its causal links and underlying processes still needs to be improved. To fill these knowledge gaps, we select the Yellow River Basin (YRB) in China as a typical case study to quantitatively measure the effects of SES structures changing because it is one of the most anthropogenically altered large river basins. Under different surface water allocation institutions, its streamflow was first overdrawn, dried up, and successfully restored. We focused on two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), which re-framed different SES structures. We conduct counterfactual identification on the effect of these institutional shifts; our results suggested that during the decade following the introduction of the 87-WAS, observed water use of the YRB increased by $8.57\%$ more than expected, while 98-UBR ultimately decreased total water use. Furthermore, these heterogeneous effects of water use responses to SES structures aligned with our further theoretical marginal benefits analysis, supporting the hypothesis that SES structural changes played a vital role. This quasi-natural experiment on the YRB offers profound insights into the links between SESs structures and outcomes, suggesting that fragmented ecological units linked to separated social actors should be avoided for sustainability.
+\end{abstract}
 
-\keywords{water use, water governance, social-ecological system, institutional fit, Yellow River}  %! Notice input
+
+%%Graphical abstract
+\begin{graphicalabstract}
+     \includegraphics{outputs/main_results2.pdf}
+\end{graphicalabstract}
+
+%%Research highlights
+\begin{highlights}
+     \item Research highlight 1
+     \item Research highlight 2
+\end{highlights}
+
+\begin{keyword}
+     water use \sep water governance \sep social-ecological system \sep institutional fit \sep Yellow River
+\end{keyword}
+
+\end{frontmatter}
+
 \maketitle
 
 \section{INTRODUCTION}\label{sec:introduction}
@@ -125,25 +162,22 @@
 % This research has been supported by the National Natural Science Foundation of China (grant no. 42041007) and the Fundamental Research Funds for the Central Universities
 
 \bibliography{../mybib}
-\bibliographystyle{sn-standardnature}
+\bibliographystyle{elsarticle-num}
+
 \label{bib}
 
 %%%%%%%% -----  02_appendix -------- %%%%%%%%%%
 \newpage
-\appendix
-\label{appendix}
-\renewcommand{\figurename}{Supplementary Figure}
-\renewcommand{\appendixname}{Appendix~\Alph{section}}
-\setcounter{section}{0}
+\appendix\label{appendix}
 
-\section{Appendix~A: Contexts of institutional shifts}\label{secS1}
+\section{Contexts of institutional shifts}\label{secS1}
 \renewcommand{\thefigure}{A\arabic{figure}}
 \renewcommand{\thetable}{A\arabic{table}}
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \input{../02_appendix/01_institution_context.tex}
 
-\section{Appendix~B: Robustness of DSC method}\label{secS2}
+\section{Robustness of DSC method}\label{secS2}
 \renewcommand{\thefigure}{B\arabic{figure}}
 \renewcommand{\thetable}{B\arabic{table}}
 \setcounter{figure}{0}
@@ -153,26 +187,18 @@
 % \section{S2: Methods in details}\label{secS3}
 % \input{../02_appendix/03_results_appendix.tex}
 
-\section{Appendix~C: Optimization model for water use}\label{secS4}
+\section{Optimization model for water use}\label{secS4}
 \renewcommand{\thefigure}{C\arabic{figure}}
 \renewcommand{\thetable}{C\arabic{table}}
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \input{../02_appendix/04_theoretical_model.tex}
 
-\section{Appendix~D: Model extensions}\label{secS5}
+\section{Model extensions}\label{secS5}
 \renewcommand{\thefigure}{D\arabic{figure}}
 \renewcommand{\thetable}{D\arabic{table}}
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \input{../02_appendix/05_model_extensions.tex}
 
-%% Put the bibliography here, most people will use BiBTeX in
-%% which case the environment below should be replaced with
-%% the \bibliography{} command.
-% \newpage
-% \newpage
-% \bibliography{../mybib}
-% \bibliographystyle{sn-standardnature}
-% \label{bib}
 \end{document}
