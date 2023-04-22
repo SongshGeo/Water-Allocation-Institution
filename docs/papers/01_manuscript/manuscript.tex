@@ -27,7 +27,9 @@
 \usepackage{algorithm, algorithmicx, algpseudocode}
 \usepackage{listings}%
 \usepackage{hyperref}
+\usepackage{geometry}
 
+\geometry{a4paper,left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
 % 行距
 \linespread{1.5}
 % \usepackage[nofiglist,notablist]{endfloat}
@@ -116,7 +118,7 @@
 % \renewcommand\linenumberfont{\normalfont\bfseries\small}
 % \linenumbers
 \begin{abstract}
-Increasing competition for water is leading to the depletion of freshwater globally and calls for efficient institutions in water governance. Alignments of social-ecological system (SES) structures are a crucial approach to institutional matches, but an understanding of its causal links and underlying processes still needs to be improved. To fill these knowledge gaps, we select the Yellow River Basin (YRB) in China as a typical case study to quantitatively measure the effects of SES structures changing because it is one of the most anthropogenically altered large river basins. Under different surface water allocation institutions, its streamflow was first overdrawn, dried up, and successfully restored. We focused on two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), which re-framed different SES structures. We conduct counterfactual identification on the effect of these institutional shifts; our results suggested that during the decade following the introduction of the 87-WAS, observed water use of the YRB increased by $8.57\%$ more than expected, while 98-UBR ultimately decreased total water use. Furthermore, these heterogeneous effects of water use responses to SES structures aligned with our further theoretical marginal benefits analysis, supporting the hypothesis that SES structural changes played a vital role. This quasi-natural experiment on the YRB offers profound insights into the links between SESs structures and outcomes, suggesting that fragmented ecological units linked to separated social actors should be avoided for sustainability.
+     Global freshwater depletion necessitates efficient water governance that accounts for social-ecological system (SES) structures. To improve our understanding of the relationships between SES structures and water governance, we investigated the Yellow River Basin (YRB) in China, which has experienced significant anthropogenic alterations. We analyzed two institutional shifts, the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basinal Regulation (98-UBR), that re-framed SES structures. Our counterfactual identification showed that water use in the YRB increased by 5.75\% more than expected following the 87-WAS, while the 98-UBR reduced total water use. These heterogeneous effects align with our marginal benefits analysis, confirming the importance of well-designed SES structures in water governance. Our quasi-natural experiment on the YRB highlights the need to avoid fragmented ecological units and separated social actors for sustainable water governance, while also emphasizing the significance of understanding the underlying processes and relationships in SES structures.
 \end{abstract}
 
 
@@ -126,21 +128,22 @@ Increasing competition for water is leading to the depletion of freshwater globa
 % \end{graphicalabstract}
 
 %%Research highlights
-\begin{highlights}
-     \item Research highlight 1
-     \item Research highlight 2
-\end{highlights}
+% \begin{highlights}
+%      \item Research highlight 1
+%      \item Research highlight 2
+% \end{highlights}
 
 \begin{keyword}
-     water use \sep water governance \sep social-ecological system \sep institutional fit \sep Yellow River
+     water use~\sep~water governance~\sep~social-ecological system~\sep~institutions~\sep~Yellow River
 \end{keyword}
 
 \end{frontmatter}
 
-\maketitle
-
 \section{INTRODUCTION}\label{sec:introduction}
 \input{01_introduction.tex}
+
+\section{MATERIALS AND METHODS}\label{sec:methods}
+\input{06_methods.tex}
 
 \section{RESULTS}\label{sec:results}
 \input{02_structures.tex}
@@ -151,9 +154,6 @@ Increasing competition for water is leading to the depletion of freshwater globa
 
 \section{CONCLUSION}\label{sec:conclusion}
 \input{05_conclusion.tex}
-
-\section{MATERIALS AND METHODS}\label{sec:methods}
-\input{06_methods.tex}
 
 % Authors Contribution
 % SW and BF designed this research. SS performed the study and analysed data. SS and HW wrote the paper. XW, GC, and HW revised and polished the manuscript and gave significant advice.

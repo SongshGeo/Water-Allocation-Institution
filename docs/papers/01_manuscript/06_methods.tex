@@ -4,7 +4,7 @@
 % 为了量化制度变迁为黄河流域用水带来的影响，我们按附图1所示的技术路线执行了分析过程
 the YRB from 1979 to 2008, where two institutional shifts split the period into three pieces.
 To process the data, we use the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
-We then estimated the net effects of two institutional shifts on total water use, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method \cite{arkhangelsky2021}.
+We then estimated the net effects of two institutional shifts on total water use, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
 Finally, for theoretical discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
 
 \subsection{Study area}\label{sec:yrb}
@@ -13,16 +13,16 @@ Finally, for theoretical discussion, we developed a marginal benefit analysis ba
 The Yellow River Basin (YRB), the fifth-largest river basin worldwide, is known for its vital role in the socio-economic development of China.
 It supports $35.63\%$ of China's irrigation and $30\%$ of its population while containing only $2.66\%$ of its water resources (data from \href{http://www.yrcc.gov.cn}{http://www.yrcc.gov.cn}, last access: \today).
 In the 1980s, intense water use, accounting for about $80\%$ of Yellow River surface runoff, combined with other forms of human interference (e.g., soil conservation and water conservancy projects), caused consecutive drying events and substantial ecological, economic, and social crises (e.g., wetland shrinkage, agriculture reduction, and a scramble for water).
-In response, Chinese authorities implemented several ambitious water management practices in the YRB to relieve water stress, such as reservoir regulation, the South-to-north Water Diversion Project (WDP), the 1987 Water Allocation Scheme (87-WAS), and the 1998 Unified Basinal Regulation (98-UBR) \cite{long2020, wang2019d}.
+In response, Chinese authorities implemented several ambitious water management practices in the YRB to relieve water stress, such as reservoir regulation, the South-to-north Water Diversion Project (WDP), the 1987 Water Allocation Scheme (87-WAS), and the 1998 Unified Basinal Regulation (98-UBR)~\cite{long2020, wang2019d}.
 Those efforts led to ecological restoration of wetlands and the estuarine delta. Drying up has been avoided for over 20 years, which is widely considered a substantial management achievement.
-Instead of relying on engineering to increase water supply, institutional strategies like the 87-WAS (which assigned water quotas for provinces in the YRB) and the 98-UBR (under which provinces had to obtain permits from the Yellow River Conservancy Commission, YRCC, authority at a basin-level) focused mainly on limiting demand for water \cite{bouckaert2022, speed2013}.
+Instead of relying on engineering to increase water supply, institutional strategies like the 87-WAS (which assigned water quotas for provinces in the YRB) and the 98-UBR (under which provinces had to obtain permits from the Yellow River Conservancy Commission, YRCC, authority at a basin-level) focused mainly on limiting demand for water~\cite{bouckaert2022, speed2013}.
 While researchers have carefully evaluated and quantified the effects of engineering solutions on water supply\cite{long2020}, there have been few attempts to assess institutional contributions to successful water governance in the YRB.
 
 \subsection{Portraying structures}\label{sec:structures}
 % 制度结构关系抽象
-Widespread building blocks in SES are the key to the functioning of structures, and a network-based description is a widely used way to depict them by abstracting links and nodes \cite{bodin2017a,kluger2020,guerrero2015}.
-We apply the network approach \cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit (the YRCC) into general building blocks (or motifs) (see Figure~\ref{framework}), from the official documents.
-Empirical studies have suggested that such widespread building blocks in SES are the key to the functioning of structures. The network-based approach is to abstract connections between entities into links and nodes \cite{bodin2017a,kluger2020,guerrero2015}.
+A network-based description is a widely used way to depict them by abstracting links and nodes~\cite{bodin2017a,kluger2020,guerrero2015}.
+We apply the network approach~\cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit (the YRCC) into structural pattern from the official documents.
+Empirical studies have suggested that such widespread pattern in SES are the key to the functioning of structures. The network-based approach is to abstract connections between entities into links and nodes~\cite{bodin2017a,kluger2020,guerrero2015}.
 In this study, we examined the official documents of the two institutional shifts of concern (87-WAS and 98-UBR, see \textit{Appendix \nameref{secS1}} for details).
 Besides the ecologically connected river reaches, the agents (provinces and the YRCC) are abstracted as nodes, and their required interactions regarding water use are summarized as links.
 The 1987-WAS requires the YRCC to monitor each river's reach, while the 1998-UBR requires direct interactions (through water use licenses) between the YRCC and the provinces.
@@ -31,24 +31,24 @@ We tested whether focusing on SES structures rather than institutional details c
 
 \subsection{Dataset and preprocessing}\label{sec:dataset}
 We choose datasets and variables to compare on actual and estimated water use of the YRB.
-The actual water uses are accessible in China’s provincial annual water consumption dataset from the National Water Resources Utilization Survey, whose details are accessible from Zhou (2020) \cite{zhou2020}.
+The actual water uses are accessible in China’s provincial annual water consumption dataset from the National Water Resources Utilization Survey, whose details are accessible from Zhou (2020)~\cite{zhou2020}.
 To estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on variables from five categories (environmental, economic, domestic, and technological) water use factors. Their specific items and origins are listed in Table~\ref{tab:variables}.
 
 Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin, and Beijing because of their trivial water use from the YRB (see \textit{Appendix}~Table~\ref{tab:quota}). We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.
 
-Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components \textit{Appendix~\nameref{secS2}}. Bayan had proved that combining PCA and DSC can raise the robustness of causal inference \cite{bayani2021}. We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\nameref{secS2}~Figure~\ref{fig:elbow}}). Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
+Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components \textit{Appendix~\nameref{secS2}}. Bayan had proved that combining PCA and DSC can raise the robustness of causal inference~\cite{bayani2021}. We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\nameref{secS2}~Figure~\ref{fig:elbow}}). Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
 
 
 \subsection{Differenced Synthetic Control}\label{sec:DSC}
 Using the Differenced Synthetic Control (DSC) method, we estimate water use without the effect of the institutional shift.
-The DSC method is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit \cite{abadie2010, abadie2015, hill2021}.
+The DSC method is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit~\cite{abadie2010, abadie2015, hill2021}.
 
 This method aims to evaluate the effects of policy change that are not random across units but focuses on some of them (i.e., institutional shifts in the YRB here).
 By re-weighting units to match the pre-trend for the treated and control units, the DSC method imputes post-treatment control outcomes for the treated unit(s) by constructing a synthetic version of the treated unit(s) equal to a convex combination of control units.
 Therefore, the synthetic and actual version difference can be estimated as a net effect for a treated unit.
 
 In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: 1979-1998; 1987-2008.
-We include each province in the YRB ($n=8$, see \textit{\nameref{sec:dataset}}) as the treated unit separately, as multiple treated units approach had been widely applied \cite{abadie2021}.
+We include each province in the YRB ($n=8$, see \textit{\nameref{sec:dataset}}) as the treated unit separately, as multiple treated units approach had been widely applied~\cite{abadie2021}.
 Then, we consider the $J+1$ units observed in time periods $T = {1,2 \cdots , T}$ with the remaining $J=20$ units are untreated provinces from outside.
 We define $T_0$ to represent the number of pre-treatment periods ($1,\cdots,t_0$) and $T_1$ the number post-treatment periods ($t_0,\cdots,T$), such that $T = T_0+ T_1$.
 The treated unit is exposed to the institutional shift in every post-treatment period $T_0$, unaffected by the institutional shift in all preceding periods $T_1$.
@@ -66,22 +66,22 @@ where $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes t
 \end{equation}
 
 That is the minimum difference between the outcome of the treated unit and the synthetic control in the pre-treatment period, where $\mathbf{Z}_{1}$ is a ($1*T_0$) matrix containing every observation of the outcome for the treated unit in the pre-treatment period. Similarly, let $\mathbf{Z}_{0}$ be a ($k * T_0$) matrix containing the outcome for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
-The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties \cite{billmeier2013, smith2015}.
+The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties~\cite{billmeier2013, smith2015}.
 
-\subsection{Marginal benefits analysis}\label{sec:model}
-To infer the mechanisms underlying the results, we developed an marginal benefits analysis based on marginal revenue to analyze how the institutional shift could have led to differences in water use.
+% \subsection{Marginal benefits analysis}\label{sec:model}
+% To infer the mechanisms underlying the results, we developed an marginal benefits analysis based on marginal revenue to analyze how the institutional shift could have led to differences in water use.
 
-\begin{ass}
-    (Water-dependent production) Because of irreplaceably, water is assumed to be the only production function input with two production efficiency types.
-\end{ass}
+% \begin{ass}
+%     (Water-dependent production) Because of irreplaceably, water is assumed to be the only production function input with two production efficiency types.
+% \end{ass}
 
-\begin{ass}
-    (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin, the water use cost is equally assigned to each province.
-\end{ass}
+% \begin{ass}
+%     (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin, the water use cost is equally assigned to each province.
+% \end{ass}
 
-\begin{ass}
-    (Multi-period settings) There are multiple settings periods with a constant discount factor for the expectation of future water use.
-\end{ass}
+% \begin{ass}
+%     (Multi-period settings) There are multiple settings periods with a constant discount factor for the expectation of future water use.
+% \end{ass}
 
-Under the above-simplified assumptions, we demonstrate three cases -corresponding to the abstracted SES structures (Figure~\ref{fig:structure}~C), inference of how SES structure alters the expected marginal benefits and costs of provinces making decisions.
-As one of the possible interpretations for the causality between SES structure and institutional effects, the derivation of the model based on the above three assumptions can be found in \textit{Appendix~\nameref{secS4}}, and some simple model-based extensions are involved in \textit{Appendix~\nameref{secS5}}.
+% Under the above-simplified assumptions, we demonstrate three cases -corresponding to the abstracted SES structures (Figure~\ref{fig:structure}~C), inference of how SES structure alters the expected marginal benefits and costs of provinces making decisions.
+% As one of the possible interpretations for the causality between SES structure and institutional effects, the derivation of the model based on the above three assumptions can be found in \textit{Appendix~\nameref{secS4}}, and some simple model-based extensions are involved in \textit{Appendix~\nameref{secS5}}.
