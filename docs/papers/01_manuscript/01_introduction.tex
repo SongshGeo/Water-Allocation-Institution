@@ -2,21 +2,22 @@
 Widespread freshwater scarcity and overuse challenge the sustainability of large river basins, resulting in systematic risks to economies, societies, and ecosystems globally~\cite{distefano2017, dolan2021, xu2020b, mekonnen2016}.
 In the context of climate change, the mismatches between supply and demand for water resources are expected to become increasingly more prominent~\cite{florke2018, yoon2021}.
 Hence, large river basins are increasingly seeking for effective water governance solutions by coordinating stakeholders, providing water resources, and ensuring the sustainable allocation of shared water resources~\cite{wang2019d}.
-As results, hydrological processes are tightly intertwined with societies, shown as an social-ecological system (SES) at a basin scale where complex socio-hydrological feedback merges SES structures.
+As results, hydrological processes are tightly intertwined with societies, shown as an social-ecological system (SES) at a basin scale with complex socio-hydrological feedback.
 
+Institutions encompass the interplay between social actors, ecological units, and their interactions~\cite{lien2020, bodin2017b, wang2022g}.
+These interactions consist a type of structure of SES, where effective institutions operate at appropriate spatial, temporal, and functional scales to manage and balance different interactions, contributing to the sustainability~\cite{epstein2015, wang2019d} (Figure~\ref{fig:framework}~\textbf{a}).
 Governing river basin systems involves reshaping their SES structures through institutions such as policies, laws, and norms~\cite{young2008,cumming2020b}.
-Institutions encompass the interplay between social actors, ecological units, and their interactions~\cite{lien2020, bodin2017b}.
-Effective institutions operate at appropriate spatial, temporal, and functional scales to manage and balance different relationships and interactions between human and water systems, contributing to the sustainability of SES~\cite{epstein2015, wang2019d} (Figure~\ref{fig:framework}~\textbf{a}).
-While some institutional advances have led to desirable water governance outcomes (e.g., the Ecological Water Diversion Project in Heihe River Basin, China~\cite{wang2019d}, and collaborative water governance systems in Europe~\cite{green2013}),
-imposing institutional shifts may create or destroy connections and effectiveness are not ubiquitous~\cite{loos2022}. 
-For example, Colorado River once had sever water shortage and costly water competition until confirming water rights with following water institutional system~\cite{hadjimichael2020}.  % TODO check this expression. 科罗拉多河的这个例子还要举得更好一些
-Therefore, examining when and how an institution leads to effective water governance can bring crucial insights for sustainability in global river basins.
+While some institutional advances have led to effective water governance outcomes (e.g., the Ecological Water Diversion Project in Heihe River Basin, China~\cite{wang2019d}, and collaborative water governance systems in Europe~\cite{green2013}),
+imposing institutional shifts may create or destroy connections and effectiveness are not ubiquitous~\cite{loos2022}.
+For example, Colorado River once had sever water shortage and institutions led to various shortage magnitude for different stakeholders even under the same water demands level~\cite{hadjimichael2020}.
+Therefore, examining when and how an institution leads to effective water governance can bring crucial insights for sustainability of river basins.
 
 % match & mismatch
-Recent studies explored various effects of institutions on river basins governance, while quantitative assessments with controlled comparisons are remaining scarce~\cite{bouckaert2022, vallury2022, loch2020, kirchhoff2016}.
-Additionally, understanding how different SESs structures influence institutional effectiveness is challenging due to the complexity and dynamics of these systems~\cite{bodin2017b}.
-Thus, the knowledge gap lies in the limited understanding of aligning institutions with SES structures to promote sustainable river basins governance.
-It hinders designing effective institutions that address the diverse challenges and opportunities in various social-ecological contexts, ultimately impacting long-term sustainability.
+Recent studies explored diverse effects of institutions on river basins governance~\cite{bouckaert2022, vallury2022, loch2020, kirchhoff2016}, while the current analysis is more about interpreting outcomes after the institutional changes, but it cannot compares how the scenarios would be without these institutional changes.
+Additionally, understanding how the different SESs structures influence institutional effectiveness is challenging due to the complexity and dynamics of socio-hydrological systems~\cite{bodin2017b}.
+Thus, knowledge gaps lies in the limited understanding of effective alignments between institutional shifts and SES structures, hinders designing effective policies to promote sustainable river basins governance.
+To fill these knowledge gaps, we study the Yellow river basin, one of the most anthropogenically altered river basins, to quantitatively measure the effects of changing SES structure.
+The Yellow River Basin (YRB) is the fifth-largest river basin worldwide, supporting $35.63\%$ of China's irrigation and $30\%$ of its population while containing only $2.66\%$ of its water resources (data from \href{http://www.yrcc.gov.cn}{http://www.yrcc.gov.cn}, last access: \today).
 
 \begin{figure}[!ht]
 	\centering
@@ -25,12 +26,15 @@ It hinders designing effective institutions that address the diverse challenges 
 		Framework for understanding institutional shifts and SES structures. \textbf{a.} In the general framework for analyzing social-ecological systems (SESs), (Adapted from Ostrom, 2008~\cite{ostrom2009}). Institutional shifts can change interactions within the SES and reframe the structures.  \textbf{b.} We aim to investigate how institutional shifts impacts effective governance by structuring SES.}\label{fig:framework}
 \end{figure}
 
-To gain a deeper understanding of how institutions align or misalign with their social-ecological context, we use the Yellow River Basin (YRB), China, as a case study to examine the consequences and incentives of two significant institutional shifts in water allocation: the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basinal Regulation (98-UBR).
-These shifts considerably transformed the SES structures within the basin, and offered valuable insights for two main reasons:
-(1) the top-down institutional shifts led to substantial changes in SES structures, allowing us to quantitatively estimate their net effects; and (2) the basin's unique experience of multiple radical institutional shifts provides a rare opportunity to compare natural experiments and understand the impacts of SES structural changes on water governance.
+% 黄河的介绍
+In the $1980s$, intense water use, accounting for about $80\%$ of Yellow River surface water, caused consecutive drying-up crises of runoff, leading to wetland shrinkage, agriculture reduction, and scrambles for water.
+In response, Chinese authorities implemented several ambitious water management policies in the YRB to relieve water stress, such as the South-to-north Water Diversion Project and the Water Allocation Institutions~\cite{long2020, wang2019d}.
+In this study, we specifically examined two significant institutional shifts in water allocation of the YRB\: the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basinal Regulating (98-UBR).
+Instead of engineering and increasing water supply, 87-WAS (which assigned water quotas for provinces in the YRB) and the 98-UBR (under which provinces had to obtain permits from the Yellow River Conservancy Commission, YRCC, authority at a basin-level) focused mainly on limiting demands for water~\cite{bouckaert2022, speed2013}.
+These institutional shifts can offer valuable insights because of two main reasons:
+(1) the top-down institutional shifts suddenly led to transforms of SES structures, allowing us to quantitatively estimate their net effects; and (2) the two institutional shifts within the same river basin provide rarely comparable quasi-natural experiments.
 
-Our investigation of the consequences of YRB's institutional shifts involves analyzing quasi-natural experiments with causal inference approach.
-First, we use data from official documents following the two institutional shifts to describe the YRB's SES structures' comparable changes between 1979 and 2008.
-Next, we employ the ``Differenced Synthetic Control (DSC)'' method~\cite{arkhangelsky2021}, which accounts for economic growth and natural background, to estimate theoretical water use scenarios in the absence of institutional shifts.
-This approach enables us to establish a counterfactual basis for exploring the consequences and incentives related to SES structures, thereby enhancing our understanding of institutions' potential role in global water governance.
-% Finally, we develop a marginal benefits analysis approach to interpret the underlying processes of misaligned institutions based on SES structures.
+Here, we portrayed changes of SES structures throughout the YRB's institutional shifts (the 87-WAS and the 98-UBR) and quantitatively investigated their consequences, then including an discussion of the effectiveness of institutional shifts.
+Specifically, we first use the descriptions of official documents following the two institutional shifts to abstract the interactions between main stakeholders and their river segment units for interpreting SES structures changes between 1979 and 2008.
+Next, and perhaps most importantly, we use the ``Differenced Synthetic Control (DSC)'' method~\cite{arkhangelsky2021}, which accounts for economic growth and natural background, to estimate theoretical water use volumes under the absence of institutional shifts scenarios.
+Finally in discussion, we linked the effectiveness of institutional shifts to the portrayed structures, by comparing YRB's case to previous SES structure studies and developing a marginal benefits analysis.
