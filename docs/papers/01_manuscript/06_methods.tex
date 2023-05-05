@@ -1,34 +1,31 @@
 %! Author = songshgeo
 %! Date = 2022/3/10
 
-% 为了量化制度变迁为黄河流域用水带来的影响，我们按附图1所示的技术路线执行了分析过程
-To process the data, we use the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
-We then estimated the net effects of two institutional shifts on total water use, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
-Finally, for theoretical discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
+In the methodology section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as point-axis networks during different periods of time.
+Next, we introduce the dataset we used here and employ the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
+We then estimate the net effects of the two institutional shifts on total water use, changing trends, and differences in the YRB's provinces using the Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
+Finally, we present the robustness tests approach for the DSC model.
+% Finally, for discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
 
 \subsection{Portraying structures}\label{sec:structures}
-% 制度结构关系抽象
-A point-axis network type structure of SES is a widely used way to depict them by abstracting links and nodes~\cite{wang2022g,bodin2017a,kluger2020,guerrero2015}.
-We apply the network approach~\cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit (the YRCC) into structural pattern from the official documents.
-Empirical studies have suggested that such widespread pattern in SES are the key to the functioning of structures. The network-based approach is to abstract connections between entities into links and nodes~\cite{bodin2017a,kluger2020,guerrero2015}.
-In this study, we examined the official documents of the two institutional shifts of concern (87-WAS and 98-UBR, see \textit{Appendix \nameref{secS1}} for details).
-Besides the ecologically connected river reaches, the agents (provinces and the YRCC) are abstracted as nodes, and their required interactions regarding water use are summarized as links.
-The 1987-WAS requires the YRCC to monitor each river's reach, while the 1998-UBR requires direct interactions (through water use licenses) between the YRCC and the provinces.
-Therefore, we linked the YRCC unit to each ecological unit after 87-WAS and each province unit after the 98-UBR.\\
-We tested whether focusing on SES structures rather than institutional details could reasonably explain the differences caused by institutional shifts in the YRB.\\
+A point-axis network type structure of SES is widely used to depict them by abstracting links and nodes~\cite{wang2022g,bodin2017a,kluger2020,guerrero2015}.
+We apply the network approach~\cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit at the basin scale (the Yellow River Conservancy Commission) into structural patterns from official documents.
+The network-based approach abstracts connections between entities into links according to their interactions~\cite{bodin2017a,kluger2020,guerrero2015}, so we examined the official documents of the two institutional shifts (87-WAS and 98-UBR) to portray these interactions in this study.
+It is important to note that it can result in very different structures when basin-scale regulatory entity (YRCC) is responsible for river reach regulation, or have direct authority to interact with provincial units.
 
 \subsection{Dataset and preprocessing}\label{sec:dataset}
-We choose datasets and variables to compare on actual and estimated water use of the YRB.
-The actual water uses are accessible in China’s provincial annual water consumption dataset from the National Water Resources Utilization Survey, whose details are accessible from Zhou (2020)~\cite{zhou2020}.
-To estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on variables from five categories (environmental, economic, domestic, and technological) water use factors. Their specific items and origins are listed in Table~\ref{tab:variables}.
+The data of water consumption surveys conducted by the Ministry of Water Resources were taken as the observed values throughout the years.
+Then, to estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on variables from five categories (environmental, economic, domestic, and technological) water use factors. Their specific items and origins are listed in Table~\ref{tab:variables}.
+Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin, and Beijing because of their trivial water use from the YRB (see Table~\ref{tab:quota}).
+% We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.\\
 
-Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin, and Beijing because of their trivial water use from the YRB (see \textit{Appendix}~Table~\ref{tab:quota}). We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.
-
-Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components \textit{Appendix~\nameref{secS2}}. Bayan had proved that combining PCA and DSC can raise the robustness of causal inference~\cite{bayani2021}. We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\nameref{secS2}~Figure~\ref{fig:elbow}}). Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
-
+Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components.
+Previous study has proved that combining PCA and DSC can raise the robustness of causal inference~\cite{bayani2021}.
+We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\nameref{secS2}~Figure\ref{fig:elbow}}).
+Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
 
 \subsection{Differenced Synthetic Control}\label{sec:DSC}
-Using the Differenced Synthetic Control (DSC) method, we estimate water use without the effect of the institutional shift.
+Using the Differenced Synthetic Control (DSC) method, we can estimate water use under the scenarios of no institutional shift.
 The DSC method is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit~\cite{abadie2010, abadie2015, hill2021}.
 This approach enables us to establish a counterfactual basis for exploring the consequences and incentives related to policy changes.
 
@@ -59,17 +56,21 @@ The DSC method generalizes the difference-in-differences estimator and allows fo
 
 \subsection{Robustness analysis}\label{sec:robustness}
 
-There are two main methods to test the robustness of DSC.
-First of all, the reconstruction effect on inferred variables (water consumption in this chapter) before and after treatment (the intervention of watershed water division policy in this chapter) can be compared. If there is a small gap between the model predicted value reconstructed before treatment and the actual observed value, and a large gap between the predicted value and observed value reconstructed after treatment, it indicates that the effect of policy intervention is very obvious.
-In the study of this chapter, in order to judge whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, and the model prediction and actual observation data in the early and late period of institutional intervention are respectively tested for the two institutional interventions of "August 7" water separation scheme in $1987$ and unified watershed scheduling in $1998$.
-If $p$ value after policy intervention is less than the threshold value (the confidence level of 95\% is adopted in this chapter, that is, the threshold value is $0.05$), the original hypothesis $H_0$ that "there is no significant difference between the two" can be rejected, and it is believed that the institutional intervention has significantly changed the water consumption in this region.
-If the significance level of $T$ test before institutional intervention is greater than the threshold value, it means that the DSC model successfully predicted the change of water consumption in this region over time before institutional intervention, and the fitting effect is good.
+Two primary methods can be employed to test the robustness of the DSC approach.
 
-Second, placebo trials are another common way to evaluate the effectiveness of synthetic control methods.
-In a placebo trial, a placebo unit selected from the control unit library is substituted for the treated unit, and a synthetic control method is applied to the placebo unit using the same data and parameters as the treated unit.
-If the synthetic control method is effective, there should be a clear difference between the placebo unit and the control unit, since the placebo unit should not be affected by the intervention.
-Placebo tests can be used to assess the effectiveness of the synthetic control method and detect any bias or confounding factors in the analysis.
-In this study, the placebo test step \cite{abadie2010} suggested by Abadie when proposing the synthetic control method was adopted, and the Python library of the differential synthetic control method developed by Dmitry et al. was used for the placebo test. If the ratio of the root mean square error (see Equation \ref{ch5:eq:RMSE}) to the pre-synthesis period was significantly higher in most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, it would suggest that the Yellow River basin was more affected than most other provinces during the regime treatment period ($1987$ and $1998$ years).
+Firstly, the reconstruction effect on inferred variables (water consumption here) before and after treatment (the interventions of 87-WAS and 98-UBR) can be compared.
+If there are small gaps between the predicted and observed values before treatment, and a large gap after treatment, it indicates that the policy intervention's effect is apparent.
+In this study, to determine whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, comparing the model predictions and actual observation data in the periods before and after institutional interventions for both the 87-WAS in $1987$ and 98-UBR in $1998$.
+% If the $p$ value after the policy intervention is less than the threshold value ($0.05$), the null hypothesis $H_0$ of no significant difference can be rejected, and it is believed that the institutional intervention has significantly changed the water consumption in this region.
+% If the significance level of the $T$ test before institutional intervention is greater than the threshold value, it means that the DSC model successfully predicted the change in water consumption in this region over time before institutional intervention, indicating a good fit.
+A robust synthetic control model will show a significant difference after treatment but not before treatment.
+
+Secondly, placebo experiments are another common way to evaluate the effectiveness of synthetic control methods.
+Placebo units are selected from the control unit pool and substituted for the treated unit, applying the synthetic control method to the placebo unit using the same data and parameters as the treated unit.
+If the synthetic control method is effective, there should be a clear difference between the placebo unit and the control unit since the placebo unit should not be affected by the intervention.
+% Placebo tests can be used to assess the effectiveness of the synthetic control method and detect any bias or confounding factors in the analysis.
+In this study, we adopt the placebo test step suggested by Abadie when proposing the synthetic control method~\cite{abadie2010} and utilize the Python library of the differential synthetic control method for the placebo test.
+If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in the pre-synthesis period is significantly higher for most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, it would suggest that the Yellow River Basin was more significantly affected than most other provinces during the treatment periods ($1987$ and $1998$), i.e., the results are more robust.
 
 \begin{equation}
     \label{ch5:eq:RMSE}
