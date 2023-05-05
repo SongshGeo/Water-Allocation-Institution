@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wainstitution-yrb-2021"
-version = "0.1.0"
+version = "7.0.0"
 description = "Water quota influences in the yellow river basin"
 authors = ["Shuang Song <songshgeo@gmail.com>"]
 license = "MIT"

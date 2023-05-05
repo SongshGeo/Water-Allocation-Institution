@@ -2,32 +2,20 @@
 %! Date = 2022/3/10
 
 % 为了量化制度变迁为黄河流域用水带来的影响，我们按附图1所示的技术路线执行了分析过程
-the YRB from 1979 to 2008, where two institutional shifts split the period into three pieces.
 To process the data, we use the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
 We then estimated the net effects of two institutional shifts on total water use, changing trends, and differences of the YRB's provinces, by Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
 Finally, for theoretical discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
 
-\subsection{Study area}\label{sec:yrb}
-
-% 黄河的介绍
-The Yellow River Basin (YRB), the fifth-largest river basin worldwide, is known for its vital role in the socio-economic development of China.
-It supports $35.63\%$ of China's irrigation and $30\%$ of its population while containing only $2.66\%$ of its water resources (data from \href{http://www.yrcc.gov.cn}{http://www.yrcc.gov.cn}, last access: \today).
-In the 1980s, intense water use, accounting for about $80\%$ of Yellow River surface runoff, combined with other forms of human interference (e.g., soil conservation and water conservancy projects), caused consecutive drying events and substantial ecological, economic, and social crises (e.g., wetland shrinkage, agriculture reduction, and a scramble for water).
-In response, Chinese authorities implemented several ambitious water management practices in the YRB to relieve water stress, such as reservoir regulation, the South-to-north Water Diversion Project (WDP), the 1987 Water Allocation Scheme (87-WAS), and the 1998 Unified Basinal Regulation (98-UBR)~\cite{long2020, wang2019d}.
-Those efforts led to ecological restoration of wetlands and the estuarine delta. Drying up has been avoided for over 20 years, which is widely considered a substantial management achievement.
-Instead of relying on engineering to increase water supply, institutional strategies like the 87-WAS (which assigned water quotas for provinces in the YRB) and the 98-UBR (under which provinces had to obtain permits from the Yellow River Conservancy Commission, YRCC, authority at a basin-level) focused mainly on limiting demand for water~\cite{bouckaert2022, speed2013}.
-While researchers have carefully evaluated and quantified the effects of engineering solutions on water supply\cite{long2020}, there have been few attempts to assess institutional contributions to successful water governance in the YRB.
-
 \subsection{Portraying structures}\label{sec:structures}
 % 制度结构关系抽象
-A network-based description is a widely used way to depict them by abstracting links and nodes~\cite{bodin2017a,kluger2020,guerrero2015}.
+A point-axis network type structure of SES is a widely used way to depict them by abstracting links and nodes~\cite{wang2022g,bodin2017a,kluger2020,guerrero2015}.
 We apply the network approach~\cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit (the YRCC) into structural pattern from the official documents.
 Empirical studies have suggested that such widespread pattern in SES are the key to the functioning of structures. The network-based approach is to abstract connections between entities into links and nodes~\cite{bodin2017a,kluger2020,guerrero2015}.
 In this study, we examined the official documents of the two institutional shifts of concern (87-WAS and 98-UBR, see \textit{Appendix \nameref{secS1}} for details).
 Besides the ecologically connected river reaches, the agents (provinces and the YRCC) are abstracted as nodes, and their required interactions regarding water use are summarized as links.
 The 1987-WAS requires the YRCC to monitor each river's reach, while the 1998-UBR requires direct interactions (through water use licenses) between the YRCC and the provinces.
-Therefore, we linked the YRCC unit to each ecological unit after 87-WAS and each province unit after the 98-UBR.
-We tested whether focusing on SES structures rather than institutional details could reasonably explain the differences caused by institutional shifts in the YRB.
+Therefore, we linked the YRCC unit to each ecological unit after 87-WAS and each province unit after the 98-UBR.\\
+We tested whether focusing on SES structures rather than institutional details could reasonably explain the differences caused by institutional shifts in the YRB.\\
 
 \subsection{Dataset and preprocessing}\label{sec:dataset}
 We choose datasets and variables to compare on actual and estimated water use of the YRB.
@@ -42,18 +30,19 @@ Using the normalized data of all variables, we performed the PCA reduction to ca
 \subsection{Differenced Synthetic Control}\label{sec:DSC}
 Using the Differenced Synthetic Control (DSC) method, we estimate water use without the effect of the institutional shift.
 The DSC method is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit~\cite{abadie2010, abadie2015, hill2021}.
+This approach enables us to establish a counterfactual basis for exploring the consequences and incentives related to policy changes.
 
 This method aims to evaluate the effects of policy change that are not random across units but focuses on some of them (i.e., institutional shifts in the YRB here).
-By re-weighting units to match the pre-trend for the treated and control units, the DSC method imputes post-treatment control outcomes for the treated unit(s) by constructing a synthetic version of the treated unit(s) equal to a convex combination of control units.
+By re-weighting units to match the pre-trend for the treated and control units, the DSC method imputes post-treatment control outcomes for the treated units by constructing a synthetic version of the treated units equal to a convex combination of control units.
 Therefore, the synthetic and actual version difference can be estimated as a net effect for a treated unit.
 
-In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: 1979-1998; 1987-2008.
+In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: from 1979 to 1998; from 1987 to 2008.
 We include each province in the YRB ($n=8$, see \textit{\nameref{sec:dataset}}) as the treated unit separately, as multiple treated units approach had been widely applied~\cite{abadie2021}.
 Then, we consider the $J+1$ units observed in time periods $T = {1,2 \cdots , T}$ with the remaining $J=20$ units are untreated provinces from outside.
-We define $T_0$ to represent the number of pre-treatment periods ($1,\cdots,t_0$) and $T_1$ the number post-treatment periods ($t_0,\cdots,T$), such that $T = T_0+ T_1$.
+We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.
 The treated unit is exposed to the institutional shift in every post-treatment period $T_0$, unaffected by the institutional shift in all preceding periods $T_1$.
-Then, any weighted average of the control units is a synthetic control and can be represented by a ($J * 1$) vector of weights $\mathbf{W} = (w_{1},...,w_{J})$, with $w_j \in (0, 1)$.
-Among them, by introduce a ($k * k$) diagonal, semidefinite matrix $\mathbf{V}$ that signifies the relative importance of each covariate, the DSC method procedure for finding the optimal synthetic control ($W$) is expressed as follows:
+Then, any weighted average of the control units is a synthetic control and can be represented by a ($J * 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$.
+Among them, by introduce a ($k * k$) diagonal, matrix $\mathbf{V}$ that signifies the relative importance of each covariant, the DSC method procedure for finding the optimal synthetic control ($W$) is expressed as follows:
 
 \begin{equation}
     \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{minimize}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
@@ -67,6 +56,27 @@ where $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes t
 
 That is the minimum difference between the outcome of the treated unit and the synthetic control in the pre-treatment period, where $\mathbf{Z}_{1}$ is a ($1*T_0$) matrix containing every observation of the outcome for the treated unit in the pre-treatment period. Similarly, let $\mathbf{Z}_{0}$ be a ($k * T_0$) matrix containing the outcome for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
 The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties~\cite{billmeier2013, smith2015}.
+
+\subsection{Robustness analysis}\label{sec:robustness}
+
+There are two main methods to test the robustness of DSC.
+First of all, the reconstruction effect on inferred variables (water consumption in this chapter) before and after treatment (the intervention of watershed water division policy in this chapter) can be compared. If there is a small gap between the model predicted value reconstructed before treatment and the actual observed value, and a large gap between the predicted value and observed value reconstructed after treatment, it indicates that the effect of policy intervention is very obvious.
+In the study of this chapter, in order to judge whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, and the model prediction and actual observation data in the early and late period of institutional intervention are respectively tested for the two institutional interventions of "August 7" water separation scheme in $1987$ and unified watershed scheduling in $1998$.
+If $p$ value after policy intervention is less than the threshold value (the confidence level of 95\% is adopted in this chapter, that is, the threshold value is $0.05$), the original hypothesis $H_0$ that "there is no significant difference between the two" can be rejected, and it is believed that the institutional intervention has significantly changed the water consumption in this region.
+If the significance level of $T$ test before institutional intervention is greater than the threshold value, it means that the DSC model successfully predicted the change of water consumption in this region over time before institutional intervention, and the fitting effect is good.
+
+Second, placebo trials are another common way to evaluate the effectiveness of synthetic control methods.
+In a placebo trial, a placebo unit selected from the control unit library is substituted for the treated unit, and a synthetic control method is applied to the placebo unit using the same data and parameters as the treated unit.
+If the synthetic control method is effective, there should be a clear difference between the placebo unit and the control unit, since the placebo unit should not be affected by the intervention.
+Placebo tests can be used to assess the effectiveness of the synthetic control method and detect any bias or confounding factors in the analysis.
+In this study, the placebo test step \cite{abadie2010} suggested by Abadie when proposing the synthetic control method was adopted, and the Python library of the differential synthetic control method developed by Dmitry et al. was used for the placebo test. If the ratio of the root mean square error (see Equation \ref{ch5:eq:RMSE}) to the pre-synthesis period was significantly higher in most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, it would suggest that the Yellow River basin was more affected than most other provinces during the regime treatment period ($1987$ and $1998$ years).
+
+\begin{equation}
+    \label{ch5:eq:RMSE}
+    \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}{(y_i-\hat{y}_i)}^2}
+\end{equation}
+
+Where $n$ is the observed number, $y_i$ is the actual value, and $\hat{y}_i$ is the predicted value.
 
 % \subsection{Marginal benefits analysis}\label{sec:model}
 % To infer the mechanisms underlying the results, we developed an marginal benefits analysis based on marginal revenue to analyze how the institutional shift could have led to differences in water use.
