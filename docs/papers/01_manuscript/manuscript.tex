@@ -28,6 +28,7 @@
 \usepackage{listings}%
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{tabularx}
 
 \geometry{a4paper,left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
 % 行距
@@ -75,7 +76,7 @@
 % \bibliographystyle{../nsr}
 % 社会水文学专刊地址
 % https://www.sciencedirect.com/journal/journal-of-hydrology/about/call-for-papers#grounded-sociohydrology
-\title{Achieving Effective River Basin Governance through Institutional Shifts: Examining the Yellow River Basin's Social-Ecological Systems in China}
+\title{Quantifying the Effects of Institutional Shifts on Water Governance in the Yellow River Basin: A Socio-Hydrological Analysis}
 
 
 \author[inst1]{Shuang Song}
@@ -118,12 +119,9 @@
 % \renewcommand\linenumberfont{\normalfont\bfseries\small}
 % \linenumbers
 \begin{abstract}
-     Global freshwater depletion necessitates efficient water governance that accounts for social-ecological system (SES) structures.
-     To improve our understanding of the relationships between SES structures and water governance, we investigated the Yellow River Basin (YRB) in China, which has experienced significant anthropogenic alterations.
-     We analyzed two institutional shifts, the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basinal Regulation (98-UBR), that re-framed SES structures.
-     Our counterfactual identification showed that water use in the YRB increased by 5.75\% more than expected following the 87-WAS, while the 98-UBR reduced total water use.
-     These heterogeneous effects align with our marginal benefits analysis, confirming the importance of well-designed SES structures in water governance.
-     Our quasi-natural experiment on the YRB highlights the need to avoid fragmented ecological units and separated social actors for sustainable water governance, while also emphasizing the significance of understanding the underlying processes and relationships in SES structures.
+     Water governance in river basins worldwide faces challenges due to complex socio-economic and environmental factors. In the Yellow River Basin (YRB), two major institutional shifts, the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basin Regulation (98-UBR), aimed to address water allocation and usage issues. This study quantifies the net effects of these institutional shifts on water use within the YRB and analyzes the underlying reasons for their success or failure.
+     We employ a Differenced Synthetic Control method to assess the impacts of the institutional shifts. Our analysis reveals that the 87-WAS unexpectedly increased water use by $5.75\%$, while the 98-UBR successfully reduced water use as anticipated. Our research highlights the role of institutional structures in governance policies, demonstrating that the mismatched structure of the 87-WAS led to increased competition and exploitation of water resources, while the 98-UBR, with its scale-matched, basin-wide authority and stronger connections between stakeholders, resulted in improved water governance.
+     Our study underscores the importance of designing institutions that are consistent with the scale of the ecological system, promote cooperation among stakeholders, and adapt to changing social-ecological system (SES) contexts. As outdated and inflexible water quotas may no longer meet the demands of sustainable development in the YRB, governments and policymakers must consider the potential consequences of institutional shifts and their impact on water use and sustainability.
 \end{abstract}
 
 
@@ -176,14 +174,15 @@
 \newpage
 \appendix\label{appendix}
 
-\section{Contexts of institutional shifts}\label{secS1}
+\section{Key points in the documents of 87-WAS and 98-UBR}\label{secS1}
 \renewcommand{\thefigure}{A\arabic{figure}}
 \renewcommand{\thetable}{A\arabic{table}}
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \input{../02_appendix/01_institution_context.tex}
 
-\section{Robustness of DSC method}\label{secS2}
+\newpage
+\section{Data source and method details}\label{secS2}
 \renewcommand{\thefigure}{B\arabic{figure}}
 \renewcommand{\thetable}{B\arabic{table}}
 \setcounter{figure}{0}
@@ -193,18 +192,19 @@
 % \section{S2: Methods in details}\label{secS3}
 % \input{../02_appendix/03_results_appendix.tex}
 
-\section{Optimization model for water use}\label{secS4}
+\newpage
+\section{Marginal benefit model for water use}\label{secS4}
 \renewcommand{\thefigure}{C\arabic{figure}}
 \renewcommand{\thetable}{C\arabic{table}}
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \input{../02_appendix/04_theoretical_model.tex}
 
-\section{Model extensions}\label{secS5}
-\renewcommand{\thefigure}{D\arabic{figure}}
-\renewcommand{\thetable}{D\arabic{table}}
-\setcounter{figure}{0}
-\setcounter{table}{0}
-\input{../02_appendix/05_model_extensions.tex}
+% \section{Model extensions}\label{secS5}
+% \renewcommand{\thefigure}{D\arabic{figure}}
+% \renewcommand{\thetable}{D\arabic{table}}
+% \setcounter{figure}{0}
+% \setcounter{table}{0}
+% \input{../02_appendix/05_model_extensions.tex}
 
 \end{document}

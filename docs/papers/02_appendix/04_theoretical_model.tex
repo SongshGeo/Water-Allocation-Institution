@@ -5,14 +5,7 @@
 % \subsection{Structure-based marginal benefit analysis}
 % \label{result-4}
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=0.6\linewidth]{outputs/economic_model.pdf}
-	\caption{
-		The proposed relationship of marginal benefits and water use of individual province under varying cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{fig:structure}~C) Major water users' theoretically optimal water use is also larger (see \nameref{sec:model} and \textit{\nameref{secS4}}).}\label{fig:model}
-\end{figure}
-
-For interpretation of the pattern, we compared the theoretical marginal returns and optimal water use under three different structural cases (case 1 to case 3, corresponding to different SES structures in Figure~\ref{fig:structure}~C, see \nameref{sec:model}~Figure~\ref{fig:model}, detailed derivation in \textit{\nameref{secS4}}).
+For interpretation of the pattern of provincial water uses, we compared the theoretical marginal returns and optimal water use under three different structural cases (case 1 to case 3, corresponding to different SES structures in Figure~\ref{fig:structure}~C).
 
 Assuming that water is the factor input with decreasing marginal output of each province, results show that varying incentives for water use in each province derive from the relationship between the benefits and costs of water use.
 As a benchmark, case 1 analogy to a decentralized stakeholders situation and lead to medium-level water use.
@@ -21,11 +14,14 @@ Furthermore, the water users with higher capability are more stimulated by the i
 After water-use decisions are consolidated into unified management (case 3), marginal benefits analysis suggests the lowest water use among the cases.
 
 
-\paragraph{Setup}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.6\linewidth]{outputs/economic_model.pdf}
+	\caption{
+		The proposed relationship of marginal benefits and water use of individual province under varying cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{fig:structure}~C) Major water users' theoretically optimal water use is also larger (see the proofs below.)}
+\end{figure}
 
-To understand the mechanisms through which the SES structure impacts provincial water use, we developed a dynamic marginal benefits analysis to analyze how institutional mismatch could have led to the changes in water use, especially among provinces with high incentives for excess water use. Specifically, we modeled individual provincial decision-making in water resources before quota execution.
-
-We proposed three intuitive and general assumptions:
+Below are the detailed theoretical model derivation process, where we started from proposing three intuitive and general assumptions:
 
 \begin{ass}
 (Water-dependent production) Because of irreplaceability, water is assumed to be the only input of the production function with two types of production efficiency. The production function of a high-incentive province is $A_HF(x)$, and the production function of a low-incentive province is $A_LF(x)$ ($A_H>A_L$). F(x) is continuous, $F'(0)=\infty$, $ F'(\infty)=0$, $F'(x)>0$, and $F''(x)<0$. The production output is under perfect competition, with a constant unit price of $P$.
@@ -37,12 +33,11 @@ We proposed three intuitive and general assumptions:
 \begin{ass}
 (Multi-period settings) There are infinite periods with a constant discount factor $\beta$ lying in (0,1). There is no cross-period smoothing in water use.
 \end{ass}
-Under the above assumptions, we can demonstrate three cases to simulate the water use decision-making and water use patterns in a whole basin.
 
 Under the above assumptions, we can demonstrate three cases consisting of local governments in a whole basin to simulate their water use decision-making and water use patterns.
 
  %case1
-\begin{case} Dentralized decision: This case corresponds to a situation without any high-level water allocation institution.
+\begin{case} before 1987: This case corresponds to a situation without any high-level water allocation institution.
 
 When each province independently decides on its water use, the optimal water use $x_i^*$ in province $i$ satisfies:
 
@@ -57,9 +52,9 @@ When each province independently decides on its water use, the optimal water use
  \end{case}
 
  %case2
- \begin{case} Mismatched institution: This case corresponds to an SES structure where fragmented stakeholders are linked to unified river reaches.
+ \begin{case} from 1987 to 1998: This case corresponds to an SES structure where fragmented stakeholders are linked to unified river reaches.
 
- The water quota is determined at $t$=0 and imposed in $t$=1,2,... Under the subjective expectation of each province that current water use may influence the future water allocation determined by high-level authorities, the total quota is a constant denoted as Q, and the quota for province $i$ is determined in a proportional form:
+ The water quota is determined at $t$=0 and imposed in $t$=1,2, \ldots Under the subjective expectation of each province that current water use may influence the future water allocation determined by high-level authorities, the total quota is a constant denoted as Q, and the quota for province $i$ is determined in a proportional form:
 
  $Q_i=Q \cdot \frac{x_i}{x_i + \begin{matrix}\sum{x_{-i}} \end{matrix}}$.
 
@@ -69,22 +64,20 @@ $AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdo
 
 where $A_H$ denotes a high-incentive province and $A_L$ denotes a low-incentive province.
 
- \end{case}
-
+\end{case}
 
  %case3
- \begin{case} Matched institution: This case corresponds to the institution under which water use in a basin is centrally managed.
+\begin{case} after 1998: This case corresponds to the institution under which water use in a basin is centrally managed.
 
  When the $N$ provinces decide on water use as a unified whole (e.g., the central government completely decides and controls the water use in each province), the optimal water use $x_i^*$ of province $i$ satisfies:
 
 $F'(x)=\frac{C}{P}$.
 
- \end{case}
-
+\end{case}
 
 We propose Proposition 1 and Proposition 2:
 
-Proposition 1: Compared with the decentralized institution, a matched institution with unified management decreases total water use.
+Proposition 1: Compared with the decentralized institution, a institution with unified management decreases total water use.
 
 The optimal water use under the three cases implies that mismatched institutions cause incentive distortions and lead to resource overuse.
 
@@ -93,39 +86,20 @@ Proposition 2: Water overuse is higher among provinces with high water use incen
 
 The intuition for this proposition is straightforward in that all provinces would use up their allocated quota under a relatively small $Q$. As production efficiency increases, the marginal benefits of a unit quota increase, and the quota would provide higher future benefits for a pre-emptive water use strategy. Provinces with high production efficiency have higher optimal water use values under the decentralized decision. The divergence in water use would be exaggerated when the water quota is expected to be implemented with greater competition.
 
-
-Extensions of the model are shown in Supplementary Material S3.%%%
-
-
-
-
-
 %Appendix的模型和proposition推导细节部分
 %放在Appendix
-Appendix: Water Use Optimization
 
 %case1
-\begin{case_appendix}Centralized decision
 
 When the N provinces decide on water uses as a unity, the marginal cost is C, equal to its fixed unit cost.
 The water use of province $i$ aims to maximize $P\cdot A\cdot F(x)-C$.
 Hence, $x_i^*$ satisfies $P \cdot A\cdot F'(x)=C$, i.e., $AF'(x)=\frac{C}{P}$, where A denotes $A_H$ for a high-incentive province and $A_L$ for a low-incentive province.
 
-\end{case_appendix}
-
-%case2
- \begin{case_appendix}Decentralized decision
-
 When each of the N provinces independently decides on its water use, the marginal cost of water use would be $\frac{C}{N}$ as a result of cost-sharing with others.
 Hence, the optimal water use in province i at period t, denoted as $\hat x_i^*$, satisfies $P \cdot A \cdot F'(x_{it})=\frac{C}{N}$, i.e., $A \cdot F'(x)=\frac{C}{P \cdot N}$.
 Since $F'$ is monotonically decreasing, $\hat x_{it}^*>x_i^*$.
-\end{case_appendix}
 
-
-%case3
- \begin{case_appendix}Forward-looking decentralized decision under quota restrictions
-
- When the water quota would constrain future water use, the dynamic optimization problem of province i is shown as follows. In $t=1,2,\cdots$, there would be no relevant cost when the quota is bound that each province takes ongoing costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. Therefore, it is sufficient to consider only the total water quota is less than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
+When the water quota would constrain future water use, the dynamic optimization problem of province i is shown as follows. In $t=1,2,\cdots$, there would be no relevant cost when the quota is bound that each province takes ongoing costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. Therefore, it is sufficient to consider only the total water quota is less than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
 
 $max  \quad P \cdot A \cdot F(x_{i,0})-\frac{C \cdot \begin{matrix} \sum x_{i,0} + x_{-i,0} \end{matrix}}{N}+\beta P \cdot A \cdot F(x_{i,1})+\beta^2 P \cdot A \cdot F(x_{i,2})+...$
 
@@ -160,4 +134,3 @@ Eq.(xxx) %此处引用：$AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\bet
 implies a positive relation between $x_{i0}$ and A, when $\beta, P, C, Q$, and other provinces' water use are taken as given.
 
 The difference between $\widetilde x_i^*$ and $\hat x_i^*$ (i.e., $\frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$) represents the incentive of water overuse derived from an expectation of water quota allocation. The incentive of water overuse increases by A.
-\end{case_appendix}

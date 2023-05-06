@@ -2,126 +2,51 @@
 %! Date = 2022/3/19
 
 
-% 找到具解释力的变量是构造合成控制法稳健的关键。
-Explanatory variables are the key to constructing a robust synthetic control method.
-% 我们共使用了用水量密切相关的26个变量，这些变量的数据集已在先前的研究中被用来解释中国的用水量变化
-We used a total of $24$ variables related to water consumption Table~\ref{tab:variables}, which datasets have been used in previous studies to explain changes in water use in China \cite{zhou2020}.
-% 由于这些变量间存在自相关，我们通过肘部法供选择了5个主成分作为DSC的输入，前人研究表明PCA方法的结合能够增强合成控制法的稳健性
-In addition, we selected $5$ principal components as input by the elbow method because selection in autocorrelated variables reduces dimensions and then enhances the robustness of the DSC (Figure~\ref{fig:elbow}).
+% % 找到具解释力的变量是构造合成控制法稳健的关键。
+% Explanatory variables are the key to constructing a robust synthetic control method.
+% % 我们共使用了用水量密切相关的26个变量，这些变量的数据集已在先前的研究中被用来解释中国的用水量变化
+% We used a total of $24$ variables related to water consumption Table~\ref{tab:variables}, which datasets have been used in previous studies to explain changes in water use in China \cite{zhou2020}.
+% % 由于这些变量间存在自相关，我们通过肘部法供选择了5个主成分作为DSC的输入，前人研究表明PCA方法的结合能够增强合成控制法的稳健性
 
-There are two approaches to validity testing of the DSC: (1) comparing the post-treated and pre-treated reconstructions and (2) testing robustness through placebo analysis.
-For (1), differences between each province and their synthetic are significant in post-treated periods and small in pre-treated periods (Figure~\ref{fig:87panel} and figure~\ref{fig:98panel}), which show good reconstructions of their water use changes' estimation.
-For (2), we applied the in-place placebo analysis described by \cite{abadie2010}. In most provinces, ratios of post-MSPE to pre-MSPE are higher than the median of other placebo units, which suggests the institutional shifts in treated time (1987 and 1998 here) influenced them more than most of the other provinces (figure~\ref{fig:87placebo}, figure~\ref{fig:98placebo}, Table~\ref{tab:DSC_summary}).
+% In addition, we selected $5$ principal components as input by the elbow method because selection in autocorrelated variables reduces dimensions and then enhances the robustness of the DSC (Figure~\ref{fig:elbow}).
 
-\begin{figure*}[!bh]
-    \includegraphics[width=0.9\linewidth]{outputs/87panel.pdf}
-    \centering
-    \caption{Comparations between YRB' provinces and their synthetic controls around the 87-WAS.}
-    \label{fig:87panel}
-\end{figure*}
+% There are two approaches to validity testing of the DSC: (1) comparing the post-treated and pre-treated reconstructions and (2) testing robustness through placebo analysis.
+% For (1), differences between each province and their synthetic are significant in post-treated periods and small in pre-treated periods (Figure~\ref{fig:87panel} and figure~\ref{fig:98panel}), which show good reconstructions of their water use changes' estimation.
+% For (2), we applied the in-place placebo analysis described by \cite{abadie2010}. In most provinces, ratios of post-MSPE to pre-MSPE are higher than the median of other placebo units, which suggests the institutional shifts in treated time (1987 and 1998 here) influenced them more than most of the other provinces (figure~\ref{fig:87placebo}, figure~\ref{fig:98placebo}, Table~\ref{tab:DSC_summary}).
 
-\begin{figure*}
-    \includegraphics[width=0.9\linewidth]{outputs/98panel.pdf}
-    \centering
-    \caption{Comparations between YRB' provinces and their synthetic controls around the 98-UBR.}
-    \label{fig:98panel}
-\end{figure*}
+% \begin{figure*}[!bh]
+%     \includegraphics[width=0.9\linewidth]{outputs/87panel.pdf}
+%     \centering
+%     \caption{Comparations between YRB' provinces and their synthetic controls around the 87-WAS.}
+%     \label{fig:87panel}
+% \end{figure*}
+
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/98panel.pdf}
+%     \centering
+%     \caption{Comparations between YRB' provinces and their synthetic controls around the 98-UBR.}
+%     \label{fig:98panel}
+% \end{figure*}
 
 
-\begin{figure*}
-    \includegraphics[width=0.9\linewidth]{outputs/87placebo.pdf}
-    \centering
-    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 87-WAS, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE).}
-    \label{fig:87placebo}
-\end{figure*}
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/87placebo.pdf}
+%     \centering
+%     \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 87-WAS, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE).}
+%     \label{fig:87placebo}
+% \end{figure*}
 
-\begin{figure*}
-    \includegraphics[width=0.9\linewidth]{outputs/98placebo.pdf}
-    \centering
-    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 98-UBR, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE)}
-    \label{fig:98placebo}
-\end{figure*}
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/98placebo.pdf}
+%     \centering
+%     \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 98-UBR, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE)}
+%     \label{fig:98placebo}
+% \end{figure*}
 
-\begin{table*}[!ht]
-	\caption{Variables and their categories for water use predictions}
-	\scriptsize
-	\label{tab:variables}
-	\resizebox{\linewidth}{!}{
-	\begin{tabular}{lllll}
-	\hline
-	Sector &
-	  Category &
-	  Unit &
-	  Description &
-	  Variables \\ \hline
-	Agriculture &
-	  Irrigation Area &
-	  thousand ha &
-	  \begin{tabular}[c]{@{}l@{}}Area equipped for irrgiation by different \\ crop:\end{tabular} &
-	  \begin{tabular}[c]{@{}l@{}}Rice, \\ Wheat, \\ Maize, \\ Fruits, \\ Others.\end{tabular} \\ \hline
-	Industry &
-	  \begin{tabular}[c]{@{}l@{}}Industrial gross \\ value added\end{tabular} &
-	  Billion Yuan &
-	  Industrial GVA by industries &
-	  \begin{tabular}[c]{@{}l@{}}Textile, \\ Papermaking, \\ Petrochemicals, \\ Metallurgy, \\ Mining, \\ Food, \\ Cements, \\ Machinery, \\ Electronics, \\ Thermal electrivity, \\ Others.\end{tabular} \\
-	 &
-	  \begin{tabular}[c]{@{}l@{}}Industrial water \\ use efficiency\end{tabular} &
-	  \% &
-	  \begin{tabular}[c]{@{}l@{}}The ratio of recycled water and evaporated \\ water to total industrial water use\end{tabular} &
-	  \begin{tabular}[c]{@{}l@{}}Ratio of industrial water recycling, \\ Ratio of industrial water evaporated.\end{tabular} \\ \hline
-	Services &
-	  \begin{tabular}[c]{@{}l@{}}Services gross \\ value added\end{tabular} &
-	  Billion Yuan &
-	  GVA of service activities &
-	  Services GVA \\ \hline
-	Domestic &
-	  Urban population &
-	  Million Capita &
-	  Population living in urban regions. &
-	  Urban pop \\
-	 &
-	  Rural population &
-	  Million Capita &
-	  Population living in rural regions. &
-	  Rural pop \\
-	 &
-	  Livestock population &
-	  Billion KJ &
-	  \begin{tabular}[c]{@{}l@{}}Livestock commodity calories summed from \\ 7 types of animal.\end{tabular} &
-	  Livestock \\ \hline
-	Environment &
-		  Temperature & $K$ & Near surface air temperature & Temperature \\
-			& Precipitation & $mm$ & Annual accumulated precipitation & Precipitation \\ \hline
-	\end{tabular}}
-\end{table*}
+\input{tab_data_source.tex}
 
-\begin{figure*}
+\begin{figure*}[!h]
     \includegraphics[width=0.9\linewidth]{outputs/elbow.pdf}
     \centering
-    \caption{Choose number of pricipal components by Elbow method, $5$ pricipal components already capture $89.63\%$ explained variance.}
-    \label{fig:elbow}
+    \caption{Choose number of pricipal components by Elbow method, $5$ pricipal components already capture $89.63\%$ explained variance.}\label{fig:elbow}
 \end{figure*}
-
-\begin{table*}
-	\caption{Pre and post treatment root mean squared prediction error (RMSPE) for YRB's provinces}
-	\label{tab:DSC_summary}
-	\scriptsize
-	\centering
-	\resizebox{\linewidth}{!}{
-	\begin{tabular}{lrrrrrrrr}
-	\hline
-	 & \multicolumn{4}{c}{1987-WAS} & \multicolumn{4}{c}{1998-UBR} \\
-	 Provinces & Pre-RMSPE & Post-RMSPE & Ratio & Significant$^a$ & Pre-RMSPE & Post-RMSPE & Ratio & Significant$^a$ \\
-	 \hline
-	 Qinghai & 0.016 & 0.231 & 14.606 & True & 0.230 & 1.170 & 5.096 & True \\
-	Gansu & 0.056 & 1.307 & 23.265 & True & 0.244 & 0.841 & 3.448 & True \\
-	Ningxia & 0.097 & 0.944 & 9.697 & True & 0.332 & 1.091 & 3.284 & True \\
-	Neimeng & 0.335 & 3.846 & 11.479 & True & 1.320 & 1.183 & 0.896 & False \\
-	Shanxi & 0.208 & 0.675 & 3.241 & False & 0.264 & 0.401 & 1.520 & False \\
-	Shaanxi & 0.181 & 0.572 & 3.164 & False & 0.096 & 0.724 & 7.579 & True \\
-	Henan & 0.210 & 3.207 & 15.292 & True & 1.222 & 2.479 & 2.029 & False \\
-	Shandong & 0.209 & 1.840 & 8.785 & True & 0.431 & 1.517 & 3.516 & True \\
-	\hline
-	\end{tabular}}
-	\footnotesize[a]\leftline{{Larger post/pre RMSPE than the median of the placebos.}}\\
-\end{table*}
