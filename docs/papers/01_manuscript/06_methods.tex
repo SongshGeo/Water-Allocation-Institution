@@ -34,24 +34,27 @@ By re-weighting units to match the pre-trend for the treated and control units, 
 Therefore, the synthetic and actual version difference can be estimated as a net effect for a treated unit.
 
 In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: from 1979 to 1998; from 1987 to 2008.
-We include each province in the YRB ($n=8$, see \textit{\nameref{sec:dataset}}) as the treated unit separately, as multiple treated units approach had been widely applied~\cite{abadie2021}.
-Then, we consider the $J+1$ units observed in time periods $T = {1,2 \cdots , T}$ with the remaining $J=20$ units are untreated provinces from outside.
+We separately include each of the eight provinces in the YRB (see \textit{\nameref{sec:dataset}}) as individual treated units~\cite{abadie2021}.
+Then, we consider the $J+1$ units observed in time periods $T = {1, 2, \ldots, t}$ where the remaining $J=20$ units represent untreated provinces from outside the YRB.
 We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.
-The treated unit is exposed to the institutional shift in every post-treatment period $T_0$, unaffected by the institutional shift in all preceding periods $T_1$.
-Then, any weighted average of the control units is a synthetic control and can be represented by a ($J * 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$.
-Among them, by introduce a ($k * k$) diagonal, matrix $\mathbf{V}$ that signifies the relative importance of each covariant, the DSC method procedure for finding the optimal synthetic control ($W$) is expressed as follows:
+The treated unit is exposed to the institutional shift in every post-treatment period $T_1$, unaffected by the institutional shift in all preceding periods $T_0$.
+Then, any weighted average of the control units is a synthetic control and can be represented by a ($J \times 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$.
+Among them, by introduce a ($k \times k$) diagonal, matrix $\mathbf{V}$ that signifies the relative importance of each variable, the DSC method procedure for finding the optimal synthetic control ($\mathbf{W}$) is expressed as follows:
 
 \begin{equation}
     \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{minimize}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
 \end{equation}
 
-where $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W*(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{W*(V)}$ that minimizes the following expression:
+where $X_1$ is the pre-treatment average of each variable in the dataset for the treated unit, while $X_0$ is a ($k \times J$) containing the pre-treatment characteristics for each of the $J$ control units; $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W*(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{W*(V)}$ that minimizes the following expression:
 
 \begin{equation}
     \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
 \end{equation}
 
-That is the minimum difference between the outcome of the treated unit and the synthetic control in the pre-treatment period, where $\mathbf{Z}_{1}$ is a ($1*T_0$) matrix containing every observation of the outcome for the treated unit in the pre-treatment period. Similarly, let $\mathbf{Z}_{0}$ be a ($k * T_0$) matrix containing the outcome for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
+That is the minimum difference between the water uses of treated units and the synthetic controls in the pre-treatment period, where $\mathbf{Z}_{1}$ is a matrix containing every observation of the water use for the treated unit in the pre-treatment period $T_0$.
+Similarly, $\mathbf{Z}_{0}$ is a ($k \times T_0$) matrix contains the water use for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
+In this study, we adopted the minimization by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023}.
+
 The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties~\cite{billmeier2013, smith2015}.
 
 \subsection{Robustness analysis}\label{sec:robustness}
