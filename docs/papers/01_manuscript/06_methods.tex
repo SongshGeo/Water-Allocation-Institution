@@ -64,9 +64,7 @@ Two primary methods can be employed to validate the efficiency of the DSC approa
 Firstly, the reconstruction effect on inferred variables (water consumption here) before and after treatment (the interventions of 87-WAS and 98-UBR) can be compared.
 If there are small gaps between the predicted and observed values before treatment, and a large gap after treatment, it indicates that the policy intervention's effect is apparent.
 In this study, to determine whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, comparing the model predictions and actual observation data in the periods before and after institutional interventions for both the 87-WAS in $1987$ and 98-UBR in $1998$.
-% If the $p$ value after the policy intervention is less than the threshold value ($0.05$), the null hypothesis $H_0$ of no significant difference can be rejected, and it is believed that the institutional intervention has significantly changed the water consumption in this region.
-% If the significance level of the $T$ test before institutional intervention is greater than the threshold value, it means that the DSC model successfully predicted the change in water consumption in this region over time before institutional intervention, indicating a good fit.
-An effective synthetic control model will show a significant difference after treatment but not before treatment.
+A valid result would be one where a significant difference is observed after treatment but not before treatment. If this is not the case, it implies that the institutional changes were ineffective for the treated units.
 
 Secondly, placebo tests are another common way to evaluate the effectiveness of synthetic control methods~\cite{abadie2010}.
 Placebo units are selected from the control unit pool and substituted for the treated unit, applying the synthetic control method to the placebo unit using the same data and parameters as the treated unit.
