@@ -4,7 +4,7 @@
 In the methodology section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as organizational diagrams during different periods of time.
 Next, we introduce the dataset we used here and employ the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
 We then estimate the net effects of the two institutional shifts on total water use, changing trends, and differences in the YRB's provinces using the Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
-Finally, we present the robustness tests approach for the DSC model.
+Finally, we present the efficiency tests approach for the DSC model.
 % Finally, for discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
 
 \subsection{Portraying structures}\label{sec:structures}
@@ -21,7 +21,7 @@ Among the total $31$ data-accessible provinces (or regions) assigned quotas in t
 % We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.\\
 
 Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components.
-Previous study has proved that combining PCA and DSC can raise the robustness of causal inference~\cite{bayani2021}.
+Previous study has proved that combining PCA and DSC can lead to a more robust causal inference~\cite{bayani2021}.
 We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\nameref{secS2}~Figure\ref{fig:elbow}}).
 Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
 
@@ -54,27 +54,26 @@ where $X_1$ is the pre-treatment average of each variable in the dataset for the
 
 That is the minimum difference between the water uses of treated units and the synthetic controls in the pre-treatment period, where $\mathbf{Z}_{1}$ is a matrix containing every observation of the water use for the treated unit in the pre-treatment period $T_0$.
 Similarly, $\mathbf{Z}_{0}$ is a ($k \times T_0$) matrix contains the water use for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
+The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with better robustness~\cite{billmeier2013, smith2015}.
 In this study, we adopted the minimization by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023}.
 
-The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with double robustness properties~\cite{billmeier2013, smith2015}.
+\subsection{Efficiency tests of the DSC}\label{sec:robustness}
 
-\subsection{Robustness analysis}\label{sec:robustness}
-
-Two primary methods can be employed to test the robustness of the DSC approach.
+Two primary methods can be employed to test the efficiency of the DSC approach.
 
 Firstly, the reconstruction effect on inferred variables (water consumption here) before and after treatment (the interventions of 87-WAS and 98-UBR) can be compared.
 If there are small gaps between the predicted and observed values before treatment, and a large gap after treatment, it indicates that the policy intervention's effect is apparent.
 In this study, to determine whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, comparing the model predictions and actual observation data in the periods before and after institutional interventions for both the 87-WAS in $1987$ and 98-UBR in $1998$.
 % If the $p$ value after the policy intervention is less than the threshold value ($0.05$), the null hypothesis $H_0$ of no significant difference can be rejected, and it is believed that the institutional intervention has significantly changed the water consumption in this region.
 % If the significance level of the $T$ test before institutional intervention is greater than the threshold value, it means that the DSC model successfully predicted the change in water consumption in this region over time before institutional intervention, indicating a good fit.
-A robust synthetic control model will show a significant difference after treatment but not before treatment.
+An effective synthetic control model will show a significant difference after treatment but not before treatment.
 
-Secondly, placebo experiments are another common way to evaluate the effectiveness of synthetic control methods.
+Secondly, placebo tests are another common way to evaluate the effectiveness of synthetic control methods~\cite{abadie2010}.
 Placebo units are selected from the control unit pool and substituted for the treated unit, applying the synthetic control method to the placebo unit using the same data and parameters as the treated unit.
 If the synthetic control method is effective, there should be a clear difference between the placebo unit and the control unit since the placebo unit should not be affected by the intervention.
 % Placebo tests can be used to assess the effectiveness of the synthetic control method and detect any bias or confounding factors in the analysis.
 In this study, we adopt the placebo test step suggested by Abadie when proposing the synthetic control method~\cite{abadie2010} and utilize the Python library of the differential synthetic control method for the placebo test.
-If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in the pre-synthesis period is significantly higher for most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, it would suggest that the Yellow River Basin was more significantly affected than most other provinces during the treatment periods ($1987$ and $1998$), i.e., the results are more robust.
+If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in the pre-synthesis period is significantly higher for most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, it would suggest that the Yellow River Basin was more significantly affected than most other provinces during the treatment periods ($1987$ and $1998$), i.e., more effective.
 
 \begin{equation}
     \label{ch5:eq:RMSE}
