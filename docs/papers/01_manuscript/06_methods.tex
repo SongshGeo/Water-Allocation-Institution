@@ -20,7 +20,7 @@ Then, to estimate the water use of the YRB by assuming there were no effects fro
 Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin and Beijing (together, Jinji) because of their trivial water use from the YRB (see Table~\ref{tab:quota}).
 % We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.\\
 
-Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components.
+Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $D = 5$ principal components.
 Previous study has proved that combining PCA and DSC can lead to a more robust causal inference~\cite{bayani2021}.
 We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\nameref{secS2}~Figure\ref{fig:elbow}}).
 Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
@@ -33,26 +33,30 @@ The key idea behind this method is to evaluate the effects of policy changes tha
 The method creates a ``synthetic'' version of the affected units by combining information from other similar but unaffected units. This ``synthetic'' version serves as a control group, which we can compare with the actual affected units.
 The DSC method, therefore, is a powerful tool as it allows us to control for unobserved factors that can change over time, providing more robust results.
 
-In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: from 1979 to 1998; from 1987 to 2008.
+In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $T_0$ within two individually analyzed periods $1, 2, \dots, T_0, T_0 + 1, \dots, T$: from 1979 to 1998; from 1987 to 2008.
 We separately include each of the eight provinces in the YRB (see \textit{\nameref{sec:dataset}}) as individual treated units~\cite{abadie2021}.
-Then, we consider the $J+1$ units observed in time periods $T = {1, 2, \ldots, t}$ where the remaining $J=20$ units represent untreated provinces from outside the YRB.
-We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.
-The treated unit is exposed to the institutional shift in every post-treatment period $T_1$, unaffected by the institutional shift in all preceding periods $T_0$.
-Then, any weighted average of the control units is a synthetic control and can be represented by a ($J \times 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$.
-Among them, by introduce a ($k \times k$) diagonal, matrix $\mathbf{V}$ that signifies the relative importance of each variable, the DSC method procedure for finding the optimal synthetic control ($\mathbf{W}$) is expressed as follows:
+Then, we consider the $J+1$ units observed in time periods $1, \dots, T$ where the remaining $J=20$ units represent untreated provinces from outside the YRB.\
+% We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.
+The treated unit is exposed to the institutional shift in every post-treatment period $T_0 +1, \dots, T$, unaffected by the institutional shift in all preceding periods $1, 2, \dots, T_0$.
+Then, any weighted average of the control units is a synthetic control and can be represented by a ($J \times 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$ and $w_2 + \cdots  + w_{J+1} = 1$.
+We denote $k$ is $T \times D$ number of covariates, in which $D$ is number of dimensions of the dataset (i.e., $D = 5$ in this case).
+Introducing a $k \times 1$ non-negative vector $\mathbf{V}$ ($\mathbf{V} = v_{1}, \ldots ,v_{k}$ and $v_1 + \cdots  + v_{k} = 1$) that signifies the relative importance of each covariate.
+% 接下来的目标就是求一个权重矩阵W，让它来表示控制组各单位的权重，使这些权重构成我们需要的“合成”版本的控制组
+The next goal is finding the optimal synthetic control ($\mathbf{W}$) which represents the ``synthetic'' versions of the affected provinces in the YRB.\
 
 \begin{equation}
-    \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{minimize}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
+    \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{argmin}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
 \end{equation}
 
-where $X_1$ is the pre-treatment average of each variable in the dataset for the treated unit, while $X_0$ is a ($k \times J$) containing the pre-treatment characteristics for each of the $J$ control units; $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W*(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{W*(V)}$ that minimizes the following expression:
+Here, $\mathbf{X_1}$ is the pre-treatment average of each variable in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) containing the pre-treatment characteristics for each of the $J$ control units; $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W^{*}(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{W*(V)}$ that minimizes the following expression:
 
 \begin{equation}
     \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
 \end{equation}
 
 That is the minimum difference between the water uses of treated units and the synthetic controls in the pre-treatment period, where $\mathbf{Z}_{1}$ is a matrix containing every observation of the water use for the treated unit in the pre-treatment period $T_0$.
-Similarly, $\mathbf{Z}_{0}$ is a ($k \times T_0$) matrix contains the water use for each control unit in the pre-treatment period, and $k$ is the number of variables in the datasets.
+Similarly, $\mathbf{Z}_{0}$ is a ($J \times T_0$) matrix contains the water use for each control unit in the pre-treatment period.
+% https://github.com/OscarEngelbrektson/SyntheticControlMethods/issues/18 这里和README不一样，因为它有问题
 The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with better robustness~\cite{billmeier2013, smith2015}.
 In this study, we adopted the minimization by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023}.
 
