@@ -26,13 +26,12 @@ We first applied the Zero-Mean normalization (unit variance), as the variables' 
 Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
 
 \subsection{Differenced Synthetic Control}\label{sec:DSC}
-Using the Differenced Synthetic Control (DSC) method, we can estimate water use under the scenarios of no institutional shift.
-The DSC method is an effective identification strategy for estimating the net effect of historical events or policy interventions on aggregate units (such as cities, regions, and countries) by constructing a comparable control unit~\cite{abadie2010, abadie2015, hill2021}.
-This approach enables us to establish a counterfactual basis for exploring the consequences and incentives related to policy changes.
 
-This method aims to evaluate the effects of policy change that are not random across units but focuses on some of them (i.e., institutional shifts in the YRB here).
-By re-weighting units to match the pre-trend for the treated and control units, the DSC method imputes post-treatment control outcomes for the treated units by constructing a synthetic version of the treated units equal to a convex combination of control units.
-Therefore, the synthetic and actual version difference can be estimated as a net effect for a treated unit.
+The Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021} is a tool we use to estimate how water use might have evolved if there had been no institutional shift.
+Think of it as creating an alternate reality or a ``what-if'' scenario to compare with what actually happened~\cite{abadie2010, abadie2015, hill2021}.
+The key idea behind this method is to evaluate the effects of policy changes that mainly affect certain units (in this case, the institutional shifts in the Yellow River Basin or YRB).
+The method creates a ``synthetic'' version of the affected units by combining information from other similar but unaffected units. This ``synthetic'' version serves as a control group, which we can compare with the actual affected units.
+The DSC method, therefore, is a powerful tool as it allows us to control for unobserved factors that can change over time, providing more robust results.
 
 In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $t_0$ within two individually analyzed periods $T$: from 1979 to 1998; from 1987 to 2008.
 We separately include each of the eight provinces in the YRB (see \textit{\nameref{sec:dataset}}) as individual treated units~\cite{abadie2021}.
