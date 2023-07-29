@@ -67,14 +67,14 @@ Two primary methods can be employed to validate the efficiency of the DSC approa
 Firstly, the reconstruction effect on inferred variables (water consumption here) before and after treatment (the interventions of 87-WAS and 98-UBR) can be compared.
 If there are small gaps between the predicted and observed values before treatment, and a large gap after treatment, it indicates that the policy intervention's effect is apparent.
 In this study, to determine whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, comparing the model predictions and actual observation data in the periods before and after institutional interventions for both the 87-WAS in $1987$ and 98-UBR in $1998$.
-A valid result would be one where a significant difference is observed after treatment but not before treatment. If this is not the case, it implies that the institutional changes were ineffective for the treated units.
+An effective result would be one where a significant difference is observed after treatment but not before treatment. If this is not the case, it implies that the institutional changes were ineffective for the treated units.
 
 Secondly, placebo tests are another common way to evaluate the effectiveness of synthetic control methods~\cite{abadie2010}.
 Placebo units are selected from the control unit pool and substituted for the treated unit, applying the synthetic control method to the placebo unit using the same data and parameters as the treated unit.
 If the synthetic control method is effective, there should be a clear difference between the placebo unit and the control unit since the placebo unit should not be affected by the intervention.
 % Placebo tests can be used to assess the effectiveness of the synthetic control method and detect any bias or confounding factors in the analysis.
 In this study, we adopt the placebo test step suggested by Abadie when proposing the synthetic control method~\cite{abadie2010} and utilize the Python library of the differential synthetic control method for the placebo test.
-If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in the pre-synthesis period is significantly higher for most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, it would suggest that the Yellow River Basin was more significantly affected than most other provinces during the treatment periods ($1987$ and $1998$), i.e., more effective.
+If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in the pre-synthesis period is significantly higher for most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, the provinces in the YRB was more significantly affected than most other provinces during the treatment periods ($1987$ and $1998$), i.e., more effective.
 
 \begin{equation}
     \label{ch5:eq:RMSE}
@@ -82,21 +82,3 @@ If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in t
 \end{equation}
 
 Where $n$ is the observed number, $y_i$ is the actual value, and $\hat{y}_i$ is the predicted value.
-
-% \subsection{Marginal benefits analysis}\label{sec:model}
-% To infer the mechanisms underlying the results, we developed an marginal benefits analysis based on marginal revenue to analyze how the institutional shift could have led to differences in water use.
-
-% \begin{ass}
-%     (Water-dependent production) Because of irreplaceably, water is assumed to be the only production function input with two production efficiency types.
-% \end{ass}
-
-% \begin{ass}
-%     (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin, the water use cost is equally assigned to each province.
-% \end{ass}
-
-% \begin{ass}
-%     (Multi-period settings) There are multiple settings periods with a constant discount factor for the expectation of future water use.
-% \end{ass}
-
-% Under the above-simplified assumptions, we demonstrate three cases -corresponding to the abstracted SES structures (Figure~\ref{fig:structure}~C), inference of how SES structure alters the expected marginal benefits and costs of provinces making decisions.
-% As one of the possible interpretations for the causality between SES structure and institutional effects, the derivation of the model based on the above three assumptions can be found in \textit{Appendix~\nameref{secS4}}, and some simple model-based extensions are involved in \textit{Appendix~\nameref{secS5}}.
