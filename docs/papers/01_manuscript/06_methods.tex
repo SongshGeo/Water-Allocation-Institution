@@ -38,9 +38,9 @@ We separately include each of the eight provinces in the YRB (see \textit{\namer
 Then, we consider the $J+1$ units observed in time periods $1, \dots, T$ where the remaining $J=20$ units represent untreated provinces from outside the YRB.\
 % We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.
 The treated unit is exposed to the institutional shift in every post-treatment period $T_0 +1, \dots, T$, unaffected by the institutional shift in all preceding periods $1, 2, \dots, T_0$.
-Then, any weighted average of the control units is a synthetic control and can be represented by a ($J \times 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$ and $w_2 + \cdots  + w_{J+1} = 1$.
-We denote $k$ is $T \times D$ number of covariates, in which $D$ is number of dimensions of the dataset (i.e., $D = 5$ in this case).
-Introducing a $k \times 1$ non-negative vector $\mathbf{V}$ ($\mathbf{V} = v_{1}, \ldots ,v_{k}$ and $v_1 + \cdots  + v_{k} = 1$) that signifies the relative importance of each covariate.
+Then, any weighted average of the control units is a synthetic control and can be represented by a ($J \times 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$ and $w_1 + \cdots  + w_{J} = 1$.
+We denote $k$ is $T * D$ number of covariates, in which $D$ is number of dimensions of the dataset (i.e., $D = 5$ in this case).
+Introducing a ($k \times 1$) non-negative vector $\mathbf{V}$ ($\mathbf{V} = v_{1}, \ldots ,v_{k}$) and $v_1 + \cdots  + v_{k} = 1$ that signifies the relative importance of each covariate.
 % 接下来的目标就是求一个权重矩阵W，让它来表示控制组各单位的权重，使这些权重构成我们需要的“合成”版本的控制组
 The next goal is finding the optimal synthetic control ($\mathbf{W}$) which represents the ``synthetic'' versions of the affected provinces in the YRB.\
 
@@ -48,7 +48,7 @@ The next goal is finding the optimal synthetic control ($\mathbf{W}$) which repr
     \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{argmin}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
 \end{equation}
 
-Here, $\mathbf{X_1}$ is the pre-treatment average of each variable in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) containing the pre-treatment characteristics for each of the $J$ control units; $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W^{*}(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{W*(V)}$ that minimizes the following expression:
+Here, $\mathbf{X_1}$ is the pre-treatment average of each variable in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units; $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W^{*}(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{{W}^{*}(V)}$ that minimizes the following expression:
 
 \begin{equation}
     \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
