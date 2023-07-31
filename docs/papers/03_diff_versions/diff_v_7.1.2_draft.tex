@@ -1,7 +1,7 @@
 %DIF 1a1
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL 01_manuscript/manuscript_v-7.1.2.tex   Sat Jul 29 21:24:34 2023
-%DIF ADD 01_manuscript/manuscript.tex           Sat Jul 29 21:29:29 2023
+%DIF ADD 01_manuscript/manuscript.tex           Mon Jul 31 10:28:32 2023
 % chktex-file 46
  %DIF >
 %DIF -------
@@ -233,8 +233,8 @@
 %DIF >  \renewcommand\linenumberfont{\normalfont\bfseries\small}
 \DIFaddend \begin{abstract}
      Water governance in river basins worldwide faces challenges due to complex socio-economic and environmental factors. In the Yellow River Basin (YRB), two major institutional shifts, the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basin Regulation (98-UBR), aimed to address water allocation and usage issues. This study quantifies the net effects of these institutional shifts on water use within the YRB and analyzes the underlying reasons for their success or failure.
-     We employ a Differenced Synthetic Control method to assess the impacts of the institutional shifts. Our analysis reveals that the 87-WAS unexpectedly increased water use by $5.75\%$, while the 98-UBR successfully reduced water use as anticipated. Our research highlights the role of institutional structures in governance policies, demonstrating that the mismatched structure of the 87-WAS led to increased competition and exploitation of water resources, while the 98-UBR, with its scale-matched, basin-wide authority and stronger connections between stakeholders, resulted in improved water governance.
-     Our study underscores the importance of designing institutions that are consistent with the scale of the ecological system, promote cooperation among stakeholders, and adapt to changing social-ecological system (SES) contexts. As outdated and inflexible water quotas may no longer meet the demands of sustainable development in the YRB, governments and policymakers must consider the potential consequences of institutional shifts and their impact on water use and sustainability.
+     We employ a Differenced Synthetic Control method to assess the impacts of the institutional shifts. Our analysis \DIFdelbegin \DIFdel{reveals }\DIFdelend \DIFaddbegin \DIFadd{suggests }\DIFaddend that the 87-WAS unexpectedly increased water use by $5.75\%$, while the 98-UBR successfully reduced water use as anticipated. Our research highlights the role of institutional structures in governance policies, demonstrating that the mismatched structure of the 87-WAS led to increased competition and exploitation of water resources, while the 98-UBR, \DIFdelbegin \DIFdel{with its scale-matched, }\DIFdelend basin-wide authority and stronger connections between stakeholders, resulted in improved water governance.
+     Our study underscores the importance of designing institutions that are consistent with the scale of the ecological system, promote cooperation among stakeholders, and adapt to changing social-ecological system (SES) contexts. As outdated and inflexible water quotas may no longer meet the demands of sustainable development in the YRB, \DIFdelbegin \DIFdel{governments and }\DIFdelend policymakers must consider the potential consequences of institutional shifts and their impact on water use and sustainability.
 \end{abstract}
 
 %DIF > %Graphical abstract
@@ -266,17 +266,17 @@ In this way, hydrological processes are tightly intertwined with societies, form
 
 Institutions encompass the interplay between social actors, ecological units, and their interactions~\cite{young2008, lien2020, bodin2017b, wang2022g} (Figure~\ref{fig:framework}~a).
 These interactions constitute a type of SES structure, where effective institutions operate at appropriate spatial, temporal, and functional scales to manage and balance different interactions, contributing to sustainability~\cite{epstein2015, wang2019d} (Figure~\ref{fig:framework}~b).
-%DIF >  (Figure~\ref{fig:framework}~\textbf{a}).
-%DIF >  Governing river basin systems involves reshaping their SES structures through institutions such as policies, laws, and norms~\cite{,cumming2020b}.
 While some institutional advances have led to effective water governance outcomes (e.g., the Ecological Water Diversion Project in Heihe River Basin, China~\cite{wang2019d}, and collaborative water governance systems in Europe~\cite{green2013}), imposing institutional shifts may create or destroy connections and effectiveness is not ubiquitous~\cite{loos2022}.
 For example, the Colorado River once experienced severe water shortage, and institutions led to various shortage magnitudes for different stakeholders even under the same water demand levels~\cite{hadjimichael2020}.
 Therefore, examining when and how an institution leads to effective water governance can bring crucial insights for the sustainability of river basins.
 
-%DIF >  match & mismatch
-Recent studies have explored diverse effects of institutions on river basin governance~\cite{bouckaert2022, vallury2022, loch2020, kirchhoff2016}, while the current analysis is more about interpreting outcomes after the institutional changes but cannot compare how scenarios would be without these institutional changes.
-Moreover, understanding how different SES structures influence institutional effectiveness is challenging due to the complexity and dynamics of socio-hydrological systems~\cite{bodin2017b}.
-Thus, knowledge gaps lie in the limited understanding of effective alignments between institutional shifts and SES structures, hindering the design of effective policies to promote sustainable river basin governance.
-To fill these knowledge gaps, we study the Yellow River basin, the fifth-largest river worldwide and one of the most anthropogenically altered river basins, to quantitatively measure the effects of changing SES structures.
+\DIFdelbegin \DIFdel{Recent studies have explored diverse }\DIFdelend %DIF >  match & mismatch
+\DIFaddbegin \DIFadd{Recent research has delved into the multifaceted }\DIFaddend effects of institutions on river basin governance\DIFaddbegin \DIFadd{, shedding light on diverse consequences and interactions}\DIFaddend ~\cite{bouckaert2022, vallury2022, loch2020, kirchhoff2016}\DIFdelbegin \DIFdel{, while the current analysis is more about interpreting outcomes after the institutional changes but cannot compare how scenarios would be without these institutional changes.
+Moreover, understanding how }\DIFdelend \DIFaddbegin \DIFadd{.
+Primarily due to the intricate dynamics within socio-hydrological systems, understanding the manner in which }\DIFaddend different SES structures influence institutional effectiveness \DIFdelbegin \DIFdel{is challenging due to the complexity and dynamics of socio-hydrological systems}\DIFdelend \DIFaddbegin \DIFadd{remains a complex challenge}\DIFaddend ~\cite{bodin2017b}.
+\DIFaddbegin \DIFadd{The current study contributes to this understanding by interpreting outcomes following institutional changes, though it does not explore hypothetical scenarios without such changes.
+}\DIFaddend Thus, knowledge gaps lie in the limited understanding of effective alignments between institutional shifts and SES structures, hindering the design of effective policies to promote sustainable river basin governance.
+To fill these knowledge gaps, we study the \DIFdelbegin \DIFdel{Yellow River basin, the }\DIFdelend fifth-largest river worldwide and one of the most anthropogenically altered river basins, \DIFaddbegin \DIFadd{the Yellow River Basin (YRB) in China, }\DIFaddend to quantitatively measure the effects of changing SES structures.
 
 \begin{figure}[!ht]
 	\centering
@@ -331,10 +331,10 @@ During this period, two significant institutional shifts can be analyzed using d
 %DIF > ! Author = songshgeo
 %DIF > ! Date = 2022/3/10
 
-In the methodology section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as \DIFdelbegin \DIFdel{point-axis networks }\DIFdelend \DIFaddbegin \DIFadd{organizational diagrams }\DIFaddend during different periods of time.
+In \DIFdelbegin \DIFdel{the methodology }\DIFdelend \DIFaddbegin \DIFadd{this }\DIFaddend section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as \DIFdelbegin \DIFdel{point-axis networks }\DIFdelend \DIFaddbegin \DIFadd{organizational diagrams }\DIFaddend during different periods of time.
 Next, we introduce the dataset we used here and employ the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
 We then estimate the net effects of the two institutional shifts on total water use, changing trends, and differences in the YRB's provinces using the Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
-Finally, we present the \DIFdelbegin \DIFdel{robustness }\DIFdelend \DIFaddbegin \DIFadd{efficiency }\DIFaddend tests approach for the DSC model.
+Finally, we \DIFdelbegin \DIFdel{present the robustness }\DIFdelend \DIFaddbegin \DIFadd{introduce the }\DIFaddend tests approach for \DIFaddbegin \DIFadd{validating efficiency of }\DIFaddend the DSC model.
 %DIF >  Finally, for discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
 
 \subsection{Portraying structures}\label{sec:structures}
@@ -347,18 +347,20 @@ We apply the \DIFdelbegin \DIFdel{network approach}\DIFdelend \DIFaddbegin \DIFa
 , so we }\DIFdelend \DIFaddbegin \DIFadd{We }\DIFaddend examined the official documents of the two institutional shifts (87-WAS and 98-UBR) to portray \DIFdelbegin \DIFdel{these interactions }\DIFdelend \DIFaddbegin \DIFadd{the organizational diagrams }\DIFaddend in this study\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
 \cite{bodin2017a,kluger2020,guerrero2015}}\hskip0pt%DIFAUXCMD
 }\DIFaddend .
-It is important to note that it can result in very different structures when basin-scale regulatory entity (YRCC) is responsible for river reach regulation, or have direct authority to interact with provincial units.
+It is important to note that it can result in \DIFdelbegin \DIFdel{very }\DIFdelend \DIFaddbegin \DIFadd{nuanced }\DIFaddend different structures when basin-scale regulatory entity (YRCC) is responsible for river reach regulation, or have direct authority to interact with provincial units.
 
 \subsection{Dataset and preprocessing}\label{sec:dataset}
 The data of water consumption surveys conducted by the Ministry of Water Resources were taken as the observed values throughout the years.
-Then, to estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on variables from five categories (environmental, economic, domestic, and technological) water use factors. Their specific items and origins are listed in~\ref{secS2}~Table~\ref{tab:variables}.
+Then, to estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on \DIFdelbegin \DIFdel{variables from five }\DIFdelend \DIFaddbegin \DIFadd{$24$ variables from $5$ }\DIFaddend categories (environmental, economic, domestic, and technological) water use factors\DIFdelbegin \DIFdel{. Their specific items and origins are listed in~}%DIFDELCMD < \ref{secS2}%%%
+\DIFdel{~Table~}%DIFDELCMD < \ref{tab:variables}%%%
+\DIFdelend \DIFaddbegin \DIFadd{~(}\textit{\ref{secS2}\DIFadd{, Table~}\ref{tab:variables}}\DIFadd{)}\DIFaddend .
 Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin and Beijing (together, Jinji) because of their trivial water use from the YRB (see Table~\ref{tab:quota}).
 %DIF >  We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.\\
 
-Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by \DIFdelbegin \DIFdel{$5$ }\DIFdelend \DIFaddbegin \DIFadd{$D = 5$ }\DIFaddend principal components.
-Previous study has proved that combining PCA and DSC can \DIFdelbegin \DIFdel{raise the robustness of }\DIFdelend \DIFaddbegin \DIFadd{lead to a more robust }\DIFaddend causal inference~\cite{bayani2021}.
-We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\ref{secS2}~Figure\ref{fig:elbow}}).
-Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
+\DIFdelbegin \DIFdel{Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $5$ principal components.
+}\DIFdelend Previous study has proved that combining PCA and DSC can \DIFdelbegin \DIFdel{raise the robustness of }\DIFdelend \DIFaddbegin \DIFadd{lead to a more robust }\DIFaddend causal inference~\cite{bayani2021}.
+We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components \DIFaddbegin \DIFadd{$D$ }\DIFaddend (\textit{Appendix~\ref{secS2}~Figure\ref{fig:elbow}}).
+Finally, \DIFdelbegin \DIFdel{we transform the dataset and input the dimensions-reduced output into the }\DIFdelend \DIFaddbegin \DIFadd{all $24$ normalized variables were reduced into $D = 5$ primary components where $89.63\%$ variance was explained, and we use this transformed dataset as input of the }\DIFaddend DSC model.
 
 \subsection{Differenced Synthetic Control}\label{sec:DSC}
 \DIFdelbegin \DIFdel{Using the }\DIFdelend \DIFaddbegin
@@ -371,24 +373,31 @@ is a tool we use to estimate how water use might have evolved if there had been 
 }%DIFDELCMD <
 
 %DIFDELCMD < %%%
-\DIFdel{This method aims }\DIFdelend \DIFaddbegin \DIFadd{The key idea behind this method is }\DIFaddend to evaluate the effects of policy \DIFdelbegin \DIFdel{change that are not random across units but focuses on some of them (i.e., }\DIFdelend \DIFaddbegin \DIFadd{changes that mainly affect certain units (in this case, the }\DIFaddend institutional shifts in the \DIFdelbegin \DIFdel{YRB here).
-By re-weighting units to match the pre-trend for the treated and control units, the DSC method imputes post-treatment control outcomes for the treated units by constructing a synthetic }\DIFdelend \DIFaddbegin \DIFadd{Yellow River Basin or YRB).
+\DIFdel{This method aims }\DIFdelend \DIFaddbegin \DIFadd{The key idea behind this method is }\DIFaddend to evaluate the effects of policy \DIFdelbegin \DIFdel{change that are not random across units but focuses on some of them (i.e., institutional shifts }\DIFdelend \DIFaddbegin \DIFadd{changes (in this case, the 87-WAS and the 98-UBR) that mainly affect certain units (the provinces }\DIFaddend in the YRB\DIFdelbegin \DIFdel{here).
+By re-weighting units to match the pre-trend for the treated and control units, the DSC method imputes post-treatment control outcomes for the treated units by constructing a synthetic }\DIFdelend \DIFaddbegin \DIFadd{).
 The method creates a ``synthetic'' }\DIFaddend version of the \DIFdelbegin \DIFdel{treated units equal to a convex combination of control units. Therefore, the syntheticand actual version difference can be estimated as a net effect for a treated unit}\DIFdelend \DIFaddbegin \DIFadd{affected units by combining information from other similar but unaffected units. This ``synthetic'' version serves as a control group, which we can compare with the actual affected units.
-The DSC method, therefore, is a powerful tool as it allows us to control for unobserved factors that can change over time, providing more robust results}\DIFaddend .
+The DSC method, therefore, is a powerful tool as it allows us to control for unobserved factors that can change over time}\DIFaddend .
 
-In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time \DIFdelbegin \DIFdel{$t_0$ }\DIFdelend \DIFaddbegin \DIFadd{$T_0$ }\DIFaddend within two individually analyzed periods \DIFdelbegin \DIFdel{$T$}\DIFdelend \DIFaddbegin \DIFadd{$1, 2, \dots, T_0, T_0 + 1, \dots, T$}\DIFaddend : from 1979 to 1998; from 1987 to 2008.
-We \DIFdelbegin \DIFdel{include each province }\DIFdelend \DIFaddbegin \DIFadd{separately include each of the eight provinces }\DIFaddend in the YRB (\DIFdelbegin \DIFdel{$n=8$, }\DIFdelend see \textit{\nameref{sec:dataset}}) as \DIFdelbegin \DIFdel{the treated unit separately, as multiple treated unitsapproach had been widely applied}\DIFdelend \DIFaddbegin \DIFadd{individual treated units}\DIFaddend ~\cite{abadie2021}.
-Then, we consider the $J+1$ units observed in time periods \DIFdelbegin \DIFdel{$T = {1,2 \cdots , T}$ with }\DIFdelend \DIFaddbegin \DIFadd{$1, \dots, T$ where }\DIFaddend the remaining $J=20$ units \DIFdelbegin \DIFdel{are }\DIFdelend \DIFaddbegin \DIFadd{represent }\DIFaddend untreated provinces from outside \DIFdelbegin \DIFdel{.
-We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.}\DIFdelend \DIFaddbegin \DIFadd{the YRB.\
-%DIF >  We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.
-}\DIFaddend The treated unit is exposed to the institutional shift in every post-treatment period \DIFdelbegin \DIFdel{$T_0$}\DIFdelend \DIFaddbegin \DIFadd{$T_0 +1, \dots, T$}\DIFaddend , unaffected by the institutional shift in all preceding periods \DIFdelbegin \DIFdel{$T_1$}\DIFdelend \DIFaddbegin \DIFadd{$1, 2, \dots, T_0$}\DIFaddend .
-Then, any weighted average of the control units is a synthetic control and can be represented by a (\DIFdelbegin \DIFdel{$J * 1$}\DIFdelend \DIFaddbegin \DIFadd{$J \times 1$}\DIFaddend ) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$ \DIFdelbegin \DIFdel{.
+In practice, \DIFaddbegin \DIFadd{we consider two distinct institutional shifts that affected }\DIFaddend all treated units (i.e., provinces \DIFdelbegin \DIFdel{) were affected by institutional shifts }\DIFdelend \DIFaddbegin \DIFadd{in the YRB) }\DIFaddend in 1987 and \DIFdelbegin \DIFdel{1998, each taken }\DIFdelend \DIFaddbegin \DIFadd{1998.
+Each institutional shift (87-WAS or 98-UBR) is designated }\DIFaddend as the ``shifted'' time \DIFdelbegin \DIFdel{$t_0$ within two individually analyzed periods $T$}\DIFdelend \DIFaddbegin \DIFadd{$T_0$, and we individually analyzed two periods}\DIFaddend : from 1979 to 1998; from 1987 to 2008.
+We include each \DIFdelbegin \DIFdel{province }\DIFdelend \DIFaddbegin \DIFadd{of the eight provinces }\DIFaddend in the YRB \DIFdelbegin \DIFdel{($n=8$, see }\textit{%DIFDELCMD < \nameref{sec:dataset}%%%
+}%DIFAUXCMD
+\DIFdel{) as the treated unit separately, as multiple treated unitsapproach had been widely applied~\mbox{%DIFAUXCMD
+\cite{abadie2021} }\hskip0pt%DIFAUXCMD
+.
+Then, we consider }\DIFdelend \DIFaddbegin \DIFadd{as separate treated units~\mbox{%DIFAUXCMD
+\cite{abadie2021} }\hskip0pt%DIFAUXCMD
+and define }\DIFaddend the $J+1$ units observed in \DIFdelbegin \DIFdel{time periods $T = {1,2 \cdots , T}$ with }\DIFdelend \DIFaddbegin \DIFadd{a time period $1, 2, \dots, T_0, T_0 + 1, \dots, T$, where }\DIFaddend the remaining $J=20$ units \DIFdelbegin \DIFdel{are untreated provinces from outside .
+We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.}\DIFdelend \DIFaddbegin \DIFadd{represent untreated provinces outside the YRB.\
+}
+
+\DIFaddend The treated unit is exposed to the institutional shift in every post-treatment period \DIFdelbegin \DIFdel{$T_0$, }\DIFdelend \DIFaddbegin \DIFadd{$T_0 +1, \dots, T$, and }\DIFaddend unaffected by the institutional shift in \DIFdelbegin \DIFdel{all preceding periods $T_1$.
+Then, any }\DIFdelend \DIFaddbegin \DIFadd{preceding periods $1, 2, \dots, T_0$.
+Any }\DIFaddend weighted average of the control units is \DIFaddbegin \DIFadd{referred as }\DIFaddend a synthetic control and \DIFdelbegin \DIFdel{can be represented }\DIFdelend \DIFaddbegin \DIFadd{is denoted }\DIFaddend by a (\DIFdelbegin \DIFdel{$J * 1$}\DIFdelend \DIFaddbegin \DIFadd{$J \times 1$}\DIFaddend ) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, \DIFdelbegin \DIFdel{with }\DIFdelend \DIFaddbegin \DIFadd{satisfying }\DIFaddend $w_j \in (0, 1)$ \DIFdelbegin \DIFdel{.
 Among them, by introduce a ($k * k$) diagonal, matrix }\DIFdelend \DIFaddbegin \DIFadd{and $w_1 + \cdots  + w_{J} = 1$.
-We denote $k$ is $T * D$ number of covariates, in which $D$ is number of dimensions of the dataset (i.e., $D = 5$ in this case).
-Introducing a ($k \times 1$) non-negative vector }\DIFaddend $\mathbf{V}$ \DIFaddbegin \DIFadd{($\mathbf{V} = v_{1}, \ldots ,v_{k}$) and $v_1 + \cdots  + v_{k} = 1$ }\DIFaddend that signifies the relative importance of each \DIFdelbegin \DIFdel{covariant, the DSC method procedure for }\DIFdelend \DIFaddbegin \DIFadd{covariate.
-%DIF >  接下来的目标就是求一个权重矩阵W，让它来表示控制组各单位的权重，使这些权重构成我们需要的“合成”版本的控制组
-The next goal is }\DIFaddend finding the optimal synthetic control (\DIFdelbegin \DIFdel{$W$) is expressed as follows:
-}\DIFdelend \DIFaddbegin \DIFadd{$\mathbf{W}$) which represents the ``synthetic'' versions of the affected provinces in the YRB.\
+We also introduce a a ($k \times 1$) non-negative vector $\mathbf{V} = v_{1}, \ldots ,v_{k}$ where $k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset ($D = 5$ in this case).
+The vector }\DIFaddend $\mathbf{V}$ \DIFdelbegin \DIFdel{that signifies }\DIFdelend \DIFaddbegin \DIFadd{must fulfill $v_1 + \cdots  + v_{k} = 1$, reflecting }\DIFaddend the relative importance of each \DIFdelbegin \DIFdel{covariant, the DSC method procedure for }\DIFdelend \DIFaddbegin \DIFadd{covariate.
+The next goal is }\DIFaddend finding the optimal \DIFdelbegin \DIFdel{synthetic control ($W$) is expressed as follows:}\DIFdelend \DIFaddbegin \DIFadd{$\mathbf{W}$ which represents the best ``synthetic'' versions of the affected provinces in the YRB:\
 }\DIFaddend
 
 \begin{equation}
@@ -396,48 +405,58 @@ The next goal is }\DIFaddend finding the optimal synthetic control (\DIFdelbegin
 \DIFdelend \DIFaddbegin \underset{\mathbf{W} \in \mathcal{W}}{\operatorname{argmin}}\DIFaddend \left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
 \end{equation}
 
-\DIFdelbegin \DIFdel{where }\DIFdelend \DIFaddbegin \DIFadd{Here, $\mathbf{X_1}$ is the pre-treatment average of each variable in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units; }\DIFaddend $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation \DIFdelbegin \DIFdel{$\mathbf{W*(V)}$}\DIFdelend \DIFaddbegin \DIFadd{$\mathbf{W^{*}(V)}$}\DIFaddend . Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in \DIFdelbegin \DIFdel{$\mathbf{W*(V)}$ }\DIFdelend \DIFaddbegin \DIFadd{$\mathbf{{W}^{*}(V)}$ }\DIFaddend that minimizes the following expression:
+\DIFdelbegin \DIFdel{where $\mathbf{W}^{*}(V)$ is the }\DIFdelend \DIFaddbegin \DIFadd{Here, matrix $\mathbf{X_1}$ represents the pre-treatment average of each dimension in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units.
+We also define $\mathbf{W}^{*}(V)$ as the }\DIFaddend vector of weights $\mathbf{W}$ that minimizes the \DIFdelbegin \DIFdel{difference }\DIFdelend \DIFaddbegin \DIFadd{discrepancy }\DIFaddend between the pre-treatment characteristics of the treated unit and the synthetic control \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{for a }\DIFaddend given $\mathbf{V}$.
+That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation \DIFdelbegin \DIFdel{$\mathbf{W*(V)}$}\DIFdelend \DIFaddbegin \DIFadd{$\mathbf{W^{*}(V)}$}\DIFaddend . Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in \DIFdelbegin \DIFdel{$\mathbf{W*(V)}$ }\DIFdelend \DIFaddbegin \DIFadd{$\mathbf{{W}^{*}(V)}$ }\DIFaddend that minimizes the following expression:
 
 \begin{equation}
+    %DIF >  https://github.com/OscarEngelbrektson/SyntheticControlMethods/issues/18 这里和README不一样，因为它有问题
     \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
 \end{equation}
 
-That is the minimum difference between the \DIFdelbegin \DIFdel{outcome of the treated unit }\DIFdelend \DIFaddbegin \DIFadd{water uses of treated units }\DIFaddend and the synthetic \DIFdelbegin \DIFdel{control }\DIFdelend \DIFaddbegin \DIFadd{controls }\DIFaddend in the pre-treatment period, where $\mathbf{Z}_{1}$ is a \DIFdelbegin \DIFdel{($1*T_0$) }\DIFdelend matrix containing every observation of the \DIFdelbegin \DIFdel{outcome }\DIFdelend \DIFaddbegin \DIFadd{water use }\DIFaddend for the treated unit in the pre-treatment period \DIFaddbegin \DIFadd{$T_0$}\DIFaddend .
-Similarly, \DIFdelbegin \DIFdel{let }\DIFdelend $\mathbf{Z}_{0}$ \DIFdelbegin \DIFdel{be a ($k * T_0$) matrix containing the outcome }\DIFdelend \DIFaddbegin \DIFadd{is a ($J \times T_0$) matrix contains the water use }\DIFaddend for each control unit in the pre-treatment period\DIFdelbegin \DIFdel{, and $k$ is the number of variables in the datasets.
-}\DIFdelend \DIFaddbegin \DIFadd{.
-%DIF >  https://github.com/OscarEngelbrektson/SyntheticControlMethods/issues/18 这里和README不一样，因为它有问题
-}\DIFaddend The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with \DIFdelbegin \DIFdel{double robustnessproperties}\DIFdelend \DIFaddbegin \DIFadd{better robustness}\DIFaddend ~\cite{billmeier2013, smith2015}.
-\DIFaddbegin \DIFadd{In this study, we adopted the minimization by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\mbox{%DIFAUXCMD
-\cite{engelbrektson2023}}\hskip0pt%DIFAUXCMD
-.
+That is the minimum difference between the \DIFdelbegin \DIFdel{outcome of the treated unit }\DIFdelend \DIFaddbegin \DIFadd{water uses of treated units }\DIFaddend and the synthetic \DIFdelbegin \DIFdel{control }\DIFdelend \DIFaddbegin \DIFadd{controls }\DIFaddend in the pre-treatment period \DIFaddbegin \DIFadd{($1, 2, \dots, T_0$)}\DIFaddend , where $\mathbf{Z}_{1}$ is a \DIFdelbegin \DIFdel{($1*T_0$) }\DIFdelend matrix containing every observation of the \DIFdelbegin \DIFdel{outcome }\DIFdelend \DIFaddbegin \DIFadd{water use }\DIFaddend for the treated unit\DIFdelbegin \DIFdel{in the pre-treatment period}\DIFdelend .
+Similarly, \DIFdelbegin \DIFdel{let }\DIFdelend $\mathbf{Z}_{0}$ \DIFdelbegin \DIFdel{be a ($k * T_0$) matrix containing the outcome }\DIFdelend \DIFaddbegin \DIFadd{is a ($J \times T_0$) matrix contains the water use }\DIFaddend for each control unit in \DIFdelbegin \DIFdel{the pre-treatment period, and $k$ is the number of variables in the datasets}\DIFdelend \DIFaddbegin \DIFadd{this period}\DIFaddend .
+The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with \DIFdelbegin \DIFdel{double robustnessproperties}\DIFdelend \DIFaddbegin \DIFadd{better robustness}\DIFaddend ~\cite{billmeier2013, smith2015}.
+\DIFaddbegin \DIFadd{In this study, we adopted the algorithm by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\mbox{%DIFAUXCMD
+\cite{engelbrektson2023} }\hskip0pt%DIFAUXCMD
+for the minimization.
 }\DIFaddend
 
 \DIFdelbegin %DIFDELCMD < \subsection{Robustness analysis}%%%
 \DIFdelend \DIFaddbegin \subsection{Validating results}\DIFaddend \label{sec:robustness}
 
-Two primary methods can be employed to \DIFdelbegin \DIFdel{test the robustness }\DIFdelend \DIFaddbegin \DIFadd{validate the efficiency }\DIFaddend of the DSC approach.
+\DIFdelbegin \DIFdel{Two primary methods can be employed to test the robustness }\DIFdelend \DIFaddbegin \DIFadd{The efficiency }\DIFaddend of the DSC approach \DIFaddbegin \DIFadd{can be validated using two primary methods}\DIFaddend .
 
-Firstly, the reconstruction effect on inferred variables (water consumption here) before and after treatment (the interventions of 87-WAS and 98-UBR) can be compared.
-If there are small gaps between the predicted and observed values before treatment, and a large gap after treatment, it indicates that the policy intervention's effect is apparent.
-In this study, to determine whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, comparing the model predictions and actual observation data in the periods before and after institutional interventions for both the 87-WAS in $1987$ and 98-UBR in $1998$.
-\DIFdelbegin \DIFdel{A robust synthetic control model will show }\DIFdelend \DIFaddbegin \DIFadd{An effective result would be one where }\DIFaddend a significant difference \DIFaddbegin \DIFadd{is observed }\DIFaddend after treatment but not before treatment. \DIFaddbegin \DIFadd{If this is not the case, it implies that the institutional changes were ineffective for the treated units.
+\DIFdelbegin \DIFdel{Firstly, }\DIFdelend \DIFaddbegin \DIFadd{The first method involves comparing }\DIFaddend the reconstruction effect on \DIFaddbegin \DIFadd{the }\DIFaddend inferred variables (\DIFdelbegin \DIFdel{water consumption here}\DIFdelend \DIFaddbegin \DIFadd{in this case, water consumption}\DIFaddend ) before and after \DIFdelbegin \DIFdel{treatment (}\DIFdelend the interventions of 87-WAS and 98-UBR\DIFdelbegin \DIFdel{) can be compared.If there are small gaps between the }\DIFdelend \DIFaddbegin \DIFadd{.\
+Small gaps between }\DIFaddend predicted and observed values before treatment, \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{coupled with }\DIFaddend a large gap after treatment, \DIFdelbegin \DIFdel{it indicates that the policy intervention's effect is apparent.
+In this study , to determine whether the intervention effect is significant, the paired sample $T$ test is used }\DIFdelend \DIFaddbegin \DIFadd{would signal the apparent effect of the policy intervention.
+Specifically, this study employs the paired sample T test }\DIFaddend to calculate statistics \DIFdelbegin \DIFdel{, comparing the }\DIFdelend \DIFaddbegin \DIFadd{that compare }\DIFaddend model predictions and actual observation data in the periods before and after \DIFdelbegin \DIFdel{institutional interventions for both the 87-WAS in $1987$ and 98-UBR }\DIFdelend \DIFaddbegin \DIFadd{both institutional interventions }\DIFaddend in \DIFdelbegin \DIFdel{$1998$.
+A robust synthetic control model will show a significant difference after treatment }\DIFdelend \DIFaddbegin \DIFadd{1987 (87-WAS) and 1998 (98-UBR).
+A significant difference observed after treatment, }\DIFaddend but not before\DIFdelbegin \DIFdel{treatment.
+}\DIFdelend \DIFaddbegin \DIFadd{, indicates that the policy was effective.
+If this pattern is not found, it suggests that the institutional changes did not impact the treated units.
 }\DIFaddend
 
-Secondly, placebo \DIFdelbegin \DIFdel{experiments }\DIFdelend \DIFaddbegin \DIFadd{tests }\DIFaddend are another common way to evaluate the effectiveness of synthetic control methods\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
+\DIFdelbegin \DIFdel{Secondly, placebo experiments are another common way to evaluate }\DIFdelend \DIFaddbegin \DIFadd{The second method involves using placebo tests, a standard procedure for assessing }\DIFaddend the effectiveness of synthetic control methods\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
 \cite{abadie2010}}\hskip0pt%DIFAUXCMD
 }\DIFaddend .
-Placebo units are selected from the control unit pool and substituted for the treated unit, applying the synthetic control method to the placebo unit using the same data and parameters as the treated unit.
-If the synthetic control method is effective, there should be a clear difference between the placebo unit and the control unit since the placebo unit should not be affected by the intervention.
-%DIF >  Placebo tests can be used to assess the effectiveness of the synthetic control method and detect any bias or confounding factors in the analysis.
-In this study, we adopt the placebo test step suggested by Abadie when proposing the synthetic control method~\cite{abadie2010} and utilize the Python library of the differential synthetic control method for the placebo test.
-If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in the pre-synthesis period is significantly higher for most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, \DIFdelbegin \DIFdel{it would suggest that the Yellow River Basin }\DIFdelend \DIFaddbegin \DIFadd{the provinces in the YRB }\DIFaddend was more significantly affected than most other provinces during the treatment periods ($1987$ and $1998$), i.e., \DIFdelbegin \DIFdel{the results are more robust}\DIFdelend \DIFaddbegin \DIFadd{more effective}\DIFaddend .
+Placebo units are \DIFdelbegin \DIFdel{selected }\DIFdelend \DIFaddbegin \DIFadd{drawn }\DIFaddend from the control unit pool and substituted for the treated unit\DIFdelbegin \DIFdel{, applying the }\DIFdelend \DIFaddbegin \DIFadd{.
+The }\DIFaddend synthetic control method \DIFaddbegin \DIFadd{is then applied }\DIFaddend to the placebo unit using the same data and parameters as the treated unit.
+\DIFdelbegin \DIFdel{If the synthetic control method is effective, there should be a clear }\DIFdelend \DIFaddbegin \DIFadd{No significant }\DIFaddend difference between the placebo \DIFdelbegin \DIFdel{unit and the control unit since }\DIFdelend \DIFaddbegin \DIFadd{and control units, given that }\DIFaddend the placebo unit should not be \DIFdelbegin \DIFdel{affected }\DIFdelend \DIFaddbegin \DIFadd{influenced }\DIFaddend by the intervention\DIFaddbegin \DIFadd{, would demonstrate the method's effectiveness}\DIFaddend .
+In this study, we \DIFdelbegin \DIFdel{adopt }\DIFdelend \DIFaddbegin \DIFadd{follow }\DIFaddend the placebo test \DIFdelbegin \DIFdel{step }\DIFdelend \DIFaddbegin \DIFadd{approach }\DIFaddend suggested by Abadie\DIFdelbegin \DIFdel{when proposing the synthetic control method}\DIFdelend ~\cite{abadie2010} and utilize the \DIFdelbegin \DIFdel{Python library of the differential synthetic control method for the placebo test}\DIFdelend \DIFaddbegin \DIFadd{same Python library~\mbox{%DIFAUXCMD
+\cite{engelbrektson2023} }\hskip0pt%DIFAUXCMD
+to perform this}\DIFaddend .
+If the ratio of the \DIFdelbegin \DIFdel{root mean square error (}\DIFdelend \DIFaddbegin \DIFadd{Root Mean Square Error (RMSE) (}\DIFaddend see Equation~\ref{ch5:eq:RMSE}) in the \DIFdelbegin \DIFdel{pre-synthesis }\DIFdelend \DIFaddbegin \DIFadd{post/pre -treated }\DIFaddend period is significantly higher for most \DIFdelbegin \DIFdel{provinces (again using the $T$ test to determine the significanceof the difference) than the results of }\DIFdelend \DIFaddbegin \DIFadd{treated provinces (using the T test to assess significance) compared to }\DIFaddend other placebo units, it \DIFdelbegin \DIFdel{would suggest that the Yellow River Basin was more significantly affected than most other provinces }\DIFdelend \DIFaddbegin \DIFadd{implies that the provinces in the YRB were significantly affected }\DIFaddend during the treatment periods (\DIFdelbegin \DIFdel{$1987$ and $1998$), i.
+e., the results are more robust.
+}\DIFdelend \DIFaddbegin \DIFadd{1987 and 1998), thus indicating effectiveness.
+}\DIFaddend
 
 \begin{equation}
     \label{ch5:eq:RMSE}
     \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}{(y_i-\hat{y}_i)}^2}
 \end{equation}
 
-Where $n$ is the observed number, $y_i$ is the actual value, and $\hat{y}_i$ is the predicted value.
+Where $n$ is the observed number, $y_i$ is the \DIFdelbegin \DIFdel{actual }\DIFdelend \DIFaddbegin \DIFadd{observed }\DIFaddend value, and $\hat{y}_i$ is the predicted value.
 
 
 \section{Results}\label{sec:results}
@@ -466,7 +485,6 @@ As it was the first time the YRCC's responsibilities included water use, this in
 The 98-UBR further reinforced the YRCC's responsibilities for integrated water use management.
 Since $1998$, provinces have been required to submit their annual water use plans for water use licenses to the YRCC instead of freely accessing the Yellow River water.
 Consequently, the YRCC has been directly linked to the provinces since then (Figure~\ref{fig:structure}C).
-%DIF >  As result, the two institutional shifts reshaped SES structures, leading to three general structures linked by social actors and ecological nodes (Figure~\ref{fig:structure}~C).
 Key points of the official documents supporting the structural changes above can be found in supplementary material~\textit{\ref{secS1}}.
 
 %DIF >  Table generated by Excel2LaTeX from sheet 'Sheet2'
@@ -582,11 +600,6 @@ In addition, the water consumption of each province has a negative correlation w
 %DIF > ! Author = songshgeo
 %DIF > ! Date = 2022/3/10
 
-%DIF >  \subsection{CAUSES OF INSTITUTIONAL IMPACTS}
-%DIF >  \subsection{}
-%DIF >  discussion-1:
-%DIF >  用水量的上升、下降-结果解读
-%DIF >  制度对社会生态系统的结果产生影响在世界范围内都很普遍，
 The impacts of institutional shifts on the governing effects of social-ecological systems (SESs) have \DIFdelbegin \DIFdel{been widely reported worldwide, but few attempts have been made }\DIFdelend \DIFaddbegin \DIFadd{attracted global attention, yet efforts }\DIFaddend to quantify their net effects \DIFaddbegin \DIFadd{remain sparse}\DIFaddend ~\cite{cumming2020a}.
 Our \DIFdelbegin \DIFdel{case study }\DIFdelend \DIFaddbegin \DIFadd{investigation }\DIFaddend of the YRB's water governance \DIFdelbegin \DIFdel{suggests that }\DIFdelend \DIFaddbegin \DIFadd{reveals vary effects of nuanced-differences institutional shifts: }\DIFaddend while the 98-UBR \DIFdelbegin \DIFdel{decreased }\DIFdelend \DIFaddbegin \DIFadd{led to an expected decrease in }\DIFaddend total water use\DIFdelbegin \DIFdel{as expected}\DIFdelend , the 87-WAS \DIFdelbegin \DIFdel{unexpectedly }\DIFdelend \DIFaddbegin \DIFadd{surprisingly }\DIFaddend increased it by $5.75\%$\DIFdelbegin \DIFdel{, a comparison of which can yield insights into }\DIFdelend \DIFaddbegin \DIFadd{.
 This comparison offers insightful perspectives on }\DIFaddend the effectiveness of governance \DIFdelbegin \DIFdel{.
@@ -667,35 +680,59 @@ Simultaneously, the district looked forward to future projects, such as the ``So
 The desire of water in Neimeng wasn't without controversy. Stakeholders in other lower reaches argued that the Hetao Irrigation District was consuming too much water from the Yellow River.
 }
 
-\DIFadd{The above analysis with a real-world example underscores the crucial role of institutions in water governance by shaping SES structures.
-The }\DIFaddend structural pattern we depicted here (Figure~\ref{fig:structure}) has also been reported in other SESs worldwide~\cite{kluger2020,guerrero2015,bodin2012}.
-Before 98-UBR, fragmented ecological units were linked to separate social actors, which more likely led to lower effectiveness because isolated actors generally struggle to maintain interconnected ecosystems holistically~\cite{sayles2017,sayles2019,cai2016,bergsten2019}.
-Institutional re-alignments since 98-UBR enhanced the responsibilities of the basin-scale authority (YRCC) and led to effectiveness in runoff restoration, which are usually named scale match or institutional match of SESs~\cite{cumming2020a,wang2019d}.
-Taken together, the comparison demonstrates the challenge of finding win-win situations in coupled social-ecological systems~\cite{hegwood2022} and the need to more deeply understand the role of institutions in water governance~\cite{bergsten2019, sayles2019}.
+\DIFadd{The above analysis with a real-world example emphasizes the vital role of institutions in shaping the socio-ecological systems (SES) structures of water governance.
+The }\DIFaddend structural pattern we \DIFdelbegin \DIFdel{depicted here }\DIFdelend \DIFaddbegin \DIFadd{have depicted }\DIFaddend (Figure~\ref{fig:structure})\DIFdelbegin \DIFdel{has also been reported }\DIFdelend \DIFaddbegin \DIFadd{, mirrored }\DIFaddend in other SESs worldwide~\cite{kluger2020,guerrero2015,bodin2012}\DIFdelbegin \DIFdel{.
+Before 98-UBR, }\DIFdelend \DIFaddbegin \DIFadd{, illustrates how }\DIFaddend fragmented ecological units \DIFdelbegin \DIFdel{were linked to separate social actors , which more likely led to lower effectiveness because isolated actors generally struggle to maintain interconnected ecosystemsholistically}\DIFdelend \DIFaddbegin \DIFadd{linked to isolated social actors can lead to inefficiencies.
+Before the 98-UBR, this fragmentation resulted in lower effectiveness, as disconnected actors struggled to maintain holistic ecosystems}\DIFaddend ~\cite{sayles2017,sayles2019,cai2016,bergsten2019}.
+\DIFdelbegin \DIFdel{Institutional re-alignments since }\DIFdelend \DIFaddbegin \DIFadd{After the }\DIFaddend 98-UBR\DIFdelbegin \DIFdel{enhanced the responsibilities of the }\DIFdelend \DIFaddbegin \DIFadd{, institutional realignments enhanced }\DIFaddend basin-scale authority (YRCC)\DIFdelbegin \DIFdel{and led to }\DIFdelend \DIFaddbegin \DIFadd{, fostering }\DIFaddend effectiveness in runoff restoration\DIFdelbegin \DIFdel{, which are usually named scale match }\DIFdelend \DIFaddbegin \DIFadd{—a phenomenon often termed scale }\DIFaddend or institutional match \DIFdelbegin \DIFdel{of }\DIFdelend \DIFaddbegin \DIFadd{in }\DIFaddend SESs~\cite{cumming2020a,wang2019d}.
+\DIFdelbegin \DIFdel{Taken together, the comparison demonstrates the challenge of finding }\DIFdelend \DIFaddbegin \DIFadd{This comparison underscores the complex challenges of crafting }\DIFaddend win-win \DIFdelbegin \DIFdel{situations in coupled social-ecological systems~\mbox{%DIFAUXCMD
+\cite{hegwood2022} }\hskip0pt%DIFAUXCMD
+and the need to more deeply understand the role of institutions }\DIFdelend \DIFaddbegin \DIFadd{scenarios in SES and accentuates the importance of understanding institutional roles }\DIFaddend in water governance~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{bergsten2019, sayles2019}}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{hegwood2022,bergsten2019, sayles2019}}\hskip0pt%DIFAUXCMD
+}\DIFaddend .
 
-Our approach has some inevitable limitations.
-First, the contributions of economic growth and institutional shifts are difficult to distinguish because of intertwined causality (institutional changes can also influence the relative economic variables);
-and second, when applying the DSC method, it is difficult to rule out the effects of other policies over the same time breakpoints (1987 and 1998).
-Our quasi-experiment approach nonetheless provides evidence supporting the view that there was a change in water use trajectory following the YRB's unique institutional shifts and offers insights into water governance (and particularly the importance of having a scale-matched, basin-wide authority for water allocation solutions~\cite{bodin2017b, ostrom2009, reyers2018}).
-Moreover, the ultimate success of the 98-UBR institutional shift theoretically and practically proved the importance of social-ecological fit.
+Our approach \DIFdelbegin \DIFdel{has some inevitable limitations.
+First, the contributions of economic growthand institutional shifts are difficult to distinguish because of intertwined causality (institutional changes can also influence the relative economic variables);
+and second, when applying the DSC method, it is difficult to rule out the effects of other policies over the same time breakpoints (}\DIFdelend \DIFaddbegin \DIFadd{acknowledges certain limitations, such as the difficulty in quantifying contributions from economic growth, and challenges in isolating the effects from other concurrent policies in }\DIFaddend 1987 and \DIFdelbegin \DIFdel{1998).
+Our quasi-experiment approach nonetheless provides evidence supporting the view that there was a }\DIFdelend \DIFaddbegin \DIFadd{1998.
+Despite these constraints, our quasi-experimental methodology elucidates the }\DIFaddend change in water use \DIFdelbegin \DIFdel{trajectory }\DIFdelend following the YRB's unique institutional shifts\DIFdelbegin \DIFdel{and offers }\DIFdelend \DIFaddbegin \DIFadd{.
+It offers critical }\DIFaddend insights into water governance\DIFdelbegin \DIFdel{(and particularly the importance of having a }\DIFdelend \DIFaddbegin \DIFadd{, emphasizing }\DIFaddend scale-matched, basin-wide authority for water allocation solutions~\cite{bodin2017b, ostrom2009, reyers2018}\DIFdelbegin \DIFdel{).
+Moreover, the ultimate }\DIFdelend \DIFaddbegin \DIFadd{.
+The }\DIFaddend success of the 98-UBR \DIFdelbegin \DIFdel{institutional shift theoretically and practically proved the importance of }\DIFdelend \DIFaddbegin \DIFadd{shift underscores the need for }\DIFaddend social-ecological \DIFdelbegin \DIFdel{fit.
 For sustainability in the future, it is necessary to emphasize the need to strengthen connections between stakeholders through agents consistent with the scale of the ecological system.
-For example, water rights transfers may be another way to build horizontal links between stakeholders that also have the potential to result in better water governance.
-In addition, policymakers can propose more dynamic and flexible institutions to increase the adaptation of stakeholders to a changing SES context~\cite{reyers2018}.
+For example, }\DIFdelend \DIFaddbegin \DIFadd{alignment, fostering sustainable governance.
+Future endeavors must focus on strengthening stakeholder connections, exploring alternative solutions like }\DIFaddend water rights transfers\DIFdelbegin \DIFdel{may be another way to build horizontal links between stakeholders that also have the potential to result in better water governance.
+In addition, policymakers can propose }\DIFdelend \DIFaddbegin \DIFadd{, and embracing }\DIFaddend more dynamic and \DIFdelbegin \DIFdel{flexible institutions to increase the adaptation of stakeholders to a changing SES context}\DIFdelend \DIFaddbegin \DIFadd{adaptable institutional frameworks to respond to evolving SES contexts}\DIFaddend ~\cite{reyers2018}.
 
-The structural pattern that led to different effectiveness is widespread in global SESs, making our proposed mechanism crucial to governing such coupled systems.
-Our analysis suggests that these initiatives can lead to unexpected results because of mismatched structure when shifting to another institution~\cite{bodin2017b}.
-Better governance calls for more institutional analysis while China has embarked to redesign its decades-old water allocation scheme.
-Our research provides insights into how institutions can affect achieving successful river basin governance when socio-hydrological interplays frame SES structures~\cite{muneepeerakul2017, leslie2015, hegwood2022}.
+The \DIFdelbegin \DIFdel{structural pattern that led to different effectiveness is widespread }\DIFdelend \DIFaddbegin \DIFadd{diverse effectiveness of structural patterns, as observed }\DIFaddend in global SESs, \DIFdelbegin \DIFdel{making our proposed mechanism crucial to governing such }\DIFdelend \DIFaddbegin \DIFadd{underscores the necessity for nuanced governance in }\DIFaddend coupled systems. \DIFdelbegin \DIFdel{Our analysis suggests that these initiatives can lead to unexpected results because of mismatched structure when shifting to another institution~\mbox{%DIFAUXCMD
+\cite{bodin2017b}}\hskip0pt%DIFAUXCMD
+.
+Better governance calls for more institutional analysiswhile China has embarked to redesign its decades-old water allocation scheme.
+Our research provides insights into how institutions can affect achieving }\DIFdelend \DIFaddbegin \DIFadd{The potential for unexpected outcomes due to institutional mismatches calls for thorough institutional analysis. As China seeks to overhaul its water allocation schemes, our research serves as a timely beacon, highlighting how nuanced institutional interplays can shape }\DIFaddend successful river basin governance\DIFdelbegin \DIFdel{when }\DIFdelend \DIFaddbegin \DIFadd{, resonating with the global challenge of }\DIFaddend socio-hydrological \DIFdelbegin \DIFdel{interplays frame SES structures}\DIFdelend \DIFaddbegin \DIFadd{complexities}\DIFaddend ~\cite{muneepeerakul2017, leslie2015, hegwood2022}.
 
 
 \section{Conclusion}\label{sec:conclusion}
 %DIF > ! Author = songshgeo
 %DIF > ! Date = 2022/3/10
 
-In this study, we examined the effects of two major institutional shifts in water governance within the Yellow River Basin (YRB): the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basin Regulation (98-UBR). By employing a \DIFdelbegin \DIFdel{Difference-in-Differences approach with Synthetic Control }\DIFdelend \DIFaddbegin \DIFadd{Differenced Synthetic Control (DSC) approach}\DIFaddend , we quantified the net effects of these institutional shifts on water use within the YRB.\
-Our results showed that the 87-WAS unexpectedly increased water use by $5.75\%$, contrary to its intended goals, while the 98-UBR successfully reduced water use as anticipated. The analysis \DIFdelbegin \DIFdel{revealed }\DIFdelend \DIFaddbegin \DIFadd{suggested }\DIFaddend that the structural patterns of the institutions played a critical role in their effectiveness. The mismatched structure of the 87-WAS led to increased competition and exploitation of water resources, while the 98-UBR, with its scale-matched, basin-wide authority and stronger connections between stakeholders, resulted in improved water governance.
+In this \DIFdelbegin \DIFdel{study, we examined the effects of two major }\DIFdelend \DIFaddbegin \DIFadd{investigation of the Yellow River Basin (YRB), we meticulously examined the impacts of two }\DIFaddend institutional shifts in water governance\DIFdelbegin \DIFdel{within the Yellow River Basin (YRB)}\DIFdelend : the 1987 Water Allocation Scheme (87-WAS) and the 1998 Unified Basin Regulation (98-UBR).
+\DIFdelbegin \DIFdel{By employing a Difference-in-Differences approach with Synthetic Control , we quantified the net }\DIFdelend \DIFaddbegin \DIFadd{Utilizing the Differenced Synthetic Control (DSC) approach, we were able to quantify the discrete }\DIFaddend effects of these \DIFdelbegin \DIFdel{institutional shifts on water use within the YRB.
+\
+Our results showed that the 87-WAS unexpectedly increased }\DIFdelend \DIFaddbegin \DIFadd{transitions on water consumption within the basin.
+Our findings suggest a paradoxical increase in }\DIFaddend water use by \DIFdelbegin \DIFdel{$5.75\%$, contrary to its intended goals, while }\DIFdelend \DIFaddbegin \DIFadd{5.75\%, attributed to }\DIFaddend the \DIFdelbegin \DIFdel{98-UBR successfully reduced water use as anticipated.
+The analysis revealed that the structural patterns of the institutions played a critical role in their effectiveness.
+The mismatched structure of }\DIFdelend \DIFaddbegin \DIFadd{87-WAS, defying its original objectives.
+Conversely, }\DIFaddend the \DIFaddbegin \DIFadd{98-UBR efficaciously diminished water usage in line with its intended outcomes.
+This analysis unearthed the pivotal role that institutional structural patterns play in determining their efficacy.
+Specifically, the misaligned structure of }\DIFaddend 87-WAS \DIFdelbegin \DIFdel{led to increased competition }\DIFdelend \DIFaddbegin \DIFadd{inadvertently fostered increased rivalry }\DIFaddend and exploitation of water resources\DIFdelbegin \DIFdel{, while }\DIFdelend \DIFaddbegin \DIFadd{.
+Meanwhile, }\DIFaddend the 98-UBR, \DIFdelbegin \DIFdel{with }\DIFdelend \DIFaddbegin \DIFadd{characterized by }\DIFaddend its scale-matched, basin-wide \DIFdelbegin \DIFdel{authority and stronger connectionsbetween stakeholders, resulted in improved water governance}\DIFdelend \DIFaddbegin \DIFadd{coordination and reinforced stakeholder connections, fostered restoration of the Yellow River}\DIFaddend .
 
-In conclusion, our research contributes to a better understanding of the role of institutions in SES governance, particularly in the context of water management. By identifying the key factors that influence the success or failure of institutional shifts, we provide valuable insights for the design of effective and sustainable water governance policies. Future research should continue to explore the intricacies of institutions in SES governance and investigate the potential impacts of additional policies and institutional shifts on water use and sustainability.
+In \DIFdelbegin \DIFdel{conclusion, our research contributes to a better understanding of the role of institutions in SESgovernance, particularly in the context of water management.
+By identifying the key factors that influence the success or failure of institutional shifts, we provide valuable insights for the design of effective and }\DIFdelend \DIFaddbegin \DIFadd{sum, our study sheds new light on the complex dynamics of institutions within socio-ecological systems (SES) governance, with an emphasis on water allocation.
+By unraveling the essential components that govern the triumph or downfall of institutional transformations, we furnish invaluable insights that can guide the crafting of }\DIFaddend sustainable water governance policies.
+\DIFdelbegin \DIFdel{Future research should continue to explore the intricacies of institutions }\DIFdelend \DIFaddbegin \DIFadd{These findings beckon further exploration into the multifaceted nature of institutional behavior }\DIFaddend in SES governance\DIFaddbegin \DIFadd{, and how future policy adjustments and institutional metamorphoses might sculpt the efficiency of water utilization }\DIFaddend and \DIFdelbegin \DIFdel{investigate the potential impacts of additional policies and institutional shifts on water use and }\DIFdelend sustainability.
 
 
 \textbf{Authors Contribution}\\
