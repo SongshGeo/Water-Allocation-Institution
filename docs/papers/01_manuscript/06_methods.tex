@@ -1,10 +1,10 @@
 %! Author = songshgeo
 %! Date = 2022/3/10
 
-In the methodology section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as organizational diagrams during different periods of time.
+In this section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as organizational diagrams during different periods of time.
 Next, we introduce the dataset we used here and employ the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
 We then estimate the net effects of the two institutional shifts on total water use, changing trends, and differences in the YRB's provinces using the Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
-Finally, we present the efficiency tests approach for the DSC model.
+Finally, we introduce the tests approach for validating efficiency of the DSC model.
 % Finally, for discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
 
 \subsection{Portraying structures}\label{sec:structures}
@@ -12,73 +12,74 @@ Finally, we present the efficiency tests approach for the DSC model.
 An organizational diagram is widely used to depict SES structures by abstracting links and nodes from the real-world interactions~\cite{wang2022g,bodin2017a,kluger2020,guerrero2015}.
 We apply the analysis of the organizational diagrams~\cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit at the basin scale (the Yellow River Conservancy Commission) into structural patterns from official documents.
 We examined the official documents of the two institutional shifts (87-WAS and 98-UBR) to portray the organizational diagrams in this study~\cite{bodin2017a,kluger2020,guerrero2015}.
-It is important to note that it can result in very different structures when basin-scale regulatory entity (YRCC) is responsible for river reach regulation, or have direct authority to interact with provincial units.
+It is important to note that it can result in nuanced different structures when basin-scale regulatory entity (YRCC) is responsible for river reach regulation, or have direct authority to interact with provincial units.
 
 \subsection{Dataset and preprocessing}\label{sec:dataset}
 The data of water consumption surveys conducted by the Ministry of Water Resources were taken as the observed values throughout the years.
-Then, to estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on variables from five categories (environmental, economic, domestic, and technological) water use factors. Their specific items and origins are listed in~\ref{secS2}~Table~\ref{tab:variables}.
+Then, to estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on $24$ variables from $5$ categories (environmental, economic, domestic, and technological) water use factors~(\textit{\ref{secS2}, Table~\ref{tab:variables}}).
 Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin and Beijing (together, Jinji) because of their trivial water use from the YRB (see Table~\ref{tab:quota}).
 % We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.\\
 
-Using the normalized data of all variables, we performed the PCA reduction to capture $89.63\%$ explained variance by $D = 5$ principal components.
 Previous study has proved that combining PCA and DSC can lead to a more robust causal inference~\cite{bayani2021}.
-We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components (\textit{Appendix~\ref{secS2}~Figure\ref{fig:elbow}}).
-Finally, we transform the dataset and input the dimensions-reduced output into the DSC model.
+We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components $D$ (\textit{Appendix~\ref{secS2}~Figure\ref{fig:elbow}}).
+Finally, all $24$ normalized variables were reduced into $D = 5$ primary components where $89.63\%$ variance was explained, and we use this transformed dataset as input of the DSC model.
 
 \subsection{Differenced Synthetic Control}\label{sec:DSC}
 
 The Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021} is a tool we use to estimate how water use might have evolved if there had been no institutional shift.
 Think of it as creating an alternate reality or a ``what-if'' scenario to compare with what actually happened~\cite{abadie2010, abadie2015, hill2021}.
-The key idea behind this method is to evaluate the effects of policy changes that mainly affect certain units (in this case, the institutional shifts in the Yellow River Basin or YRB).
+The key idea behind this method is to evaluate the effects of policy changes (in this case, the 87-WAS and the 98-UBR) that mainly affect certain units (the provinces in the YRB).
 The method creates a ``synthetic'' version of the affected units by combining information from other similar but unaffected units. This ``synthetic'' version serves as a control group, which we can compare with the actual affected units.
-The DSC method, therefore, is a powerful tool as it allows us to control for unobserved factors that can change over time, providing more robust results.
+The DSC method, therefore, is a powerful tool as it allows us to control for unobserved factors that can change over time.
 
-In practice, all treated units (i.e., provinces) were affected by institutional shifts in 1987 and 1998, each taken as the ``shifted'' time $T_0$ within two individually analyzed periods $1, 2, \dots, T_0, T_0 + 1, \dots, T$: from 1979 to 1998; from 1987 to 2008.
-We separately include each of the eight provinces in the YRB (see \textit{\nameref{sec:dataset}}) as individual treated units~\cite{abadie2021}.
-Then, we consider the $J+1$ units observed in time periods $1, \dots, T$ where the remaining $J=20$ units represent untreated provinces from outside the YRB.\
-% We define $T_0$ to represent the number of pre-treatment periods ($1,\ldots,t_0$) and $T_1$ the number post-treatment periods ($t_0, \ldots, T$), such that $T = T_0+ T_1$.
-The treated unit is exposed to the institutional shift in every post-treatment period $T_0 +1, \dots, T$, unaffected by the institutional shift in all preceding periods $1, 2, \dots, T_0$.
-Then, any weighted average of the control units is a synthetic control and can be represented by a ($J \times 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, with $w_j \in (0, 1)$ and $w_1 + \cdots  + w_{J} = 1$.
-We denote $k$ is $T * D$ number of covariates, in which $D$ is number of dimensions of the dataset (i.e., $D = 5$ in this case).
-Introducing a ($k \times 1$) non-negative vector $\mathbf{V}$ ($\mathbf{V} = v_{1}, \ldots ,v_{k}$) and $v_1 + \cdots  + v_{k} = 1$ that signifies the relative importance of each covariate.
-% 接下来的目标就是求一个权重矩阵W，让它来表示控制组各单位的权重，使这些权重构成我们需要的“合成”版本的控制组
-The next goal is finding the optimal synthetic control ($\mathbf{W}$) which represents the ``synthetic'' versions of the affected provinces in the YRB.\
+In practice, we consider two distinct institutional shifts that affected all treated units (i.e., provinces in the YRB) in 1987 and 1998.
+Each institutional shift (87-WAS or 98-UBR) is designated as the ``shifted'' time $T_0$, and we individually analyzed two periods: from 1979 to 1998; from 1987 to 2008.
+We include each of the eight provinces in the YRB as separate treated units~\cite{abadie2021} and define the $J+1$ units observed in a time period $1, 2, \dots, T_0, T_0 + 1, \dots, T$, where the remaining $J=20$ units represent untreated provinces outside the YRB.\
+
+The treated unit is exposed to the institutional shift in every post-treatment period $T_0 +1, \dots, T$, and unaffected by the institutional shift in preceding periods $1, 2, \dots, T_0$.
+Any weighted average of the control units is referred as a synthetic control and is denoted by a ($J \times 1$) vector of weights $\mathbf{W} = (w_{1}, \ldots ,w_{J})$, satisfying $w_j \in (0, 1)$ and $w_1 + \cdots  + w_{J} = 1$.
+We also introduce a a ($k \times 1$) non-negative vector $\mathbf{V} = v_{1}, \ldots ,v_{k}$ where $k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset ($D = 5$ in this case).
+The vector $\mathbf{V}$ must fulfill $v_1 + \cdots  + v_{k} = 1$, reflecting the relative importance of each covariate.
+The next goal is finding the optimal $\mathbf{W}$ which represents the best ``synthetic'' versions of the affected provinces in the YRB:\
 
 \begin{equation}
     \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{argmin}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
 \end{equation}
 
-Here, $\mathbf{X_1}$ is the pre-treatment average of each variable in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units; $\mathbf{W}^{*}(V)$ is the vector of weights $\mathbf{W}$ that minimizes the difference between the pre-treatment characteristics of the treated unit and the synthetic control, given $\mathbf{V}$. That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W^{*}(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{{W}^{*}(V)}$ that minimizes the following expression:
+Here, matrix $\mathbf{X_1}$ represents the pre-treatment average of each dimension in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units.
+We also define $\mathbf{W}^{*}(V)$ as the vector of weights $\mathbf{W}$ that minimizes the discrepancy between the pre-treatment characteristics of the treated unit and the synthetic control for a given $\mathbf{V}$.
+That is, $\mathbf{W^{*}}$ depends on the choice of $\mathbf{V}$ –hence the notation $\mathbf{W^{*}(V)}$. Therefore, we choose $\mathbf{V^{*}}$ to be the $\mathbf{V}$ that results in $\mathbf{{W}^{*}(V)}$ that minimizes the following expression:
 
 \begin{equation}
+    % https://github.com/OscarEngelbrektson/SyntheticControlMethods/issues/18 这里和README不一样，因为它有问题
     \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
 \end{equation}
 
-That is the minimum difference between the water uses of treated units and the synthetic controls in the pre-treatment period, where $\mathbf{Z}_{1}$ is a matrix containing every observation of the water use for the treated unit in the pre-treatment period $T_0$.
-Similarly, $\mathbf{Z}_{0}$ is a ($J \times T_0$) matrix contains the water use for each control unit in the pre-treatment period.
-% https://github.com/OscarEngelbrektson/SyntheticControlMethods/issues/18 这里和README不一样，因为它有问题
+That is the minimum difference between the water uses of treated units and the synthetic controls in the pre-treatment period ($1, 2, \dots, T_0$), where $\mathbf{Z}_{1}$ is a matrix containing every observation of the water use for the treated unit.
+Similarly, $\mathbf{Z}_{0}$ is a ($J \times T_0$) matrix contains the water use for each control unit in this period.
 The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with better robustness~\cite{billmeier2013, smith2015}.
-In this study, we adopted the minimization by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023}.
+In this study, we adopted the algorithm by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023} for the minimization.
 
 \subsection{Validating results}\label{sec:robustness}
 
-Two primary methods can be employed to validate the efficiency of the DSC approach.
+The efficiency of the DSC approach can be validated using two primary methods.
 
-Firstly, the reconstruction effect on inferred variables (water consumption here) before and after treatment (the interventions of 87-WAS and 98-UBR) can be compared.
-If there are small gaps between the predicted and observed values before treatment, and a large gap after treatment, it indicates that the policy intervention's effect is apparent.
-In this study, to determine whether the intervention effect is significant, the paired sample $T$ test is used to calculate statistics, comparing the model predictions and actual observation data in the periods before and after institutional interventions for both the 87-WAS in $1987$ and 98-UBR in $1998$.
-An effective result would be one where a significant difference is observed after treatment but not before treatment. If this is not the case, it implies that the institutional changes were ineffective for the treated units.
+The first method involves comparing the reconstruction effect on the inferred variables (in this case, water consumption) before and after the interventions of 87-WAS and 98-UBR.\
+Small gaps between predicted and observed values before treatment, coupled with a large gap after treatment, would signal the apparent effect of the policy intervention.
+Specifically, this study employs the paired sample T test to calculate statistics that compare model predictions and actual observation data in the periods before and after both institutional interventions in 1987 (87-WAS) and 1998 (98-UBR).
+A significant difference observed after treatment, but not before, indicates that the policy was effective.
+If this pattern is not found, it suggests that the institutional changes did not impact the treated units.
 
-Secondly, placebo tests are another common way to evaluate the effectiveness of synthetic control methods~\cite{abadie2010}.
-Placebo units are selected from the control unit pool and substituted for the treated unit, applying the synthetic control method to the placebo unit using the same data and parameters as the treated unit.
-If the synthetic control method is effective, there should be a clear difference between the placebo unit and the control unit since the placebo unit should not be affected by the intervention.
-% Placebo tests can be used to assess the effectiveness of the synthetic control method and detect any bias or confounding factors in the analysis.
-In this study, we adopt the placebo test step suggested by Abadie when proposing the synthetic control method~\cite{abadie2010} and utilize the Python library of the differential synthetic control method for the placebo test.
-If the ratio of the root mean square error (see Equation~\ref{ch5:eq:RMSE}) in the pre-synthesis period is significantly higher for most provinces (again using the $T$ test to determine the significance of the difference) than the results of other placebo units, the provinces in the YRB was more significantly affected than most other provinces during the treatment periods ($1987$ and $1998$), i.e., more effective.
+The second method involves using placebo tests, a standard procedure for assessing the effectiveness of synthetic control methods~\cite{abadie2010}.
+Placebo units are drawn from the control unit pool and substituted for the treated unit.
+The synthetic control method is then applied to the placebo unit using the same data and parameters as the treated unit.
+No significant difference between the placebo and control units, given that the placebo unit should not be influenced by the intervention, would demonstrate the method's effectiveness.
+In this study, we follow the placebo test approach suggested by Abadie~\cite{abadie2010} and utilize the same Python library~\cite{engelbrektson2023} to perform this.
+If the ratio of the Root Mean Square Error (RMSE) (see Equation~\ref{ch5:eq:RMSE}) in the post/pre -treated period is significantly higher for most treated provinces (using the T test to assess significance) compared to other placebo units, it implies that the provinces in the YRB were significantly affected during the treatment periods (1987 and 1998), thus indicating effectiveness.
 
 \begin{equation}
     \label{ch5:eq:RMSE}
     \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}{(y_i-\hat{y}_i)}^2}
 \end{equation}
 
-Where $n$ is the observed number, $y_i$ is the actual value, and $\hat{y}_i$ is the predicted value.
+Where $n$ is the observed number, $y_i$ is the observed value, and $\hat{y}_i$ is the predicted value.
