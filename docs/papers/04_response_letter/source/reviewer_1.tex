@@ -4,144 +4,18 @@
 
 \subsection*{Overall comments}
 
-% \RC{}本研究旨在利用差分综合控制(DSC)方法量化黄河流域(YRB)制度变迁(政策变化)和水资源利用的影响。这项研究在方法上似乎是合理的。这个话题很有趣:它以定量的方式将政策维度整合到对流域的评估中，可能会引起期刊读者的兴趣。也就是说，我认为手稿需要相当多的改进和仔细的修改。请参阅下文。
-\RC{} This study aimed at quantifying the effect of institution shifts (policy changes) and water usage in the Yellow River Basin (YRB), using the Differenced Synthetic Control (DSC) method. The study seemed methodologically sound. The topic is interesting: it integrated the policy dimension into an assessment of a river basin in a quantitative way and could be of interest to the journal's readership. That said, I believe the manuscript needs quite a few improvements and careful revisions. Please see below.
 
-\AR{} Thank you for your valuable feedback and for acknowledging our novelty and reasonability. Your feedback greatly helps us improve the clarity and accessibility of our work. We sincerely appreciate your effort in reviewing our manuscript and providing these insightful comments. Below are point-to-point modification descriptions.
+% 在大多数情况下，作者已经解决了我在原始提交中关于单词选择和各种符号混淆的评论，我对此表示赞赏。然而，差分综合控制方法的描述，如果有什么的话，变得更让我困惑!
+\RC{} For the most part, the authors have addressed my comments regarding word choices and various notational confusion in the original submission, and I appreciate that. However, the description of the Differenced Synthetic Control method, if anything, becomes even more confusing to me!
 
-\subsection{CLEARER METHOD DESCRIPTION}\label{sec:1-1}
+% Eq 1: V怎么可能是一个向量，而不是一个矩阵?在Eq 1中的矩阵乘法只是不工作与指定的维度!X_1的维数是多少?作者指定W是一个(J x 1)向量，X_0是一个(k x J)矩阵。这意味着乘积(X_0 W)是一个(k x 1)向量，所以X_1也应该是一个(k x 1)向量。这意味着(X_1 - X_0 W)'和(X_1 - X_0 W)的维数应该是(1 × k)和(k × 1)。为了使方程1成立，V必须是一个(k × k)矩阵。我错过什么了吗?如果我误解了什么，请澄清。
+\RC{} Eq 1: How can V be a vector, not a matrix? The matrix multiplication in Eq 1 just doesn't work with the dimensions specified! And what is the dimension of X_1? The authors specified that W is a (J x 1) vector and X_0 is a (k x J) matrix. This implies that the product (X_0 W) is a (k x 1) vector, so X_1 should be a (k x 1) vector as well. Which means that (X_1 - X_0 W)' and (X_1 - X_0 W) should have dimensions of (1 x k) and (k x 1). For Eq 1 to work, V must be a (k x k) matrix. Did I miss something here? If I misunderstood anything here, please clarify.
 
-\RC{} Section 3.3. Differenced Synthetic Control needs to be much clearer. For example, on lines 141-145, please double-check the description and symbols used in this passage. In particular, the multiple uses of capital letter T—as the duration of a period and as a time index—were quite confusing. Then, ``post-treatment period $T_0$.\ldots all preceding periods $T_1$'' - is this correct? Anyhow, please double-check and revise to make this passage clearer.
+% 加上，如何确定V的项的值?公式2表明需要W来确定V?但这不是循环逻辑吗?所以你需要最优的V来确定W，但你也需要最优的W来确定最优的V?哪些优化必须先做?
+\RC{} Plus, how does one determine the values of V's entries? Eq. 2 suggests that one needs W to determine V? But isn't that circular logic? So you need the optimal V to determine W, but you also need the optimal W to determine the optimal V? Which optimization must be done first?
 
-\RC*{} In Eq 1, $X_0$ and $X_1$ were never defined.
+% Z的维数不应该是(T_0 x J)，而不是(J x T_0)吗?否则，它就不能从右边乘以W, W的维数是(jx1)再说一遍，我漏了什么吗?如果我误解了什么，请澄清。
+\RC{} Eq. 2: Shouldn't Z's dimension be (T_0 x J), not (J x T_0)? Otherwise, it cannot be multiplied from the right by W, which has the dimension of (J x 1). Again, did I miss something here? If I misunderstood anything here, please clarify.
 
-\RC*{} Using ``$*$'' to denote the dimension of a matrix (e.g., $k*k$) is a bit odd; please consider using a multiplication symbol, e.g., $k \times k$.
-
-\AR{} [page 6 to 8, lines 124 to 185] We have revised the description of the DSC method to make it clearer and more comprehensive. We expanded on the purpose and process of the DSC method, provided more context on how it fits into our research, and clarified the mathematical notation. We also explained the specific variables used when we introduced $X_1, X_0, Z_1$, and $Z_0$, as well as mentioned the specific method used for minimization and the corresponding reference. We believe that these revisions have significantly improved the clarity of our method description.
-
-\subsection{BETTER WORD CHOICES}\label{sec:1-2}
-
-\RC{} I found some of the word choices a bit strange. For example, unless the term has been used this way in the literature, ``point-axis networks'' sounds strange. Otherwise, please consider alternatives like ``organizational charts'' or ``organizational diagrams'', which I believe is more appropriate.
-
-\AR{} Thank you once again for your valuable insights and suggestions.
-
-\AR*{} Regarding your comment on our use of the term ``point-axis networks'', we appreciate your feedback. The term was indeed referenced from a review article (\cite{kluger2020}), and we initially used it believing it was a common term in the literature. However, upon your suggestion and further consideration, we agree that the term may not be widely recognized across our readership.
-
-\AR*{} We have therefore revised the relevant sentence to use the term ``organizational diagram'', which is indeed more familiar and equally accurate. The sentence now reads:
-
-\begin{quote}[page=5, sline=90, eline=92]
-    In this section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as organizational diagrams during different periods of time.
-\end{quote}
-
-\begin{quote}[page=5, sline=99, eline=100]
-    An organizational diagram is widely used to depict SES structures by abstracting links and nodes from the real-world interactions~\cite{wang2022g,bodin2017a,kluger2020,guerrero2015}.
-\end{quote}
-
-\RC{} In a similar vein, I do not think that ``network approach'' or ``network-based approach'' is an appropriate description of what is being done here. Normally, network approaches involve concepts from complex network theories, which are not present here. Indeed, calling this a network approach may provoke unnecessary objections from network researchers. I would suggest the use of simpler terms like ``analysis of the organizational charts'' or something along that line.
-
-\AR{} Thank you for your thoughtful suggestion to use the term ``analysis of the organizational charts''. We agree that this term is clearer and more widely understood. We have incorporated your suggestion into our manuscript. We believe this modification has improved the clarity and readability of our manuscript, making it more accessible to our readers:
-
-\begin{quote}[page=5, sline=100, eline=105]
-    We apply the analysis of the organizational diagrams~\cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit at the basin scale (the Yellow River Conservancy Commission) into structural patterns from official documents.
-    We examined the official documents of the two institutional shifts (87-WAS and 98-UBR) to portray the organizational diagrams in this study~\cite{bodin2017a,kluger2020,guerrero2015}.
-\end{quote}
-
-\RC{} I disagree with how the term and concept of ``robustness'' is used here. Normally, a robust result is a result that holds even when the input variables and/or parameters are uncertain. What is being reported here seems to be the effectiveness or efficiency of the institutional shifts, not the robustness. If I misunderstood anything here, please clarify. As it is, I don't think that the use of the term ``robustness'' is appropriate here.
-
-\AR{} Regarding your suggestion on the usage of the term ``robustness'', we have reconsidered our choice of words and agree with your point. We understand that the term ``efficiency'' more accurately represents our intended meaning in this context. Therefore, we have revised our manuscript and replaced ``robustness'' with ``efficiency''. We believe this change improves the clarity and precision of our work:
-
-\begin{quote}[page=7, sline=163]
-    The efficiency of the DSC approach can be validated using two primary methods.
-\end{quote}
-
-\begin{quote}[page=8, sline=170, eline=172]
-    A significant difference observed after treatment, but not before, indicates that the policy was effective.
-    If this pattern is not found, it suggests that the institutional changes did not impact the treated units.
-\end{quote}
-
-\begin{quote}[page=8, sline=180, eline=184]
-    If the ratio of the Root Mean Square Error (RMSE) (see Equation 3) in the post/pre -treated period is significantly higher for most treated provinces (using the T test to assess significance) compared to other placebo units, it implies that the provinces in the YRB were significantly affected during the treatment periods (1987 and 1998), thus indicating effectiveness.
-\end{quote}
-
-\AR*{} Thank you once again for your valuable feedback, which has greatly contributed to the quality of our manuscript.
-
-\RC{} Is ``placebo experiments'' the term normally used in this way? If so, can you provide some references?
-
-\AR{} Basically, the term ``placebo'' is indeed used in this context in the literature, particularly in policy evaluation studies where the synthetic control method is used. It refers to the procedure of applying the synthetic control method to units that did not receive treatment to verify the significance of the estimated treatment effects. This procedure is called a ``placebo test'' or ``placebo experiment'' and is crucial for validating the results of synthetic control analyses.
-
-\AR*{} In light of your comment, we have revised our manuscript to consistently use the term ``placebo tests'' throughout, and we have added references that use this term in a similar context~\cite{abadie2010}. We hope this change addresses your concern and provides a clear explanation of the term's usage:
-
-\begin{quote}[page=8, sline=173, eline=174]
-    The second method involves using placebo tests, a standard procedure for assessing the effectiveness of synthetic control methods~\cite{abadie2010}.
-\end{quote}
-
-\subsection{Other comments}\label{sec:1-3}
-
-\RC{} I would change the first two key points into full sentences; as they are, they are only fragments, while the third and fourth points are full sentences.
-
-\AR{} Thank you for your valuable suggestion to rewrite the key points as full sentences. We appreciate your attention to detail and agree that full sentences are more informative and complete. We have revised the key points in our manuscript as follows:
-
-\begin{quote}[page=Key Points]
-    1.	We assess the impact of institutional shifts in water governance at basin scale.\\
-    2.	We conduct a quantitative analysis of Yellow River Basin's water management policies.\\
-    3.	Water Allocation Scheme in 1987 unexpectedly increased water use by 5.75\%.\\
-    4.	Unified Basin Regulation in 1998 successfully reduced water use as anticipated.\\
-\end{quote}
-
-\RC{} Lines 39-40: ``the 1987\ldots (98-UBR).'' is repeated -please remove.
-
-\AR{} Thank you for pointing out the repetition in lines 39-40 regarding ``the 1987\ldots (98-UBR).'' We appreciate your careful attention to detail. This repetition was indeed an oversight on our part. We have now corrected this error by removing the duplicate phrase in our manuscript.
-
-\RC{} Line 75: A subject is missing in front of ``proposed to\ldots '' Perhaps, ``the government''?
-
-\AR{} Thank you for your attentive reading of our manuscript and for pointing out the missing subject in line 75. Upon your suggestion, we have revised the sentence to specify the subject, now reading:
-
-\begin{quote}[page=4, sline=75, eline=76]
-    In $1980s$, the central government proposed to develop a water resource allocation institution for the Yellow River~\cite{wang2019d, wang2019e}.
-\end{quote}
-
-\RC{} Lines 169-171: ``A robust synthetic control model will show a significant difference after treatment, but not before treatment.'' Why? This statement assumes that the treatment must have an effect; what if the treatment has no effect?
-
-\AR{} Thank you for your valuable comment regarding the clarification needed for the statement in lines 169-171. Upon your suggestion, we have revised the sentence for better clarity, and it now reads:
-
-\begin{quote}[page=8, sline=170, eline=172]
-    A significant difference observed after treatment, but not before, indicates that the policy was effective.
-    If this pattern is not found, it suggests that the institutional changes did not impact the treated units.
-\end{quote}
-
-\RC{} Line 209: Are parentheses missing for ``$km^3 billion m^3$''?
-
-\AR{} Thank you for pointing out the typo in line 209 regarding units. Your careful attention to detail is greatly appreciated. We have now corrected this typographical error in our manuscript by deleting the redundant unit:
-
-\begin{quote}[page=10, sline=207, eline=209]
-    From 1988 to 1998, on average, while the estimation of annual water use only suggests $887.05$ billion $m^3$, the observed water use of the YRB provinces reached $938.06$ billion $m^3$ (an increase of $5.75\%$).
-\end{quote}
-
-\RC{} Lines 261-262: It's unclear to me how Fig. 4 supports the statement "the correlation between \dots 98-UBR (Figure 4)."
-
-\AR{} Thank you for pointing out the confusion in the reference to Figure 4 in lines 261-262. We have now deleted this not consistently reference. We value your insightful feedback and thank you for helping us improve the clarity and accuracy of our manuscript.
-
-\RC{} Somehow, I did not see Appendix C explicitly referred to in the main text. There is reference to "Marginal benefit model for water use" but this was not explicitly labeled as Appendix C.
-
-\AR{} Thank you for pointing out the missing reference to Appendix C in our manuscript. We appreciate your attention to detail. Upon revisiting the manuscript, we realized that Appendix C was indeed not explicitly referred to in the main text. We have now rectified this oversight by adding an explicit reference to Appendix C where the ``Marginal benefit model for water use'' is discussed:
-
-\begin{quote}[page=14, sline=266, eline=269]
-    Secondly, a theoretical marginal benefit analysis (see \textit{Appendix C}) suggests that this ``major users are effected more'' pattern can be inferred from a simple assumption that stakeholders anticipate future value in water quotas, thereby lending further support to the above hypothesis.
-\end{quote}
-
-\RC{} Line 280: from ``Similar'' to ``Similarly''
-
-\AR{} Thank you for pointing out the typographical error in line 280. We have eliminated the error in the revision.
-
-\RC{} Line 323-324: This is the first time you used the term ``difference-in-differences'' -so far, you have called your method ``Differenced Synthetic Control'' (DSC). Why different names? Likely a typo; please double-check.
-
-\AR{} Upon your suggestion, we have rectified the error and now consistently use the term ``Differenced Synthetic Control'' (DSC) throughout the manuscript, ensuring the consistency and clarity of our terminology.
-
-\RC{} Line 327: ``revealed'' is too strong; perhaps ``suggested''?
-
-\AR{} Thank you for pointing out the excessive use of the term ``revealed'' in line 327. We appreciate your thoughtful suggestion to soften the language. We have now replaced ``revealed'' with the more appropriate term ``suggested'' in our manuscript.
-
-\RC{} Line 437, Ref [30]: Pca should be all caps, PCA.\
-
-\AR{} Thank you for bringing to our attention the typographical error in line 437, reference [30]. We appreciate your meticulous review of our manuscript. We have corrected the error by capitalizing the acronym "PCA". This has improved the accuracy and professionalism of our reference list.
-
+% 虽然我仍然认为这项研究可能会引起期刊读者的兴趣，正如我上面的沮丧所表明的那样，方法描述非常令人困惑，并且没有得到充分的解决。我强烈建议作者在下次修订时要非常小心。
+\RC{} While I still think that the study can be of interest to the journal's readership, as indicated by my frustration above, the method description is very confusing and has not been adequately addressed. I strongly suggest that the authors be VERY CAREFUL in the next revision.
