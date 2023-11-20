@@ -38,7 +38,7 @@ We include each of the eight provinces in the YRB as separate treated units~\cit
 
 The treated unit is exposed to the institutional shift in every post-treatment period $T_0 +1, \dots, T$, and unaffected by the institutional shift in preceding periods $1, 2, \dots, T_0$.
 Any weighted average of the control units is referred as a synthetic control and is denoted by a ($J \times 1$) vector of weights $\mathbf{w} = (w_{1}, \ldots ,w_{J})$, satisfying $w_j \in (0, 1)$ and $w_1 + \cdots  + w_{J} = 1$.
-We also introduce a ($k \times 1$) non-negative vector $\mathbf{v} = (v_{1}, \ldots ,v_{k}$) to weight the relative importance of each covariate, where $k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset ($D = 5$ in this case).
+We also introduce a ($k \times 1$) non-negative vector $\mathbf{v} = (v_{1}, \ldots ,v_{k}$) to weight the relative importance of each covariate, where $k$ is the product of $T_0$ and $D$, the number of pre-treatment years and dimensions in the dataset ($D = 5$ in this case).
 The vector $\mathbf{v}$ must fulfill $v_1 + \cdots  + v_{k} = 1$, and $\mathbf{diag(v)}$ represents the diagonal matrix formed by the vector $\mathbf{v}$.
 Then, the next goal is finding the optimal $\mathbf{w}$ which represents the best ``synthetic'' versions of the affected provinces in the YRB.\
 Given $\mathbf{v}$, we define $\mathbf{w^{*}(v)}$ as a function of $\mathbf{v}$ that minimizes the discrepancy between the pre-treatment characteristics of the treated unit and the synthetic control:
@@ -47,7 +47,7 @@ Given $\mathbf{v}$, we define $\mathbf{w^{*}(v)}$ as a function of $\mathbf{v}$ 
     \mathbf{w^{*}(v)}=\underset{\mathbf{w} \in \mathcal{W}}{\operatorname{argmin}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{w}\right)^{\prime} \mathbf{diag(v)}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{w}\right)
 \end{equation}
 
-Here, matrix $\mathbf{X_1}$ represents the pre-treatment average of each dimension in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units.
+Here, $\mathbf{X_1}$ is a ($k \times 1$) vector containing the pre-treatment average of each dimension in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units.
 Finally, we choose $\mathbf{v^{*}}$ by minimizing difference between the water uses of treated units and the synthetic controls in the pre-treatment period ($1, 2, \dots, T_0$):
 
 \begin{equation}
@@ -55,7 +55,7 @@ Finally, we choose $\mathbf{v^{*}}$ by minimizing difference between the water u
     \mathbf{v}^{*}=\underset{\mathbf{v} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{w}^{*}(\mathbf{v})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{w}^{*}(\mathbf{v})\right)
 \end{equation}
 
-where $\mathbf{Z}_{1}$ is a matrix containing every observation of the water use for the treated unit, and $\mathbf{Z}_{0}$ is a ($T_0 \times J$) matrix contains the water use for each control unit in this period.
+where $\mathbf{Z}_{1}$ is a ($T_0 \times 1$) vector containing every observation of the water use for the treated unit, and $\mathbf{Z}_{0}$ is a ($T_0 \times J$) matrix containing the water use for each control unit in this period.
 The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with better robustness~\cite{billmeier2013, smith2015}.
 In this study, we adopted the algorithm by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023} for the minimization.
 
