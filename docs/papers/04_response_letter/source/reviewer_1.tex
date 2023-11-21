@@ -4,66 +4,36 @@
 
 \subsection*{Overall comments}
 
-% 在大多数情况下，作者已经解决了我在原始提交中关于单词选择和各种符号混淆的评论，我对此表示赞赏。然而，差分综合控制方法的描述，如果有什么的话，变得更让我困惑!
-\RC{} For the most part, the authors have addressed my comments regarding word choices and various notational confusion in the original submission, and I appreciate that. However, the description of the Differenced Synthetic Control method, if anything, becomes even more confusing to me!
+Reviewer \#1: I appreciate that the authors took my comments seriously and apparently invested efforts in improving the description of the method, which indeed has become clearer. That said, some confusing points remain. I will be specific here. Please clarify the following three points.
 
-% 非常抱歉造成了新的困惑，我们承认之前在方法数学描述上的经验不足。现在，我们请了数学家帮我们矫正了方法表述，我希望您可以在本次修订中发现所有的步骤已得到清晰准确的描述。
-\AR{} We apologize for any new confusion because of our lack of experience in mathematical descriptions of this method. Now that we have had mathematicians help us correct the representation, I hope you will find that all the steps are clearly and accurately described in this revision. We are attaching the changes here and will respond to your specific comments later (\ref{specific_comments}).
+\RC{} Is $k = T x D$ or $T_0 x D$? Currently, it is stated that ``$k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset.'' However, this portion of the method focuses on the PRE-TREATMENT characteristics, shouldn't we use only the data from the PRE-TREATMENT period, i.e., $T_0$ years? As such, shouldn't $k$ be ``the product of $T_0$ and $D$, the number of pre-treatment years and dimensions''?
 
-\begin{quote}[page=7, sline=139, eline=159]
-    The treated unit is exposed to the institutional shift in every post-treatment period $T_0 +1, \dots, T$, and unaffected by the institutional shift in preceding periods $1, 2, \dots, T_0$.
-    Any weighted average of the control units is referred as a synthetic control and is denoted by a ($J \times 1$) vector of weights $\mathbf{w} = (w_{1}, \ldots ,w_{J})$, satisfying $w_j \in (0, 1)$ and $w_1 + \cdots  + w_{J} = 1$.
-    We also introduce a ($k \times 1$) non-negative vector $\mathbf{v} = (v_{1}, \ldots ,v_{k}$) to weight the relative importance of each covariate, where $k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset ($D = 5$ in this case).
-    The vector $\mathbf{v}$ must fulfill $v_1 + \cdots  + v_{k} = 1$, and $\mathbf{diag(v)}$ represents the diagonal matrix formed by the vector $\mathbf{v}$.
-    Then, the next goal is finding the optimal $\mathbf{w}$ which represents the best ``synthetic'' versions of the affected provinces in the YRB.\
-    Given $\mathbf{v}$, we define $\mathbf{w^{*}(v)}$ as a function of $\mathbf{v}$ that minimizes the discrepancy between the pre-treatment characteristics of the treated unit and the synthetic control:
+% 是的，您的理解是正确的，这里的数据集指的是pre-treatment的部分，抱歉这没有写得更清楚，T的符号是一个笔误，我们已经修改成T0.
+\AR{} Yes, your understanding is correct, the data set here refers to the part of pre-treatment, sorry it was not written more clearly, the symbol of $T$ is a clerical error, we have modified it to $T_0$. Thank you for your care to make all this sentence more clear:
 
-    \begin{equation}\label{eq1}
-        \mathbf{w^{*}(v)}=\underset{\mathbf{w} \in \mathcal{W}}{\operatorname{argmin}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{w}\right)^{\prime} \mathbf{diag(v)}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{w}\right)
-    \end{equation}
-
-    Here, matrix $\mathbf{X_1}$ represents the pre-treatment average of each dimension in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units.
-    Finally, we choose $\mathbf{v^{*}}$ by minimizing difference between the water uses of treated units and the synthetic controls in the pre-treatment period ($1, 2, \dots, T_0$):
-
-    \begin{equation}\label{eq2}
-        % https://github.com/OscarEngelbrektson/SyntheticControlMethods/issues/18 这里和README不一样，因为它有问题
-        \mathbf{v}^{*}=\underset{\mathbf{v} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{w}^{*}(\mathbf{v})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{w}^{*}(\mathbf{v})\right)
-    \end{equation}
-
-    where $\mathbf{Z}_{1}$ is a matrix containing every observation of the water use for the treated unit, and $\mathbf{Z}_{0}$ is a ($T_0 \times J$) matrix contains the water use for each control unit in this period.
-    The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with better robustness~\cite{billmeier2013, smith2015}.
-    In this study, we adopted the algorithm by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023} for the minimization.
-
+\begin{quote}
+    $\dots$ where $k$ is the product of $T_0$ and $D$, the number of pre-treatment years and dimensions in the dataset ($D = 5$ in this case).
 \end{quote}
 
-\subsection*{Specific comments}\label{specific_comments}
+\RC{} The authors still wrote ``matrix $X_1$'' -again, I don't see how the math would work if $X_1$ is a matrix. In Eq. 1, $X_0$ is a ($k \times J$) matrix and $W$ is a ($J \times 1$) vector. This implies that the product ($X_0$, $W$) is a ($k \times 1$) vector, so $X_1$ should be a ($k \times 1$) vector as well, with each entry being the value of one the dimensions in one of the pre-treatment years. Please CLARIFY THE DEFINITION and EXPLICITLY INCLUDE THE DIMENSION OF $X_1$, which was one of the questions I previously asked.
 
-% Eq 1: V怎么可能是一个向量，而不是一个矩阵?在Eq 1中的矩阵乘法只是不工作与指定的维度!X_1的维数是多少?作者指定W是一个(J \times 1)向量，X_0是一个(k \times J)矩阵。这意味着乘积(X_0 W)是一个(k \times 1)向量，所以X_1也应该是一个(k \times 1)向量。这意味着(X_1 - X_0 W)'和(X_1 - X_0 W)的维数应该是(1 × k)和(k × 1)。为了使方程1成立，V必须是一个(k × k)矩阵。我错过什么了吗?如果我误解了什么，请澄清。
-\RC{} Eq 1: How can V be a vector, not a matrix? The matrix multiplication in Eq 1 just doesn't work with the dimensions specified! And what is the dimension of $X_1$? The authors specified that W is a $(J \times 1)$ vector and $X_0$ is a $(k \times J)$ matrix. This implies that the product $(X_0 W)$ is a $(k \times 1)$ vector, so $X_1$ should be a $(k \times 1)$ vector as well. Which means that $(X_1 - X_0 W)'$ and $(X_1 - X_0 W)$ should have dimensions of $(1 \times k)$ and $(k \times 1)$. For Eq 1 to work, V must be a $(k \times k)$ matrix. Did I miss something here? If I misunderstood anything here, please clarify.
+% 谢谢您指出这个问题，我们去除了容易让读者混淆的“矩阵”表述，并标明了其维度。
+\AR{} Thank you for pointing this out. We have removed the expression of ``matrix'', which is easy to confuse readers, and indicated its dimensions:
 
-% 是的，非常抱歉之前因表述错误而造成的误解。V应该是一个向量构造的对角矩阵。这已经在修订后的段落中得到了说明
-\AR{} We apologize for the confusion caused by the erroneous description of $\mathbf{V}$ in the initial submission. Upon review, we acknowledge that it lacked clarity that $\mathbf{v}$ (lower case now) is indeed a vector, but used as a diagonal matrix in the equation. This correction is accompanied by a detailed explanation in the methodology section to avoid any future misunderstanding.
-
-\begin{quote}[page=7, sline=142, eline=149]
-    We also introduce a ($k \times 1$) non-negative vector $\mathbf{v} = (v_{1}, \ldots ,v_{k}$) to weight the relative importance of each covariate, where $k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset ($D = 5$ in this case).
-    The vector $\mathbf{v}$ must fulfill $v_1 + \cdots  + v_{k} = 1$, and we introduce $\mathbf{diag(v)}$ as the diagonal matrix formed by the vector $\mathbf{v}$.
+\begin{quote}
+    $\mathbf{X_1}$ is a ($k \times 1$) vector containing the pre-treatment average of each dimension in the dataset for the treated unit $\dots$
 \end{quote}
 
-% 加上，如何确定V的项的值?公式2表明需要W来确定V?但这不是循环逻辑吗?所以你需要最优的V来确定W，但你也需要最优的W来确定最优的V?哪些优化必须先做?
-\RC{} Plus, how does one determine the values of V's entries? Eq. 2 suggests that one needs W to determine V? But isn't that circular logic? So you need the optimal V to determine W, but you also need the optimal W to determine the optimal V? Which optimization must be done first?
+\RC{} Similarly, the authors wrote ``$Z_1$ is a matrix $\dots$'' -again, I don't see how the math would work if $Z_1$ is a matrix. In Eq. 2, $Z_0$ is a ($T_0 \times J$) vector and $w*(v)$ is a $(J \times 1)$ matrix. This implies that the product ($Z_0 \times w*(v)$) is a ($T_0 \times 1$) vector, so $Z_1$ should be a ($T_0 \times 1$) vector as well, with each entry being the water use of the treated united in a given pre-treatment year. Please EXPLICITLY INCLUDE THE DIMENSION OF $Z_1$.
 
-% 这个问题应该是之前不当表述所造成的误解。通过现在更清晰的表述中，我们的读者会发现这不是一个循环。在式子1可以理解为关于W*的定义，将其表达为向量v的函数。因此，式子2的右边也是v的函数，因此v*就是让这个函数取最小值的一个向量解。
-\AR{} The raised doubt of any circular logic in our methodological approach may be a result of an imprecise explanation in our initial submission. Actually, the Equation~\ref{eq1} is presented as the definition of $\mathbf{w^*}$ which is expressed as a function of the vector $\mathbf{v}$. Therefore, the right-hand side of Equation~\ref{eq2} can be also formulated as a function of the vector $\mathbf{v}$, leading to $\mathbf{v^*}$ representing the vector that minimizes this function. This approach ensures that the optimization process doesn't have any circularity. We trust that this revised mathematical descriptions will make the method's steps transparent and logical to our readers.
+\AR{} Similarly, we have removed the expression of ``matrix'' and introduced its dimensions directly:
 
-% Z的维数不应该是(T_0 \times J)，而不是(J \times T_0)吗?否则，它就不能从右边乘以W, W的维数是(jx1)再说一遍，我漏了什么吗?如果我误解了什么，请澄清。
-\RC{} Eq. 2: Shouldn't Z's dimension be $(T_0 \times J)$, not $(J \times T_0)$? Otherwise, it cannot be multiplied from the right by W, which has the dimension of $(J \times 1)$. Again, did I miss something here? If I misunderstood anything here, please clarify.
+\begin{quote}
+    where $\mathbf{Z}_{1}$ is a ($T_0 \times 1$) vector containing every observation of the water use for the treated unit $\dots$
+\end{quote}
 
-% 抱歉，这是我们之前的错误，我们已经将维度表达修正了过来。
-\AR{} Sorry, it was our previous mistake, we have corrected the dimensional expression from $(T_0 \times J)$ to $(J \times T_0)$.
-
-% 虽然我仍然认为这项研究可能会引起期刊读者的兴趣，正如我上面的沮丧所表明的那样，方法描述非常令人困惑，并且没有得到充分的解决。我强烈建议作者在下次修订时要非常小心。
-\RC{} While I still think that the study can be of interest to the journal's readership, as indicated by my frustration above, the method description is very confusing and has not been adequately addressed. I strongly suggest that the authors be VERY CAREFUL in the next revision.
+As before, if I missed something or misunderstood anything here, please clarify.
 
 % 非常感谢您对本研究意义的认可，我们相信，我们对该方法的应用识别并解释了一个非常有趣的现象。也非常抱歉之前的手稿造成困惑，我们希望新的手稿对读者来说表述足够清晰！
-\AR{} We are very grateful for your recognition of the significance of our research. We believe that the application of the method has identified and explained an intriguing phenomenon that will be of considerable interest to our readers. We also sincerely apologize for any confusion caused by our earlier manuscript. It has been our aim in this revision to present our methodology and findings with utmost clarity, and we hope that the readers will find the new manuscript to be lucid and straightforward.
+\AR{} We are very grateful for your recognition of our previous improvements of the manuscript. As you pointed out, we can indicate the dimensions for readers to understand better, and thanks to your valuable suggestions, we now fully follow them and further enhance the manuscript.
 
