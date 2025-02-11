@@ -1,0 +1,84 @@
+%! Author = songshgeo
+%! Date = 2022/3/10
+
+In this section, we first utilize the descriptions of official documents following the two institutional shifts to abstract the interactions of SES into structures as organizational diagrams during different periods of time.
+Next, we introduce the dataset we used here and employ the Principal Components Analysis (PCA) method to reduce the dimensionality of variables affecting the total water use.
+We then estimate the net effects of the two institutional shifts on total water use, changing trends, and differences in the YRB's provinces using the Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021}.
+Finally, we introduce the tests approach for validating efficiency of the DSC model.
+% Finally, for discussion, we developed a marginal benefit analysis based on identified SES structures to provide the observed pattern of water use changes with a theoretical interpretation.
+
+\subsection{Portraying structures}\label{sec:structures}
+
+An organizational diagram is widely used to depict SES structures by abstracting links and nodes from the real-world interactions~\cite{wang2022g,bodin2017a,kluger2020,guerrero2015}.
+We apply the analysis of the organizational diagrams~\cite{bodin2017b} to portray SES structures by abstracting relationships between ecological units (river reaches), stakeholders (provinces), and the administrative unit at the basin scale (the Yellow River Conservancy Commission) into structural patterns from official documents.
+We examined the official documents of the two institutional shifts (87-WAS and 98-UBR) to portray the organizational diagrams in this study~\cite{bodin2017a,kluger2020,guerrero2015}.
+It is important to note that it can result in nuanced different structures when basin-scale regulatory entity (YRCC) is responsible for river reach regulation, or have direct authority to interact with provincial units.
+
+\subsection{Dataset and preprocessing}\label{sec:dataset}
+The data of water consumption surveys conducted by the Ministry of Water Resources were taken as the observed values throughout the years.
+Then, to estimate the water use of the YRB by assuming there were no effects from institutional shifts, we focused on $24$ variables from $5$ categories (environmental, economic, domestic, and technological) water use factors~(\textit{\ref{secS2}, Table~\ref{tab:variables}}).
+Among the total $31$ data-accessible provinces (or regions) assigned quotas in the 87-WAS and the 98-UBR, we dropped Sichuan, Tianjin and Beijing (together, Jinji) because of their trivial water use from the YRB (see Table~\ref{tab:quota}).
+% We then divided the dataset into a ``target group'' and a ``control group'', treating provinces involved in water quota as the target group $(n=8)$ and other provinces as the control group $(n=20)$ for applying the DSC.\\
+
+Previous study has proved that combining PCA and DSC can lead to a more robust causal inference~\cite{bayani2021}.
+We first applied the Zero-Mean normalization (unit variance), as the variables' units are far different. Then, we apply PCA to the multi-year average of each province, using the Elbow method to decide the number of the principal components $D$ (\textit{Appendix~\ref{secS2}~Figure\ref{fig:elbow}}).
+Finally, all $24$ normalized variables were reduced into $D = 5$ primary components where $89.63\%$ variance was explained, and we use this transformed dataset as input of the DSC model.
+
+\subsection{Differenced Synthetic Control}\label{sec:DSC}
+
+The Differenced Synthetic Control (DSC) method~\cite{arkhangelsky2021} is a tool we use to estimate how water use might have evolved if there had been no institutional shift.
+Think of it as creating an alternate reality or a ``what-if'' scenario to compare with what actually happened~\cite{abadie2010, abadie2015, hill2021}.
+The key idea behind this method is to evaluate the effects of policy changes (in this case, the 87-WAS and the 98-UBR) that mainly affect certain units (the provinces in the YRB).
+The method creates a ``synthetic'' version of the affected units by combining information from other similar but unaffected units. This ``synthetic'' version serves as a control group, which we can compare with the actual affected units.
+The DSC method, therefore, is a powerful tool as it allows us to control for unobserved factors that can change over time.
+
+In practice, we consider two distinct institutional shifts that affected all treated units (i.e., provinces in the YRB) in 1987 and 1998.
+Each institutional shift (87-WAS or 98-UBR) is designated as the ``shifted'' time $T_0$, and we individually analyzed two periods: from 1979 to 1998; from 1987 to 2008.
+We include each of the eight provinces in the YRB as separate treated units~\cite{abadie2021} and define the $J+1$ units observed in a time period $1, 2, \dots, T_0, T_0 + 1, \dots, T$, where the remaining $J=20$ units represent untreated provinces outside the YRB.\
+
+The treated unit is exposed to the institutional shift in every post-treatment period $T_0 +1, \dots, T$, and unaffected by the institutional shift in preceding periods $1, 2, \dots, T_0$.
+Any weighted average of the control units is referred as a synthetic control and is denoted by a ($J \times 1$) vector of weights $\mathbf{w} = (w_{1}, \ldots ,w_{J})$, satisfying $w_j \in (0, 1)$ and $w_1 + \cdots  + w_{J} = 1$.
+We also introduce a ($k \times 1$) non-negative vector $\mathbf{v} = (v_{1}, \ldots ,v_{k}$) to weight the relative importance of each covariate, where $k$ is the product of $T_0$ and $D$, the number of pre-treatment years and dimensions in the dataset ($D = 5$ in this case).
+The vector $\mathbf{v}$ must fulfill $v_1 + \cdots  + v_{k} = 1$, and $\mathbf{diag(v)}$ represents the diagonal matrix formed by the vector $\mathbf{v}$.
+Then, the next goal is finding the optimal $\mathbf{w}$ which represents the best ``synthetic'' versions of the affected provinces in the YRB.\
+Given $\mathbf{v}$, we define $\mathbf{w^{*}(v)}$ as a function of $\mathbf{v}$ that minimizes the discrepancy between the pre-treatment characteristics of the treated unit and the synthetic control:
+
+\begin{equation}
+    \mathbf{w^{*}(v)}=\underset{\mathbf{w} \in \mathcal{W}}{\operatorname{argmin}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{w}\right)^{\prime} \mathbf{diag(v)}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{w}\right)
+\end{equation}
+
+Here, $\mathbf{X_1}$ is a ($k \times 1$) vector containing the pre-treatment average of each dimension in the dataset for the treated unit, while $\mathbf{X_0}$ is a ($k \times J$) matrix containing the pre-treatment characteristics for each of the $J$ control units.
+Finally, we choose $\mathbf{v^{*}}$ by minimizing difference between the water uses of treated units and the synthetic controls in the pre-treatment period ($1, 2, \dots, T_0$):
+
+\begin{equation}
+    % https://github.com/OscarEngelbrektson/SyntheticControlMethods/issues/18 这里和README不一样，因为它有问题
+    \mathbf{v}^{*}=\underset{\mathbf{v} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{w}^{*}(\mathbf{v})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{w}^{*}(\mathbf{v})\right)
+\end{equation}
+
+where $\mathbf{Z}_{1}$ is a ($T_0 \times 1$) vector containing every observation of the water use for the treated unit, and $\mathbf{Z}_{0}$ is a ($T_0 \times J$) matrix containing the water use for each control unit in this period.
+The DSC method generalizes the difference-in-differences estimator and allows for time-varying individual-specific unobserved heterogeneity, with better robustness~\cite{billmeier2013, smith2015}.
+In this study, we adopted the algorithm by the ``Synthetic Control Methods'' Python library (version 1.1.17)~\cite{engelbrektson2023} for the minimization.
+
+\subsection{Validating results}\label{sec:robustness}
+
+The efficiency of the DSC approach can be validated using two primary methods.
+
+The first method involves comparing the reconstruction effect on the inferred variables (in this case, water consumption) before and after the interventions of 87-WAS and 98-UBR.\
+Small gaps between predicted and observed values before treatment, coupled with a large gap after treatment, would signal the apparent effect of the policy intervention.
+Specifically, this study employs the paired sample T test to calculate statistics that compare model predictions and actual observation data in the periods before and after both institutional interventions in 1987 (87-WAS) and 1998 (98-UBR).
+A significant difference observed after treatment, but not before, indicates that the policy was effective.
+If this pattern is not found, it suggests that the institutional changes did not impact the treated units.
+
+The second method involves using placebo tests, a standard procedure for assessing the effectiveness of synthetic control methods~\cite{abadie2010}.
+Placebo units are drawn from the control unit pool and substituted for the treated unit.
+The synthetic control method is then applied to the placebo unit using the same data and parameters as the treated unit.
+No significant difference between the placebo and control units, given that the placebo unit should not be influenced by the intervention, would demonstrate the method's effectiveness.
+In this study, we follow the placebo test approach suggested by Abadie~\cite{abadie2010} and utilize the same Python library~\cite{engelbrektson2023} to perform this.
+If the ratio of the Root Mean Square Error (RMSE) (see Equation~\ref{ch5:eq:RMSE}) in the post/pre -treated period is significantly higher for most treated provinces (using the T test to assess significance) compared to other placebo units, it implies that the provinces in the YRB were significantly affected during the treatment periods (1987 and 1998), thus indicating effectiveness.
+
+\begin{equation}
+    \label{ch5:eq:RMSE}
+    \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}{(y_i-\hat{y}_i)}^2}
+\end{equation}
+
+Where $n$ is the observed number, $y_i$ is the observed value, and $\hat{y}_i$ is the predicted value.

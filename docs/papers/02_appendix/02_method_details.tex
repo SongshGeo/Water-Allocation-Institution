@@ -1,0 +1,52 @@
+%! Author = songshgeo
+%! Date = 2022/3/19
+
+
+% % 找到具解释力的变量是构造合成控制法稳健的关键。
+% Explanatory variables are the key to constructing a robust synthetic control method.
+% % 我们共使用了用水量密切相关的26个变量，这些变量的数据集已在先前的研究中被用来解释中国的用水量变化
+% We used a total of $24$ variables related to water consumption Table~\ref{tab:variables}, which datasets have been used in previous studies to explain changes in water use in China \cite{zhou2020}.
+% % 由于这些变量间存在自相关，我们通过肘部法供选择了5个主成分作为DSC的输入，前人研究表明PCA方法的结合能够增强合成控制法的稳健性
+
+% In addition, we selected $5$ principal components as input by the elbow method because selection in autocorrelated variables reduces dimensions and then enhances the robustness of the DSC (Figure~\ref{fig:elbow}).
+
+% There are two approaches to validity testing of the DSC: (1) comparing the post-treated and pre-treated reconstructions and (2) testing robustness through placebo analysis.
+% For (1), differences between each province and their synthetic are significant in post-treated periods and small in pre-treated periods (Figure~\ref{fig:87panel} and figure~\ref{fig:98panel}), which show good reconstructions of their water use changes' estimation.
+% For (2), we applied the in-place placebo analysis described by \cite{abadie2010}. In most provinces, ratios of post-MSPE to pre-MSPE are higher than the median of other placebo units, which suggests the institutional shifts in treated time (1987 and 1998 here) influenced them more than most of the other provinces (figure~\ref{fig:87placebo}, figure~\ref{fig:98placebo}, Table~\ref{tab:DSC_summary}).
+
+% \begin{figure*}[!bh]
+%     \includegraphics[width=0.9\linewidth]{outputs/87panel.pdf}
+%     \centering
+%     \caption{Comparations between YRB' provinces and their synthetic controls around the 87-WAS.}
+%     \label{fig:87panel}
+% \end{figure*}
+
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/98panel.pdf}
+%     \centering
+%     \caption{Comparations between YRB' provinces and their synthetic controls around the 98-UBR.}
+%     \label{fig:98panel}
+% \end{figure*}
+
+
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/87placebo.pdf}
+%     \centering
+%     \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 87-WAS, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE).}
+%     \label{fig:87placebo}
+% \end{figure*}
+
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/98placebo.pdf}
+%     \centering
+%     \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 98-UBR, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE)}
+%     \label{fig:98placebo}
+% \end{figure*}
+
+\input{tab_data_source.tex}
+
+\begin{figure*}[!h]
+    \includegraphics[width=0.9\linewidth]{outputs/elbow.pdf}
+    \centering
+    \caption{Choose number of pricipal components by Elbow method, $5$ pricipal components already capture $89.63\%$ explained variance.}\label{fig:elbow}
+\end{figure*}

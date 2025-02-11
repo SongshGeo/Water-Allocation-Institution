@@ -1,0 +1,136 @@
+%! Author = songshgeo
+%! Date = 2022/3/19
+
+
+% \subsection{Structure-based marginal benefit analysis}
+% \label{result-4}
+
+For interpretation of the pattern of provincial water uses, we compared the theoretical marginal returns and optimal water use under three different structural cases (case 1 to case 3, corresponding to different SES structures in Figure~\ref{fig:structure}~C).
+
+Assuming that water is the factor input with decreasing marginal output of each province, results show that varying incentives for water use in each province derive from the relationship between the benefits and costs of water use.
+As a benchmark, case 1 analogy to a decentralized stakeholders situation and lead to medium-level water use.
+In case 2, each stakeholder expects that current water use helps bargain for a favorable water quota in the face of institutional shift (see \textit{\ref{secS4}}), which can intensify the incentive to use water, leading to higher water use.
+Furthermore, the water users with higher capability are more stimulated by the institutional shift and away from the theoretically optimal water use under a unified allocation.
+After water-use decisions are consolidated into unified management (case 3), marginal benefits analysis suggests the lowest water use among the cases.
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.6\linewidth]{outputs/economic_model.pdf}
+	\caption{
+		The proposed relationship of marginal benefits and water use of individual province under varying cases (case 1 to case 3, corresponding to the different SES structures in Figure~\ref{fig:structure}~C) Major water users' theoretically optimal water use is also larger (see the proofs below.)}
+\end{figure}
+
+Below are the detailed theoretical model derivation process, where we started from proposing three intuitive and general assumptions:
+
+\begin{ass}
+(Water-dependent production) Because of irreplaceability, water is assumed to be the only input of the production function with two types of production efficiency. The production function of a high-incentive province is $A_HF(x)$, and the production function of a low-incentive province is $A_LF(x)$ ($A_H>A_L$). F(x) is continuous, $F'(0)=\infty$, $ F'(\infty)=0$, $F'(x)>0$, and $F''(x)<0$. The production output is under perfect competition, with a constant unit price of $P$.
+\end{ass}
+
+\begin{ass}
+ (Ecological cost allocation) Under the assumption that the ecology is a single entity for the whole basin involved in $N$ provinces, the cost of water use is equally assigned to each province under any water use. The unit cost of water is a constant $C$.
+\end{ass}
+\begin{ass}
+(Multi-period settings) There are infinite periods with a constant discount factor $\beta$ lying in (0,1). There is no cross-period smoothing in water use.
+\end{ass}
+
+Under the above assumptions, we can demonstrate three cases consisting of local governments in a whole basin to simulate their water use decision-making and water use patterns.
+
+ %case1
+\begin{case} before 1987: This case corresponds to a situation without any high-level water allocation institution.
+
+When each province independently decides on its water use, the optimal water use $x_i^*$ in province $i$ satisfies:
+
+ $AF'(x)=\frac{C}{P}$,
+
+ where $A_H$ and $A_L$ denote high-incentive and low-incentive provinces, respectively.
+
+ When the decisions in different periods are independent, for $t$ = $0, 1, 2 \cdots$, then:
+
+ $x_{it}^* = x_i^*$
+
+ \end{case}
+
+ %case2
+ \begin{case} from 1987 to 1998: This case corresponds to an SES structure where fragmented stakeholders are linked to unified river reaches.
+
+ The water quota is determined at $t$=0 and imposed in $t$=1,2, \ldots Under the subjective expectation of each province that current water use may influence the future water allocation determined by high-level authorities, the total quota is a constant denoted as Q, and the quota for province $i$ is determined in a proportional form:
+
+ $Q_i=Q \cdot \frac{x_i}{x_i + \begin{matrix}\sum{x_{-i}} \end{matrix}}$.
+
+Under a scenario with decentralized decision-making with a water quota, given other provinces' decisions on water use remain unchanged, the optimal water use of province $i$ at $t$=0 satisfies:
+
+$AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix})^2}$,
+
+where $A_H$ denotes a high-incentive province and $A_L$ denotes a low-incentive province.
+
+\end{case}
+
+ %case3
+\begin{case} after 1998: This case corresponds to the institution under which water use in a basin is centrally managed.
+
+ When the $N$ provinces decide on water use as a unified whole (e.g., the central government completely decides and controls the water use in each province), the optimal water use $x_i^*$ of province $i$ satisfies:
+
+$F'(x)=\frac{C}{P}$.
+
+\end{case}
+
+We propose Proposition 1 and Proposition 2:
+
+Proposition 1: Compared with the decentralized institution, a institution with unified management decreases total water use.
+
+The optimal water use under the three cases implies that mismatched institutions cause incentive distortions and lead to resource overuse.
+
+
+Proposition 2: Water overuse is higher among provinces with high water use incentives than low- water use incentives under a mismatched institution.
+
+The intuition for this proposition is straightforward in that all provinces would use up their allocated quota under a relatively small $Q$. As production efficiency increases, the marginal benefits of a unit quota increase, and the quota would provide higher future benefits for a pre-emptive water use strategy. Provinces with high production efficiency have higher optimal water use values under the decentralized decision. The divergence in water use would be exaggerated when the water quota is expected to be implemented with greater competition.
+
+%Appendix的模型和proposition推导细节部分
+%放在Appendix
+
+%case1
+
+When the N provinces decide on water uses as a unity, the marginal cost is C, equal to its fixed unit cost.
+The water use of province $i$ aims to maximize $P\cdot A\cdot F(x)-C$.
+Hence, $x_i^*$ satisfies $P \cdot A\cdot F'(x)=C$, i.e., $AF'(x)=\frac{C}{P}$, where A denotes $A_H$ for a high-incentive province and $A_L$ for a low-incentive province.
+
+When each of the N provinces independently decides on its water use, the marginal cost of water use would be $\frac{C}{N}$ as a result of cost-sharing with others.
+Hence, the optimal water use in province i at period t, denoted as $\hat x_i^*$, satisfies $P \cdot A \cdot F'(x_{it})=\frac{C}{N}$, i.e., $A \cdot F'(x)=\frac{C}{P \cdot N}$.
+Since $F'$ is monotonically decreasing, $\hat x_{it}^*>x_i^*$.
+
+When the water quota would constrain future water use, the dynamic optimization problem of province i is shown as follows. In $t=1,2,\cdots$, there would be no relevant cost when the quota is bound that each province takes ongoing costs of $\frac{P \cdot Q}{N}$ regardless of the allocation. Therefore, it is sufficient to consider only the total water quota is less than total water use in Case 2 since a ``too large'' quota doesn't make sense for ecological policies.
+
+$max  \quad P \cdot A \cdot F(x_{i,0})-\frac{C \cdot \begin{matrix} \sum x_{i,0} + x_{-i,0} \end{matrix}}{N}+\beta P \cdot A \cdot F(x_{i,1})+\beta^2 P \cdot A \cdot F(x_{i,2})+...$
+
+$=P \cdot A \cdot F(x_{i,0})-C \cdot \frac{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}{N}+\frac{\beta}{1-\beta} P \cdot A \cdot F(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}})$
+
+First-order condition: $P \cdot A \cdot F'(x_{i,0})-\frac{C}{N}+\frac{\beta}{1-\beta}[P \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0}+\begin{matrix} \sum  x_{-i,0} \end{matrix})^2}]=0$
+
+where $f(\cdot)$ is the differential function of $F(\cdot)$.
+
+The optimal water use in province i at t=0 $\widetilde x_{i,0}^*$ satisfies $P \cdot A \cdot F'(x_{i,0})=\frac{C}{N}-\frac{\beta}{1-\beta} \cdot P \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$,
+i.e.,
+$A \cdot F'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$.
+
+Since $F'>0$ and $F''<0$, $\widetilde x_i^*>\hat x_i^*>x_i^*$, taken others' water use $x_{-i,0}$ as given. Since the provincial water use decisions are exactly symmetric, total water use would increase when each province has higher incentives for current water use.
+
+%Proposition 1
+Proof of Proposition 1:
+
+Because $F'>0$ and $F''(x)<0$ is monotonically decreasing, based on a comparison of costs and benefits for stakeholders (provinces) in the three cases,
+
+$\widetilde x_i^*>\hat x_i^*>x_i^*$.
+
+The result of $\hat x_i^*>x_i^*$ indicates that individual rationality would deviate from collective rationality under unclear property rights where a water user is fully responsible for the relevant costs. The result of $\hat x_i^*>x_i^*$
+
+The difference between $ x_i^*$ and $\hat x_i^*$ stems from two parts: the effect of the marginal returns and the effect of the marginal costs. First, the ``shadow value'' provides additional marginal returns of water use in $t$ = 0, which increases the incentives of water overuse by encouraging bargaining for a larger quota. Second, the future cost of water use would be degraded from $\frac{P}{N}$ to an irrelevant cost.
+
+%Proposition 2
+Proof of Proposition 2:
+
+Since $A_H>A_L$, $F'(x_H)<F'(x_L)$,
+Eq.(xxx) %此处引用：$AF'(x_{i,0})=\frac{C}{P \cdot N} - \frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(\begin{matrix} x_{i,0} + \sum x_{-i,0} \end{matrix})^2}$
+implies a positive relation between $x_{i0}$ and A, when $\beta, P, C, Q$, and other provinces' water use are taken as given.
+
+The difference between $\widetilde x_i^*$ and $\hat x_i^*$ (i.e., $\frac{\beta}{1-\beta} \cdot A \cdot f(Q \cdot \frac{x_{i,0}}{x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix}}) \cdot Q \cdot \frac{\begin{matrix} \sum x_{-i,0} \end{matrix}}{(x_{i,0} + \begin{matrix} \sum x_{-i,0} \end{matrix})^2}$) represents the incentive of water overuse derived from an expectation of water quota allocation. The incentive of water overuse increases by A.

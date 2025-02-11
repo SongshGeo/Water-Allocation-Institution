@@ -1,0 +1,39 @@
+% chktex-file 1
+% chktex-file 46
+\section{Reviewer \#1}\label{reviewer_1}
+
+\subsection*{Overall comments}
+
+Reviewer \#1: I appreciate that the authors took my comments seriously and apparently invested efforts in improving the description of the method, which indeed has become clearer. That said, some confusing points remain. I will be specific here. Please clarify the following three points.
+
+\RC{} Is $k = T \times D$ or $T_0 \times D$? Currently, it is stated that ``$k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset.'' However, this portion of the method focuses on the PRE-TREATMENT characteristics, shouldn't we use only the data from the PRE-TREATMENT period, i.e., $T_0$ years? As such, shouldn't $k$ be ``the product of $T_0$ and $D$, the number of pre-treatment years and dimensions''?
+
+% 是的，您的理解是正确的，这里的数据集指的是pre-treatment的部分，抱歉这没有写得更清楚，T的符号是一个笔误，我们已经修改成T0.
+\AR{} Yes, your understanding is correct, the data set here refers to the part of pre-treatment, sorry it was not written more clearly, the symbol of $T$ is a clerical error, we have modified it to $T_0$. Thank you for your care to make all this sentence more clear:
+
+\begin{quote}[page=7, sline=144, eline=145]
+    $\dots$ where $k$ is the product of $T_0$ and $D$, the number of pre-treatment years and dimensions in the dataset ($D = 5$ in this case).
+\end{quote}
+
+\RC{} The authors still wrote ``matrix $X_1$'' -again, I don't see how the math would work if $X_1$ is a matrix. In Eq. 1, $X_0$ is a ($k \times J$) matrix and $W$ is a ($J \times 1$) vector. This implies that the product ($X_0$, $W$) is a ($k \times 1$) vector, so $X_1$ should be a ($k \times 1$) vector as well, with each entry being the value of one the dimensions in one of the pre-treatment years. Please CLARIFY THE DEFINITION and EXPLICITLY INCLUDE THE DIMENSION OF $X_1$, which was one of the questions I previously asked.
+
+% 谢谢您指出这个问题，我们去除了容易让读者混淆的“矩阵”表述，并标明了其维度。
+\AR{} Thank you for pointing this out. We have removed the expression of ``matrix'', which is easy to confuse readers, and indicated its dimensions:
+
+\begin{quote}[page=7, sline=150, eline=151]
+    $\mathbf{X_1}$ is a ($k \times 1$) vector containing the pre-treatment average of each dimension in the dataset for the treated unit $\dots$
+\end{quote}
+
+\RC{} Similarly, the authors wrote ``$Z_1$ is a matrix $\dots$'' -again, I don't see how the math would work if $Z_1$ is a matrix. In Eq. 2, $Z_0$ is a ($T_0 \times J$) vector and $w*(v)$ is a $(J \times 1)$ matrix. This implies that the product ($Z_0 \times w*(v)$) is a ($T_0 \times 1$) vector, so $Z_1$ should be a ($T_0 \times 1$) vector as well, with each entry being the water use of the treated united in a given pre-treatment year. Please EXPLICITLY INCLUDE THE DIMENSION OF $Z_1$.
+
+\AR{} Similarly, we have removed the expression of ``matrix'' and introduced its dimensions directly:
+
+\begin{quote}[page=7, sline=155, eline=156]
+    where $\mathbf{Z}_{1}$ is a ($T_0 \times 1$) vector containing every observation of the water use for the treated unit $\dots$
+\end{quote}
+
+As before, if I missed something or misunderstood anything here, please clarify.
+
+% 非常感谢您对本研究意义的认可，我们相信，我们对该方法的应用识别并解释了一个非常有趣的现象。也非常抱歉之前的手稿造成困惑，我们希望新的手稿对读者来说表述足够清晰！
+\AR{} We are very grateful for your recognition of our previous improvements of the manuscript. As you pointed out, we can indicate the dimensions for readers to understand better, and thanks to your valuable suggestions, we now fully follow them and further enhance the manuscript.
+

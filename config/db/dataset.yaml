@@ -1,0 +1,12 @@
+
+merged_data: data/processed/pca_transformed_data.csv  # merged data of provinces
+wu_yr: data/processed/wu_yr.csv  # Water Use from YR
+wu_all: data/processed/wu_all.csv  # Provinces' Total Water Use
+ratio: data/processed/ratio.csv
+plan: data/processed/plan.csv
+quota: data/processed/quota.csv
+pca85: data/processed/pca_transformed_0.85.csv
+
+# 原始数据
+outage: data/source/river break.xlsx
+drought: data/source/干旱严重程度.xlsx

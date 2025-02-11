@@ -1,0 +1,59 @@
+
+
+% The Differenced Synthetic Control (DSC) method estimates water use $y'$ by assuming that the control group (provinces out of the YRB) and experiment group (provinces in the YRB) keep their changing trends after an institutional shift in $t_0$, i.e., $f_{t<t_0}(X) = f_{t>t_0}(X)$.
+% Therefore, when comparing the actual water use $y$ and the estimated water use $y'$ after institutional shifts, if $y'_{t<t_0} \approx y_{t<t_0}$ but $y'_{t>t_0} \neq y_{t>t_0}$, there are two cases: (1) changing trends of independent variables $X$ are different between control groups and experiment groups; (2) functions of variables are different between pre- and post- institutional shift periods i.e., $f_{t<t_0}(X) \neq f_{t>t_0}(X)$.
+% Corresponding to the problem of this study, they mean: (1) Institutional shift changes the trend of independent variables (environment, economy, technology); (2) Institutional shift makes difference of water use caused by the change of unit independent variable combination different.
+
+% In practice, both two factors may contribute simultaneously.
+% Here, we analyze the differences between the YRB (affecting the actual water consumption) and other provinces (used by DSC generating synthetic control group) for the representative independent variables in each category of Table~\ref{tab:variables} by calculating their differences in ratio $Diff_{ratio}$:
+
+% \begin{equation}
+%     Diff_{ratio} = \frac{\vec{var}^{YRB}_{t} - \vec{var}^{others}_{t}}{\frac{1}{T} * \sum_{t}^T (var^{YRB}_{t} - var^{others}_{t})}
+% \end{equation}
+
+% where $\vec{var}$ is a vector of specific independent variable in $X_{t, var}$, $t\in [1979, 2008]$.
+
+% For the first case, in terms of environmental factors, the differences between provinces in the YRB and other Chinese provinces has not changed significantly throughout (i.e., kept parallel, Figure~\ref{fig:variables} A and B). However, the economic factors (both in agriculture, industry, and services) had significant changes after the first institutional shift (the 87-WAS) (Figure~\ref{fig:variables}~C, D and E), but not in population (Figure~\ref{fig:variables}~F).
+
+% % 对第二种情况
+% For the second case, since water the production functions of water use are mainly dependent on its efficiency, which is influenced by water-saving facilities a lot, we analyze the differences between water conservation infrastructures (WCI) ratio and industrial water recycling (IWR) ratio. While an abruptly changing trend occurred after the 87-WAS for WCI, ratio of IWR rised its differences between the YRB provinces and other provinces (without abrupt change) until the 98-UBR (Figure~\ref{fig:variables}~G and H).
+
+% As results, the differences between the DSC estimated YRB's water use and its actual water use are contributed by both abrupt changes of independent variables and functions. Furthermore, the economic variables (agriculture, industry, and services) contributed much more rather than environmental variables or population.
+
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/variables.pdf}
+%     \centering
+%     \caption{Differences ratio of different variables: \textbf{A.} precipitation, \textbf{B.} temperature, \textbf{C.} total irrigated areas, \textbf{D.} industrial gross value added (industrial GVA), \textbf{E.} services GVA, \textbf{F.} population, \textbf{G.} water conservation irrigation (WCI) ratio, and \textbf{H.} industrial water recycling (IWR) ratio.}
+%     \label{fig:variables}
+% \end{figure*}
+
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/elbow.pdf}
+%     \centering
+%     \caption{Choose number of pricipal components by Elbow method, $5$ pricipal components already capture $89.63\%$ explained variance.}
+%     \label{fig:elbow}
+% \end{figure*}
+
+
+% \begin{figure*}
+%     \includegraphics[width=0.9\linewidth]{outputs/economy.pdf}
+%     \centering
+%     \caption{Double mass curve of Gross Domestic Product (GDP) in the YRB provinces and other provinces in \textbf{A.} Agriculture, \textbf{B.} industry, \textbf{C.} services and \textbf{D.} average GDP per capita.}
+%     \label{fig:variables}
+% \end{figure*}
+
+
+% \begin{figure}
+%     \includegraphics[width=0.7\linewidth]{outputs/S3_WUI.pdf}
+%     \centering
+%     \caption{Water use intensity differences in \textbf{A.} agriculture and \textbf{B.} industry between the YRB provinces and other provinces in China.}
+%     \label{S3-2}
+% \end{figure}
+
+
+% \begin{figure*}
+%     \includegraphics[width=0.7\linewidth]{outputs/S3_wci.pdf}
+%     \centering
+%     \caption{Ratio of irrigated area with water-saving equipments (drip irrigation, pipe irrigation, channel hardening) to the total irrigated area in the YRB provinces and other provinces in China.}
+%     \label{S3-3}
+% \end{figure*}

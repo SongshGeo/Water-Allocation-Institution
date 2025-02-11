@@ -1,0 +1,17 @@
+results:
+  - figs/outputs/main_results2.pdf
+
+compare:
+  - figs/outputs/fig3.pdf
+
+trend_87:
+  - figs/outputs/trend_87.pdf
+
+trend_98:
+  - figs/outputs/trend_98.pdf
+
+rmse_87:
+  - figs/outputs/rmse_87.pdf
+
+rmse_98:
+  - figs/outputs/rmse_98.pdf

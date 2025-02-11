@@ -1,0 +1,28 @@
+% Define title defaults if not defined by user
+\providecommand{\lettertitle}{Author Response to Reviews of}
+\providecommand{\papertitle}{Title}
+\providecommand{\authors}{Authors}
+\providecommand{\journal}{Journal}
+\providecommand{\doi}{--}
+
+% For using tabularx
+\usepackage{tabularx}
+\usepackage{booktabs}
+\input{templates/preamble.tex}
+\usepackage{xr-hyper}
+% 参考其它文件的标签 https://texfaq.org/FAQ-extref
+\usepackage{xr}
+\externaldocument[SI]{../sup/supplementary_information}
+\externaldocument[MS]{../main/manuscript}
+
+\begin{document}
+
+% Make title
+{\Large\bf \lettertitle}\\[1em]
+{\huge \papertitle}\\[1em]
+{\authors}\\
+{\it \journal, }\texttt{\doi}\\
+\hrule
+
+% Legend
+\hfill {\bfseries RC:} \textbf{\textit{Reviewer Comment}},\(\quad\) AR\: Author Response, \(\quad\square\) Manuscript text

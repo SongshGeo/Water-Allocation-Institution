@@ -1,0 +1,53 @@
+defaults:
+  - db: dataset
+  - vars: pca
+  - figs: local
+  - _self_
+
+description: 使用差分合成控制法进行实验，这个参数组合是完全模仿之前的 “-85%”实验，是投稿到 $\textit{Ecology & Society}$ 的版本。
+
+policy_87:
+  name: 八七分水方案
+  start: 1979
+  end: 1998
+  treat_year: 1987
+  placebo_time: 1984
+
+policy_98:
+  name: 流域统一调度
+  start: 1987
+  end: 2008
+  treat_year: 1998
+  placebo_time: 1995
+
+province_include:
+  - 'Qinghai'
+  - 'Gansu'
+  - 'Ningxia'
+  - 'Neimeng'
+  - 'Shanxi'
+  - 'Shaanxi'
+  - 'Henan'
+  - 'Shandong'
+
+province_exclude:
+  - 'Jinji'
+  - 'Beijing'
+  - 'Sichuan'
+
+id_var: 'Province'
+time_var: 'Year'
+outcome_var: 'Total water use'
+differenced: True  # DiffSynth
+features: [PC1, PC2, PC3, PC4, PC5]
+
+
+n_optim: 100
+pen: auto
+random_seed: 0
+
+# placebo
+space_placebo: True
+time_placebo: False
+time_placebo_optim: 10
+space_placebo_optim: 10

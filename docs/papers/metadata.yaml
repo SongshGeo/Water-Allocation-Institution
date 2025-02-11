@@ -1,0 +1,77 @@
+# metadata
+title: Institutional shifts and sustainable water use of the Yellow River Basin
+abstract: Increasing competition for water is leading to the depletion of freshwater globally and calls for efficient institutions in water governance. Alignments of social-ecological system (SES) structures are a crucial approach to institutional matches, but an understanding of its causal links and underlying processes still needs to be improved. To fill these knowledge gaps, we select the Yellow River Basin (YRB) in China as a typical case study to quantitatively measure the effects of SES structures changing because it is one of the most anthropogenically altered large river basins. Under different surface water allocation institutions, its streamflow was first overdrawn, dried up, and successfully restored. We focused on two institutional shifts, the Water Allocation Scheme that began in 1987 (87-WAS) and the Unified Basinal Regulation that took over in 1998 (98-UBR), which re-framed different SES structures. We conduct counterfactual identification on the effect of these institutional shifts; our results suggested that during the decade following the introduction of the 87-WAS, observed water use of the YRB increased by 8.57% more than expected, while 98-UBR ultimately decreased total water use. Furthermore, these heterogeneous effects of water use responses to SES structures aligned with our further theoretical marginal benefits analysis, supporting the hypothesis that SES structural changes played a vital role. This quasi-natural experiment on the YRB offers profound insights into the links between SESs structures and outcomes, suggesting that fragmented ecological units linked to separated social actors should be avoided for sustainability.
+
+target journal: Ecology & Society
+current version: 3.0.1
+
+
+keywords: [
+    social-ecological system,
+    water governance,
+    water use,
+    institutional fit,
+    Yellow River,
+]
+
+authors:
+  Shuang Song:
+    rank: 1
+    affli: [klb, bnu]
+    email: songshgeo@mail.bnu.edu.cn
+
+  Huiyu Wen:
+    rank: 2
+    affli: [rmu]
+    email: wenhy@ruc.edu.cn
+
+affli:
+  klb:
+    name: State Key Laboratory of Earth Surface Processes and Resource Ecology
+    apartment: Faculty of Geographical Science
+    institute: Beijing Normal University
+    city: Beijing
+    zcode: 100875
+    country: P.R. China
+  bnu:
+    name: Institute of Land Surface System and Sustainability
+    apartment: Faculty of Geographical Science
+    institute: Beijing Normal University
+    city: Beijing
+    zcode: 100875
+    country: P.R. China
+  rmu:
+    name: School of Finance
+    apartment: None
+    institute: Renmin University of China
+    city: Beijing
+    zcode: 100875
+    country: P.R. China
+  arc:
+    name: ARC Centre of Excellence for Coral Reef Studies
+    apartment: None
+    institute: James Cook University
+    city: Townsville
+    zcode: 4811
+    country: QLD, Australia
+
+Correspondence: Shuai Wang
+
+
+Funding:
+  name: "National Natural Science Foundation of China (CN)"
+  num: "NSFC 42041007"
+  funded_author: Bojie Fu
+
+
+Competing Interests: None
+
+Author contributions:
+  design research: [Shuai Wang, Bojie Fu]
+  perform the research: [Shuang Song, Huiyu Wen]
+  data analysis: [Shuang Song, Huiyu Wen, Xutong Wu]
+  wrote paper: [Shuang Song, Huiyu Wen, Graeme S. Cumming]
+  revised and advices: [Graeme S. Cumming]
+  funding: [Bojie Fu]
+
+Code availability: "All codes and datasets used in this research are accessible at https://github.com/SongshGeo/sochyd-transboundary-HESS. They will be made open source after this project is completed."
