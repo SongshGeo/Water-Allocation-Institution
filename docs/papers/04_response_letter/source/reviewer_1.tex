@@ -6,12 +6,12 @@
 
 Reviewer \#1: I appreciate that the authors took my comments seriously and apparently invested efforts in improving the description of the method, which indeed has become clearer. That said, some confusing points remain. I will be specific here. Please clarify the following three points.
 
-\RC{} Is $k = T x D$ or $T_0 x D$? Currently, it is stated that ``$k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset.'' However, this portion of the method focuses on the PRE-TREATMENT characteristics, shouldn't we use only the data from the PRE-TREATMENT period, i.e., $T_0$ years? As such, shouldn't $k$ be ``the product of $T_0$ and $D$, the number of pre-treatment years and dimensions''?
+\RC{} Is $k = T \times D$ or $T_0 \times D$? Currently, it is stated that ``$k$ is the product of $T$ and $D$, the number of years and dimensions in the dataset.'' However, this portion of the method focuses on the PRE-TREATMENT characteristics, shouldn't we use only the data from the PRE-TREATMENT period, i.e., $T_0$ years? As such, shouldn't $k$ be ``the product of $T_0$ and $D$, the number of pre-treatment years and dimensions''?
 
 % 是的，您的理解是正确的，这里的数据集指的是pre-treatment的部分，抱歉这没有写得更清楚，T的符号是一个笔误，我们已经修改成T0.
 \AR{} Yes, your understanding is correct, the data set here refers to the part of pre-treatment, sorry it was not written more clearly, the symbol of $T$ is a clerical error, we have modified it to $T_0$. Thank you for your care to make all this sentence more clear:
 
-\begin{quote}
+\begin{quote}[page=7, sline=144, eline=145]
     $\dots$ where $k$ is the product of $T_0$ and $D$, the number of pre-treatment years and dimensions in the dataset ($D = 5$ in this case).
 \end{quote}
 
@@ -20,7 +20,7 @@ Reviewer \#1: I appreciate that the authors took my comments seriously and appar
 % 谢谢您指出这个问题，我们去除了容易让读者混淆的“矩阵”表述，并标明了其维度。
 \AR{} Thank you for pointing this out. We have removed the expression of ``matrix'', which is easy to confuse readers, and indicated its dimensions:
 
-\begin{quote}
+\begin{quote}[page=7, sline=150, eline=151]
     $\mathbf{X_1}$ is a ($k \times 1$) vector containing the pre-treatment average of each dimension in the dataset for the treated unit $\dots$
 \end{quote}
 
@@ -28,7 +28,7 @@ Reviewer \#1: I appreciate that the authors took my comments seriously and appar
 
 \AR{} Similarly, we have removed the expression of ``matrix'' and introduced its dimensions directly:
 
-\begin{quote}
+\begin{quote}[page=7, sline=155, eline=156]
     where $\mathbf{Z}_{1}$ is a ($T_0 \times 1$) vector containing every observation of the water use for the treated unit $\dots$
 \end{quote}
 
