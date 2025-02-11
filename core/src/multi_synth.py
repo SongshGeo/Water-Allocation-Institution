@@ -422,3 +422,28 @@ class MultiSynth:
             if i not in [0, 4]:
                 ax.set_ylabel("")
         return fig
+
+    def export_weights(self):
+        """
+        合并多个处理单位的权重到一个宽格式数据框
+
+        参数:
+        weights_dict: 字典，键为处理单位名称，值为对应的权重数据框
+
+        返回:
+        pandas DataFrame: 宽格式的权重数据框，索引为控制单位，列为处理单位
+        """
+        # 创建一个空的列表来存储每个处理单位的权重
+        dfs = []
+
+        for treated_unit, model in self.units.items():
+            weight_df = model.model.original_data.weight_df
+            # 假设weight_df有'Unit'和'Weight'列
+            # 将权重序列重命名为处理单位名称
+            series = weight_df["Weight"]
+            series.name = treated_unit
+            dfs.append(series)
+
+        # 水平合并所有序列
+        combined_weights = pd.concat(dfs, axis=1)
+        return combined_weights

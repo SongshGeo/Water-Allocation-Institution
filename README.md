@@ -4,25 +4,9 @@
 ![GitHub](https://badgen.net/badge/GitHub/SongshGeo/:color?icon=github)
 ![Star](https://badgen.net/github/stars/SongshGeo/Water-Allocation-Institution)
 
-![图片(13)](https://gitee.com/SongshGeo/Picgo2/raw/master/uPic/%E5%9B%BE%E7%89%87%20(13).jpg)
+This repository is the code for the paper: [Institutional shifts and effects to the Yellow River Basins' water uses](https://doi.org/10.1016/j.jhydrol.2024.130638).
 
-Institutional shifts and effects to the Yellow River Basins' water uses.
+## Methods
 
-## Structure
-
-This repository organized as:
-```
-
-```
-
-## About
-
-**Related Project:**
-- Project: Yellow River Basin
-- Status: Ongoing
-
-**Authors:**
-{# contributors #}
-
-**Links:**
-{# links:refer #}
+- Firstly, I used PCA to reduce the dimensionality. You can check the [PCA.ipynb](notebooks/02_PCA.ipynb) for more details and [pca.yaml](config/vars/pca.yaml) for the parameters.
+- Then, I used the [Synthetic Control Methods](https://github.com/SongshGeo/SyntheticControlMethods) package to get the weights of the control units. You can check the [03_SyntheticControlMethods.ipynb](notebooks/03_SyntheticControlMethods.ipynb) for the processes and results. The parameters are in the [synth.yaml](config/synth.yaml).
